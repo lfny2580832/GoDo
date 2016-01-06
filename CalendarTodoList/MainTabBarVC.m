@@ -10,6 +10,7 @@
 #import "CalendarScrollView.h"
 #import <Realm/Realm.h>
 #import "RLMTodoList.h"
+#import "RLMThing.h"
 
 @interface MainTabBarVC ()
 
@@ -29,15 +30,18 @@
 
 - (void)initViews
 {
-//    RLMRealm *realm = [RLMRealm defaultRealm];
-//    RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
-//    todolistModel.tableId = 20160106;
-//    todolistModel.timeStamp = 1230;
-//    todolistModel.todoStr = @"吃饭";
-//    
-//    [realm beginWriteTransaction];
-//    [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];
-//    [realm commitWriteTransaction];
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    RLMThing *thing = [[RLMThing alloc]init];
+    thing.thingType = Entertainment;
+    thing.thingStr = @"play Game";
+    RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
+    todolistModel.tableId = 20160107;
+    todolistModel.timeStamp = 1111;
+    todolistModel.thing = thing;
+    
+    [realm beginWriteTransaction];
+    [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];
+    [realm commitWriteTransaction];
     
     UINavigationController *firstController = [[UINavigationController alloc]init];
 //    [firstController setCustomTitle:@"TodoList" color:[UIColor redColor]];
@@ -49,8 +53,6 @@
     [secondController setTitle:@"second"];
     
     [self setViewControllers:@[firstController, secondController]];
-    
-
     
 }
 

@@ -21,6 +21,7 @@
 		4A88CB2C1C2B925F001C13D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A88CB2B1C2B925F001C13D8 /* Assets.xcassets */; };
 		4A88CB3A1C2B925F001C13D8 /* CalendarTodoListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB391C2B925F001C13D8 /* CalendarTodoListTests.m */; };
 		4A88CB451C2B925F001C13D8 /* CalendarTodoListUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB441C2B925F001C13D8 /* CalendarTodoListUITests.m */; };
+		4ADA1D7A1C3CC407001ECBF4 /* RLMThing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1D791C3CC407001ECBF4 /* RLMThing.m */; };
 		988604FC5CF4599DBC5A9AA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 640C26EC2089C43C666A53BB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,8 @@
 		4A88CB441C2B925F001C13D8 /* CalendarTodoListUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarTodoListUITests.m; sourceTree = "<group>"; };
 		4A88CB461C2B925F001C13D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A88CB691C2BBC9F001C13D8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		4ADA1D781C3CC407001ECBF4 /* RLMThing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMThing.h; sourceTree = "<group>"; };
+		4ADA1D791C3CC407001ECBF4 /* RLMThing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMThing.m; sourceTree = "<group>"; };
 		640C26EC2089C43C666A53BB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2673CA96F7B03EE1014712 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E72E51CDFFC69871C1738A6E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +112,8 @@
 			children = (
 				4A6A47BF1C3BBF5F0063053E /* RLMTodoList.h */,
 				4A6A47C01C3BBF5F0063053E /* RLMTodoList.m */,
+				4ADA1D781C3CC407001ECBF4 /* RLMThing.h */,
+				4ADA1D791C3CC407001ECBF4 /* RLMThing.m */,
 				4A214D2A1C311D22009FE635 /* RDVCalendarDayCell.h */,
 				4A214D2B1C311D22009FE635 /* RDVCalendarDayCell.m */,
 				4A214D2C1C311D22009FE635 /* RDVCalendarView.h */,
@@ -398,6 +403,7 @@
 				4A214D2F1C311D22009FE635 /* RDVCalendarView.m in Sources */,
 				4A6A47BE1C3A78B10063053E /* GradientView.m in Sources */,
 				4A0FF8421C2CD44300C1A781 /* MainTabBarVC.m in Sources */,
+				4ADA1D7A1C3CC407001ECBF4 /* RLMThing.m in Sources */,
 				4A214D2E1C311D22009FE635 /* RDVCalendarDayCell.m in Sources */,
 				4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */,
 				4A214D281C30E901009FE635 /* CalendarScrollView.m in Sources */,

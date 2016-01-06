@@ -7,6 +7,7 @@
 //
 
 #import <Realm/Realm.h>
+#import "RLMThing.h"
 
 @interface RLMTodoList : RLMObject
 
@@ -17,6 +18,6 @@
 @property (nonatomic, assign) NSInteger timeStamp;
 
 ///对应事件;
-@property (nonatomic, copy) NSString *todoStr;
+@property (nonatomic, strong) RLMThing *thing;
 
 @end

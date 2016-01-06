@@ -539,7 +539,11 @@ static NSString *DayIdentifier = @"DayCell";
         RLMResults *result = [RLMTodoList objectsWhere:@"tableId = %ld",tabelId];
         RLMTodoList *todolist = [result firstObject];
         if (todolist) {
-            dayCell.listLabel.text = [NSString stringWithFormat:@"%ld:%@",todolist.timeStamp,todolist.todoStr];
+            NSString *typeStr;
+            if (todolist.thing.thingType == 1) {
+                typeStr = @"娱乐";
+            }
+            dayCell.listLabel.text = [NSString stringWithFormat:@"%ld:%@",todolist.timeStamp,typeStr];
         }
         
         if (index + 1 == self.currentDay.day &&
