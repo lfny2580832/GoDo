@@ -1,0 +1,20 @@
+PODS:
+  - AsyncDisplayKit (1.9.3):
+    - AsyncDisplayKit/ASDealloc2MainObject (= 1.9.3)
+  - AsyncDisplayKit/ASDealloc2MainObject (1.9.3)
+  - Masonry (0.6.4)
+  - Realm (0.97.0):
+    - Realm/Headers (= 0.97.0)
+  - Realm/Headers (0.97.0)
+
+DEPENDENCIES:
+  - AsyncDisplayKit
+  - Masonry
+  - Realm
+
+SPEC CHECKSUMS:
+  AsyncDisplayKit: 87d340329280dba0363da3587a43f9d1bbe62aac
+  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  Realm: b498a6fb9d288b171ff98d0e2d4384c295be8990
+
+COCOAPODS: 0.39.0

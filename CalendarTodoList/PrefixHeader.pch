@@ -1,0 +1,25 @@
+//
+//  PrefixHeader.pch
+//  CalendarTodoList
+//
+//  Created by 牛严 on 15/12/24.
+//  Copyright © 2015年 牛严. All rights reserved.
+//
+#import <Availability.h>
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+#define RGBA(Red,Green,Blue,Alpha) [UIColor colorWithRed:Red/255.0f green:Green/255.0f blue:Blue/255.0f alpha:Alpha]
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import <Masonry/Masonry.h>
+#import "UIViewController+ZZExtends.h"
+
+#endif /* PrefixHeader_pch */
+
