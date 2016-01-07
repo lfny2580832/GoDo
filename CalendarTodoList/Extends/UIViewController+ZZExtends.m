@@ -124,8 +124,9 @@ void ZZLog(NSString *format, ...) {
 
 - (void)leftbarButtonItemOnclick:(id)sender
 {
-    // 子类重写
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
 - (void)rightbarButtonItemOnclick:(id)sender
 {
     // 子类重写
@@ -135,6 +136,7 @@ void ZZLog(NSString *format, ...) {
 {
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
+
 -(void)setTabBarHidden:(BOOL)hidden
 {
     if (hidden == YES)

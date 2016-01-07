@@ -7,11 +7,12 @@
 //
 
 #import "MainTabBarVC.h"
-#import "CalendarScrollView.h"
+#import "CalendarVC.h"
 #import <Realm/Realm.h>
 #import "RLMTodoList.h"
 #import "RLMThing.h"
-#import "NSString+ZZExtends.h"
+#import "CalendarVC.h"
+#import "BaseNavigationController.h"
 
 @interface MainTabBarVC ()
 
@@ -44,16 +45,14 @@
     [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];
     [realm commitWriteTransaction];
     
-    UINavigationController *firstController = [[UINavigationController alloc]init];
-//    [firstController setCustomTitle:@"TodoList" color:[UIColor redColor]];
-    [firstController setTitle:@"first"];
-    CalendarScrollView *scrollView = [[CalendarScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 49)];
-    [firstController.view addSubview:scrollView];
+    CalendarVC *calendarVC = [[CalendarVC alloc]init];
+    BaseNavigationController *calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
+    [calendarVC setTitle:@"日历"];
     
     UINavigationController *secondController = [[UINavigationController alloc]init];
     [secondController setTitle:@"second"];
     
-    [self setViewControllers:@[firstController, secondController]];
+    [self setViewControllers:@[calendarNavVC, secondController]];
     
 }
 

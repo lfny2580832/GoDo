@@ -14,6 +14,7 @@
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 #define RGBA(Red,Green,Blue,Alpha) [UIColor colorWithRed:Red/255.0f green:Green/255.0f blue:Blue/255.0f alpha:Alpha]
+#define KNaviColor RGBA(34, 113, 232, 1.0f)
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>

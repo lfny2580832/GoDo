@@ -24,21 +24,18 @@
     if (self) {
         _dayId = dayId;
         self.view.backgroundColor = [UIColor whiteColor];
+        [self initializationNaviBar];
         [self initView];
     }
     return self;
 }
 
-- (void)leftbarButtonItemOnclick:(id)sender
-{
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
 - (void)initializationNaviBar
 {
-    [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back.png"]];
+    [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
     NSString *title = [NSString stringWithFormat:@"%ld",_dayId];
-    [self setCustomTitle:title];
+    [self setCustomTitle:title color:[UIColor whiteColor]];
+
 }
 
 - (void)initView
