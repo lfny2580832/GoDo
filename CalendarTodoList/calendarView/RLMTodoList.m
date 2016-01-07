@@ -12,7 +12,7 @@
 
 + (NSString *) primaryKey
 {
-    return @"tableId";
+    return @"timeStamp";
 }
 
 @end

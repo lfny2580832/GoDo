@@ -11,10 +11,8 @@
 		4A214D281C30E901009FE635 /* CalendarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A214D271C30E901009FE635 /* CalendarScrollView.m */; };
 		4A214D2E1C311D22009FE635 /* RDVCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A214D2B1C311D22009FE635 /* RDVCalendarDayCell.m */; };
 		4A214D2F1C311D22009FE635 /* RDVCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A214D2D1C311D22009FE635 /* RDVCalendarView.m */; };
-		4A214E601C35388E009FE635 /* UILabelZoomable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A214E5F1C35388E009FE635 /* UILabelZoomable.m */; };
 		4A214E641C355573009FE635 /* UIViewController+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A214E631C355572009FE635 /* UIViewController+ZZExtends.m */; };
 		4A43AC351C3631A900347E3C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A43AC341C3631A900347E3C /* libc++.tbd */; };
-		4A6A47BE1C3A78B10063053E /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A47BD1C3A78B10063053E /* GradientView.m */; };
 		4A6A47C11C3BBF5F0063053E /* RLMTodoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A47C01C3BBF5F0063053E /* RLMTodoList.m */; };
 		4A88CB211C2B925F001C13D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB201C2B925F001C13D8 /* main.m */; };
 		4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB231C2B925F001C13D8 /* AppDelegate.m */; };
@@ -22,6 +20,14 @@
 		4A88CB3A1C2B925F001C13D8 /* CalendarTodoListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB391C2B925F001C13D8 /* CalendarTodoListTests.m */; };
 		4A88CB451C2B925F001C13D8 /* CalendarTodoListUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB441C2B925F001C13D8 /* CalendarTodoListUITests.m */; };
 		4ADA1D7A1C3CC407001ECBF4 /* RLMThing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1D791C3CC407001ECBF4 /* RLMThing.m */; };
+		4ADA1D7D1C3D08E5001ECBF4 /* NSString+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1D7C1C3D08E5001ECBF4 /* NSString+ZZExtends.m */; };
+		4ADA1D821C3E3447001ECBF4 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1D7F1C3E3447001ECBF4 /* GradientView.m */; };
+		4ADA1D831C3E3447001ECBF4 /* UILabelZoomable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1D811C3E3447001ECBF4 /* UILabelZoomable.m */; };
+		4ADA1D861C3E3618001ECBF4 /* CalendarTodoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1D851C3E3618001ECBF4 /* CalendarTodoDetailVC.m */; };
+		4ADA1D8C1C3E3A6A001ECBF4 /* ico_nav_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D881C3E3A6A001ECBF4 /* ico_nav_back@2x.png */; };
+		4ADA1D8D1C3E3A6A001ECBF4 /* ico_nav_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D891C3E3A6A001ECBF4 /* ico_nav_back@3x.png */; };
+		4ADA1D8E1C3E3A6A001ECBF4 /* ico_nav_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D8A1C3E3A6A001ECBF4 /* ico_nav_back_white@2x.png */; };
+		4ADA1D8F1C3E3A6A001ECBF4 /* ico_nav_back_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D8B1C3E3A6A001ECBF4 /* ico_nav_back_white@3x.png */; };
 		988604FC5CF4599DBC5A9AA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 640C26EC2089C43C666A53BB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -51,13 +57,9 @@
 		4A214D2B1C311D22009FE635 /* RDVCalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVCalendarDayCell.m; sourceTree = "<group>"; };
 		4A214D2C1C311D22009FE635 /* RDVCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarView.h; sourceTree = "<group>"; };
 		4A214D2D1C311D22009FE635 /* RDVCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVCalendarView.m; sourceTree = "<group>"; };
-		4A214E5E1C35388E009FE635 /* UILabelZoomable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILabelZoomable.h; sourceTree = "<group>"; };
-		4A214E5F1C35388E009FE635 /* UILabelZoomable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILabelZoomable.m; sourceTree = "<group>"; };
 		4A214E621C355572009FE635 /* UIViewController+ZZExtends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZZExtends.h"; sourceTree = "<group>"; };
 		4A214E631C355572009FE635 /* UIViewController+ZZExtends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZZExtends.m"; sourceTree = "<group>"; };
 		4A43AC341C3631A900347E3C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		4A6A47BC1C3A78B10063053E /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
-		4A6A47BD1C3A78B10063053E /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		4A6A47BF1C3BBF5F0063053E /* RLMTodoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMTodoList.h; sourceTree = "<group>"; };
 		4A6A47C01C3BBF5F0063053E /* RLMTodoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMTodoList.m; sourceTree = "<group>"; };
 		4A88CB1C1C2B925E001C13D8 /* CalendarTodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarTodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +77,18 @@
 		4A88CB691C2BBC9F001C13D8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		4ADA1D781C3CC407001ECBF4 /* RLMThing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMThing.h; sourceTree = "<group>"; };
 		4ADA1D791C3CC407001ECBF4 /* RLMThing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMThing.m; sourceTree = "<group>"; };
+		4ADA1D7B1C3D08E5001ECBF4 /* NSString+ZZExtends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZZExtends.h"; sourceTree = "<group>"; };
+		4ADA1D7C1C3D08E5001ECBF4 /* NSString+ZZExtends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZZExtends.m"; sourceTree = "<group>"; };
+		4ADA1D7E1C3E3447001ECBF4 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
+		4ADA1D7F1C3E3447001ECBF4 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
+		4ADA1D801C3E3447001ECBF4 /* UILabelZoomable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILabelZoomable.h; sourceTree = "<group>"; };
+		4ADA1D811C3E3447001ECBF4 /* UILabelZoomable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILabelZoomable.m; sourceTree = "<group>"; };
+		4ADA1D841C3E3618001ECBF4 /* CalendarTodoDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarTodoDetailVC.h; sourceTree = "<group>"; };
+		4ADA1D851C3E3618001ECBF4 /* CalendarTodoDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarTodoDetailVC.m; sourceTree = "<group>"; };
+		4ADA1D881C3E3A6A001ECBF4 /* ico_nav_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@2x.png"; sourceTree = "<group>"; };
+		4ADA1D891C3E3A6A001ECBF4 /* ico_nav_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@3x.png"; sourceTree = "<group>"; };
+		4ADA1D8A1C3E3A6A001ECBF4 /* ico_nav_back_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back_white@2x.png"; sourceTree = "<group>"; };
+		4ADA1D8B1C3E3A6A001ECBF4 /* ico_nav_back_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back_white@3x.png"; sourceTree = "<group>"; };
 		640C26EC2089C43C666A53BB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2673CA96F7B03EE1014712 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E72E51CDFFC69871C1738A6E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +139,12 @@
 		4A214E611C355572009FE635 /* Extends */ = {
 			isa = PBXGroup;
 			children = (
+				4ADA1D7E1C3E3447001ECBF4 /* GradientView.h */,
+				4ADA1D7F1C3E3447001ECBF4 /* GradientView.m */,
+				4ADA1D801C3E3447001ECBF4 /* UILabelZoomable.h */,
+				4ADA1D811C3E3447001ECBF4 /* UILabelZoomable.m */,
+				4ADA1D7B1C3D08E5001ECBF4 /* NSString+ZZExtends.h */,
+				4ADA1D7C1C3D08E5001ECBF4 /* NSString+ZZExtends.m */,
 				4A214E621C355572009FE635 /* UIViewController+ZZExtends.h */,
 				4A214E631C355572009FE635 /* UIViewController+ZZExtends.m */,
 			);
@@ -137,6 +157,7 @@
 			children = (
 				4A88CB1E1C2B925F001C13D8 /* CalendarTodoList */,
 				4A214E611C355572009FE635 /* Extends */,
+				4ADA1D871C3E3A6A001ECBF4 /* images */,
 				4A88CB381C2B925F001C13D8 /* CalendarTodoListTests */,
 				4A88CB431C2B925F001C13D8 /* CalendarTodoListUITests */,
 				4A88CB1D1C2B925E001C13D8 /* Products */,
@@ -158,11 +179,9 @@
 		4A88CB1E1C2B925F001C13D8 /* CalendarTodoList */ = {
 			isa = PBXGroup;
 			children = (
-				4A214E5E1C35388E009FE635 /* UILabelZoomable.h */,
-				4A214E5F1C35388E009FE635 /* UILabelZoomable.m */,
-				4A6A47BC1C3A78B10063053E /* GradientView.h */,
-				4A6A47BD1C3A78B10063053E /* GradientView.m */,
 				4A214D291C311CE9009FE635 /* calendarView */,
+				4ADA1D841C3E3618001ECBF4 /* CalendarTodoDetailVC.h */,
+				4ADA1D851C3E3618001ECBF4 /* CalendarTodoDetailVC.m */,
 				4A214D261C30E901009FE635 /* CalendarScrollView.h */,
 				4A214D271C30E901009FE635 /* CalendarScrollView.m */,
 				4A0FF8401C2CD44300C1A781 /* MainTabBarVC.h */,
@@ -201,6 +220,17 @@
 				4A88CB461C2B925F001C13D8 /* Info.plist */,
 			);
 			path = CalendarTodoListUITests;
+			sourceTree = "<group>";
+		};
+		4ADA1D871C3E3A6A001ECBF4 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				4ADA1D881C3E3A6A001ECBF4 /* ico_nav_back@2x.png */,
+				4ADA1D891C3E3A6A001ECBF4 /* ico_nav_back@3x.png */,
+				4ADA1D8A1C3E3A6A001ECBF4 /* ico_nav_back_white@2x.png */,
+				4ADA1D8B1C3E3A6A001ECBF4 /* ico_nav_back_white@3x.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		5AD3F6B00E743D84CCA1C8D3 /* Frameworks */ = {
@@ -328,6 +358,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A88CB2C1C2B925F001C13D8 /* Assets.xcassets in Resources */,
+				4ADA1D8E1C3E3A6A001ECBF4 /* ico_nav_back_white@2x.png in Resources */,
+				4ADA1D8C1C3E3A6A001ECBF4 /* ico_nav_back@2x.png in Resources */,
+				4ADA1D8D1C3E3A6A001ECBF4 /* ico_nav_back@3x.png in Resources */,
+				4ADA1D8F1C3E3A6A001ECBF4 /* ico_nav_back_white@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,16 +434,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ADA1D821C3E3447001ECBF4 /* GradientView.m in Sources */,
 				4A214D2F1C311D22009FE635 /* RDVCalendarView.m in Sources */,
-				4A6A47BE1C3A78B10063053E /* GradientView.m in Sources */,
 				4A0FF8421C2CD44300C1A781 /* MainTabBarVC.m in Sources */,
+				4ADA1D831C3E3447001ECBF4 /* UILabelZoomable.m in Sources */,
 				4ADA1D7A1C3CC407001ECBF4 /* RLMThing.m in Sources */,
 				4A214D2E1C311D22009FE635 /* RDVCalendarDayCell.m in Sources */,
 				4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */,
 				4A214D281C30E901009FE635 /* CalendarScrollView.m in Sources */,
 				4A88CB211C2B925F001C13D8 /* main.m in Sources */,
+				4ADA1D861C3E3618001ECBF4 /* CalendarTodoDetailVC.m in Sources */,
 				4A214E641C355573009FE635 /* UIViewController+ZZExtends.m in Sources */,
-				4A214E601C35388E009FE635 /* UILabelZoomable.m in Sources */,
+				4ADA1D7D1C3D08E5001ECBF4 /* NSString+ZZExtends.m in Sources */,
 				4A6A47C11C3BBF5F0063053E /* RLMTodoList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

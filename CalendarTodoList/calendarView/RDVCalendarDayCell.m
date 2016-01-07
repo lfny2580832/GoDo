@@ -7,6 +7,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "RDVCalendarDayCell.h"
 #import "UILabelZoomable.h"
+#import "RLMTodoList.h"
+#import "NSString+ZZExtends.h"
 
 @interface RDVCalendarDayCell() {
     BOOL _selected;
@@ -198,6 +200,27 @@
     self.selected = NO;
     self.highlighted = NO;
     self.textLabel.text = @"";
+}
+
+#pragma mark 获取数据库信息
+- (void)getDayInfoFromRealmWithDayId:(NSInteger)dayId
+{
+    RLMResults *result = [RLMTodoList objectsWhere:@"dayId = %ld",dayId];
+    RLMTodoList *todolist = [result firstObject];
+    if (todolist) {
+        NSString *typeStr;
+        switch (todolist.thing.thingType) {
+            case 0:typeStr = @"学习";break;
+            case 1:typeStr = @"娱乐";break;
+            case 2:typeStr = @"体育";break;
+            case 3:typeStr = @"社团";break;
+            case 4:typeStr = @"组织";break;
+            default:break;
+        }
+        NSString *timeStr = [NSString getHourMinuteDateFromTimeInterval:todolist.timeStamp];
+        self.listLabel.text = [NSString stringWithFormat:@"%@:%@",timeStr,typeStr];
+    }
+
 }
 
 @end

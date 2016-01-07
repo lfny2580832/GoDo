@@ -30,6 +30,7 @@ void ZZLog(NSString *format, ...);
 - (void)setRightBackButtontile:(NSString *)customTittle color:(UIColor *)color font:(UIFont *)font;
 - (void)setRightBackButtonImage:(UIImage *)image;
 - (void)rightbarButtonItemOnclick:(id)sender;
+- (void)leftbarButtonItemOnclick:(id)sender;
 
 // 取消页面编辑状态
 - (void)endAllEdittings;

@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, ThingType)
 
 ///事件类型
 @property ThingType thingType;
-///事件
+///事件字符串
 @property NSString *thingStr;
 
 @end

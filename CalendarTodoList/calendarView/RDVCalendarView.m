@@ -533,18 +533,8 @@ static NSString *DayIdentifier = @"DayCell";
         [dayCell prepareForReuse];
     
         dayCell.textLabel.text = [NSString stringWithFormat:@"%ld", index + 1];
-        NSInteger tabelId = [[NSString stringWithFormat:@"%ld%02ld%02ld",self.month.year,self.month.month,index + 1] integerValue];
-
-
-        RLMResults *result = [RLMTodoList objectsWhere:@"tableId = %ld",tabelId];
-        RLMTodoList *todolist = [result firstObject];
-        if (todolist) {
-            NSString *typeStr;
-            if (todolist.thing.thingType == 1) {
-                typeStr = @"娱乐";
-            }
-            dayCell.listLabel.text = [NSString stringWithFormat:@"%ld:%@",todolist.timeStamp,typeStr];
-        }
+        NSInteger dayId = [[NSString stringWithFormat:@"%ld%02ld%02ld",self.month.year,self.month.month,index + 1] integerValue];
+        [dayCell getDayInfoFromRealmWithDayId:dayId];
         
         if (index + 1 == self.currentDay.day &&
             self.month.month == self.currentDay.month &&

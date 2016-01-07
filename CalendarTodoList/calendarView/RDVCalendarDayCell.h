@@ -77,4 +77,7 @@ typedef NS_ENUM(NSInteger, RDVCalendarDayCellSelectionStyle) {
  */
 - (void)prepareForReuse;
 
+///根据年月日tableId获取当天数据
+- (void)getDayInfoFromRealmWithDayId:(NSInteger)dayId;
+
 @end

@@ -11,11 +11,11 @@
 
 @interface RLMTodoList : RLMObject
 
-///tableId 为年月日，如 20160106
-@property (nonatomic, assign) NSInteger tableId;
+///dayId 为年月日，如 20160106
+@property (nonatomic, assign) NSInteger dayId;
 
-///当天时间 如 2311
-@property (nonatomic, assign) NSInteger timeStamp;
+///时间戳 精确到秒
+@property (nonatomic, assign) long long timeStamp;
 
 ///对应事件;
 @property (nonatomic, strong) RLMThing *thing;

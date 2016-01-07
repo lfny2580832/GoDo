@@ -8,6 +8,7 @@
 
 #import "CalendarScrollView.h"
 #import "RDVCalendarView.h"
+#import "CalendarTodoDetailVC.h"
 
 @interface CalendarScrollView ()<UIScrollViewDelegate,RDVCalendarViewDelegate>
 
@@ -17,8 +18,7 @@
 {
     UIView *_backView;
     RDVCalendarView *_calendarView;
-    
-    
+    NSDateFormatter *_YMDformatter;
 }
 
 #pragma mark 初始化方法
@@ -45,6 +45,9 @@
         self.minimumZoomScale = 1.0f;
         self.maximumZoomScale = 4.5f;
         self.zoomScale = self.minimumZoomScale;
+        
+        _YMDformatter = [[NSDateFormatter alloc]init];
+        [_YMDformatter setDateFormat:@"yyyyMMdd"];
         
         [self initView];
     }
@@ -107,6 +110,13 @@
         temp.origin.y = 60;
         _calendarView.weekDaysView.frame = temp;
     }
+}
+
+#pragma mark RDVClendarView Delegate
+- (void)calendarView:(RDVCalendarView *)calendarView didSelectDate:(NSDate *)date
+{
+    NSInteger dayId = [[_YMDformatter stringFromDate:date] integerValue];
+    CalendarTodoDetailVC *vc = [[CalendarTodoDetailVC alloc]initWithDayId:dayId];
 }
 
 @end

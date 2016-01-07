@@ -11,6 +11,7 @@
 #import <Realm/Realm.h>
 #import "RLMTodoList.h"
 #import "RLMThing.h"
+#import "NSString+ZZExtends.h"
 
 @interface MainTabBarVC ()
 
@@ -32,11 +33,11 @@
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
     RLMThing *thing = [[RLMThing alloc]init];
-    thing.thingType = Entertainment;
-    thing.thingStr = @"play Game";
+    thing.thingType = Study;
+    thing.thingStr = @"play game";
     RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
-    todolistModel.tableId = 20160107;
-    todolistModel.timeStamp = 1111;
+    todolistModel.dayId = 20160106;
+    todolistModel.timeStamp = [NSDate timeIntervalSinceReferenceDate];
     todolistModel.thing = thing;
     
     [realm beginWriteTransaction];
