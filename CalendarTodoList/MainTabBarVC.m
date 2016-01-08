@@ -34,10 +34,10 @@
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
     RLMThing *thing = [[RLMThing alloc]init];
-    thing.thingType = Study;
-    thing.thingStr = @"play game";
+    thing.thingType = Sport;
+    thing.thingStr = @"打球";
     RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
-    todolistModel.dayId = 20160106;
+    todolistModel.dayId = 20160107;
     todolistModel.timeStamp = [NSDate timeIntervalSinceReferenceDate];
     todolistModel.thing = thing;
     

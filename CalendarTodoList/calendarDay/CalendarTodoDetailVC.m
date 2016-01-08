@@ -40,7 +40,7 @@
 
 - (void)initView
 {
-    TodoCollectionView *todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 400)];
+    TodoCollectionView *todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, SCREEN_HEIGHT - 100)];
     [self.view addSubview:todoCollectionView];
 }
 

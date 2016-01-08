@@ -38,6 +38,7 @@
     self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 49)];
     self.scrollView.delegate = self;
     self.scrollView.backgroundColor = [UIColor whiteColor];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.scrollEnabled = YES;
@@ -57,7 +58,7 @@
 
 - (void)initView
 {
-    _calendarView = [[RDVCalendarView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.scrollView.frame.size.height)];
+    _calendarView = [[RDVCalendarView alloc] initWithFrame:CGRectMake(1, 0, SCREEN_WIDTH-2, self.scrollView.frame.size.height)];
     [_calendarView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     _calendarView.backgroundColor = [UIColor whiteColor];
     _calendarView.delegate = self;
