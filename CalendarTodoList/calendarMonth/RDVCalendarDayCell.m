@@ -65,7 +65,7 @@
 //    _listLabel.text = @"学习AsyncDisplayKit\n完成日历todolist\n睡觉吃饭上床玩游戏\n是劳斯莱斯";
     _listLabel.numberOfLines = 0;
     _listLabel.alpha = 0;
-    _listLabel.textColor = [UIColor redColor];
+    _listLabel.textColor = KRedColor;
     _listLabel.highlightedTextColor = [UIColor whiteColor];
     _listLabel.backgroundColor = [UIColor clearColor];
     _listLabel.font = [UIFont systemFontOfSize:7];

@@ -377,7 +377,7 @@ static NSString *DayIdentifier = @"DayCell";
         for (NSString *weekDayString in _weekDays) {
             UILabelZoomable *weekDayLabel = [[UILabelZoomable alloc] init];
             weekDayLabel.font = [UIFont systemFontOfSize:14];
-            weekDayLabel.textColor = [UIColor redColor];
+            weekDayLabel.textColor = KRedColor;
             weekDayLabel.textAlignment = NSTextAlignmentCenter;
             weekDayLabel.text = weekDayString;
             CATiledLayer *listLabelLayer = (CATiledLayer *)weekDayLabel.layer;

@@ -35,7 +35,6 @@
     [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
     NSString *title = [NSString stringWithFormat:@"%ld",_dayId];
     [self setCustomTitle:title color:[UIColor whiteColor]];
-
 }
 
 - (void)initView

@@ -26,6 +26,7 @@
     self = [super init];
     if (self)
     {
+        [self setCustomTitle:@"日历"];
         [self initScrollView];
         [self initView];
     }
@@ -117,7 +118,7 @@
 {
     NSInteger dayId = [[_YMDformatter stringFromDate:date] integerValue];
     CalendarTodoDetailVC *vc = [[CalendarTodoDetailVC alloc]initWithDayId:dayId];
-    //leftbaritem被覆盖后，侧滑手势delegate自动置为nil，设置delegate为self实现侧滑
+    //leftbaritem被覆盖后，侧滑手势delegate自动置为nil。设置delegate为self实现侧滑
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
     [self.navigationController pushViewController:vc animated:YES];
 }

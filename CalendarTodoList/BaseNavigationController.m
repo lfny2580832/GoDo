@@ -15,6 +15,12 @@
 
 @implementation BaseNavigationController
 
+//状态栏白色
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 -(instancetype) initWithRootViewController:(UIViewController *)rootViewController
 {
     self = [super initWithRootViewController:rootViewController];

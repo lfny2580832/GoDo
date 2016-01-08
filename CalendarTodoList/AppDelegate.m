@@ -15,14 +15,12 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
     MainTabBarVC *mainTabbarVC = [[MainTabBarVC alloc]init];
-    
     [self.window setRootViewController:mainTabbarVC];
     [self.window makeKeyAndVisible];
     
