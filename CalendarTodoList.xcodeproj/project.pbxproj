@@ -15,6 +15,8 @@
 		4A4F9CC01C3F3E280000F24C /* RLMTodoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CBC1C3F3E280000F24C /* RLMTodoList.m */; };
 		4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CC31C3F3ECE0000F24C /* CalendarTodoDetailVC.m */; };
 		4A4F9CC71C3F3EEA0000F24C /* CalendarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CC61C3F3EEA0000F24C /* CalendarVC.m */; };
+		4A4F9CCA1C3F489C0000F24C /* TodoCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CC91C3F489C0000F24C /* TodoCollectionView.m */; };
+		4A4F9CCD1C3F4FDF0000F24C /* TodoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CCC1C3F4FDF0000F24C /* TodoCollectionViewCell.m */; };
 		4A88CB211C2B925F001C13D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB201C2B925F001C13D8 /* main.m */; };
 		4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB231C2B925F001C13D8 /* AppDelegate.m */; };
 		4A88CB2C1C2B925F001C13D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A88CB2B1C2B925F001C13D8 /* Assets.xcassets */; };
@@ -67,6 +69,10 @@
 		4A4F9CC31C3F3ECE0000F24C /* CalendarTodoDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarTodoDetailVC.m; sourceTree = "<group>"; };
 		4A4F9CC51C3F3EEA0000F24C /* CalendarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarVC.h; sourceTree = "<group>"; };
 		4A4F9CC61C3F3EEA0000F24C /* CalendarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarVC.m; sourceTree = "<group>"; };
+		4A4F9CC81C3F489C0000F24C /* TodoCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoCollectionView.h; sourceTree = "<group>"; };
+		4A4F9CC91C3F489C0000F24C /* TodoCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoCollectionView.m; sourceTree = "<group>"; };
+		4A4F9CCB1C3F4FDF0000F24C /* TodoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoCollectionViewCell.h; sourceTree = "<group>"; };
+		4A4F9CCC1C3F4FDF0000F24C /* TodoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoCollectionViewCell.m; sourceTree = "<group>"; };
 		4A88CB1C1C2B925E001C13D8 /* CalendarTodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarTodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A88CB201C2B925F001C13D8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4A88CB221C2B925F001C13D8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -150,6 +156,10 @@
 		4A4F9CC11C3F3E330000F24C /* calendarDay */ = {
 			isa = PBXGroup;
 			children = (
+				4A4F9CCB1C3F4FDF0000F24C /* TodoCollectionViewCell.h */,
+				4A4F9CCC1C3F4FDF0000F24C /* TodoCollectionViewCell.m */,
+				4A4F9CC81C3F489C0000F24C /* TodoCollectionView.h */,
+				4A4F9CC91C3F489C0000F24C /* TodoCollectionView.m */,
 				4A4F9CC21C3F3ECE0000F24C /* CalendarTodoDetailVC.h */,
 				4A4F9CC31C3F3ECE0000F24C /* CalendarTodoDetailVC.m */,
 			);
@@ -462,7 +472,9 @@
 				4A4F9CBE1C3F3E280000F24C /* RDVCalendarView.m in Sources */,
 				4A4F9CBF1C3F3E280000F24C /* RLMThing.m in Sources */,
 				4A4F9CC01C3F3E280000F24C /* RLMTodoList.m in Sources */,
+				4A4F9CCD1C3F4FDF0000F24C /* TodoCollectionViewCell.m in Sources */,
 				4ADA1DAE1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m in Sources */,
+				4A4F9CCA1C3F489C0000F24C /* TodoCollectionView.m in Sources */,
 				4ADA1DAD1C3E4992001ECBF4 /* UIImage+ZZExtends.m in Sources */,
 				4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */,
 				4ADA1D9B1C3E4897001ECBF4 /* BaseNavigationController.m in Sources */,

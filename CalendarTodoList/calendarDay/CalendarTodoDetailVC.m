@@ -7,6 +7,7 @@
 //
 
 #import "CalendarTodoDetailVC.h"
+#import "TodoCollectionView.h"
 
 @interface CalendarTodoDetailVC ()
 
@@ -39,7 +40,8 @@
 
 - (void)initView
 {
-    
+    TodoCollectionView *todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 400)];
+    [self.view addSubview:todoCollectionView];
 }
 
 @end
