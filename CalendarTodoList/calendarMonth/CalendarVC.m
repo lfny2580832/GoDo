@@ -118,7 +118,7 @@
 - (void)calendarView:(RDVCalendarView *)calendarView didSelectDate:(NSDate *)date
 {
     NSInteger dayId = [[_YMDformatter stringFromDate:date] integerValue];
-    CalendarTodoDetailVC *vc = [[CalendarTodoDetailVC alloc]initWithDayId:dayId];
+    CalendarTodoDetailVC *vc = [[CalendarTodoDetailVC alloc]initWithDayId:dayId date:date];
     //leftbaritem被覆盖后，侧滑手势delegate自动置为nil。设置delegate为self实现侧滑
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
     [self.navigationController pushViewController:vc animated:YES];

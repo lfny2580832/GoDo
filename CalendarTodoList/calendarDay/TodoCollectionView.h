@@ -10,4 +10,6 @@
 
 @interface TodoCollectionView : UICollectionView<UICollectionViewDataSource,UICollectionViewDelegate>
 
+- (void)setSelectedDayTodoCellWithChosenDate:(NSDate *)chosenDate;
+
 @end

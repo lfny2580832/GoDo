@@ -10,20 +10,26 @@
 #import "TodoCollectionView.h"
 
 @interface CalendarTodoDetailVC ()
-
+@property (nonatomic,strong) TodoCollectionView *todoCollectionView;
 @end
 
 @implementation CalendarTodoDetailVC
 {
     NSInteger _dayId;
+    NSDate *_chosenDate;
+}
+
+- (void)setDay
+{
 }
 
 #pragma mark 初始化
-- (instancetype)initWithDayId:(NSInteger)dayId
+- (instancetype)initWithDayId:(NSInteger)dayId date:(NSDate *)date
 {
     self = [super init];
     if (self) {
         _dayId = dayId;
+        _chosenDate = date;
         self.view.backgroundColor = [UIColor whiteColor];
         [self initializationNaviBar];
         [self initView];
@@ -40,8 +46,15 @@
 
 - (void)initView
 {
-    TodoCollectionView *todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, SCREEN_HEIGHT - 100)];
-    [self.view addSubview:todoCollectionView];
+    UIButton *testButton = [[UIButton alloc]initWithFrame:CGRectMake(70, 30, 100, 50)];
+    testButton.backgroundColor = [UIColor blackColor];
+    [testButton addTarget:self action:@selector(setDay) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:testButton];
+    
+    _todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, SCREEN_HEIGHT - 100)];
+    [self.view addSubview:_todoCollectionView];
+    [_todoCollectionView setSelectedDayTodoCellWithChosenDate:_chosenDate];
+
 }
 
 @end

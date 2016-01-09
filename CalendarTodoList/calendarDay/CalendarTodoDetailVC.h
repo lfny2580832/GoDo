@@ -10,6 +10,6 @@
 
 @interface CalendarTodoDetailVC : UIViewController
 
-- (instancetype)initWithDayId:(NSInteger)dayId;
+- (instancetype)initWithDayId:(NSInteger)dayId date:(NSDate *)date;
 
 @end
