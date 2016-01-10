@@ -24,7 +24,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)setSelectedDayTodoCellWithChosenDate:(NSDate *)chosenDate
 {
-    NSInteger pageIndex = [self daysBetweenFirstDayInCurrentMonthAndDate:chosenDate] + 1;
+    NSInteger pageIndex = [self daysBetweenFirstDayInCurrentMonthAndDate:chosenDate];
     [self setContentOffset:CGPointMake(SCREEN_WIDTH * pageIndex, 0)];
 }
 
@@ -41,7 +41,12 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 #pragma mark 根据现在的Indexpath，获取当前日期
-
+- (NSDate *)getChosenDateFromIndexPathRow:(NSInteger)indexpathrow
+{
+    NSTimeInterval interval = 3600*24*(indexpathrow);
+    NSDate * chosenDate = [_firstDayInCurrentMonth dateByAddingTimeInterval:interval];
+    return chosenDate;
+}
 
 #pragma mark 获取当前三个月的天数
 - (NSInteger)numberOfDaysOfThreeMonths {
@@ -93,12 +98,12 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)initDateParameters
 {
     _daysOfThreeMonths = [self numberOfDaysOfThreeMonths];
-    _calendar = [NSCalendar currentCalendar];
+    _calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     _unitFlags = NSCalendarUnitDay| NSCalendarUnitMonth | NSCalendarUnitYear;
     //获取当前月第一天的日期
     NSDateComponents *comps = [_calendar components:_unitFlags fromDate:[NSDate date]];
     comps.day = 1;
-    comps.hour = 16;
+//    comps.hour = 16;
     _firstDayInCurrentMonth = [_calendar dateFromComponents:comps];
 }
 
@@ -133,7 +138,9 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     TodoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     //计算indexpath 是哪一天，拿数据
-    NSLog(@"index %ld",(long)indexPath.row);
+    NSDate *chosenDate = [self getChosenDateFromIndexPathRow:indexPath.row + 1];
+    NSLog(@"chosenDate %@",chosenDate);
+    cell.dateStr = [NSString stringWithFormat:@"%ld",(long)indexPath.row + 1];
     cell.backgroundColor = [self randomColor];
     return cell;
 }
