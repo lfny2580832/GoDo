@@ -11,13 +11,18 @@
 @implementation TodoCollectionViewCell
 {
     UILabel *_testLabel;
+    UILabel *_dateLabel;
 }
 
-- (void)setDateStr:(NSString *)dateStr
+- (void)setDate:(NSDate *)date
 {
-    _testLabel.text = dateStr;
+    _dateLabel.text = [NSString stringWithFormat:@"%@",date];
 }
 
+- (void)setIndex:(NSString *)index
+{
+    _testLabel.text = index;
+}
 #pragma mark 初始化
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -36,6 +41,15 @@
     [self addSubview:_testLabel];
     [_testLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self);
+    }];
+    
+    _dateLabel = [[UILabel alloc]init];
+    _dateLabel.numberOfLines = 0;
+    _dateLabel.font = [UIFont systemFontOfSize:30];
+    _dateLabel.textColor = [UIColor whiteColor];
+    [self addSubview:_dateLabel];
+    [_dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self);
     }];
 }
 

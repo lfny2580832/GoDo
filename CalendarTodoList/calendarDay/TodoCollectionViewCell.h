@@ -10,6 +10,6 @@
 
 @interface TodoCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic,copy)NSString *dateStr;
-
+@property (nonatomic,strong)NSDate *date;
+@property (nonatomic,copy)NSString *index;
 @end

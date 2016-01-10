@@ -46,11 +46,6 @@
 
 - (void)initView
 {
-    UIButton *testButton = [[UIButton alloc]initWithFrame:CGRectMake(70, 30, 100, 50)];
-    testButton.backgroundColor = [UIColor blackColor];
-    [testButton addTarget:self action:@selector(setDay) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:testButton];
-    
     _todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, SCREEN_HEIGHT - 100)];
     [self.view addSubview:_todoCollectionView];
     [_todoCollectionView setSelectedDayTodoCellWithChosenDate:_chosenDate];

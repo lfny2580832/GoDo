@@ -139,8 +139,8 @@ static NSString * const reuseIdentifier = @"Cell";
     TodoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     //计算indexpath 是哪一天，拿数据
     NSDate *chosenDate = [self getChosenDateFromIndexPathRow:indexPath.row + 1];
-    NSLog(@"chosenDate %@",chosenDate);
-    cell.dateStr = [NSString stringWithFormat:@"%ld",(long)indexPath.row + 1];
+    cell.index = [NSString stringWithFormat:@"%ld",(long)indexPath.row + 1];
+    cell.date = chosenDate;
     cell.backgroundColor = [self randomColor];
     return cell;
 }
