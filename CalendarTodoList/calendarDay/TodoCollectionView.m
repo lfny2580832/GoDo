@@ -11,14 +11,13 @@
 #import <Realm/Realm.h>
 #import "RLMTodoList.h"
 #import "RLMThing.h"
-#import "NSString+ZZExtends.h"
+#import "NSObject+NYExtends.h"
 
 @implementation TodoCollectionView
 {
     NSInteger _unitFlags;
     NSCalendar *_calendar;
     NSDate *_firstDayInCurrentMonth;
-    NSInteger _daysOfThreeMonths;         //当前月开始的三个月的天数
     NSDateFormatter *_YMDformatter;
 }
 
@@ -49,38 +48,6 @@ static NSString * const reuseIdentifier = @"Cell";
     return chosenDate;
 }
 
-#pragma mark 获取当前三个月的天数
-- (NSInteger)numberOfDaysOfThreeMonths {
-    NSCalendar *currentCalendar = [NSCalendar autoupdatingCurrentCalendar];
-    NSDateComponents *currentComponents = [currentCalendar components:NSCalendarUnitYear|
-                                           NSCalendarUnitMonth|
-                                           NSCalendarUnitDay|
-                                           NSCalendarUnitWeekday|
-                                           NSCalendarUnitCalendar
-                                                             fromDate:[NSDate date]];
-    //用来加一个月的component
-    NSDateComponents *inc = [[NSDateComponents alloc] init];
-    inc.month = 1;
-    //第一个月的日期和天数
-    NSInteger firstMonthDays = [currentCalendar rangeOfUnit:NSCalendarUnitDay
-                                                     inUnit:NSCalendarUnitMonth
-                                                    forDate:[NSDate date]].length;
-    
-    NSDate *currentDate = [currentCalendar dateFromComponents:currentComponents];
-    //第二个月的日期和天数
-    NSDate *secondDate = [currentCalendar dateByAddingComponents:inc toDate:currentDate options:0];
-    NSInteger secondMonthDays = [currentCalendar rangeOfUnit:NSCalendarUnitDay
-                                                      inUnit:NSCalendarUnitMonth
-                                                     forDate:secondDate].length;
-    //第三个月的日期和天数
-    NSDate *thirdDate = [currentCalendar dateByAddingComponents:inc toDate:secondDate options:0];
-    NSInteger thirdMonthDays = [currentCalendar rangeOfUnit:NSCalendarUnitDay
-                                                     inUnit:NSCalendarUnitMonth
-                                                    forDate:thirdDate].length;
-    
-    return firstMonthDays + secondMonthDays + thirdMonthDays;
-}
-
 #pragma mark 初始化方法
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -98,7 +65,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)initDateParameters
 {
-    _daysOfThreeMonths = [self numberOfDaysOfThreeMonths];
     _calendar = [NSCalendar currentCalendar];
     _unitFlags = NSCalendarUnitDay| NSCalendarUnitMonth | NSCalendarUnitYear;
     //获取当前月第一天的日期
@@ -114,6 +80,7 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     self.delegate = self;
     self.dataSource = self;
+    self.showsHorizontalScrollIndicator = NO;
     self.backgroundColor = [UIColor whiteColor];
     self.pagingEnabled = YES;
     [self registerClass:[TodoCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
@@ -125,14 +92,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark CollectionView返回三个月天数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return _daysOfThreeMonths;
-}
-- (UIColor *)randomColor
-{
-    CGFloat hue = ( arc4random() % 256 / 256.0 ); //0.0 to 1.0
-    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0,away from white
-    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; //0.5 to 1.0,away from black
-    return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
+    return [NSObject numberOfDaysOfThreeMonths];
 }
 
 #pragma mark 生成CollectionView的Item
@@ -144,7 +104,7 @@ static NSString * const reuseIdentifier = @"Cell";
     cell.index = [NSString stringWithFormat:@"%ld",(long)indexPath.row + 1];
     cell.date = chosenDate;
     cell.dayId = dayId;
-    cell.backgroundColor = [self randomColor];
+    cell.backgroundColor = [NSObject randomColor];
     return cell;
 }
 

@@ -8,9 +8,11 @@
 
 #import "CalendarTodoDetailVC.h"
 #import "TodoCollectionView.h"
+#import "WeekCollectionView.h"
 
 @interface CalendarTodoDetailVC ()
 @property (nonatomic,strong) TodoCollectionView *todoCollectionView;
+@property (nonatomic,strong) WeekCollectionView *weekCollectionView;
 @end
 
 @implementation CalendarTodoDetailVC
@@ -41,6 +43,9 @@
 
 - (void)initView
 {
+    _weekCollectionView = [[WeekCollectionView alloc]initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_WIDTH/7)];
+    [self.view addSubview:_weekCollectionView];
+    
     _todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, 200, SCREEN_WIDTH, SCREEN_HEIGHT - 200)];
     [self.view addSubview:_todoCollectionView];
 }
