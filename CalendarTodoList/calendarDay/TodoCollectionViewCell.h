@@ -10,6 +10,8 @@
 
 @interface TodoCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic,strong)NSDate *date;
-@property (nonatomic,copy)NSString *index;
+@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, copy) NSString *index;
+@property (nonatomic, assign) NSInteger dayId;
+
 @end

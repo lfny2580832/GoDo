@@ -8,6 +8,10 @@
 
 #import "TodoCollectionView.h"
 #import "TodoCollectionViewCell.h"
+#import <Realm/Realm.h>
+#import "RLMTodoList.h"
+#import "RLMThing.h"
+#import "NSString+ZZExtends.h"
 
 @implementation TodoCollectionView
 {
@@ -15,9 +19,7 @@
     NSCalendar *_calendar;
     NSDate *_firstDayInCurrentMonth;
     NSInteger _daysOfThreeMonths;         //当前月开始的三个月的天数
-    NSInteger _firstMonthDays;
-    NSInteger _secondMonthDays;
-    NSInteger _thirdMonthDays;
+    NSDateFormatter *_YMDformatter;
 }
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -32,11 +34,10 @@ static NSString * const reuseIdentifier = @"Cell";
 - (NSInteger)daysBetweenFirstDayInCurrentMonthAndDate:(NSDate *)chosenDate
 {
     NSDateComponents *comps = [_calendar components:_unitFlags fromDate:chosenDate];
+    comps.hour = 12;
     NSDate *newEnd  = [_calendar dateFromComponents:comps];
-    
     NSTimeInterval interval = [newEnd timeIntervalSinceDate:_firstDayInCurrentMonth];
     NSInteger beginDays=((NSInteger)interval)/(3600*24);
-    
     return beginDays;
 }
 
@@ -61,30 +62,30 @@ static NSString * const reuseIdentifier = @"Cell";
     NSDateComponents *inc = [[NSDateComponents alloc] init];
     inc.month = 1;
     //第一个月的日期和天数
-    _firstMonthDays = [currentCalendar rangeOfUnit:NSCalendarUnitDay
+    NSInteger firstMonthDays = [currentCalendar rangeOfUnit:NSCalendarUnitDay
                                                      inUnit:NSCalendarUnitMonth
                                                     forDate:[NSDate date]].length;
     
     NSDate *currentDate = [currentCalendar dateFromComponents:currentComponents];
     //第二个月的日期和天数
     NSDate *secondDate = [currentCalendar dateByAddingComponents:inc toDate:currentDate options:0];
-    _secondMonthDays = [currentCalendar rangeOfUnit:NSCalendarUnitDay
+    NSInteger secondMonthDays = [currentCalendar rangeOfUnit:NSCalendarUnitDay
                                                       inUnit:NSCalendarUnitMonth
                                                      forDate:secondDate].length;
     //第三个月的日期和天数
     NSDate *thirdDate = [currentCalendar dateByAddingComponents:inc toDate:secondDate options:0];
-    _thirdMonthDays = [currentCalendar rangeOfUnit:NSCalendarUnitDay
+    NSInteger thirdMonthDays = [currentCalendar rangeOfUnit:NSCalendarUnitDay
                                                      inUnit:NSCalendarUnitMonth
                                                     forDate:thirdDate].length;
     
-    return _firstMonthDays + _secondMonthDays + _thirdMonthDays;
+    return firstMonthDays + secondMonthDays + thirdMonthDays;
 }
 
 #pragma mark 初始化方法
 - (instancetype)initWithFrame:(CGRect)frame
 {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:frame.size];
+    [flowLayout setItemSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT-220)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     [flowLayout setMinimumLineSpacing:0];
     self = [super initWithFrame:frame collectionViewLayout:flowLayout];
@@ -98,13 +99,15 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)initDateParameters
 {
     _daysOfThreeMonths = [self numberOfDaysOfThreeMonths];
-    _calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    _calendar = [NSCalendar currentCalendar];
     _unitFlags = NSCalendarUnitDay| NSCalendarUnitMonth | NSCalendarUnitYear;
     //获取当前月第一天的日期
     NSDateComponents *comps = [_calendar components:_unitFlags fromDate:[NSDate date]];
     comps.day = 1;
-//    comps.hour = 16;
+    comps.hour = 12;
     _firstDayInCurrentMonth = [_calendar dateFromComponents:comps];
+    _YMDformatter = [[NSDateFormatter alloc]init];
+    [_YMDformatter setDateFormat:@"yyyyMMdd"];
 }
 
 - (void)initView
@@ -124,12 +127,11 @@ static NSString * const reuseIdentifier = @"Cell";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _daysOfThreeMonths;
 }
-
 - (UIColor *)randomColor
 {
-    CGFloat hue = ( arc4random() % 256 / 256.0 );  //0.0 to 1.0
-    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  // 0.5 to 1.0,away from white
-    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //0.5 to 1.0,away from black
+    CGFloat hue = ( arc4random() % 256 / 256.0 ); //0.0 to 1.0
+    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0,away from white
+    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; //0.5 to 1.0,away from black
     return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
 }
 
@@ -137,10 +139,11 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     TodoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    //计算indexpath 是哪一天，拿数据
-    NSDate *chosenDate = [self getChosenDateFromIndexPathRow:indexPath.row + 1];
+    NSDate *chosenDate = [self getChosenDateFromIndexPathRow:indexPath.row];
+    NSInteger dayId = [[_YMDformatter stringFromDate:chosenDate] integerValue];
     cell.index = [NSString stringWithFormat:@"%ld",(long)indexPath.row + 1];
     cell.date = chosenDate;
+    cell.dayId = dayId;
     cell.backgroundColor = [self randomColor];
     return cell;
 }

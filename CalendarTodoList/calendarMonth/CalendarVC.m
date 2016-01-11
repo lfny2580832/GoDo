@@ -12,12 +12,24 @@
 
 @interface CalendarVC ()<UIScrollViewDelegate,RDVCalendarViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) CalendarTodoDetailVC *calendarTodoDetailVC;
+
 @end
 
 @implementation CalendarVC
 {
     RDVCalendarView *_calendarView;
     NSDateFormatter *_YMDformatter;
+}
+
+- (CalendarTodoDetailVC *)calendarTodoDetailVC
+{
+    if (_calendarTodoDetailVC) {
+        return _calendarTodoDetailVC;
+    }else{
+        _calendarTodoDetailVC = [[CalendarTodoDetailVC alloc]init];
+        return _calendarTodoDetailVC;
+    }
 }
 
 #pragma mark 初始化方法
@@ -117,11 +129,11 @@
 #pragma mark RDVClendarView Delegate
 - (void)calendarView:(RDVCalendarView *)calendarView didSelectDate:(NSDate *)date
 {
-    NSInteger dayId = [[_YMDformatter stringFromDate:date] integerValue];
-    CalendarTodoDetailVC *vc = [[CalendarTodoDetailVC alloc]initWithDayId:dayId date:date];
+//    NSInteger dayId = [[_YMDformatter stringFromDate:date] integerValue];
     //leftbaritem被覆盖后，侧滑手势delegate自动置为nil。设置delegate为self实现侧滑
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:self.calendarTodoDetailVC animated:YES];
+    [_calendarTodoDetailVC setSelectedDayWithChosenDate:date];
 }
 
 @end

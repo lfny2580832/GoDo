@@ -10,6 +10,8 @@
 
 @interface CalendarTodoDetailVC : UIViewController
 
-- (instancetype)initWithDayId:(NSInteger)dayId date:(NSDate *)date;
+- (instancetype)init;
+
+- (void)setSelectedDayWithChosenDate:(NSDate *)chosenDate;
 
 @end

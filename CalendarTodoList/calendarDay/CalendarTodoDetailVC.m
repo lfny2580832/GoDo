@@ -15,41 +15,34 @@
 
 @implementation CalendarTodoDetailVC
 {
-    NSInteger _dayId;
     NSDate *_chosenDate;
 }
 
-- (void)setDay
+- (void)setSelectedDayWithChosenDate:(NSDate *)chosenDate
 {
+    [_todoCollectionView setSelectedDayTodoCellWithChosenDate:chosenDate];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
 }
 
 #pragma mark 初始化
-- (instancetype)initWithDayId:(NSInteger)dayId date:(NSDate *)date
+- (instancetype)init
 {
     self = [super init];
     if (self) {
-        _dayId = dayId;
-        _chosenDate = date;
         self.view.backgroundColor = [UIColor whiteColor];
-        [self initializationNaviBar];
         [self initView];
     }
     return self;
 }
 
-- (void)initializationNaviBar
-{
-    [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
-    NSString *title = [NSString stringWithFormat:@"%ld",_dayId];
-    [self setCustomTitle:title color:[UIColor whiteColor]];
-}
-
 - (void)initView
 {
-    _todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, SCREEN_HEIGHT - 100)];
+    _todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, 200, SCREEN_WIDTH, SCREEN_HEIGHT - 200)];
     [self.view addSubview:_todoCollectionView];
-    [_todoCollectionView setSelectedDayTodoCellWithChosenDate:_chosenDate];
-
 }
 
 @end
