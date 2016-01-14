@@ -15,6 +15,20 @@
     UILabel *_dateLabel;
 }
 
+
+#pragma mark KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"isSelected"]) {
+        if ([[change objectForKey:@"new"]boolValue] == 1) {
+            self.backgroundColor = [UIColor blackColor];
+        }else if ([[change objectForKey:@"new"]boolValue] == 0){
+            self.backgroundColor = [UIColor redColor];
+        }
+    }
+}
+
+#pragma mark Set方法
 - (void)setIndex:(NSString *)index
 {
     _indexLabel.text = index;
@@ -35,6 +49,7 @@
         [_monthDayFormatter setDateFormat:@"M-d"];
         [self initView];
         
+        [self addObserver:self forKeyPath:@"isSelected" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }

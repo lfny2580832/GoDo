@@ -20,11 +20,10 @@
     NSDate *_chosenDate;
 }
 
-
+#pragma mark 根据当前日期设置
 - (void)setSelectedDayWithChosenDate:(NSDate *)chosenDate
 {
-    [_todoCollectionView setSelectedDayTodoCellWithChosenDate:chosenDate];
-    
+    [_todoCollectionView getIndexPageTodoCellWithChosenDate:chosenDate];
 }
 
 #pragma mark weekCollectionView Delegate
@@ -33,6 +32,7 @@
     [_todoCollectionView setSelectedDayTodoCellWithIndexRow:indexRow];
 }
 
+#pragma mark 拿到日页，设置周页和日页
 - (void)cellSelectedByChosenDateWithIndexRow:(NSInteger)indexRow
 {
     NSInteger weekIndex = ceil(indexRow/7);

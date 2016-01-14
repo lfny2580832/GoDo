@@ -16,5 +16,7 @@
 
 @property (nonatomic, strong) NSDate *date;
 
+@property (nonatomic, assign) BOOL isSelected;
+
 @end
 

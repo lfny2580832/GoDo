@@ -20,7 +20,7 @@
 
 @property (nonatomic, weak) id<TodoCollectionViewDelegate> mdelegate;
 
-- (void)setSelectedDayTodoCellWithChosenDate:(NSDate *)chosenDate;
+- (void)getIndexPageTodoCellWithChosenDate:(NSDate *)chosenDate;
 
 - (void)setSelectedDayTodoCellWithIndexRow:(NSInteger)indexRow;
 

@@ -17,6 +17,7 @@
     NSDate *_firstDayInCurrentMonth;
     NSDateFormatter *_YMDformatter;
 
+    NSIndexPath *_selectedIndexPath;
 }
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -100,14 +101,19 @@ static NSString * const reuseIdentifier = @"Cell";
     NSDate *chosenDate = [self getChosenDateFromIndexPathRow:indexPath.row];
     cell.date = chosenDate;
     cell.index = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
-    cell.backgroundColor = [NSObject randomColor];
+    cell.backgroundColor = [UIColor redColor];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     WeekCollectionViewCell *cell = (WeekCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor blackColor];
+    WeekCollectionViewCell *selectedCell = (WeekCollectionViewCell *)[collectionView cellForItemAtIndexPath:_selectedIndexPath];
+    
+    selectedCell.isSelected = NO;
+    cell.isSelected = YES;
+    
+    _selectedIndexPath = indexPath;
     [self.mdelegate weekCellClickedWithIndexRow:indexPath.row];
 }
 

@@ -23,7 +23,7 @@
 
 static NSString * const reuseIdentifier = @"Cell";
 
-- (void)setSelectedDayTodoCellWithChosenDate:(NSDate *)chosenDate
+- (void)getIndexPageTodoCellWithChosenDate:(NSDate *)chosenDate
 {
     NSInteger pageIndex = [self daysBetweenFirstDayInCurrentMonthAndDate:chosenDate];
     [self.mdelegate cellSelectedByChosenDateWithIndexRow:pageIndex];
