@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @interface WeekCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, copy) NSString *index;
+
+@property (nonatomic, strong) NSDate *date;
+
 @end
+

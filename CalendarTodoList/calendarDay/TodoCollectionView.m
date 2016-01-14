@@ -26,7 +26,12 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)setSelectedDayTodoCellWithChosenDate:(NSDate *)chosenDate
 {
     NSInteger pageIndex = [self daysBetweenFirstDayInCurrentMonthAndDate:chosenDate];
-    [self setContentOffset:CGPointMake(SCREEN_WIDTH * pageIndex, 0)];
+    [self.mdelegate cellSelectedByChosenDateWithIndexRow:pageIndex];
+}
+
+- (void)setSelectedDayTodoCellWithIndexRow:(NSInteger)indexRow
+{
+    [self setContentOffset:CGPointMake(SCREEN_WIDTH * indexRow, 0)];
 }
 
 #pragma mark 获取当前日期到本月第一天之间的天数，以便设置第几个cell
@@ -48,11 +53,15 @@ static NSString * const reuseIdentifier = @"Cell";
     return chosenDate;
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"shit");
+}
 #pragma mark 初始化方法
 - (instancetype)initWithFrame:(CGRect)frame
 {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT-220)];
+    [flowLayout setItemSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT-340)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     [flowLayout setMinimumLineSpacing:0];
     self = [super initWithFrame:frame collectionViewLayout:flowLayout];
@@ -105,6 +114,7 @@ static NSString * const reuseIdentifier = @"Cell";
     cell.date = chosenDate;
     cell.dayId = dayId;
     cell.backgroundColor = [NSObject randomColor];
+    [self.mdelegate selectedTodoCellWithIndexRow:indexPath.row];
     return cell;
 }
 

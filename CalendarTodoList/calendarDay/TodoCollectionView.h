@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TodoCollectionView : UICollectionView<UICollectionViewDataSource,UICollectionViewDelegate>
+@protocol TodoCollectionViewDelegate <NSObject>
+
+- (void)selectedTodoCellWithIndexRow:(NSInteger)indexRow;
+
+- (void)cellSelectedByChosenDateWithIndexRow:(NSInteger)indexRow;
+
+@end
+
+@interface TodoCollectionView : UICollectionView<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate>
+
+@property (nonatomic, weak) id<TodoCollectionViewDelegate> mdelegate;
 
 - (void)setSelectedDayTodoCellWithChosenDate:(NSDate *)chosenDate;
+
+- (void)setSelectedDayTodoCellWithIndexRow:(NSInteger)indexRow;
 
 @end

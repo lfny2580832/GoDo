@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol WeekCellDelegate <NSObject>
+
+- (void)weekCellClickedWithIndexRow:(NSInteger)indexRow;
+
+@end
+
 
 @interface WeekCollectionView : UICollectionView<UICollectionViewDataSource,UICollectionViewDelegate>
+
+@property (nonatomic, weak) id<WeekCellDelegate> mdelegate;
+
+- (void)setWeekPageWithIndexRow:(NSInteger)indexRow animated:(BOOL)animated;
 
 @end

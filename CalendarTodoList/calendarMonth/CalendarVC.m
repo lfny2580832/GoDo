@@ -32,6 +32,11 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
 #pragma mark 初始化方法
 - (instancetype)init
 {

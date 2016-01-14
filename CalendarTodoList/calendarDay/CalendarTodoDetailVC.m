@@ -10,7 +10,7 @@
 #import "TodoCollectionView.h"
 #import "WeekCollectionView.h"
 
-@interface CalendarTodoDetailVC ()
+@interface CalendarTodoDetailVC ()<WeekCellDelegate,TodoCollectionViewDelegate>
 @property (nonatomic,strong) TodoCollectionView *todoCollectionView;
 @property (nonatomic,strong) WeekCollectionView *weekCollectionView;
 @end
@@ -20,14 +20,32 @@
     NSDate *_chosenDate;
 }
 
+
 - (void)setSelectedDayWithChosenDate:(NSDate *)chosenDate
 {
     [_todoCollectionView setSelectedDayTodoCellWithChosenDate:chosenDate];
+    
 }
 
-- (void)viewWillAppear:(BOOL)animated
+#pragma mark weekCollectionView Delegate
+- (void)weekCellClickedWithIndexRow:(NSInteger)indexRow
 {
-    self.navigationController.navigationBarHidden = YES;
+    [_todoCollectionView setSelectedDayTodoCellWithIndexRow:indexRow];
+}
+
+- (void)cellSelectedByChosenDateWithIndexRow:(NSInteger)indexRow
+{
+    NSInteger weekIndex = ceil(indexRow/7);
+    [_weekCollectionView setWeekPageWithIndexRow:weekIndex animated:NO];
+    [_todoCollectionView setSelectedDayTodoCellWithIndexRow:indexRow];
+}
+
+#pragma mark todocollectionview Delegate
+- (void)selectedTodoCellWithIndexRow:(NSInteger)indexRow
+{
+    NSInteger weekIndex = ceil(indexRow/7);
+    [_weekCollectionView setWeekPageWithIndexRow:weekIndex animated:YES];
+
 }
 
 #pragma mark 初始化
@@ -43,10 +61,12 @@
 
 - (void)initView
 {
-    _weekCollectionView = [[WeekCollectionView alloc]initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_WIDTH/7)];
+    _weekCollectionView = [[WeekCollectionView alloc]initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, SCREEN_WIDTH/7)];
+    _weekCollectionView.mdelegate = self;
     [self.view addSubview:_weekCollectionView];
     
-    _todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, 200, SCREEN_WIDTH, SCREEN_HEIGHT - 200)];
+    _todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, 200, SCREEN_WIDTH, SCREEN_HEIGHT - 320)];
+    _todoCollectionView.mdelegate = self;
     [self.view addSubview:_todoCollectionView];
 }
 
