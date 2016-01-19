@@ -55,8 +55,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSLog(@"shit");
+    NSInteger indexRow =  self.contentOffset.x /SCREEN_WIDTH;
+    NSLog(@"shit %ld",(long)indexRow);
+    //选中week中的cell，开始滑与静止都需要选中，形成连贯效果
+    [self.mdelegate selectedTodoCellWithIndexItem:indexRow];
+
 }
+
 #pragma mark 初始化方法
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -108,13 +113,13 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     TodoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    NSDate *chosenDate = [self getChosenDateFromIndexPathRow:indexPath.row];
+    NSDate *chosenDate = [self getChosenDateFromIndexPathRow:indexPath.item];
     NSInteger dayId = [[_YMDformatter stringFromDate:chosenDate] integerValue];
-    cell.index = [NSString stringWithFormat:@"%ld",(long)indexPath.row + 1];
+    cell.index = [NSString stringWithFormat:@"%ld",(long)indexPath.item + 1];
     cell.date = chosenDate;
     cell.dayId = dayId;
     cell.backgroundColor = [NSObject randomColor];
-    [self.mdelegate selectedTodoCellWithIndexRow:indexPath.row];
+    [self.mdelegate selectedTodoCellWithIndexItem:indexPath.item];
     return cell;
 }
 

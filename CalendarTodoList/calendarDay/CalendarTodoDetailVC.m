@@ -36,16 +36,17 @@
 - (void)cellSelectedByChosenDateWithIndexRow:(NSInteger)indexRow
 {
     NSInteger weekIndex = ceil(indexRow/7);
-    [_weekCollectionView setWeekPageWithIndexRow:weekIndex animated:NO];
+    [_weekCollectionView setWeekPageWithIndexItem:weekIndex animated:NO];
     [_todoCollectionView setSelectedDayTodoCellWithIndexRow:indexRow];
 }
 
 #pragma mark todocollectionview Delegate
-- (void)selectedTodoCellWithIndexRow:(NSInteger)indexRow
+- (void)selectedTodoCellWithIndexItem:(NSInteger)indexItem
 {
-    NSInteger weekIndex = ceil(indexRow/7);
-    [_weekCollectionView setWeekPageWithIndexRow:weekIndex animated:YES];
-
+    NSInteger weekIndex = ceil(indexItem/7);
+    [_weekCollectionView setWeekPageWithIndexItem:weekIndex animated:YES];
+    //选中week中的cell
+    [_weekCollectionView setWeekCellSelectedWithIndexItem:indexItem];
 }
 
 #pragma mark 初始化

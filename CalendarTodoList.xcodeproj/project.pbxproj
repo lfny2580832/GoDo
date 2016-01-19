@@ -627,8 +627,8 @@
 			baseConfigurationReference = 6D2673CA96F7B03EE1014712 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: YAN NIU (A2B5YG477X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YAN NIU (A2B5YG477X)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CalendarTodoList/PrefixHeader.pch;
@@ -652,9 +652,9 @@
 					"-weak_framework",
 					"\"Photos\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.suda.niuyan.CalendarTodoList;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.niuyan.CalendarTodoList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4f82663f-30a9-40b7-9263-f8f84f2c08b5";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
@@ -664,8 +664,8 @@
 			baseConfigurationReference = E72E51CDFFC69871C1738A6E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: YAN NIU (A2B5YG477X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YAN NIU (A2B5YG477X)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CalendarTodoList/PrefixHeader.pch;
@@ -689,9 +689,9 @@
 					"-weak_framework",
 					"\"Photos\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.suda.niuyan.CalendarTodoList;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.niuyan.CalendarTodoList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4f82663f-30a9-40b7-9263-f8f84f2c08b5";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;

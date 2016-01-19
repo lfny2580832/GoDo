@@ -22,9 +22,30 @@
 
 static NSString * const reuseIdentifier = @"Cell";
 
-- (void)setWeekPageWithIndexRow:(NSInteger)indexRow animated:(BOOL)animated
+- (void)setWeekCellSelectedWithIndexItem:(NSInteger)indexItem
 {
-    [self setContentOffset:CGPointMake(indexRow * SCREEN_WIDTH, 0) animated:animated];
+    
+    NSIndexPath *indexPath=[NSIndexPath indexPathForItem:indexItem inSection:0];
+    
+    if (_selectedIndexPath == indexPath) {
+        return;
+    }
+
+    WeekCollectionViewCell *cell = (WeekCollectionViewCell *)[self cellForItemAtIndexPath:indexPath];
+    cell.isSelected = YES;
+    WeekCollectionViewCell *selectedCell = (WeekCollectionViewCell *)[self cellForItemAtIndexPath:_selectedIndexPath];
+    selectedCell.isSelected = NO;
+    
+
+    _selectedIndexPath = indexPath;
+    NSLog(@"%@",cell.index);
+
+}
+
+#pragma mark 设置周view的页数
+- (void)setWeekPageWithIndexItem:(NSInteger)indexItem animated:(BOOL)animated
+{
+    [self setContentOffset:CGPointMake(indexItem * SCREEN_WIDTH, 0) animated:animated];
 }
 
 #pragma mark 获取当前日期到本月第一天之间的天数，以便设置第几个cell
@@ -98,22 +119,29 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     WeekCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    NSDate *chosenDate = [self getChosenDateFromIndexPathRow:indexPath.row];
+    NSDate *chosenDate = [self getChosenDateFromIndexPathRow:indexPath.item];
     cell.date = chosenDate;
-    cell.index = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
-    cell.backgroundColor = [UIColor redColor];
+    if (indexPath == _selectedIndexPath) {
+        cell.isSelected = YES;
+    }else{
+        cell.isSelected = NO;
+    }
+    cell.index = [NSString stringWithFormat:@"%ld",(long)indexPath.item];
+    
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     WeekCollectionViewCell *cell = (WeekCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    WeekCollectionViewCell *selectedCell = (WeekCollectionViewCell *)[collectionView cellForItemAtIndexPath:_selectedIndexPath];
-    
-    selectedCell.isSelected = NO;
     cell.isSelected = YES;
+
+    WeekCollectionViewCell *selectedCell = (WeekCollectionViewCell *)[collectionView cellForItemAtIndexPath:_selectedIndexPath];
+    selectedCell.isSelected = NO;
     
     _selectedIndexPath = indexPath;
+    
+    NSLog(@"indexpath %ld,%ld",(long)indexPath.item,(long)indexPath.section);
     [self.mdelegate weekCellClickedWithIndexRow:indexPath.row];
 }
 

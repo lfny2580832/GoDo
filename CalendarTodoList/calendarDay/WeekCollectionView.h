@@ -18,6 +18,8 @@
 
 @property (nonatomic, weak) id<WeekCellDelegate> mdelegate;
 
-- (void)setWeekPageWithIndexRow:(NSInteger)indexRow animated:(BOOL)animated;
+- (void)setWeekCellSelectedWithIndexItem:(NSInteger)indexItem;
+
+- (void)setWeekPageWithIndexItem:(NSInteger)indexItem animated:(BOOL)animated;
 
 @end

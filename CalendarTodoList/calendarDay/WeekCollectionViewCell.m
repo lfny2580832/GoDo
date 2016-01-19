@@ -19,7 +19,7 @@
 #pragma mark KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"isSelected"]) {
+    if ([keyPath isEqualToString:@"isSelected"] && object == self) {
         if ([[change objectForKey:@"new"]boolValue] == 1) {
             self.backgroundColor = [UIColor blackColor];
         }else if ([[change objectForKey:@"new"]boolValue] == 0){
@@ -31,13 +31,20 @@
 #pragma mark Set方法
 - (void)setIndex:(NSString *)index
 {
+    _index = index;
     _indexLabel.text = index;
 }
 
 - (void)setDate:(NSDate *)date
 {
+    _date = date;
     NSString *dateStr = [_monthDayFormatter stringFromDate:date];
     _dateLabel.text = dateStr;
+}
+
+- (void)dealloc
+{
+    [self removeObserver:self forKeyPath:@"isSelected"];
 }
 
 #pragma mark 初始化

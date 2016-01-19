@@ -10,7 +10,7 @@
 
 @protocol TodoCollectionViewDelegate <NSObject>
 
-- (void)selectedTodoCellWithIndexRow:(NSInteger)indexRow;
+- (void)selectedTodoCellWithIndexItem:(NSInteger)indexItem;
 
 - (void)cellSelectedByChosenDateWithIndexRow:(NSInteger)indexRow;
 
