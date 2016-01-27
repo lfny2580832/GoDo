@@ -21,16 +21,19 @@
 
 - (void)setDate:(NSDate *)date
 {
+    _date = date;
     _dateLabel.text = [NSString stringWithFormat:@"%@",date];
 }
 
 - (void)setIndex:(NSString *)index
 {
+    _index = index;
     _testLabel.text = index;
 }
 
 - (void)setDayId:(NSInteger)dayId
 {
+    _dayId = dayId;
     dispatch_async(kBgQueue, ^{
         _todoList = [self getDayInfoFromRealmWithDayId:dayId];
         dispatch_async(kMainQueue, ^{

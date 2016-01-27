@@ -24,7 +24,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)setWeekCellSelectedWithIndexItem:(NSInteger)indexItem
 {
-    
     NSIndexPath *indexPath=[NSIndexPath indexPathForItem:indexItem inSection:0];
     
     if (_selectedIndexPath == indexPath) {
@@ -33,13 +32,11 @@ static NSString * const reuseIdentifier = @"Cell";
 
     WeekCollectionViewCell *cell = (WeekCollectionViewCell *)[self cellForItemAtIndexPath:indexPath];
     cell.isSelected = YES;
+    
     WeekCollectionViewCell *selectedCell = (WeekCollectionViewCell *)[self cellForItemAtIndexPath:_selectedIndexPath];
     selectedCell.isSelected = NO;
     
-
     _selectedIndexPath = indexPath;
-    NSLog(@"%@",cell.index);
-
 }
 
 #pragma mark 设置周view的页数
@@ -141,7 +138,6 @@ static NSString * const reuseIdentifier = @"Cell";
     
     _selectedIndexPath = indexPath;
     
-    NSLog(@"indexpath %ld,%ld",(long)indexPath.item,(long)indexPath.section);
     [self.mdelegate weekCellClickedWithIndexRow:indexPath.row];
 }
 

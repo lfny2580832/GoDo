@@ -93,8 +93,8 @@
 #pragma mark 实时获取zoomscale的值
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
-    if (self.scrollView.zoomScale <= 4.5f && self.scrollView.zoomScale > 1.5f) {
-        [_calendarView changeCellTransparentWithAlpha: self.scrollView.zoomScale / 3 - 0.5];
+    if (self.scrollView.zoomScale <= 3.0f && self.scrollView.zoomScale > 1.5f) {
+        [_calendarView changeCellTransparentWithAlpha: self.scrollView.zoomScale / 1.5 - 0.6];
     }
     else if (self.scrollView.zoomScale <= 1.5f) {
         [_calendarView changeCellTransparentWithAlpha:0];

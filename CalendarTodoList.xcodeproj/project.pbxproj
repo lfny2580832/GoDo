@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4A0FF8421C2CD44300C1A781 /* MainTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0FF8411C2CD44300C1A781 /* MainTabBarVC.m */; };
 		4A43AC351C3631A900347E3C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A43AC341C3631A900347E3C /* libc++.tbd */; };
+		4A4939FE1C4DE80100738BBA /* TodoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4939FD1C4DE80100738BBA /* TodoTableView.m */; };
+		4A493A011C4E09BE00738BBA /* TodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A493A001C4E09BE00738BBA /* TodoTableViewCell.m */; };
 		4A4F9CBD1C3F3E280000F24C /* RDVCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CB61C3F3E280000F24C /* RDVCalendarDayCell.m */; };
 		4A4F9CBE1C3F3E280000F24C /* RDVCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CB81C3F3E280000F24C /* RDVCalendarView.m */; };
 		4A4F9CBF1C3F3E280000F24C /* RLMThing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CBA1C3F3E280000F24C /* RLMThing.m */; };
@@ -60,6 +62,10 @@
 		4A0FF8401C2CD44300C1A781 /* MainTabBarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarVC.h; sourceTree = "<group>"; };
 		4A0FF8411C2CD44300C1A781 /* MainTabBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarVC.m; sourceTree = "<group>"; };
 		4A43AC341C3631A900347E3C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		4A4939FC1C4DE80100738BBA /* TodoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableView.h; sourceTree = "<group>"; };
+		4A4939FD1C4DE80100738BBA /* TodoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableView.m; sourceTree = "<group>"; };
+		4A4939FF1C4E09BE00738BBA /* TodoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewCell.h; sourceTree = "<group>"; };
+		4A493A001C4E09BE00738BBA /* TodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewCell.m; sourceTree = "<group>"; };
 		4A4F9CB51C3F3E280000F24C /* RDVCalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarDayCell.h; sourceTree = "<group>"; };
 		4A4F9CB61C3F3E280000F24C /* RDVCalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVCalendarDayCell.m; sourceTree = "<group>"; };
 		4A4F9CB71C3F3E280000F24C /* RDVCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarView.h; sourceTree = "<group>"; };
@@ -169,6 +175,10 @@
 				4A84C86A1C43D86700F83C5B /* WeekCollectionViewCell.m */,
 				4A84C8661C43D15A00F83C5B /* WeekCollectionView.h */,
 				4A84C8671C43D15A00F83C5B /* WeekCollectionView.m */,
+				4A4939FF1C4E09BE00738BBA /* TodoTableViewCell.h */,
+				4A493A001C4E09BE00738BBA /* TodoTableViewCell.m */,
+				4A4939FC1C4DE80100738BBA /* TodoTableView.h */,
+				4A4939FD1C4DE80100738BBA /* TodoTableView.m */,
 				4A4F9CCB1C3F4FDF0000F24C /* TodoCollectionViewCell.h */,
 				4A4F9CCC1C3F4FDF0000F24C /* TodoCollectionViewCell.m */,
 				4A4F9CC81C3F489C0000F24C /* TodoCollectionView.h */,
@@ -489,9 +499,11 @@
 				4A4F9CBE1C3F3E280000F24C /* RDVCalendarView.m in Sources */,
 				4A4F9CBF1C3F3E280000F24C /* RLMThing.m in Sources */,
 				4A4F9CC01C3F3E280000F24C /* RLMTodoList.m in Sources */,
+				4A4939FE1C4DE80100738BBA /* TodoTableView.m in Sources */,
 				4A4F9CCD1C3F4FDF0000F24C /* TodoCollectionViewCell.m in Sources */,
 				4ADA1DAE1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m in Sources */,
 				4A4F9CCA1C3F489C0000F24C /* TodoCollectionView.m in Sources */,
+				4A493A011C4E09BE00738BBA /* TodoTableViewCell.m in Sources */,
 				4ADA1DAD1C3E4992001ECBF4 /* UIImage+ZZExtends.m in Sources */,
 				4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */,
 				4ADA1D9B1C3E4897001ECBF4 /* BaseNavigationController.m in Sources */,

@@ -310,26 +310,6 @@ static NSString *DayIdentifier = @"DayCell";
     _dayCellClass = cellClass;
 }
 
-- (id)dequeueReusableCellWithIdentifier:(NSString *)identifier {
-    UIView *dayCell = nil;
-    
-    for (RDVCalendarDayCell *calendarDayCell in _dayCells) {
-        if ([calendarDayCell.reuseIdentifier isEqualToString:identifier]) {
-            dayCell = calendarDayCell;
-            break;
-        }
-    }
-    
-    //如果这句不注释掉，多次切换月份，放大到一定程度后会出现日期错乱
-    if (dayCell) {
-        [_dayCells removeObject:dayCell];
-    }
-    else if (!dayCell) {
-        dayCell = [[_dayCellClass alloc] initWithReuseIdentifier:identifier];
-    }
-    return dayCell;
-}
-
 #pragma mark - 创建calendar单例
 - (NSCalendar *)calendar {
     static NSCalendar *calendar = nil;
@@ -525,7 +505,7 @@ static NSString *DayIdentifier = @"DayCell";
     if ([self visibleCells].count == [self numberOfDays]) {
         dayCell = [self visibleCells][index];
     } else {
-        //dayCell = [self dequeueReusableCellWithIdentifier:DayIdentifier];
+        [_dayCells removeAllObjects];
         dayCell = [[_dayCellClass alloc] initWithReuseIdentifier:DayIdentifier];
     }
     

@@ -19,6 +19,7 @@
     NSCalendar *_calendar;
     NSDate *_firstDayInCurrentMonth;
     NSDateFormatter *_YMDformatter;
+    
 }
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -56,10 +57,8 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSInteger indexRow =  self.contentOffset.x /SCREEN_WIDTH;
-    NSLog(@"shit %ld",(long)indexRow);
     //选中week中的cell，开始滑与静止都需要选中，形成连贯效果
     [self.mdelegate selectedTodoCellWithIndexItem:indexRow];
-
 }
 
 #pragma mark 初始化方法
