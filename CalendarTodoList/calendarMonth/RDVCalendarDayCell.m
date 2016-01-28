@@ -217,7 +217,7 @@
             case 4:typeStr = @"组织";break;
             default:break;
         }
-        NSString *timeStr = [NSString getHourMinuteDateFromTimeInterval:todolist.timeStamp];
+        NSString *timeStr = [NSString getHourMinuteDateFromTimeInterval:todolist.startTime];
         self.listLabel.text = [NSString stringWithFormat:@"%@:%@",timeStr,typeStr];
     }
 

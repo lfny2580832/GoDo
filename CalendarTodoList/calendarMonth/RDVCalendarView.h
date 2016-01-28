@@ -118,11 +118,6 @@ typedef NS_OPTIONS(NSInteger, RDVCalendarViewDayCellSeparatorType) {
  */
 - (void)registerDayCellClass:(Class)cellClass;
 
-/**
- * Returns a reusable calendar-view day cell object located by its identifier.
- */
-- (id)dequeueReusableCellWithIdentifier:(NSString *)identifier;
-
 #pragma mark - Accessing Day Cells
 
 /**

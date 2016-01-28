@@ -32,18 +32,19 @@
 
 - (void)initViews
 {
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    RLMThing *thing = [[RLMThing alloc]init];
-    thing.thingType = Study;
-    thing.thingStr = @"学习《iOS编程实战》";
-    RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
-    todolistModel.dayId = 20160118;
-    todolistModel.timeStamp = [NSDate timeIntervalSinceReferenceDate];
-    todolistModel.thing = thing;
-    
-    [realm beginWriteTransaction];
-    [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];
-    [realm commitWriteTransaction];
+//    RLMRealm *realm = [RLMRealm defaultRealm];
+//    RLMThing *thing = [[RLMThing alloc]init];
+//    thing.thingType = Study;
+//    thing.thingStr = @"学习《iOS编程实战》";
+//    RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
+//    todolistModel.dayId = 20160118;
+//    todolistModel.startTime = [NSDate timeIntervalSinceReferenceDate];
+//    todolistModel.endTime = todolistModel.startTime + 60 * 24;
+//    todolistModel.thing = thing;
+//    
+//    [realm beginWriteTransaction];
+//    [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];
+//    [realm commitWriteTransaction];
     
     CalendarVC *calendarVC = [[CalendarVC alloc]init];
     BaseNavigationController *calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];

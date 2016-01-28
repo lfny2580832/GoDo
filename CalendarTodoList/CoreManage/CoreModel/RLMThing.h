@@ -6,8 +6,6 @@
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-
-
 #import <Realm/Realm.h>
 
 ///事件类型枚举

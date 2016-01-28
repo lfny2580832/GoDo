@@ -14,9 +14,10 @@
 ///dayId 为年月日，如 20160106
 @property (nonatomic, assign) NSInteger dayId;
 
-///时间戳 精确到秒
-@property (nonatomic, assign) long long timeStamp;
-
+///开始时间戳 精确到秒
+@property (nonatomic, assign) long long startTime;
+///结束时间
+@property (nonatomic, assign) long long endTime;
 ///对应事件;
 @property (nonatomic, strong) RLMThing *thing;
 

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TodoTableView : UITableView
+@interface TodoTableView : UITableView<UITableViewDelegate,UITableViewDataSource>
 
 @end

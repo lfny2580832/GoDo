@@ -7,6 +7,7 @@
 //
 
 #import "TodoTableViewCell.h"
+#import "NSObject+NYExtends.h"
 
 @implementation TodoTableViewCell
 
@@ -14,6 +15,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.backgroundColor = [NSObject randomColor];
         [self initView];
     }
     return self;

@@ -9,10 +9,11 @@
 #import "RLMTodoList.h"
 
 @implementation RLMTodoList
+@synthesize thing;
 
 + (NSString *) primaryKey
 {
-    return @"timeStamp";
+    return @"startTime";
 }
 
 @end
