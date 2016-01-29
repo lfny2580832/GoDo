@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TodoList.h"
+#import "Thing.h"
 
 @interface TodoTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) TodoList *todoList;
 
 @end

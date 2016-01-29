@@ -11,8 +11,8 @@
 
 @interface Thing : NSObject
 ///事件类型
-@property ThingType thingType;
+@property (nonatomic, assign) ThingType thingType;
 ///事件字符串
-@property NSString *thingStr;
+@property (nonatomic, copy) NSString *thingStr;
 
 @end

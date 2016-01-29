@@ -9,6 +9,6 @@
 #import "TodoList.h"
 
 @implementation TodoList
-@synthesize thing;
+
 
 @end

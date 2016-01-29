@@ -21,6 +21,6 @@
 ///对应事件;
 @property (nonatomic, strong) Thing *thing;
 ///事件概述（RLM模型中没有）
-@property (nonatomic, strong) NSString *briefStr;
+@property (nonatomic, copy) NSString *briefStr;
 
 @end

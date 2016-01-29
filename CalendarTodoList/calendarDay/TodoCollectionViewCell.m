@@ -7,30 +7,36 @@
 //
 
 #import "TodoCollectionViewCell.h"
+
+#import <Realm/Realm.h>
 #import "TodoList.h"
 #import "Thing.h"
-#import <Realm/Realm.h>
-#import "NSString+ZZExtends.h"
 #import "RealmManage.h"
+
+#import "TodoTableViewCell.h"
+
+#import "NSString+ZZExtends.h"
+
+@interface TodoCollectionViewCell ()<UITableViewDataSource,UITableViewDelegate>
+
+@end
 
 @implementation TodoCollectionViewCell
 {
-    UILabel *_todoListLabel;
     NSArray <TodoList *> *_todoListArray;
-    NSString *_todoList;
+    
+    UITableView *_tableView;
 }
 
+#pragma mark Set方法
 - (void)setDayId:(NSInteger)dayId
 {
     _dayId = dayId;
     dispatch_async(kBgQueue, ^{
         _todoListArray = [RealmManager getDayInfoBriefFromRealmWithDayId:dayId];
-        if (_todoListArray) {
-            NSLog(@"--- %@",_todoListArray[0].thing.thingStr);
-        }
         dispatch_async(kMainQueue, ^{
             if (_todoListArray) {
-                NSLog(@"+++ %@",_todoListArray[0].thing.thingStr);
+                [_tableView reloadData];
             }
         });
     });
@@ -42,20 +48,44 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self initView];
-        
     }
     return self;
 }
 
 - (void)initView
 {
-    _todoListLabel = [[UILabel alloc]init];
-    _todoListLabel.font = [UIFont systemFontOfSize:30];
-    _todoListLabel.textColor = [UIColor whiteColor];
-    [self addSubview:_todoListLabel];
-    [_todoListLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self);
+    _tableView = [[UITableView alloc]init];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.tableFooterView = [UIView new];
+    [self addSubview:_tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.left.right.equalTo(self.contentView);
     }];
 }
 
+#pragma mark UITableViewDelegate DataSource
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *reuseIdentifier = @"todotableviewcell";
+
+    TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if(!cell){
+        cell = [[TodoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    }
+    cell.todoList = _todoListArray[indexPath.row];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 40.f;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _todoListArray.count;
+}
 @end

@@ -44,10 +44,11 @@
         todolist.dayId = RLMTodoList.dayId;
         todolist.startTime = RLMTodoList.startTime;
         todolist.endTime = RLMTodoList.endTime;
+        
+        todolist.thing = [[Thing alloc]init];
         todolist.thing.thingStr = RLMTodoList.thing.thingStr;
         todolist.thing.thingType = RLMTodoList.thing.thingType;
-        NSLog(@"test %@,%@",RLMTodoList.thing.thingStr,todolist.thing.thingStr);
-        
+                
         NSString *todoListStr;
         if (RLMTodoList) {
             NSString *typeStr;
