@@ -14,4 +14,6 @@
 @property (nonatomic, copy) NSString *index;
 @property (nonatomic, assign) NSInteger dayId;
 
+- (void)refreshTableViewBeforQueryData;
+
 @end

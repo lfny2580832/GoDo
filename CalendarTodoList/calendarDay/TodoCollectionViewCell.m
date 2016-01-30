@@ -28,6 +28,13 @@
     UITableView *_tableView;
 }
 
+#pragma mark - 重用TodoCell时先清空数据
+- (void)refreshTableViewBeforQueryData
+{
+    _todoListArray = nil;
+    [_tableView reloadData];
+}
+
 #pragma mark Set方法
 - (void)setDayId:(NSInteger)dayId
 {
@@ -35,9 +42,9 @@
     dispatch_async(kBgQueue, ^{
         _todoListArray = [RealmManager getDayInfoBriefFromRealmWithDayId:dayId];
         dispatch_async(kMainQueue, ^{
-            if (_todoListArray) {
+//            if (_todoListArray) {
                 [_tableView reloadData];
-            }
+//            }
         });
     });
 }
@@ -64,6 +71,7 @@
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.left.right.equalTo(self.contentView);
     }];
+    
 }
 
 #pragma mark UITableViewDelegate DataSource
@@ -88,4 +96,5 @@
 {
     return _todoListArray.count;
 }
+
 @end

@@ -114,6 +114,7 @@ static NSString * const reuseIdentifier = @"Cell";
     TodoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     NSDate *chosenDate = [self getChosenDateFromIndexPathRow:indexPath.item];
     NSInteger dayId = [[_YMDformatter stringFromDate:chosenDate] integerValue];
+    [cell refreshTableViewBeforQueryData];
     cell.index = [NSString stringWithFormat:@"%ld",(long)indexPath.item + 1];
     cell.date = chosenDate;
     cell.dayId = dayId;

@@ -62,7 +62,7 @@
                 default:break;
             }
             NSString *timeStr = [NSString getHourMinuteDateFromTimeInterval:RLMTodoList.startTime];
-            todoListStr = [NSString stringWithFormat:@"%@%@",timeStr,RLMTodoList.thing.thingStr];
+            todoListStr = [NSString stringWithFormat:@"%@  %@",timeStr,RLMTodoList.thing.thingStr];
             todolist.briefStr = todoListStr;
             [resultArray addObject:todolist];
         }
