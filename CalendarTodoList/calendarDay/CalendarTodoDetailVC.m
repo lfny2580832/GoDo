@@ -9,6 +9,7 @@
 #import "CalendarTodoDetailVC.h"
 #import "TodoCollectionView.h"
 #import "WeekCollectionView.h"
+#import "TodoDetailVC.h"
 
 @interface CalendarTodoDetailVC ()<WeekCellDelegate,TodoCollectionViewDelegate>
 @property (nonatomic,strong) TodoCollectionView *todoCollectionView;
@@ -18,6 +19,13 @@
 @implementation CalendarTodoDetailVC
 {
     NSDate *_chosenDate;
+}
+#pragma mark 点击TodoTableViewCell事件
+- (void)didSelectedTodoTableViewCellWithTodoList:(TodoList *)todoList
+{
+    TodoDetailVC *vc = [[TodoDetailVC alloc]init];
+    vc.todoList = todoList;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark 根据当前日期设置

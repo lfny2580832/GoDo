@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A1290861C5DD4E6006E078B /* WeekCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1290831C5DD4E6006E078B /* WeekCollectionView.m */; };
+		4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1290851C5DD4E6006E078B /* WeekCollectionViewCell.m */; };
+		4A12908F1C5DD4FF006E078B /* TodoCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A12908A1C5DD4FF006E078B /* TodoCollectionView.m */; };
+		4A1290901C5DD4FF006E078B /* TodoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A12908C1C5DD4FF006E078B /* TodoCollectionViewCell.m */; };
+		4A1290911C5DD4FF006E078B /* TodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A12908E1C5DD4FF006E078B /* TodoTableViewCell.m */; };
+		4A1290941C5DD55A006E078B /* TodoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1290931C5DD55A006E078B /* TodoDetailVC.m */; };
+		4A12909A1C5E181F006E078B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1290991C5E181F006E078B /* libz.tbd */; };
 		4A4116CE1C5A5E2C0077564D /* Thing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4116CD1C5A5E2C0077564D /* Thing.m */; };
 		4A4116D11C5A5E5D0077564D /* TodoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4116D01C5A5E5D0077564D /* TodoList.m */; };
 		4A43AC351C3631A900347E3C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A43AC341C3631A900347E3C /* libc++.tbd */; };
-		4A493A011C4E09BE00738BBA /* TodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A493A001C4E09BE00738BBA /* TodoTableViewCell.m */; };
 		4A4F9CBD1C3F3E280000F24C /* RDVCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CB61C3F3E280000F24C /* RDVCalendarDayCell.m */; };
 		4A4F9CBE1C3F3E280000F24C /* RDVCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CB81C3F3E280000F24C /* RDVCalendarView.m */; };
 		4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CC31C3F3ECE0000F24C /* CalendarTodoDetailVC.m */; };
 		4A4F9CC71C3F3EEA0000F24C /* CalendarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CC61C3F3EEA0000F24C /* CalendarVC.m */; };
-		4A4F9CCA1C3F489C0000F24C /* TodoCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CC91C3F489C0000F24C /* TodoCollectionView.m */; };
-		4A4F9CCD1C3F4FDF0000F24C /* TodoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CCC1C3F4FDF0000F24C /* TodoCollectionViewCell.m */; };
-		4A84C8681C43D15A00F83C5B /* WeekCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A84C8671C43D15A00F83C5B /* WeekCollectionView.m */; };
-		4A84C86B1C43D86700F83C5B /* WeekCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A84C86A1C43D86700F83C5B /* WeekCollectionViewCell.m */; };
 		4A84C8741C43DF3F00F83C5B /* NSObject+NYExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A84C8731C43DF3F00F83C5B /* NSObject+NYExtends.m */; };
 		4A88CB211C2B925F001C13D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB201C2B925F001C13D8 /* main.m */; };
 		4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB231C2B925F001C13D8 /* AppDelegate.m */; };
@@ -61,13 +63,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A1290821C5DD4E6006E078B /* WeekCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCollectionView.h; sourceTree = "<group>"; };
+		4A1290831C5DD4E6006E078B /* WeekCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekCollectionView.m; sourceTree = "<group>"; };
+		4A1290841C5DD4E6006E078B /* WeekCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCollectionViewCell.h; sourceTree = "<group>"; };
+		4A1290851C5DD4E6006E078B /* WeekCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekCollectionViewCell.m; sourceTree = "<group>"; };
+		4A1290891C5DD4FF006E078B /* TodoCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoCollectionView.h; sourceTree = "<group>"; };
+		4A12908A1C5DD4FF006E078B /* TodoCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoCollectionView.m; sourceTree = "<group>"; };
+		4A12908B1C5DD4FF006E078B /* TodoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoCollectionViewCell.h; sourceTree = "<group>"; };
+		4A12908C1C5DD4FF006E078B /* TodoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoCollectionViewCell.m; sourceTree = "<group>"; };
+		4A12908D1C5DD4FF006E078B /* TodoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewCell.h; sourceTree = "<group>"; };
+		4A12908E1C5DD4FF006E078B /* TodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewCell.m; sourceTree = "<group>"; };
+		4A1290921C5DD55A006E078B /* TodoDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoDetailVC.h; sourceTree = "<group>"; };
+		4A1290931C5DD55A006E078B /* TodoDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoDetailVC.m; sourceTree = "<group>"; };
+		4A1290961C5E1766006E078B /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		4A1290991C5E181F006E078B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		4A4116CC1C5A5E2C0077564D /* Thing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thing.h; sourceTree = "<group>"; };
 		4A4116CD1C5A5E2C0077564D /* Thing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thing.m; sourceTree = "<group>"; };
 		4A4116CF1C5A5E5D0077564D /* TodoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoList.h; sourceTree = "<group>"; };
 		4A4116D01C5A5E5D0077564D /* TodoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoList.m; sourceTree = "<group>"; };
 		4A43AC341C3631A900347E3C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		4A4939FF1C4E09BE00738BBA /* TodoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewCell.h; sourceTree = "<group>"; };
-		4A493A001C4E09BE00738BBA /* TodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewCell.m; sourceTree = "<group>"; };
 		4A4F9CB51C3F3E280000F24C /* RDVCalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarDayCell.h; sourceTree = "<group>"; };
 		4A4F9CB61C3F3E280000F24C /* RDVCalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVCalendarDayCell.m; sourceTree = "<group>"; };
 		4A4F9CB71C3F3E280000F24C /* RDVCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarView.h; sourceTree = "<group>"; };
@@ -76,14 +90,6 @@
 		4A4F9CC31C3F3ECE0000F24C /* CalendarTodoDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarTodoDetailVC.m; sourceTree = "<group>"; };
 		4A4F9CC51C3F3EEA0000F24C /* CalendarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarVC.h; sourceTree = "<group>"; };
 		4A4F9CC61C3F3EEA0000F24C /* CalendarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarVC.m; sourceTree = "<group>"; };
-		4A4F9CC81C3F489C0000F24C /* TodoCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoCollectionView.h; sourceTree = "<group>"; };
-		4A4F9CC91C3F489C0000F24C /* TodoCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoCollectionView.m; sourceTree = "<group>"; };
-		4A4F9CCB1C3F4FDF0000F24C /* TodoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoCollectionViewCell.h; sourceTree = "<group>"; };
-		4A4F9CCC1C3F4FDF0000F24C /* TodoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoCollectionViewCell.m; sourceTree = "<group>"; };
-		4A84C8661C43D15A00F83C5B /* WeekCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCollectionView.h; sourceTree = "<group>"; };
-		4A84C8671C43D15A00F83C5B /* WeekCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekCollectionView.m; sourceTree = "<group>"; };
-		4A84C8691C43D86700F83C5B /* WeekCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCollectionViewCell.h; sourceTree = "<group>"; };
-		4A84C86A1C43D86700F83C5B /* WeekCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekCollectionViewCell.m; sourceTree = "<group>"; };
 		4A84C8721C43DF3F00F83C5B /* NSObject+NYExtends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NYExtends.h"; sourceTree = "<group>"; };
 		4A84C8731C43DF3F00F83C5B /* NSObject+NYExtends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NYExtends.m"; sourceTree = "<group>"; };
 		4A88CB1C1C2B925E001C13D8 /* CalendarTodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarTodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A12909A1C5E181F006E078B /* libz.tbd in Frameworks */,
 				4A43AC351C3631A900347E3C /* libc++.tbd in Frameworks */,
 				988604FC5CF4599DBC5A9AA9 /* libPods.a in Frameworks */,
 			);
@@ -157,6 +164,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A1290811C5DD4E6006E078B /* WeekCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				4A1290821C5DD4E6006E078B /* WeekCollectionView.h */,
+				4A1290831C5DD4E6006E078B /* WeekCollectionView.m */,
+				4A1290841C5DD4E6006E078B /* WeekCollectionViewCell.h */,
+				4A1290851C5DD4E6006E078B /* WeekCollectionViewCell.m */,
+			);
+			path = WeekCollectionView;
+			sourceTree = "<group>";
+		};
+		4A1290881C5DD4FF006E078B /* TodoCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				4A1290891C5DD4FF006E078B /* TodoCollectionView.h */,
+				4A12908A1C5DD4FF006E078B /* TodoCollectionView.m */,
+				4A12908B1C5DD4FF006E078B /* TodoCollectionViewCell.h */,
+				4A12908C1C5DD4FF006E078B /* TodoCollectionViewCell.m */,
+				4A12908D1C5DD4FF006E078B /* TodoTableViewCell.h */,
+				4A12908E1C5DD4FF006E078B /* TodoTableViewCell.m */,
+			);
+			path = TodoCollectionView;
+			sourceTree = "<group>";
+		};
 		4A4F9CB41C3F3E280000F24C /* calendarMonth */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,16 +204,10 @@
 		4A4F9CC11C3F3E330000F24C /* calendarDay */ = {
 			isa = PBXGroup;
 			children = (
-				4A84C8691C43D86700F83C5B /* WeekCollectionViewCell.h */,
-				4A84C86A1C43D86700F83C5B /* WeekCollectionViewCell.m */,
-				4A84C8661C43D15A00F83C5B /* WeekCollectionView.h */,
-				4A84C8671C43D15A00F83C5B /* WeekCollectionView.m */,
-				4A4939FF1C4E09BE00738BBA /* TodoTableViewCell.h */,
-				4A493A001C4E09BE00738BBA /* TodoTableViewCell.m */,
-				4A4F9CCB1C3F4FDF0000F24C /* TodoCollectionViewCell.h */,
-				4A4F9CCC1C3F4FDF0000F24C /* TodoCollectionViewCell.m */,
-				4A4F9CC81C3F489C0000F24C /* TodoCollectionView.h */,
-				4A4F9CC91C3F489C0000F24C /* TodoCollectionView.m */,
+				4A1290811C5DD4E6006E078B /* WeekCollectionView */,
+				4A1290881C5DD4FF006E078B /* TodoCollectionView */,
+				4A1290921C5DD55A006E078B /* TodoDetailVC.h */,
+				4A1290931C5DD55A006E078B /* TodoDetailVC.m */,
 				4A4F9CC21C3F3ECE0000F24C /* CalendarTodoDetailVC.h */,
 				4A4F9CC31C3F3ECE0000F24C /* CalendarTodoDetailVC.m */,
 			);
@@ -319,6 +344,8 @@
 		5AD3F6B00E743D84CCA1C8D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A1290991C5E181F006E078B /* libz.tbd */,
+				4A1290961C5E1766006E078B /* Reveal.framework */,
 				4A43AC341C3631A900347E3C /* libc++.tbd */,
 				640C26EC2089C43C666A53BB /* libPods.a */,
 			);
@@ -519,29 +546,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ADA1DA51C3E496D001ECBF4 /* GradientView.m in Sources */,
+				4A1290941C5DD55A006E078B /* TodoDetailVC.m in Sources */,
 				4A4F9CBD1C3F3E280000F24C /* RDVCalendarDayCell.m in Sources */,
 				4A84C8741C43DF3F00F83C5B /* NSObject+NYExtends.m in Sources */,
+				4A1290901C5DD4FF006E078B /* TodoCollectionViewCell.m in Sources */,
 				4AA393511C58AC2E00DA3C16 /* MainTabBarVC.m in Sources */,
+				4A12908F1C5DD4FF006E078B /* TodoCollectionView.m in Sources */,
 				4A4F9CBE1C3F3E280000F24C /* RDVCalendarView.m in Sources */,
+				4A1290911C5DD4FF006E078B /* TodoTableViewCell.m in Sources */,
 				4A4116D11C5A5E5D0077564D /* TodoList.m in Sources */,
-				4A4F9CCD1C3F4FDF0000F24C /* TodoCollectionViewCell.m in Sources */,
 				4ADA1DAE1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m in Sources */,
-				4A4F9CCA1C3F489C0000F24C /* TodoCollectionView.m in Sources */,
-				4A493A011C4E09BE00738BBA /* TodoTableViewCell.m in Sources */,
 				4ADA1DAD1C3E4992001ECBF4 /* UIImage+ZZExtends.m in Sources */,
 				4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */,
 				4A4F9CC71C3F3EEA0000F24C /* CalendarVC.m in Sources */,
 				4A88CB211C2B925F001C13D8 /* main.m in Sources */,
-				4A84C8681C43D15A00F83C5B /* WeekCollectionView.m in Sources */,
 				4ADA1DA61C3E496D001ECBF4 /* NSString+ZZExtends.m in Sources */,
 				4AA393541C58AC6D00DA3C16 /* RealmManage.m in Sources */,
 				4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */,
 				4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */,
 				4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */,
-				4A84C86B1C43D86700F83C5B /* WeekCollectionViewCell.m in Sources */,
+				4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */,
 				4ADA1DA71C3E496D001ECBF4 /* UILabelZoomable.m in Sources */,
 				4AEB373B1C599F17007C9F92 /* RLMThing.m in Sources */,
 				4A4116CE1C5A5E2C0077564D /* Thing.m in Sources */,
+				4A1290861C5DD4E6006E078B /* WeekCollectionView.m in Sources */,
 				4AEB373C1C599F17007C9F92 /* RLMTodoList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -669,12 +697,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: YAN NIU (A2B5YG477X)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YAN NIU (A2B5YG477X)";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CalendarTodoList/PrefixHeader.pch;
 				INFOPLIST_FILE = CalendarTodoList/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -706,12 +742,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: YAN NIU (A2B5YG477X)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: YAN NIU (A2B5YG477X)";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CalendarTodoList/PrefixHeader.pch;
 				INFOPLIST_FILE = CalendarTodoList/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
