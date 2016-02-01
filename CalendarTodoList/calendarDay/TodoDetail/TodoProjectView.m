@@ -34,6 +34,8 @@
         make.left.equalTo(self).offset(25);
         make.centerY.equalTo(self);
     }];
+    
+    
 }
 
 @end
