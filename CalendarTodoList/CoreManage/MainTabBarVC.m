@@ -37,7 +37,7 @@
 //    thing.thingType = Entertainment;
 //    thing.thingStr = @"玩《使命召唤OL》";
 //    RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
-//    todolistModel.dayId = 20160119;
+//    todolistModel.dayId = 20160201;
 //    todolistModel.startTime = [NSDate timeIntervalSinceReferenceDate];
 //    todolistModel.endTime = todolistModel.startTime + 60 * 24;
 //    todolistModel.thing = thing;
