@@ -40,7 +40,7 @@
 {
     _dayId = dayId;
     dispatch_async(kBgQueue, ^{
-        _todoListArray = [RealmManager getDayInfoBriefFromRealmWithDayId:dayId];
+        _todoListArray = [RealmManager getDayInfoFromRealmWithDayId:dayId];
         dispatch_async(kMainQueue, ^{
             if (_todoListArray) {
                 [_tableView reloadData];

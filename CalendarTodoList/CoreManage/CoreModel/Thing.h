@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RLMThing.h"
+#import "ThingType.h"
 
 @interface Thing : NSObject
 ///事件类型
-@property (nonatomic, assign) ThingType thingType;
+@property (nonatomic, strong) ThingType *thingType;
 ///事件字符串
 @property (nonatomic, copy) NSString *thingStr;
 

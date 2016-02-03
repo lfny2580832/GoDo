@@ -10,4 +10,6 @@
 
 @interface TodoProjectView : UIView
 
+@property (nonatomic, strong)UILabel *contentLabel;
+
 @end

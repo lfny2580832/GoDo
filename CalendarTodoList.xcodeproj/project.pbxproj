@@ -32,6 +32,8 @@
 		4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3934D1C58AC2E00DA3C16 /* BaseNavigationController.m */; };
 		4AA393511C58AC2E00DA3C16 /* MainTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3934F1C58AC2E00DA3C16 /* MainTabBarVC.m */; };
 		4AA393541C58AC6D00DA3C16 /* RealmManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA393531C58AC6D00DA3C16 /* RealmManage.m */; };
+		4AB09F001C627EF0006EB837 /* RLMThingType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09EFF1C627EF0006EB837 /* RLMThingType.m */; };
+		4AB09F031C6287D8006EB837 /* ThingType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F021C6287D8006EB837 /* ThingType.m */; };
 		4ADA1D951C3E478C001ECBF4 /* ico_nav_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */; };
 		4ADA1D961C3E478C001ECBF4 /* ico_nav_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */; };
 		4ADA1D971C3E478C001ECBF4 /* ico_nav_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D931C3E478C001ECBF4 /* ico_nav_back_white@2x.png */; };
@@ -117,6 +119,10 @@
 		4AA3934F1C58AC2E00DA3C16 /* MainTabBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarVC.m; sourceTree = "<group>"; };
 		4AA393521C58AC6D00DA3C16 /* RealmManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealmManage.h; sourceTree = "<group>"; };
 		4AA393531C58AC6D00DA3C16 /* RealmManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealmManage.m; sourceTree = "<group>"; };
+		4AB09EFE1C627EF0006EB837 /* RLMThingType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMThingType.h; sourceTree = "<group>"; };
+		4AB09EFF1C627EF0006EB837 /* RLMThingType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMThingType.m; sourceTree = "<group>"; };
+		4AB09F011C6287D8006EB837 /* ThingType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThingType.h; sourceTree = "<group>"; };
+		4AB09F021C6287D8006EB837 /* ThingType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThingType.m; sourceTree = "<group>"; };
 		4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@2x.png"; sourceTree = "<group>"; };
 		4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@3x.png"; sourceTree = "<group>"; };
 		4ADA1D931C3E478C001ECBF4 /* ico_nav_back_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back_white@2x.png"; sourceTree = "<group>"; };
@@ -351,10 +357,14 @@
 				4AEB37381C599F17007C9F92 /* RLMThing.m */,
 				4AEB37391C599F17007C9F92 /* RLMTodoList.h */,
 				4AEB373A1C599F17007C9F92 /* RLMTodoList.m */,
+				4AB09EFE1C627EF0006EB837 /* RLMThingType.h */,
+				4AB09EFF1C627EF0006EB837 /* RLMThingType.m */,
 				4A4116CC1C5A5E2C0077564D /* Thing.h */,
 				4A4116CD1C5A5E2C0077564D /* Thing.m */,
 				4A4116CF1C5A5E5D0077564D /* TodoList.h */,
 				4A4116D01C5A5E5D0077564D /* TodoList.m */,
+				4AB09F011C6287D8006EB837 /* ThingType.h */,
+				4AB09F021C6287D8006EB837 /* ThingType.m */,
 			);
 			path = CoreModel;
 			sourceTree = "<group>";
@@ -583,7 +593,9 @@
 				4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */,
 				4A9ED9E31C5FC42B00B46107 /* TodoDetailVC.m in Sources */,
 				4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */,
+				4AB09F001C627EF0006EB837 /* RLMThingType.m in Sources */,
 				4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */,
+				4AB09F031C6287D8006EB837 /* ThingType.m in Sources */,
 				4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */,
 				4ADA1DA71C3E496D001ECBF4 /* UILabelZoomable.m in Sources */,
 				4AEB373B1C599F17007C9F92 /* RLMThing.m in Sources */,

@@ -15,6 +15,9 @@
 + (id)sharedInstance;
 
 #pragma mark 根据dayId获取概要数组，概要（hh:mm 体育）
-- (NSArray *)getDayInfoBriefFromRealmWithDayId:(NSInteger)dayId;
+- (NSArray *)getDayInfoFromRealmWithDayId:(NSInteger)dayId;
+
+#pragma mark 根据thingType返回类型字符串
+- (NSString *)getThingTypeStrWithThingType:(NSInteger)typeId;
 
 @end

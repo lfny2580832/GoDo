@@ -7,21 +7,22 @@
 //
 
 #import <Realm/Realm.h>
+#import "RLMThingType.h"
 
-///事件类型枚举
-typedef NS_ENUM(NSInteger, ThingType)
-{
-    Study = 0,          //学习
-    Entertainment,      //娱乐
-    Sport,              //体育
-    Corporation,        //社团
-    Organization,       //组织
-};
+/////事件类型枚举
+//typedef NS_ENUM(NSInteger, ThingType)
+//{
+//    Study = 0,          //学习
+//    Entertainment,      //娱乐
+//    Sport,              //体育
+//    Corporation,        //社团
+//    Organization,       //组织
+//};
 
 @interface RLMThing : RLMObject
 
 ///事件类型
-@property ThingType thingType;
+@property RLMThingType *thingType;
 ///事件字符串
 @property NSString *thingStr;
 

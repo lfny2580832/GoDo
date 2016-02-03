@@ -11,8 +11,10 @@
 #import <Realm/Realm.h>
 #import "RLMTodoList.h"
 #import "RLMThing.h"
+#import "RLMThingType.h"
 #import "CalendarVC.h"
 #import "BaseNavigationController.h"
+#import "RLMThingType.h"
 
 @interface MainTabBarVC ()
 
@@ -32,19 +34,9 @@
 
 - (void)initViews
 {
-//    RLMRealm *realm = [RLMRealm defaultRealm];
-//    RLMThing *thing = [[RLMThing alloc]init];
-//    thing.thingType = Entertainment;
-//    thing.thingStr = @"玩《使命召唤OL》";
-//    RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
-//    todolistModel.dayId = 20160201;
-//    todolistModel.startTime = [NSDate timeIntervalSinceReferenceDate];
-//    todolistModel.endTime = todolistModel.startTime + 60 * 24;
-//    todolistModel.thing = thing;
-//    
-//    [realm beginWriteTransaction];
-//    [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];
-//    [realm commitWriteTransaction];
+    [self simulateThingType];
+
+    [self simulateTodoList];
     
     CalendarVC *calendarVC = [[CalendarVC alloc]init];
     BaseNavigationController *calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
@@ -57,5 +49,37 @@
     
 }
 
+- (void)simulateTodoList
+{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    RLMThing *thing = [[RLMThing alloc]init];
+    RLMThingType *type = [[RLMThingType objectsWhere:@"typeId = 2"] firstObject];
+    thing.thingType = type;
+    thing.thingStr = @"qq音速";
+    RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
+    todolistModel.dayId = 20160204;
+    todolistModel.startTime = [NSDate timeIntervalSinceReferenceDate];
+    todolistModel.endTime = todolistModel.startTime + 60 * 24;
+    todolistModel.thing = thing;
+    
+    [realm beginWriteTransaction];
+    [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];
+    [realm commitWriteTransaction];
+}
+
+- (void)simulateThingType
+{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    RLMThingType *rlmThingType = [[RLMThingType alloc]init];
+    rlmThingType.typeId = 1;
+    rlmThingType.typeStr = @"学习";
+    rlmThingType.red = 100;
+    rlmThingType.green = 100;
+    rlmThingType.blue = 100;
+    
+    [realm beginWriteTransaction];
+    [RLMThingType createOrUpdateInRealm:realm withValue:rlmThingType];
+    [realm commitWriteTransaction];
+}
 
 @end

@@ -8,6 +8,7 @@
 #import "RDVCalendarDayCell.h"
 #import "UILabelZoomable.h"
 #import "RLMTodoList.h"
+#import "RLMThingType.h"
 #import "NSString+ZZExtends.h"
 
 @interface RDVCalendarDayCell() {
@@ -208,17 +209,12 @@
     RLMResults *result = [RLMTodoList objectsWhere:@"dayId = %ld",dayId];
     RLMTodoList *todolist = [result firstObject];
     if (todolist) {
-        NSString *typeStr;
-        switch (todolist.thing.thingType) {
-            case 0:typeStr = @"学习";break;
-            case 1:typeStr = @"娱乐";break;
-            case 2:typeStr = @"体育";break;
-            case 3:typeStr = @"社团";break;
-            case 4:typeStr = @"组织";break;
-            default:break;
-        }
+        RLMThingType *type = todolist.thing.thingType;
         NSString *timeStr = [NSString getHourMinuteDateFromTimeInterval:todolist.startTime];
-        self.listLabel.text = [NSString stringWithFormat:@"%@:%@",timeStr,typeStr];
+        NSString *contentStr = todolist.thing.thingStr;
+        self.listLabel.text = [NSString stringWithFormat:@"%@:%@",timeStr,contentStr];
+        UIColor *contentColor = RGBA(type.red, type.green, type.blue, 1.0);
+        self.listLabel.textColor = contentColor;
     }
 
 }

@@ -10,7 +10,6 @@
 
 @implementation TodoProjectView
 {
-    UILabel *_contentLabel;
 }
 
 #pragma mark 初始化
@@ -35,7 +34,13 @@
         make.centerY.equalTo(self);
     }];
     
-    
+    _contentLabel = [[UILabel alloc]init];
+    _contentLabel.font = [UIFont systemFontOfSize:15];
+    [self addSubview:_contentLabel];
+    [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).offset(-25);
+        make.centerY.equalTo(titleLabel);
+    }];
 }
 
 @end

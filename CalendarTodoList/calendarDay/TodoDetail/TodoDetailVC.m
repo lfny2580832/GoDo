@@ -10,6 +10,9 @@
 #import "TodoList.h"
 
 #import "TodoContentView.h"
+#import "TodoProjectView.h"
+
+#import "RealmManage.h"
 
 @interface TodoDetailVC ()<TodoContentViewDelegate>
 
@@ -19,6 +22,7 @@
 {
     UIScrollView *_scrollView;
     TodoContentView *_todoContentView;
+    TodoProjectView *_todoProjectView;
     
     NSString *_todoContentStr;
 }
@@ -28,6 +32,8 @@
 {
     _todoList = todoList;
     _todoContentView.todoContentField.text = _todoList.thing.thingStr;
+    
+    _todoProjectView.contentLabel.text = [RealmManager getThingTypeStrWithThingType:_todoList.thing.thingType.typeId];
     //
 }
 
@@ -68,6 +74,14 @@
     [_todoContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(_scrollView);
         make.height.mas_equalTo(@75);
+        make.width.mas_equalTo(SCREEN_WIDTH);
+    }];
+    
+    _todoProjectView = [[TodoProjectView alloc]init];
+    [_scrollView addSubview:_todoProjectView];
+    [_todoProjectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_todoContentView.mas_bottom);
+        make.height.mas_equalTo(@50);
         make.width.mas_equalTo(SCREEN_WIDTH);
     }];
     

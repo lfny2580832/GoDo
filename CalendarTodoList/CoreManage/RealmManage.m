@@ -28,8 +28,8 @@
     return sharedInstance;
 }
 
-#pragma mark 根据dayId获取概要数组，概要（hh:mm 体育）
-- (NSArray *)getDayInfoBriefFromRealmWithDayId:(NSInteger)dayId
+#pragma mark 根据dayId获取todolist数组
+- (NSArray *)getDayInfoFromRealmWithDayId:(NSInteger)dayId
 {
     RLMResults *result = [RLMTodoList objectsWhere:@"dayId = %ld",dayId];
     NSMutableArray *resultArray = [NSMutableArray arrayWithCapacity:result.count];
@@ -47,20 +47,16 @@
         
         todolist.thing = [[Thing alloc]init];
         todolist.thing.thingStr = RLMTodoList.thing.thingStr;
-        todolist.thing.thingType = RLMTodoList.thing.thingType;
-                
+        
+        todolist.thing.thingType = [[ThingType alloc]init];
+        todolist.thing.thingType.typeId = RLMTodoList.thing.thingType.typeId;
+        todolist.thing.thingType.typeStr = RLMTodoList.thing.thingType.typeStr;
+        todolist.thing.thingType.red = RLMTodoList.thing.thingType.red;
+        todolist.thing.thingType.green = RLMTodoList.thing.thingType.green;
+        todolist.thing.thingType.blue = RLMTodoList.thing.thingType.blue;
+        
         NSString *todoListStr;
         if (RLMTodoList) {
-            NSString *typeStr;
-            switch (RLMTodoList.thing.thingType)
-            {
-                case 0:typeStr = @"学习";break;
-                case 1:typeStr = @"娱乐";break;
-                case 2:typeStr = @"体育";break;
-                case 3:typeStr = @"社团";break;
-                case 4:typeStr = @"组织";break;
-                default:break;
-            }
             NSString *timeStr = [NSString getHourMinuteDateFromTimeInterval:RLMTodoList.startTime];
             todoListStr = [NSString stringWithFormat:@"%@  %@",timeStr,RLMTodoList.thing.thingStr];
             todolist.briefStr = todoListStr;
@@ -68,6 +64,15 @@
         }
     }
     return resultArray;
+}
+
+#pragma mark 根据thingTypeId返回类型字符串
+- (NSString *)getThingTypeStrWithThingType:(NSInteger)typeId
+{
+    RLMResults *result = [RLMThingType objectsWhere:@"typeId = %ld",typeId];
+    RLMThingType *type = [result firstObject];
+    NSString *typeStr = type.typeStr;
+    return typeStr;
 }
 
 @end
