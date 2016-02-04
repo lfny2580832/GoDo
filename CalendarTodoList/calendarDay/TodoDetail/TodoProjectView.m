@@ -12,12 +12,20 @@
 {
 }
 
+#pragma mark 选择项目
+- (void)chooseProject
+{
+    [self.delegate chooseTodoProject];
+}
+
 #pragma mark 初始化
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        UITapGestureRecognizer *chooseProjectRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(chooseProject)];
+        [self addGestureRecognizer:chooseProjectRecognizer];
         [self initViews];
     }
     return self;

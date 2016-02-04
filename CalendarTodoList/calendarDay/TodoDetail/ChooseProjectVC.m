@@ -1,0 +1,81 @@
+//
+//  ChooseProjectVC.m
+//  CalendarTodoList
+//
+//  Created by 牛严 on 16/2/4.
+//  Copyright © 2016年 牛严. All rights reserved.
+//
+
+#import "ChooseProjectVC.h"
+#import "ChooseProjectTableCell.h"
+
+#import "RealmManage.h"
+
+@interface ChooseProjectVC ()<UITableViewDataSource,UITableViewDelegate>
+
+@end
+
+@implementation ChooseProjectVC
+{
+    UITableView *_tableView;
+    NSArray *_projects;
+}
+
+#pragma mark TableView Delegate DataSource
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 40.f;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ChooseProjectTableCell *cell = [[ChooseProjectTableCell alloc]init];
+    cell.type = _projects[indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _projects.count;
+}
+
+#pragma mark 初始化
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self loadSubView];
+        [self loadData];
+    }
+    return self;
+}
+
+- (void)loadSubView
+{
+    _tableView = [[UITableView alloc]init];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.backgroundColor = [UIColor whiteColor];
+    _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.tableFooterView = [UIView new];
+    [self.view addSubview:_tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.left.right.equalTo(self.view);
+    }];
+}
+
+- (void)loadData
+{
+    dispatch_async(kBgQueue, ^{
+        _projects = [RealmManager getThingTypeArray];
+        dispatch_async(kMainQueue, ^{
+            if (_projects) {
+                [_tableView reloadData];
+            }
+        });
+    });
+
+}
+
+@end

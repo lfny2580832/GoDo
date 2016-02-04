@@ -11,10 +11,11 @@
 
 #import "TodoContentView.h"
 #import "TodoProjectView.h"
+#import "ChooseProjectVC.h"
 
 #import "RealmManage.h"
 
-@interface TodoDetailVC ()<TodoContentViewDelegate>
+@interface TodoDetailVC ()<TodoContentViewDelegate,TodoProjectViewDelegate>
 
 @end
 
@@ -25,6 +26,13 @@
     TodoProjectView *_todoProjectView;
     
     NSString *_todoContentStr;
+}
+
+#pragma mark 选择todo所属项目
+- (void)chooseTodoProject
+{
+    ChooseProjectVC *vc = [[ChooseProjectVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark Set Methods
@@ -78,6 +86,7 @@
     }];
     
     _todoProjectView = [[TodoProjectView alloc]init];
+    _todoProjectView.delegate = self;
     [_scrollView addSubview:_todoProjectView];
     [_todoProjectView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_todoContentView.mas_bottom);

@@ -75,4 +75,28 @@
     return typeStr;
 }
 
+#pragma mark 获取ThingType数组
+- (NSArray *)getThingTypeArray
+{
+    RLMResults *result = [RLMThingType allObjects];
+    NSMutableArray *resultArray = [NSMutableArray arrayWithCapacity:0];
+    if (result.count == 0) {
+        return nil;
+    }
+    if (result) {
+        for (int i = 0; i < result.count; i ++) {
+            RLMThingType *rlmThingType = [result objectAtIndex:i];
+            ThingType *thingType = [[ThingType alloc]init];
+            thingType.typeId = rlmThingType.typeId;
+            thingType.typeStr = rlmThingType.typeStr;
+            thingType.red = rlmThingType.red;
+            thingType.green = rlmThingType.green;
+            thingType.blue = rlmThingType.blue;
+            
+            [resultArray addObject:thingType];
+        }
+    }
+    return resultArray;
+}
+
 @end

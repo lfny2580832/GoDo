@@ -34,6 +34,8 @@
 		4AA393541C58AC6D00DA3C16 /* RealmManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA393531C58AC6D00DA3C16 /* RealmManage.m */; };
 		4AB09F001C627EF0006EB837 /* RLMThingType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09EFF1C627EF0006EB837 /* RLMThingType.m */; };
 		4AB09F031C6287D8006EB837 /* ThingType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F021C6287D8006EB837 /* ThingType.m */; };
+		4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F051C62E396006EB837 /* ChooseProjectVC.m */; };
+		4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F081C62E86C006EB837 /* ChooseProjectTableCell.m */; };
 		4ADA1D951C3E478C001ECBF4 /* ico_nav_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */; };
 		4ADA1D961C3E478C001ECBF4 /* ico_nav_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */; };
 		4ADA1D971C3E478C001ECBF4 /* ico_nav_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D931C3E478C001ECBF4 /* ico_nav_back_white@2x.png */; };
@@ -123,6 +125,10 @@
 		4AB09EFF1C627EF0006EB837 /* RLMThingType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMThingType.m; sourceTree = "<group>"; };
 		4AB09F011C6287D8006EB837 /* ThingType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThingType.h; sourceTree = "<group>"; };
 		4AB09F021C6287D8006EB837 /* ThingType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThingType.m; sourceTree = "<group>"; };
+		4AB09F041C62E396006EB837 /* ChooseProjectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseProjectVC.h; sourceTree = "<group>"; };
+		4AB09F051C62E396006EB837 /* ChooseProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseProjectVC.m; sourceTree = "<group>"; };
+		4AB09F071C62E86C006EB837 /* ChooseProjectTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseProjectTableCell.h; sourceTree = "<group>"; };
+		4AB09F081C62E86C006EB837 /* ChooseProjectTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseProjectTableCell.m; sourceTree = "<group>"; };
 		4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@2x.png"; sourceTree = "<group>"; };
 		4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@3x.png"; sourceTree = "<group>"; };
 		4ADA1D931C3E478C001ECBF4 /* ico_nav_back_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back_white@2x.png"; sourceTree = "<group>"; };
@@ -298,6 +304,10 @@
 				4A9ED9DF1C5FC42B00B46107 /* TodoContentView.m */,
 				4A9ED9E41C5FC48F00B46107 /* TodoProjectView.h */,
 				4A9ED9E51C5FC48F00B46107 /* TodoProjectView.m */,
+				4AB09F071C62E86C006EB837 /* ChooseProjectTableCell.h */,
+				4AB09F081C62E86C006EB837 /* ChooseProjectTableCell.m */,
+				4AB09F041C62E396006EB837 /* ChooseProjectVC.h */,
+				4AB09F051C62E396006EB837 /* ChooseProjectVC.m */,
 				4A9ED9E01C5FC42B00B46107 /* TodoDetailVC.h */,
 				4A9ED9E11C5FC42B00B46107 /* TodoDetailVC.m */,
 			);
@@ -592,6 +602,8 @@
 				4AA393541C58AC6D00DA3C16 /* RealmManage.m in Sources */,
 				4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */,
 				4A9ED9E31C5FC42B00B46107 /* TodoDetailVC.m in Sources */,
+				4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */,
+				4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */,
 				4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */,
 				4AB09F001C627EF0006EB837 /* RLMThingType.m in Sources */,
 				4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */,

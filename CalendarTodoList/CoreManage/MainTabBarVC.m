@@ -34,9 +34,9 @@
 
 - (void)initViews
 {
-    [self simulateThingType];
-
-    [self simulateTodoList];
+//    [self simulateThingType];
+//
+//    [self simulateTodoList];
     
     CalendarVC *calendarVC = [[CalendarVC alloc]init];
     BaseNavigationController *calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
@@ -71,11 +71,11 @@
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
     RLMThingType *rlmThingType = [[RLMThingType alloc]init];
-    rlmThingType.typeId = 1;
-    rlmThingType.typeStr = @"学习";
-    rlmThingType.red = 100;
-    rlmThingType.green = 100;
-    rlmThingType.blue = 100;
+    rlmThingType.typeId = 2;
+    rlmThingType.typeStr = @"社团";
+    rlmThingType.red = 59;
+    rlmThingType.green = 213;
+    rlmThingType.blue = 251;
     
     [realm beginWriteTransaction];
     [RLMThingType createOrUpdateInRealm:realm withValue:rlmThingType];

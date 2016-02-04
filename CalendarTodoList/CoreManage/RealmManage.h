@@ -20,4 +20,7 @@
 #pragma mark 根据thingType返回类型字符串
 - (NSString *)getThingTypeStrWithThingType:(NSInteger)typeId;
 
+#pragma mark 获取ThingType数组
+- (NSArray *)getThingTypeArray;
+
 @end

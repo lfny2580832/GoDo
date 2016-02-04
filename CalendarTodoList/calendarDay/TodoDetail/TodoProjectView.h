@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TodoProjectViewDelegate <NSObject>
+
+- (void)chooseTodoProject;
+
+@end
+
 @interface TodoProjectView : UIView
 
 @property (nonatomic, strong)UILabel *contentLabel;
+@property (nonatomic, weak)id<TodoProjectViewDelegate> delegate;
 
 @end
