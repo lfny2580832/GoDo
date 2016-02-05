@@ -8,6 +8,9 @@
 
 #import "ChooseProjectVC.h"
 #import "ChooseProjectTableCell.h"
+#import "AddNewProjectVC.h"
+
+#import "ThingType.h"
 
 #import "RealmManage.h"
 
@@ -24,11 +27,15 @@
 #pragma mark TableView Delegate DataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40.f;
+    return 50.f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == _projects.count) {
+        ChooseProjectTableCell *cell = [[ChooseProjectTableCell alloc]initWithContentLabel];
+        return cell;
+    }
     ChooseProjectTableCell *cell = [[ChooseProjectTableCell alloc]init];
     cell.type = _projects[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -37,16 +44,31 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _projects.count;
+    return _projects.count + 1;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == _projects.count) {
+        AddNewProjectVC *vc = [[AddNewProjectVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    [self.delegate returnProjectWithThingType:_projects[indexPath.row]];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadData];
+}
 #pragma mark 初始化
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         [self loadSubView];
-        [self loadData];
     }
     return self;
 }
@@ -75,7 +97,6 @@
             }
         });
     });
-
 }
 
 @end

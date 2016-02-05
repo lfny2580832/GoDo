@@ -35,6 +35,15 @@
     return self;
 }
 
+- (instancetype)initWithContentLabel
+{
+    self = [super init];
+    if (self) {
+        [self initContentLabel];
+    }
+    return self;
+}
+
 - (void)initView
 {
     _colorView = [[UIView alloc]init];
@@ -44,18 +53,28 @@
     [_colorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);
         make.size.mas_equalTo(CGSizeMake(20, 20));
-        make.left.equalTo(self.contentView).offset(20);
+        make.left.equalTo(self.contentView).offset(18);
     }];
     
     _projectLabel = [[UILabel alloc]init];
-    _projectLabel.font = [UIFont systemFontOfSize:12];
+    _projectLabel.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:_projectLabel];
     [_projectLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_colorView.mas_right).offset(10);
         make.centerY.equalTo(_colorView);
         make.width.mas_equalTo(@(SCREEN_HEIGHT - 80));
     }];
-    
 }
 
+- (void)initContentLabel
+{
+    UILabel *contentLabel  = [[UILabel alloc]init];
+    contentLabel.text = @"+添加项目";
+    contentLabel.font = [UIFont systemFontOfSize:15];
+    [self.contentView addSubview:contentLabel];
+    [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(18);
+        make.centerY.equalTo(self.contentView);
+    }];
+}
 @end

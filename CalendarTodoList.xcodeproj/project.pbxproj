@@ -36,6 +36,9 @@
 		4AB09F031C6287D8006EB837 /* ThingType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F021C6287D8006EB837 /* ThingType.m */; };
 		4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F051C62E396006EB837 /* ChooseProjectVC.m */; };
 		4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F081C62E86C006EB837 /* ChooseProjectTableCell.m */; };
+		4AD589EE1C64DBD100E74761 /* AddNewProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */; };
+		4AD589F41C64E07E00E74761 /* ChooseTypeColorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589F31C64E07E00E74761 /* ChooseTypeColorVC.m */; };
+		4AD589F71C64EBCE00E74761 /* TypeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589F61C64EBCE00E74761 /* TypeColor.m */; };
 		4ADA1D951C3E478C001ECBF4 /* ico_nav_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */; };
 		4ADA1D961C3E478C001ECBF4 /* ico_nav_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */; };
 		4ADA1D971C3E478C001ECBF4 /* ico_nav_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D931C3E478C001ECBF4 /* ico_nav_back_white@2x.png */; };
@@ -129,6 +132,12 @@
 		4AB09F051C62E396006EB837 /* ChooseProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseProjectVC.m; sourceTree = "<group>"; };
 		4AB09F071C62E86C006EB837 /* ChooseProjectTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseProjectTableCell.h; sourceTree = "<group>"; };
 		4AB09F081C62E86C006EB837 /* ChooseProjectTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseProjectTableCell.m; sourceTree = "<group>"; };
+		4AD589EC1C64DBD100E74761 /* AddNewProjectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewProjectVC.h; sourceTree = "<group>"; };
+		4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewProjectVC.m; sourceTree = "<group>"; };
+		4AD589F21C64E07E00E74761 /* ChooseTypeColorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseTypeColorVC.h; sourceTree = "<group>"; };
+		4AD589F31C64E07E00E74761 /* ChooseTypeColorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseTypeColorVC.m; sourceTree = "<group>"; };
+		4AD589F51C64EBCE00E74761 /* TypeColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeColor.h; sourceTree = "<group>"; };
+		4AD589F61C64EBCE00E74761 /* TypeColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeColor.m; sourceTree = "<group>"; };
 		4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@2x.png"; sourceTree = "<group>"; };
 		4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@3x.png"; sourceTree = "<group>"; };
 		4ADA1D931C3E478C001ECBF4 /* ico_nav_back_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back_white@2x.png"; sourceTree = "<group>"; };
@@ -300,6 +309,7 @@
 		4A9ED9DD1C5FC42B00B46107 /* TodoDetail */ = {
 			isa = PBXGroup;
 			children = (
+				4AD589EB1C64DBD100E74761 /* CreateNewProject */,
 				4A9ED9DE1C5FC42B00B46107 /* TodoContentView.h */,
 				4A9ED9DF1C5FC42B00B46107 /* TodoContentView.m */,
 				4A9ED9E41C5FC48F00B46107 /* TodoProjectView.h */,
@@ -326,6 +336,19 @@
 				4AA393531C58AC6D00DA3C16 /* RealmManage.m */,
 			);
 			path = CoreManage;
+			sourceTree = "<group>";
+		};
+		4AD589EB1C64DBD100E74761 /* CreateNewProject */ = {
+			isa = PBXGroup;
+			children = (
+				4AD589F21C64E07E00E74761 /* ChooseTypeColorVC.h */,
+				4AD589F31C64E07E00E74761 /* ChooseTypeColorVC.m */,
+				4AD589EC1C64DBD100E74761 /* AddNewProjectVC.h */,
+				4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */,
+				4AD589F51C64EBCE00E74761 /* TypeColor.h */,
+				4AD589F61C64EBCE00E74761 /* TypeColor.m */,
+			);
+			path = CreateNewProject;
 			sourceTree = "<group>";
 		};
 		4ADA1D901C3E478C001ECBF4 /* images */ = {
@@ -598,9 +621,12 @@
 				4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */,
 				4A4F9CC71C3F3EEA0000F24C /* CalendarVC.m in Sources */,
 				4A88CB211C2B925F001C13D8 /* main.m in Sources */,
+				4AD589F71C64EBCE00E74761 /* TypeColor.m in Sources */,
 				4ADA1DA61C3E496D001ECBF4 /* NSString+ZZExtends.m in Sources */,
 				4AA393541C58AC6D00DA3C16 /* RealmManage.m in Sources */,
+				4AD589F41C64E07E00E74761 /* ChooseTypeColorVC.m in Sources */,
 				4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */,
+				4AD589EE1C64DBD100E74761 /* AddNewProjectVC.m in Sources */,
 				4A9ED9E31C5FC42B00B46107 /* TodoDetailVC.m in Sources */,
 				4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */,
 				4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */,
