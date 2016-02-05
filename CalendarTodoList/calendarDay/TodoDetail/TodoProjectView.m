@@ -7,9 +7,20 @@
 //
 
 #import "TodoProjectView.h"
+#import "ThingType.h"
 
 @implementation TodoProjectView
 {
+    UILabel *_contentLabel;
+    UIView *_colorView;
+}
+
+#pragma mark Set 方法
+- (void)setThingType:(ThingType *)thingType
+{
+    _thingType = thingType;
+    _contentLabel.text = thingType.typeStr;
+    _colorView.backgroundColor = RGBA(thingType.red, thingType.green, thingType.blue, 1.0);
 }
 
 #pragma mark 选择项目
@@ -48,6 +59,15 @@
     [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).offset(-25);
         make.centerY.equalTo(titleLabel);
+    }];
+    
+    _colorView = [[UIView alloc]init];
+    _colorView.layer.cornerRadius = 10.f;
+    [self addSubview:_colorView];
+    [_colorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(_contentLabel);
+        make.right.equalTo(_contentLabel.mas_left).offset(-10);
+        make.size.mas_equalTo(CGSizeMake(20, 20));
     }];
 }
 

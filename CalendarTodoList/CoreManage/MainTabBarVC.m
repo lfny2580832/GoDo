@@ -71,11 +71,50 @@
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
     RLMThingType *rlmThingType = [[RLMThingType alloc]init];
+    
+    rlmThingType.typeId = 1;
+    rlmThingType.typeStr = @"学习";
+    rlmThingType.red = 251;
+    rlmThingType.green = 136;
+    rlmThingType.blue = 110;
+    [realm beginWriteTransaction];
+    [RLMThingType createOrUpdateInRealm:realm withValue:rlmThingType];
+    [realm commitWriteTransaction];
+    
     rlmThingType.typeId = 2;
     rlmThingType.typeStr = @"社团";
     rlmThingType.red = 59;
     rlmThingType.green = 213;
     rlmThingType.blue = 251;
+    [realm beginWriteTransaction];
+    [RLMThingType createOrUpdateInRealm:realm withValue:rlmThingType];
+    [realm commitWriteTransaction];
+    
+    rlmThingType.typeId = 3;
+    rlmThingType.typeStr = @"个人";
+    rlmThingType.red = 255;
+    rlmThingType.green = 204;
+    rlmThingType.blue = 0;
+    
+    [realm beginWriteTransaction];
+    [RLMThingType createOrUpdateInRealm:realm withValue:rlmThingType];
+    [realm commitWriteTransaction];
+    
+    rlmThingType.typeId = 4;
+    rlmThingType.typeStr = @"工作";
+    rlmThingType.red = 226;
+    rlmThingType.green = 168;
+    rlmThingType.blue = 228;
+    
+    [realm beginWriteTransaction];
+    [RLMThingType createOrUpdateInRealm:realm withValue:rlmThingType];
+    [realm commitWriteTransaction];
+    
+    rlmThingType.typeId = 5;
+    rlmThingType.typeStr = @"休闲";
+    rlmThingType.red = 210;
+    rlmThingType.green = 184;
+    rlmThingType.blue = 163;
     
     [realm beginWriteTransaction];
     [RLMThingType createOrUpdateInRealm:realm withValue:rlmThingType];

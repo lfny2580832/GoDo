@@ -10,6 +10,8 @@
 
 #define RealmManager [RealmManage sharedInstance]
 
+@class ThingType;
+
 @interface RealmManage : NSObject
 
 + (id)sharedInstance;
@@ -18,7 +20,7 @@
 - (NSArray *)getDayInfoFromRealmWithDayId:(NSInteger)dayId;
 
 #pragma mark 根据thingType返回类型字符串
-- (NSString *)getThingTypeStrWithThingType:(NSInteger)typeId;
+- (ThingType *)getThingTypeWithThingType:(NSInteger)typeId;
 
 #pragma mark 获取ThingType数组
 - (NSArray *)getThingTypeArray;

@@ -12,6 +12,8 @@
 #import "RLMTodoList.h"
 #import "Thing.h"
 #import "TodoList.h"
+#import "RLMThingType.h"
+#import "ThingType.h"
 
 #import "NSString+ZZExtends.h"
 
@@ -66,13 +68,19 @@
     return resultArray;
 }
 
-#pragma mark 根据thingTypeId返回类型字符串
-- (NSString *)getThingTypeStrWithThingType:(NSInteger)typeId
+#pragma mark 根据thingTypeId返回thingType
+- (ThingType *)getThingTypeWithThingType:(NSInteger)typeId
 {
     RLMResults *result = [RLMThingType objectsWhere:@"typeId = %ld",typeId];
-    RLMThingType *type = [result firstObject];
-    NSString *typeStr = type.typeStr;
-    return typeStr;
+    RLMThingType *rlmThingtype = [result firstObject];
+    ThingType *thingType = [[ThingType alloc]init];
+    thingType.typeId = rlmThingtype.typeId;
+    thingType.typeStr = rlmThingtype.typeStr;
+    thingType.red = rlmThingtype.red;
+    thingType.green = rlmThingtype.green;
+    thingType.blue = rlmThingtype.blue;
+    
+    return thingType;
 }
 
 #pragma mark 获取ThingType数组

@@ -63,19 +63,18 @@
 - (void)addCellTodoList
 {
     _listLabel = [[UILabelZoomable alloc] init];
-//    _listLabel.text = @"学习AsyncDisplayKit\n完成日历todolist\n睡觉吃饭上床玩游戏\n是劳斯莱斯";
     _listLabel.numberOfLines = 0;
     _listLabel.alpha = 0;
     _listLabel.textColor = KRedColor;
     _listLabel.highlightedTextColor = [UIColor whiteColor];
     _listLabel.backgroundColor = [UIColor clearColor];
-    _listLabel.font = [UIFont systemFontOfSize:7];
+    _listLabel.font = [UIFont systemFontOfSize:5];
     CATiledLayer *listLabelLayer = (CATiledLayer *)_listLabel.layer;
     listLabelLayer.levelsOfDetail = 2;
     listLabelLayer.levelsOfDetailBias = 2;
     [_contentView addSubview:_listLabel];
     [_listLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(self);
+        make.top.bottom.equalTo(self); 
         make.left.equalTo(self).offset(0);
         make.right.equalTo(self).offset(0);
     }];

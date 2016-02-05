@@ -15,7 +15,7 @@
 
 #import "RealmManage.h"
 
-@interface TodoDetailVC ()<TodoContentViewDelegate,TodoProjectViewDelegate>
+@interface TodoDetailVC ()<TodoContentViewDelegate,TodoProjectViewDelegate,ChooseProjectVCDelegate>
 
 @end
 
@@ -26,12 +26,21 @@
     TodoProjectView *_todoProjectView;
     
     NSString *_todoContentStr;
+    ThingType *_todoThingType;
+}
+
+#pragma mark ChooseProjectVC Delegate 获取返回的type类型
+- (void)returnProjectWithThingType:(ThingType *)type
+{
+    _todoThingType = type;
+    _todoProjectView.thingType = type;
 }
 
 #pragma mark 选择todo所属项目
 - (void)chooseTodoProject
 {
     ChooseProjectVC *vc = [[ChooseProjectVC alloc]init];
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -41,7 +50,7 @@
     _todoList = todoList;
     _todoContentView.todoContentField.text = _todoList.thing.thingStr;
     
-    _todoProjectView.contentLabel.text = [RealmManager getThingTypeStrWithThingType:_todoList.thing.thingType.typeId];
+    _todoProjectView.thingType = [RealmManager getThingTypeWithThingType:_todoList.thing.thingType.typeId];
     //
 }
 
