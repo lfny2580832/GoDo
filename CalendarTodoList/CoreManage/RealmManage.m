@@ -69,7 +69,7 @@
 }
 
 #pragma mark 根据thingTypeId返回thingType
-- (ThingType *)getThingTypeWithThingType:(NSInteger)typeId
+- (ThingType *)getThingTypeWithThingTypeId:(NSInteger)typeId
 {
     RLMResults *result = [RLMThingType objectsWhere:@"typeId = %ld",typeId];
     RLMThingType *rlmThingtype = [result firstObject];
@@ -84,7 +84,7 @@
 }
 
 #pragma mark 获取ThingType数组
-- (NSArray *)getThingTypeArray
+- (NSMutableArray *)getThingTypeArray
 {
     RLMResults *result = [RLMThingType allObjects];
     NSMutableArray *resultArray = [NSMutableArray arrayWithCapacity:0];

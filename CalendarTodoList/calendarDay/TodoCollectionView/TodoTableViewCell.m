@@ -26,8 +26,17 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = [UIColor clearColor];
         [self initView];
+    }
+    return self;
+}
+
+- (instancetype)initWithContentLabel
+{
+    self = [super init];
+    if (self) {
+        [self initContentLabel];
     }
     return self;
 }
@@ -44,4 +53,16 @@
     }];
 }
 
+- (void)initContentLabel
+{
+    UILabel *contentLabel  = [[UILabel alloc]init];
+    contentLabel.text = @"+添加项目";
+    contentLabel.textColor = [UIColor whiteColor];
+    contentLabel.font = [UIFont systemFontOfSize:15];
+    [self.contentView addSubview:contentLabel];
+    [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(18);
+        make.centerY.equalTo(self.contentView);
+    }];
+}
 @end

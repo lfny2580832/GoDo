@@ -21,7 +21,7 @@
 @implementation ChooseProjectVC
 {
     UITableView *_tableView;
-    NSArray *_projects;
+    NSMutableArray *_projects;
 }
 
 #pragma mark TableView Delegate DataSource
@@ -58,11 +58,28 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self loadData];
-}
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return YES;
+//}
+//
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        [_projects removeObjectAtIndex:indexPath.row];
+//        [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        
+//    }
+//    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+//        //插入
+//    }
+//}
+//
+//- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return @"删除项目";
+//}
+
 #pragma mark 初始化
 - (instancetype)init
 {
@@ -71,6 +88,12 @@
         [self loadSubView];
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadData];
 }
 
 - (void)loadSubView

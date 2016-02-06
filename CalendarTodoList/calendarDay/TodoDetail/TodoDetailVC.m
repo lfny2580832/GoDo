@@ -47,11 +47,16 @@
 #pragma mark Set Methods
 - (void)setTodoList:(TodoList *)todoList
 {
+    if(!todoList)
+    {
+        ThingType *defaultType = [[RealmManager getThingTypeArray] firstObject];
+        _todoContentView.todoContentField.text = @"";
+        _todoProjectView.thingType = defaultType;
+        return;
+    }
     _todoList = todoList;
     _todoContentView.todoContentField.text = _todoList.thing.thingStr;
-    
-    _todoProjectView.thingType = [RealmManager getThingTypeWithThingType:_todoList.thing.thingType.typeId];
-    //
+    _todoProjectView.thingType = [RealmManager getThingTypeWithThingTypeId:_todoList.thing.thingType.typeId];
 }
 
 #pragma mark 获取TodoContent
@@ -65,11 +70,18 @@
     _todoContentStr = todoContentStr;
 }
 
+#pragma mark 点击保存
+- (void)rightbarButtonItemOnclick:(id)sender
+{
+    
+}
+
 #pragma mark 初始化
 - (instancetype)init
 {
     self = [super init];
     if (self) {
+        [self setRightBackButtontile:@"保存"];
         [self initViews];
     }
     return self;
@@ -104,7 +116,7 @@
     }];
     
     [_scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(_todoContentView).offset(50);
+        make.bottom.mas_equalTo(_todoProjectView).offset(50);
     }];
 }
 

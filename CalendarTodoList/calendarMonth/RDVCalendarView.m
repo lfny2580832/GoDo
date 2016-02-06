@@ -37,7 +37,7 @@
 
 @implementation RDVCalendarView
 
-static NSString *DayIdentifier = @"DayCell";
+//static NSString *DayIdentifier = @"DayCell";
 
 #pragma mark 初始化view
 - (id)initWithFrame:(CGRect)frame {
@@ -432,8 +432,7 @@ static NSString *DayIdentifier = @"DayCell";
 {
     for (RDVCalendarDayCell *visibleCell in [self visibleCells])
     {
-        visibleCell.textLabel.alpha = 1 - alpha;
-        visibleCell.listLabel.alpha = alpha;
+        visibleCell.scaleAlpha = alpha;
     }
 }
 
@@ -506,7 +505,7 @@ static NSString *DayIdentifier = @"DayCell";
         dayCell = [self visibleCells][index];
     } else {
         [_dayCells removeAllObjects];
-        dayCell = [[_dayCellClass alloc] initWithReuseIdentifier:DayIdentifier];
+        dayCell = [[_dayCellClass alloc] init];
     }
     
     if (![[self visibleCells] containsObject:dayCell]) {
@@ -514,7 +513,7 @@ static NSString *DayIdentifier = @"DayCell";
     
         dayCell.textLabel.text = [NSString stringWithFormat:@"%ld", index + 1];
         NSInteger dayId = [[NSString stringWithFormat:@"%ld%02ld%02ld",self.month.year,self.month.month,index + 1] integerValue];
-        [dayCell getDayInfoFromRealmWithDayId:dayId];
+        [dayCell setDayInfoWithDayId:dayId];
         
         if (index + 1 == self.currentDay.day &&
             self.month.month == self.currentDay.month &&

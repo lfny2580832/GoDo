@@ -21,6 +21,9 @@
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, copy) NSString *index;
 @property (nonatomic, assign) NSInteger dayId;
+
+@property (nonatomic, strong) UITableView *tableView;
+
 @property (nonatomic, weak) id<TodoCollectionCellDelegate> delegate;
 
 - (void)refreshTableViewBeforQueryData;

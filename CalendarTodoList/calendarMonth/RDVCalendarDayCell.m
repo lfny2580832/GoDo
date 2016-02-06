@@ -7,9 +7,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "RDVCalendarDayCell.h"
 #import "UILabelZoomable.h"
-#import "RLMTodoList.h"
-#import "RLMThingType.h"
+#import "ThingType.h"
+#import "TodoList.h"
+
 #import "NSString+ZZExtends.h"
+#import "RealmManage.h"
 
 @interface RDVCalendarDayCell() {
     BOOL _selected;
@@ -19,12 +21,15 @@
 @end
 
 @implementation RDVCalendarDayCell
+{
+    NSArray *_todoListArray;
+}
 
 #pragma mark 初始化
-- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier {
+- (id)init
+{
     self = [super init];
     if (self) {
-        _reuseIdentifier = [reuseIdentifier copy];
         _selectionStyle = RDVCalendarDayCellSelectionStyleDefault;
         
         _backgroundView = [[UIView alloc] init];
@@ -40,7 +45,7 @@
         _contentView.backgroundColor = [UIColor clearColor];
         [self addSubview:_contentView];
         
-        [self addCellTodoList];
+//        [self addCellTodoList];
         
         _textLabel = [[UILabelZoomable alloc]init];
         _textLabel.textColor = [UIColor blackColor];
@@ -55,40 +60,9 @@
     return self;
 }
 
-- (id)init
-{
-    return [self initWithReuseIdentifier:@""];
-}
-
-- (void)addCellTodoList
-{
-    _listLabel = [[UILabelZoomable alloc] init];
-    _listLabel.numberOfLines = 0;
-    _listLabel.alpha = 0;
-    _listLabel.textColor = KRedColor;
-    _listLabel.highlightedTextColor = [UIColor whiteColor];
-    _listLabel.backgroundColor = [UIColor clearColor];
-    _listLabel.font = [UIFont systemFontOfSize:5];
-    CATiledLayer *listLabelLayer = (CATiledLayer *)_listLabel.layer;
-    listLabelLayer.levelsOfDetail = 2;
-    listLabelLayer.levelsOfDetailBias = 2;
-    [_contentView addSubview:_listLabel];
-    [_listLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(self); 
-        make.left.equalTo(self).offset(0);
-        make.right.equalTo(self).offset(0);
-    }];
-}
-
 - (void)layoutSubviews {
     CGSize frameSize = self.frame.size;
     CGSize dateTitleSize = [self.textLabel sizeThatFits:CGSizeMake(frameSize.width, frameSize.height)];
-    CGSize listTitleSize = [self.listLabel sizeThatFits:CGSizeMake(frameSize.width, frameSize.height)];
-    
-    if(listTitleSize.height >= self.frame.size.height)
-    {
-        listTitleSize.height = self.frame.size.height;
-    }
     
     self.backgroundView.frame = self.bounds;
 //    self.selectedBackgroundView.frame = self.bounds;
@@ -96,9 +70,6 @@
     self.textLabel.frame = CGRectMake(roundf(frameSize.width / 2 - dateTitleSize.width / 2),
                                            roundf(frameSize.height / 2 - dateTitleSize.height / 2),
                                            dateTitleSize.width, dateTitleSize.height);
-    self.listLabel.frame = CGRectMake(roundf(frameSize.width / 2 - listTitleSize.width / 2),
-                                      roundf(frameSize.height / 2 - listTitleSize.height / 2),
-                                      listTitleSize.width, listTitleSize.height);
 }
 
 #pragma mark - Selection
@@ -203,19 +174,56 @@
 }
 
 #pragma mark 获取数据库信息
-- (void)getDayInfoFromRealmWithDayId:(NSInteger)dayId
+- (void)setDayInfoWithDayId:(NSInteger)dayId
 {
-    RLMResults *result = [RLMTodoList objectsWhere:@"dayId = %ld",dayId];
-    RLMTodoList *todolist = [result firstObject];
-    if (todolist) {
-        RLMThingType *type = todolist.thing.thingType;
-        NSString *timeStr = [NSString getHourMinuteDateFromTimeInterval:todolist.startTime];
-        NSString *contentStr = todolist.thing.thingStr;
-        self.listLabel.text = [NSString stringWithFormat:@"%@:%@",timeStr,contentStr];
-        UIColor *contentColor = RGBA(type.red, type.green, type.blue, 1.0);
-        self.listLabel.textColor = contentColor;
-    }
+    dispatch_async(kBgQueue, ^{
+        _todoListArray = [RealmManager getDayInfoFromRealmWithDayId:dayId];
+        dispatch_async(kMainQueue, ^{
+            if (_todoListArray) {
+                [self addCellTodoListWithTodoListCount:_todoListArray.count];
+            }
+        });
+    });
+}
 
+#pragma mark 根据数量创建label
+- (void)addCellTodoListWithTodoListCount:(NSInteger)count
+{
+    CGFloat x = 2;
+    CGFloat y = 2;
+    CGFloat width = self.frame.size.width - 4;
+    CGFloat height = 6;
+    _labels = [NSMutableArray arrayWithCapacity:0];
+    for (int i = 0; i < count ; i++)
+    {
+        TodoList *todoList = _todoListArray[i];
+        ThingType *type = todoList.thing.thingType;
+        UILabelZoomable *todoListLabel = [[UILabelZoomable alloc]initWithFrame:CGRectMake(x, y, width, height)];
+        todoListLabel.numberOfLines = 0;
+        todoListLabel.alpha = 0;
+        todoListLabel.textColor = [UIColor blackColor];
+        todoListLabel.font = [UIFont systemFontOfSize:5];
+        todoListLabel.text = [NSString stringWithFormat:@" %@",todoList.thing.thingStr];
+        todoListLabel.backgroundColor = RGBA(type.red, type.green, type.blue, 1.0);
+        todoListLabel.layer.masksToBounds = YES;
+        todoListLabel.layer.cornerRadius = 1.5f;
+        CATiledLayer *listLabelLayer = (CATiledLayer *)todoListLabel.layer;
+        listLabelLayer.levelsOfDetail = 2;
+        listLabelLayer.levelsOfDetailBias = 2;
+        [_contentView addSubview:todoListLabel];
+        y = y + height + 2;
+        
+        [_labels addObject:todoListLabel];
+    }
+}
+
+#pragma mark 设置透明度
+-(void)setScaleAlpha:(CGFloat)scaleAlpha
+{
+    self.textLabel.alpha = 1 - scaleAlpha;
+    for (UILabelZoomable *todoListLabel in _labels) {
+        todoListLabel.alpha = scaleAlpha;
+    }
 }
 
 @end

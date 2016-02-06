@@ -25,7 +25,6 @@
 {
     NSArray <TodoList *> *_todoListArray;
     
-    UITableView *_tableView;
 }
 
 #pragma mark - 重用TodoCell时先清空数据
@@ -78,6 +77,10 @@
 {
     static NSString *reuseIdentifier = @"todotableviewcell";
 
+    if (indexPath.row == _todoListArray.count) {
+        TodoTableViewCell *cell = [[TodoTableViewCell alloc]initWithContentLabel];
+        return cell;
+    }
     TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if(!cell){
         cell = [[TodoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
@@ -94,11 +97,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _todoListArray.count;
+    return _todoListArray.count + 1;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (indexPath.row == _todoListArray.count) {
+        [self.delegate didSelectedTodoTableCellWithTodoList:nil];
+        return;
+    }
     [self.delegate didSelectedTodoTableCellWithTodoList:_todoListArray[indexPath.row]];
 }
 

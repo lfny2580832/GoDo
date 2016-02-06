@@ -16,13 +16,13 @@
 
 + (id)sharedInstance;
 
-#pragma mark 根据dayId获取概要数组，概要（hh:mm 体育）
+#pragma mark 根据dayId获取todolist数组
 - (NSArray *)getDayInfoFromRealmWithDayId:(NSInteger)dayId;
 
 #pragma mark 根据thingType返回类型字符串
-- (ThingType *)getThingTypeWithThingType:(NSInteger)typeId;
+- (ThingType *)getThingTypeWithThingTypeId:(NSInteger)typeId;
 
 #pragma mark 获取ThingType数组
-- (NSArray *)getThingTypeArray;
+- (NSMutableArray *)getThingTypeArray;
 
 @end
