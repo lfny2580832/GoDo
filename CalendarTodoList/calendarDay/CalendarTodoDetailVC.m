@@ -58,10 +58,10 @@
 }
 
 #pragma mark 退出至此页面时刷新
-- (void)viewWillAppear:(BOOL)animated
-{
-    [_todoCollectionView reloadData];
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [_todoCollectionView reloadData];
+//}
 
 #pragma mark 初始化
 - (instancetype)init
