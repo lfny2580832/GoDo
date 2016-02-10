@@ -52,6 +52,7 @@
 		4ADA1DAE1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1DAC1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m */; };
 		4AEB373B1C599F17007C9F92 /* RLMThing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEB37381C599F17007C9F92 /* RLMThing.m */; };
 		4AEB373C1C599F17007C9F92 /* RLMTodoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEB373A1C599F17007C9F92 /* RLMTodoList.m */; };
+		4AF11FF81C6B1206007DC614 /* ChooseModeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF11FF71C6B1206007DC614 /* ChooseModeCell.m */; };
 		988604FC5CF4599DBC5A9AA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 640C26EC2089C43C666A53BB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -161,6 +162,8 @@
 		4AEB37381C599F17007C9F92 /* RLMThing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMThing.m; sourceTree = "<group>"; };
 		4AEB37391C599F17007C9F92 /* RLMTodoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMTodoList.h; sourceTree = "<group>"; };
 		4AEB373A1C599F17007C9F92 /* RLMTodoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMTodoList.m; sourceTree = "<group>"; };
+		4AF11FF61C6B1206007DC614 /* ChooseModeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseModeCell.h; sourceTree = "<group>"; };
+		4AF11FF71C6B1206007DC614 /* ChooseModeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseModeCell.m; sourceTree = "<group>"; };
 		640C26EC2089C43C666A53BB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2673CA96F7B03EE1014712 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E72E51CDFFC69871C1738A6E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -329,6 +332,8 @@
 				4A9FC1B71C699FAE00A1D888 /* TodoContentView.m */,
 				4A9FC1BA1C699FAE00A1D888 /* TodoProjectView.h */,
 				4A9FC1BB1C699FAE00A1D888 /* TodoProjectView.m */,
+				4AF11FF61C6B1206007DC614 /* ChooseModeCell.h */,
+				4AF11FF71C6B1206007DC614 /* ChooseModeCell.m */,
 				4A9FC1BF1C69A30E00A1D888 /* DatePickerCell.h */,
 				4A9FC1C01C69A30E00A1D888 /* DatePickerCell.m */,
 				4A9FC1B81C699FAE00A1D888 /* TodoDetailVC.h */,
@@ -619,6 +624,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AF11FF81C6B1206007DC614 /* ChooseModeCell.m in Sources */,
 				4ADA1DA51C3E496D001ECBF4 /* GradientView.m in Sources */,
 				4A4F9CBD1C3F3E280000F24C /* RDVCalendarDayCell.m in Sources */,
 				4A84C8741C43DF3F00F83C5B /* NSObject+NYExtends.m in Sources */,

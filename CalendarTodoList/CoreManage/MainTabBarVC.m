@@ -55,11 +55,11 @@
     RLMThing *thing = [[RLMThing alloc]init];
     RLMThingType *type = [[RLMThingType objectsWhere:@"typeId = 2"] firstObject];
     thing.thingType = type;
-    thing.thingStr = @"qq音速";
+    thing.thingStr = @"学习编程";
     RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
     todolistModel.dayId = 20160204;
     todolistModel.startTime = [NSDate timeIntervalSinceReferenceDate];
-    todolistModel.endTime = todolistModel.startTime + 60 * 24;
+    todolistModel.endTime = todolistModel.startTime + 60 * 60;
     todolistModel.thing = thing;
     
     [realm beginWriteTransaction];

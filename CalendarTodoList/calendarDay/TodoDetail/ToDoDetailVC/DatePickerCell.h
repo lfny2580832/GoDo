@@ -10,4 +10,11 @@
 
 @interface DatePickerCell : UITableViewCell
 
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIDatePicker *datePicker;
+
+@property (nonatomic, assign) UIDatePickerMode datePickerMode;
+
+- (void)setDatePickerMode:(UIDatePickerMode )datePickerMode date:(NSDate *)date;
+
 @end
