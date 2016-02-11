@@ -16,4 +16,7 @@
 #pragma mark 获取随机颜色
 + (UIColor *)randomColor;
 
+#pragma mark 根据日期返回dayId
+- (NSInteger)getDayIdWithDate:(NSDate *)date;
+
 @end

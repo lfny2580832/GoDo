@@ -8,12 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol DatePickerCellDelegate <NSObject>
+
+- (void)returnStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+
+@end
+
 @interface DatePickerCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIDatePicker *datePicker;
+@property (nonatomic, strong) UILabel *dateLabel;
 
 @property (nonatomic, assign) UIDatePickerMode datePickerMode;
+
+@property (nonatomic, weak) id<DatePickerCellDelegate> delegate;
 
 - (void)setDatePickerMode:(UIDatePickerMode )datePickerMode date:(NSDate *)date;
 

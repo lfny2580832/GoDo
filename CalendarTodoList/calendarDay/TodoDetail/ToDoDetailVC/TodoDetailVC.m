@@ -8,6 +8,8 @@
 
 #import "TodoDetailVC.h"
 #import "TodoList.h"
+#import "RLMTodoList.h"
+#import "RLMThingType.h"
 
 #import "TodoContentView.h"
 #import "TodoProjectView.h"
@@ -17,8 +19,9 @@
 
 #import "RealmManage.h"
 #import "NSString+ZZExtends.h"
+#import "NSObject+NYExtends.h"
 
-@interface TodoDetailVC ()<TodoContentViewDelegate,TodoProjectViewDelegate,ChooseProjectVCDelegate,ChooseModeCellDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface TodoDetailVC ()<TodoContentViewDelegate,TodoProjectViewDelegate,ChooseProjectVCDelegate,ChooseModeCellDelegate,DatePickerCellDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @end
 
@@ -28,16 +31,19 @@
     TodoProjectView *_todoProjectView;
     UITableView *_tableView;
     
+    
+    
     NSMutableDictionary *_selectedIndexes; //所有cell高度的数组
     NSIndexPath *_selectedIndexPath; //当前选择的可变高度cell的index
     
     UIDatePickerMode _datePickerMode; //全天 or 时段
-    NSIndexPath *_startIndexPath;
-    NSIndexPath *_endIndexPath;
     
+    DatePickerCell *_startCell;
+    DatePickerCell *_endCell;
     
     NSString *_todoContentStr;
     ThingType *_todoThingType;
+    NSInteger _dayId;
     NSDate *_startDate;
     NSDate *_endDate;
 }
@@ -45,25 +51,99 @@
 static CGFloat cellHeight = 50.f;
 static CGFloat datePickerCellHeight = 240.f;
 
+#pragma mark Set Methods
+- (void)setTodoList:(TodoList *)todoList
+{
+    if(!todoList)
+    {
+        ThingType *defaultType = [[RealmManager getThingTypeArray] firstObject];
+        _todoThingType = defaultType;
+        _todoProjectView.thingType = _todoThingType;
+        _todoContentView.todoContentField.text = @"";
+        _startDate = [NSDate date];
+        _endDate = [NSDate dateWithTimeInterval:60*60 sinceDate:_startDate];
+        _dayId = [NSObject getDayIdWithDate:_startDate];
+        return;
+    }
+    _todoList = todoList;
+    _todoContentView.todoContentField.text = _todoList.thing.thingStr;
+    _todoThingType = [RealmManager getThingTypeWithThingTypeId:_todoList.thing.thingType.typeId];
+    _todoProjectView.thingType = _todoThingType;
+    _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todoList.startTime];
+    _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todoList.endTime];
+    _dayId = [NSObject getDayIdWithDate:_startDate];
+    
+}
+
 #pragma mark 返回全天或时段
 - (void)datePickerModeValueChanged:(BOOL)value
 {
     if (value)  _datePickerMode = UIDatePickerModeDate;
     else _datePickerMode = UIDatePickerModeDateAndTime;
     
-    DatePickerCell *startCell = [_tableView cellForRowAtIndexPath:_startIndexPath];
-    [startCell setDatePickerMode:_datePickerMode date:_startDate];
+    [_startCell setDatePickerMode:_datePickerMode date:_startDate];
+    [_endCell setDatePickerMode:_datePickerMode date:_endDate];
+}
+
+#pragma mark 返回开始日期
+- (void)returnStartDate:(NSDate *)startDate endDate:(NSDate *)endDate
+{
+    if (startDate)  _startDate = startDate;
+    else _endDate = endDate;
     
-    DatePickerCell *endCell = [_tableView cellForRowAtIndexPath:_endIndexPath];
-    [endCell setDatePickerMode:_datePickerMode date:_endDate];
+    if ([_startDate timeIntervalSinceDate:_endDate] >= 0.0)
+        _endCell.dateLabel.textColor = [UIColor redColor];
+    else
+        _endCell.dateLabel.textColor = [UIColor blackColor];
 }
 
 #pragma mark ChooseProjectVC Delegate 获取返回的type类型
 - (void)returnProjectWithThingType:(ThingType *)type
 {
     _todoThingType = type;
-    _todoProjectView.thingType = type;
+    _todoProjectView.thingType = _todoThingType;
 }
+
+#pragma mark 获取TodoContent
+- (void)getTodoContentWith:(NSString *)todoContentStr
+{
+    _todoContentStr = todoContentStr;
+}
+
+#pragma mark 点击保存
+- (void)rightbarButtonItemOnclick:(id)sender
+{
+    if (_todoContentStr.length <= 0) {
+        NSLog(@"请输入内容");
+    }
+    if ([_endDate isKindOfClass:[NSNull class]]) {
+        NSLog(@"请选择正确日期");
+        return;
+    }
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    RLMThing *thing = [[RLMThing alloc]init];
+    RLMThingType *type = [[RLMThingType alloc]init];
+    type.typeId = _todoThingType.typeId;
+    type.typeStr = _todoThingType.typeStr;
+    type.red = _todoThingType.red;
+    type.green = _todoThingType.green;
+    type.blue = _todoThingType.blue;
+    thing.thingType = type;
+    thing.thingStr = _todoContentStr;
+    
+    RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
+    todolistModel.dayId = _dayId;
+    todolistModel.startTime = [_startDate timeIntervalSinceReferenceDate];
+    todolistModel.endTime = [_endDate timeIntervalSinceReferenceDate];
+    todolistModel.thing = thing;
+    
+    [realm beginWriteTransaction];
+    [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];
+    [realm commitWriteTransaction];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 #pragma mark 选择todo所属项目
 - (void)chooseTodoProject
@@ -71,44 +151,6 @@ static CGFloat datePickerCellHeight = 240.f;
     ChooseProjectVC *vc = [[ChooseProjectVC alloc]init];
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
-}
-
-#pragma mark Set Methods
-- (void)setTodoList:(TodoList *)todoList
-{
-    if(!todoList)
-    {
-        ThingType *defaultType = [[RealmManager getThingTypeArray] firstObject];
-        _todoContentView.todoContentField.text = @"";
-        _todoProjectView.thingType = defaultType;
-        _startDate = [NSDate date];
-        _endDate = [NSDate dateWithTimeInterval:60*60 sinceDate:_startDate];
-        return;
-    }
-    _todoList = todoList;
-    _todoContentView.todoContentField.text = _todoList.thing.thingStr;
-    _todoProjectView.thingType = [RealmManager getThingTypeWithThingTypeId:_todoList.thing.thingType.typeId];
-    _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todoList.startTime];
-    _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todoList.endTime];
-
-    [_tableView reloadData];
-}
-
-#pragma mark 获取TodoContent
-- (void)getTodoContentWith:(NSString *)todoContentStr
-{
-    if ([_todoContentStr isEqualToString:@""]) {
-        //不能提交
-        
-        return;
-    }
-    _todoContentStr = todoContentStr;
-}
-
-#pragma mark 点击保存
-- (void)rightbarButtonItemOnclick:(id)sender
-{
-    
 }
 
 #pragma mark TableView DataSource Delegate
@@ -130,7 +172,8 @@ static CGFloat datePickerCellHeight = 240.f;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 && indexPath.row == 0) {
+    if (indexPath.section == 0 && indexPath.row == 0)
+    {
         ChooseModeCell *cell = [[ChooseModeCell alloc]init];
         if (_datePickerMode == UIDatePickerModeDateAndTime) {
             [cell.switchButton setOn:NO];
@@ -140,19 +183,25 @@ static CGFloat datePickerCellHeight = 240.f;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
         return cell;
-    }else if (indexPath.section == 0 && indexPath.row == 1){
-        _startIndexPath = indexPath;
-        DatePickerCell *cell = [[DatePickerCell alloc]init];
-        [cell setDatePickerMode:_datePickerMode date:_startDate];
-        cell.titleLabel.text = @"开始";
-        return cell;
-    }else if (indexPath.section == 0 && indexPath.row == 2){
-        _endIndexPath = indexPath;
-        DatePickerCell *cell = [[DatePickerCell alloc]init];
-        [cell setDatePickerMode:_datePickerMode date:_endDate];
-        cell.titleLabel.text = @"结束";
-        return cell;
-    }else{
+    }
+    else if (indexPath.section == 0 && indexPath.row == 1)
+    {
+        _startCell = [[DatePickerCell alloc]init];
+        _startCell.delegate = self;
+        [_startCell setDatePickerMode:_datePickerMode date:_startDate];
+        _startCell.titleLabel.text = @"开始";
+        return _startCell;
+    }
+    else if (indexPath.section == 0 && indexPath.row == 2)
+    {
+        _endCell = [[DatePickerCell alloc]init];
+        _endCell.delegate = self;
+        [_endCell setDatePickerMode:_datePickerMode date:_endDate];
+        _endCell.titleLabel.text = @"结束";
+        return _endCell;
+    }
+    else
+    {
         DatePickerCell *cell = [[DatePickerCell alloc]init];
         return cell;
     }

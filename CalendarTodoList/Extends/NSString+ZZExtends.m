@@ -108,7 +108,7 @@
         dateFormatter = [[NSDateFormatter alloc] init];
     }
     NSDate *lastDate = [NSDate dateWithTimeIntervalSinceReferenceDate:dateTime];
-    [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm"];
+    [dateFormatter setDateFormat:@"HH:mm"];
     newTime = [dateFormatter stringFromDate:lastDate];
     
     return newTime;

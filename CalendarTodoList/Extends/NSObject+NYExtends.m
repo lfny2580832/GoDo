@@ -51,4 +51,16 @@
     return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
 }
 
+#pragma mark 根据日期返回dayId
+- (NSInteger)getDayIdWithDate:(NSDate *)date
+{
+    static NSDateFormatter *dateFormatter = nil;
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+    }
+    [dateFormatter setDateFormat:@"yyyyMMdd"];
+    NSString *dateStr = [dateFormatter stringFromDate:date];
+    return [dateStr integerValue];
+}
+
 @end

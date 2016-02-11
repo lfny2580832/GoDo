@@ -10,12 +10,10 @@
 
 @implementation TodoContentView
 
-#pragma mark UITextField Delegate
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+#pragma mark
+- (void)textFieldChanged:(UITextField *)textField
 {
-    NSString *str = [textField.text substringToIndex:[textField.text length] - 1];
-    [self.delegate getTodoContentWith:str];
-    return YES;
+    [self.delegate getTodoContentWith:textField.text];
 }
 
 #pragma mark 初始化
@@ -42,6 +40,7 @@
     _todoContentField = [[UITextField alloc]init];
     _todoContentField.placeholder = @"内容";
     _todoContentField.delegate = self;
+    [_todoContentField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     _todoContentField.font = [UIFont systemFontOfSize:18];
     [self addSubview:_todoContentField];
     [_todoContentField mas_makeConstraints:^(MASConstraintMaker *make) {

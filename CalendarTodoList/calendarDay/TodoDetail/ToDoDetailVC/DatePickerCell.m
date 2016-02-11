@@ -9,13 +9,28 @@
 #import "DatePickerCell.h"
 
 @implementation DatePickerCell
-{
-    UILabel *_dateLabel;
-    
+{    
     NSDateFormatter *_dateFormatter;
     NSDateFormatter *_dateAndTimeFormatter;
     
     UIDatePickerMode _datePickerMode;
+}
+
+- (void)datePickerValueChanged:(UIDatePicker *)datePicker
+{
+    NSDate *date = datePicker.date;
+    NSString *dateStr;
+    if (_datePickerMode == UIDatePickerModeDateAndTime) {
+        dateStr = [_dateAndTimeFormatter stringFromDate:date];
+    }else{
+        dateStr = [_dateFormatter stringFromDate:date];
+    }
+    _dateLabel.text = dateStr;
+    if ([_titleLabel.text isEqualToString:@"开始"]) {
+        [self.delegate returnStartDate:date endDate:nil];
+    }else{
+        [self.delegate returnStartDate:nil endDate:date];
+    }
 }
 
 - (void)setDatePickerMode:(UIDatePickerMode )datePickerMode date:(NSDate *)date
@@ -26,6 +41,7 @@
         dispatch_async(kBgQueue, ^{
             _datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, 180)];
             _datePicker.datePickerMode = _datePickerMode;
+            [_datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
             dispatch_async(kMainQueue, ^{
                 [self.contentView addSubview:_datePicker];
                 [_datePicker setDate:date animated:NO];
@@ -42,11 +58,6 @@
         dateStr = [_dateAndTimeFormatter stringFromDate:date];
     }
     _dateLabel.text = dateStr;
-}
-
-- (void)dealloc
-{
-    
 }
 
 #pragma mark 初始化
