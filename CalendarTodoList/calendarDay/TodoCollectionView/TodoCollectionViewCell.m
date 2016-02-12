@@ -38,6 +38,11 @@
 - (void)setDayId:(NSInteger)dayId
 {
     _dayId = dayId;
+    [self realmGetDayInfoFromRealmWithDayId:_dayId];
+}
+
+- (void)realmGetDayInfoFromRealmWithDayId:(NSInteger)dayId
+{
     dispatch_async(kBgQueue, ^{
         _todoListArray = [RealmManager getDayInfoFromRealmWithDayId:dayId];
         dispatch_async(kMainQueue, ^{
@@ -46,6 +51,17 @@
             }
         });
     });
+}
+
+#pragma mark 新建todolist后刷新数据
+- (void)refreshTableViewAfterCreate
+{
+    [self realmGetDayInfoFromRealmWithDayId:_dayId];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 #pragma mark 初始化
@@ -70,6 +86,8 @@
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.left.right.equalTo(self.contentView);
     }];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewAfterCreate) name:@"ReloadTodoTableView" object:nil];
 }
 
 #pragma mark UITableViewDelegate DataSource

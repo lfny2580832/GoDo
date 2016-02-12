@@ -142,6 +142,11 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+#pragma mark 刷新
+- (void)refreshAfterCreateTodolist
+{
+    [self setDisplayedMonth:self.month];
+}
 
 #pragma mark 布局方法
 - (void)layoutSubviews {

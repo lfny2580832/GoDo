@@ -189,6 +189,8 @@ typedef NS_OPTIONS(NSInteger, RDVCalendarViewDayCellSeparatorType) {
  */
 - (void)showNextMonth;
 
+- (void)refreshAfterCreateTodolist;
+
 @end
 
 @protocol RDVCalendarViewDelegate <NSObject>

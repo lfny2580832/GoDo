@@ -10,12 +10,14 @@
 
 #import "RLMThing.h"
 #import "RLMTodoList.h"
+#import "RLMThingType.h"
+
 #import "Thing.h"
 #import "TodoList.h"
-#import "RLMThingType.h"
 #import "ThingType.h"
 
 #import "NSString+ZZExtends.h"
+#import "NSObject+NYExtends.h"
 
 @implementation RealmManage
 
@@ -66,6 +68,33 @@
         }
     }
     return resultArray;
+}
+
+#pragma mark 创建RLMTodolist
+- (void)createTodoListWithThingType:(ThingType *)type contentStr:(NSString *)contentStr startDate:(NSDate *)startDate endDate:(NSDate *)endDate
+{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+
+    RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
+    NSInteger dayId = [NSObject getDayIdWithDate:startDate];
+    todolistModel.dayId = dayId;
+    todolistModel.startTime = [startDate timeIntervalSinceReferenceDate];
+    todolistModel.endTime = [endDate timeIntervalSinceReferenceDate];
+    
+    RLMThing *thing = [[RLMThing alloc]init];
+    RLMThingType *thingType = [[RLMThingType alloc]init];
+    thingType.typeId = type.typeId;
+    thingType.typeStr = type.typeStr;
+    thingType.red = type.red;
+    thingType.green = type.green;
+    thingType.blue = type.blue;
+    thing.thingType = thingType;
+    thing.thingStr = contentStr;
+    todolistModel.thing = thing;
+    
+    [realm beginWriteTransaction];
+    [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];
+    [realm commitWriteTransaction];
 }
 
 #pragma mark 根据thingTypeId返回thingType

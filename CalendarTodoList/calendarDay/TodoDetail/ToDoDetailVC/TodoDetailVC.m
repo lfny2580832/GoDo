@@ -120,27 +120,9 @@ static CGFloat datePickerCellHeight = 240.f;
         NSLog(@"请选择正确日期");
         return;
     }
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    RLMThing *thing = [[RLMThing alloc]init];
-    RLMThingType *type = [[RLMThingType alloc]init];
-    type.typeId = _todoThingType.typeId;
-    type.typeStr = _todoThingType.typeStr;
-    type.red = _todoThingType.red;
-    type.green = _todoThingType.green;
-    type.blue = _todoThingType.blue;
-    thing.thingType = type;
-    thing.thingStr = _todoContentStr;
     
-    RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
-    todolistModel.dayId = _dayId;
-    todolistModel.startTime = [_startDate timeIntervalSinceReferenceDate];
-    todolistModel.endTime = [_endDate timeIntervalSinceReferenceDate];
-    todolistModel.thing = thing;
-    
-    [realm beginWriteTransaction];
-    [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];
-    [realm commitWriteTransaction];
-    
+    [RealmManager createTodoListWithThingType:_todoThingType contentStr:_todoContentStr startDate:_startDate endDate:_endDate];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

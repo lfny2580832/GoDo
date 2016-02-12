@@ -24,12 +24,11 @@
 
 - (CalendarTodoDetailVC *)calendarTodoDetailVC
 {
-    if (_calendarTodoDetailVC) {
-        return _calendarTodoDetailVC;
-    }else{
+    if (!_calendarTodoDetailVC) {
         _calendarTodoDetailVC = [[CalendarTodoDetailVC alloc]init];
-        return _calendarTodoDetailVC;
     }
+    return _calendarTodoDetailVC;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -37,6 +36,10 @@
     [super viewWillAppear:animated];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 #pragma mark 初始化方法
 - (instancetype)init
 {
@@ -82,6 +85,16 @@
     [self.scrollView addSubview:_calendarView];
 
     self.scrollView.contentSize = _calendarView.frame.size;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCalendarViewAfterCreateTodolist) name:@"ReloadTodoTableView" object:nil];
+
+}
+
+#pragma mark 刷新calendarview
+- (void)refreshCalendarViewAfterCreateTodolist
+{
+    [self.scrollView setZoomScale:1.0];
+    [_calendarView refreshAfterCreateTodolist];
 }
 
 #pragma mark 返回放大的View
