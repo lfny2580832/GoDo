@@ -26,6 +26,7 @@
 		4A88CB2C1C2B925F001C13D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A88CB2B1C2B925F001C13D8 /* Assets.xcassets */; };
 		4A88CB3A1C2B925F001C13D8 /* CalendarTodoListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB391C2B925F001C13D8 /* CalendarTodoListTests.m */; };
 		4A88CB451C2B925F001C13D8 /* CalendarTodoListUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB441C2B925F001C13D8 /* CalendarTodoListUITests.m */; };
+		4A95AA111C71702F00DFB118 /* DeleteTodoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A95AA101C71702F00DFB118 /* DeleteTodoCell.m */; };
 		4A9FC1BC1C699FAE00A1D888 /* TodoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FC1B71C699FAE00A1D888 /* TodoContentView.m */; };
 		4A9FC1BD1C699FAE00A1D888 /* TodoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FC1B91C699FAE00A1D888 /* TodoDetailVC.m */; };
 		4A9FC1BE1C699FAE00A1D888 /* TodoProjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FC1BB1C699FAE00A1D888 /* TodoProjectView.m */; };
@@ -114,6 +115,8 @@
 		4A88CB441C2B925F001C13D8 /* CalendarTodoListUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarTodoListUITests.m; sourceTree = "<group>"; };
 		4A88CB461C2B925F001C13D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A88CB691C2BBC9F001C13D8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		4A95AA0F1C71702F00DFB118 /* DeleteTodoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteTodoCell.h; sourceTree = "<group>"; };
+		4A95AA101C71702F00DFB118 /* DeleteTodoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteTodoCell.m; sourceTree = "<group>"; };
 		4A9FC1B61C699FAE00A1D888 /* TodoContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoContentView.h; sourceTree = "<group>"; };
 		4A9FC1B71C699FAE00A1D888 /* TodoContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoContentView.m; sourceTree = "<group>"; };
 		4A9FC1B81C699FAE00A1D888 /* TodoDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoDetailVC.h; sourceTree = "<group>"; };
@@ -336,6 +339,8 @@
 				4AF11FF71C6B1206007DC614 /* ChooseModeCell.m */,
 				4A9FC1BF1C69A30E00A1D888 /* DatePickerCell.h */,
 				4A9FC1C01C69A30E00A1D888 /* DatePickerCell.m */,
+				4A95AA0F1C71702F00DFB118 /* DeleteTodoCell.h */,
+				4A95AA101C71702F00DFB118 /* DeleteTodoCell.m */,
 				4A9FC1B81C699FAE00A1D888 /* TodoDetailVC.h */,
 				4A9FC1B91C699FAE00A1D888 /* TodoDetailVC.m */,
 			);
@@ -346,12 +351,12 @@
 			isa = PBXGroup;
 			children = (
 				4AEB37361C599EFC007C9F92 /* CoreModel */,
+				4AA393521C58AC6D00DA3C16 /* RealmManage.h */,
+				4AA393531C58AC6D00DA3C16 /* RealmManage.m */,
 				4AA3934C1C58AC2E00DA3C16 /* BaseNavigationController.h */,
 				4AA3934D1C58AC2E00DA3C16 /* BaseNavigationController.m */,
 				4AA3934E1C58AC2E00DA3C16 /* MainTabBarVC.h */,
 				4AA3934F1C58AC2E00DA3C16 /* MainTabBarVC.m */,
-				4AA393521C58AC6D00DA3C16 /* RealmManage.h */,
-				4AA393531C58AC6D00DA3C16 /* RealmManage.m */,
 			);
 			path = CoreManage;
 			sourceTree = "<group>";
@@ -650,6 +655,7 @@
 				4AD589EE1C64DBD100E74761 /* AddNewProjectVC.m in Sources */,
 				4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */,
 				4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */,
+				4A95AA111C71702F00DFB118 /* DeleteTodoCell.m in Sources */,
 				4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */,
 				4AB09F001C627EF0006EB837 /* RLMThingType.m in Sources */,
 				4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */,

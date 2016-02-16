@@ -17,6 +17,6 @@
 + (UIColor *)randomColor;
 
 #pragma mark 根据日期返回dayId
-- (NSInteger)getDayIdWithDate:(NSDate *)date;
+- (NSInteger)getDayIdWithDateStamp:(long long)startDateStamp;
 
 @end

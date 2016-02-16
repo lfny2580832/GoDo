@@ -35,7 +35,7 @@
 - (void)initViews
 {
 //    [self simulateThingType];
-//
+////
 //    [self simulateTodoList];
     
     CalendarVC *calendarVC = [[CalendarVC alloc]init];
@@ -51,20 +51,23 @@
 
 - (void)simulateTodoList
 {
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"todoMaxId"];
+
     RLMRealm *realm = [RLMRealm defaultRealm];
     RLMThing *thing = [[RLMThing alloc]init];
-    RLMThingType *type = [[RLMThingType objectsWhere:@"typeId = 2"] firstObject];
+    RLMThingType *type = [[RLMThingType objectsWhere:@"typeId = 3"] firstObject];
     thing.thingType = type;
-    thing.thingStr = @"学习编程";
+    thing.thingStr = @"开始创建你的任务吧！";
     RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
-    todolistModel.dayId = 20160204;
     todolistModel.startTime = [NSDate timeIntervalSinceReferenceDate];
     todolistModel.endTime = todolistModel.startTime + 60 * 60;
+    todolistModel.tableId = 1;
     todolistModel.thing = thing;
     
     [realm beginWriteTransaction];
     [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];
     [realm commitWriteTransaction];
+    
 }
 
 - (void)simulateThingType

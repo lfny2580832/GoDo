@@ -52,14 +52,17 @@
 }
 
 #pragma mark 根据日期返回dayId
-- (NSInteger)getDayIdWithDate:(NSDate *)date
+- (NSInteger)getDayIdWithDateStamp:(long long)startDateStamp
 {
     static NSDateFormatter *dateFormatter = nil;
     if (!dateFormatter) {
         dateFormatter = [[NSDateFormatter alloc] init];
     }
     [dateFormatter setDateFormat:@"yyyyMMdd"];
-    NSString *dateStr = [dateFormatter stringFromDate:date];
+    
+    NSDate *startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:startDateStamp];
+
+    NSString *dateStr = [dateFormatter stringFromDate:startDate];
     return [dateStr integerValue];
 }
 

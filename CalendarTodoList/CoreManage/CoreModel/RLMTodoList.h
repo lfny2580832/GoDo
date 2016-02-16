@@ -11,6 +11,7 @@
 
 @interface RLMTodoList : RLMObject
 
+@property (nonatomic, assign) NSInteger tableId;
 ///dayId 为年月日，如 20160106
 @property (nonatomic, assign) NSInteger dayId;
 

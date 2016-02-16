@@ -16,6 +16,7 @@
 #import "ChooseProjectVC.h"
 #import "DatePickerCell.h"
 #import "ChooseModeCell.h"
+#import "DeleteTodoCell.h"
 
 #import "RealmManage.h"
 #import "NSString+ZZExtends.h"
@@ -31,8 +32,6 @@
     TodoProjectView *_todoProjectView;
     UITableView *_tableView;
     
-    
-    
     NSMutableDictionary *_selectedIndexes; //所有cell高度的数组
     NSIndexPath *_selectedIndexPath; //当前选择的可变高度cell的index
     
@@ -43,13 +42,35 @@
     
     NSString *_todoContentStr;
     ThingType *_todoThingType;
-    NSInteger _dayId;
+    NSInteger _tableId;
     NSDate *_startDate;
     NSDate *_endDate;
 }
 
 static CGFloat cellHeight = 50.f;
 static CGFloat datePickerCellHeight = 240.f;
+
+#pragma mark 删除任务
+- (void)deleteTodoList
+{
+    UIAlertController *deleteSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [deleteSheet addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                    style:UIAlertActionStyleCancel
+                                                handler:nil]];
+    [deleteSheet addAction:[UIAlertAction actionWithTitle:@"删除任务"
+                                                    style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                    [self deleteTodoListFromRealm];
+                                                }]];
+    [self presentViewController:deleteSheet animated:YES completion:nil];
+}
+
+- (void)deleteTodoListFromRealm
+{
+    [RealmManager deleteTodoListWithTableId:_tableId];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark Set Methods
 - (void)setTodoList:(TodoList *)todoList
@@ -62,17 +83,16 @@ static CGFloat datePickerCellHeight = 240.f;
         _todoContentView.todoContentField.text = @"";
         _startDate = [NSDate date];
         _endDate = [NSDate dateWithTimeInterval:60*60 sinceDate:_startDate];
-        _dayId = [NSObject getDayIdWithDate:_startDate];
         return;
     }
     _todoList = todoList;
-    _todoContentView.todoContentField.text = _todoList.thing.thingStr;
+    _tableId = _todoList.tableId;
+    _todoContentStr =  _todoList.thing.thingStr;
+    _todoContentView.todoContentField.text = _todoContentStr;
     _todoThingType = [RealmManager getThingTypeWithThingTypeId:_todoList.thing.thingType.typeId];
     _todoProjectView.thingType = _todoThingType;
     _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todoList.startTime];
     _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todoList.endTime];
-    _dayId = [NSObject getDayIdWithDate:_startDate];
-    
 }
 
 #pragma mark 返回全天或时段
@@ -115,6 +135,7 @@ static CGFloat datePickerCellHeight = 240.f;
 {
     if (_todoContentStr.length <= 0) {
         NSLog(@"请输入内容");
+        return;
     }
     if ([_endDate isKindOfClass:[NSNull class]]) {
         NSLog(@"请选择正确日期");
@@ -138,13 +159,17 @@ static CGFloat datePickerCellHeight = 240.f;
 #pragma mark TableView DataSource Delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    if (_tableId > 0) {
+        return 2;
+    }else{
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 0) return 3;
-    return 2;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -184,7 +209,7 @@ static CGFloat datePickerCellHeight = 240.f;
     }
     else
     {
-        DatePickerCell *cell = [[DatePickerCell alloc]init];
+        DeleteTodoCell *cell = [[DeleteTodoCell alloc]init];
         return cell;
     }
     return nil;
@@ -216,7 +241,8 @@ static CGFloat datePickerCellHeight = 240.f;
         //处理cell重新赋值逻辑
         [tableView beginUpdates];
         [tableView endUpdates];
-    }
+    }else if (indexPath.section == 1 && indexPath.row == 0)
+        [self deleteTodoList];
     
     [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
 
@@ -264,7 +290,6 @@ static CGFloat datePickerCellHeight = 240.f;
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.left.right.equalTo(self.view);
     }];
-    
 }
 
 @end

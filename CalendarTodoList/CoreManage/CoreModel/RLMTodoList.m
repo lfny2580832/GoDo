@@ -7,13 +7,20 @@
 //
 
 #import "RLMTodoList.h"
+#import "NSObject+NYExtends.h"
 
 @implementation RLMTodoList
 @synthesize thing;
 
 + (NSString *) primaryKey
 {
-    return @"startTime";
+    return @"tableId";
+}
+
+- (void)setStartTime:(long long)startTime
+{
+    _startTime = startTime;
+    _dayId = [NSObject getDayIdWithDateStamp:startTime];
 }
 
 @end

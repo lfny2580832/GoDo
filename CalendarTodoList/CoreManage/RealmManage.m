@@ -45,9 +45,9 @@
         RLMTodoList *RLMTodoList = [result objectAtIndex:i];
         
         TodoList *todolist = [[TodoList alloc]init];
-        todolist.dayId = RLMTodoList.dayId;
         todolist.startTime = RLMTodoList.startTime;
         todolist.endTime = RLMTodoList.endTime;
+        todolist.tableId = RLMTodoList.tableId;
         
         todolist.thing = [[Thing alloc]init];
         todolist.thing.thingStr = RLMTodoList.thing.thingStr;
@@ -76,8 +76,6 @@
     RLMRealm *realm = [RLMRealm defaultRealm];
 
     RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
-    NSInteger dayId = [NSObject getDayIdWithDate:startDate];
-    todolistModel.dayId = dayId;
     todolistModel.startTime = [startDate timeIntervalSinceReferenceDate];
     todolistModel.endTime = [endDate timeIntervalSinceReferenceDate];
     
@@ -91,6 +89,10 @@
     thing.thingType = thingType;
     thing.thingStr = contentStr;
     todolistModel.thing = thing;
+    
+    NSInteger tableId = [[NSUserDefaults standardUserDefaults] integerForKey:@"todoMaxId"] + 1;
+    todolistModel.tableId = tableId;
+    [[NSUserDefaults standardUserDefaults] setInteger:tableId forKey:@"todoMaxId"];
     
     [realm beginWriteTransaction];
     [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];
@@ -134,6 +136,17 @@
         }
     }
     return resultArray;
+}
+
+#pragma mark 删除todolist
+- (void)deleteTodoListWithTableId:(NSInteger)tableId
+{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+
+    RLMResults *results = [RLMTodoList objectsWhere:@"tableId = %d",tableId];
+    [realm beginWriteTransaction];
+    [realm deleteObject:results[0]];
+    [realm commitWriteTransaction];
 }
 
 @end
