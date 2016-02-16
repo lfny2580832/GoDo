@@ -46,9 +46,7 @@
     dispatch_async(kBgQueue, ^{
         _todoListArray = [RealmManager getDayInfoFromRealmWithDayId:dayId];
         dispatch_async(kMainQueue, ^{
-            if (_todoListArray) {
-                [_tableView reloadData];
-            }
+            [_tableView reloadData];
         });
     });
 }
