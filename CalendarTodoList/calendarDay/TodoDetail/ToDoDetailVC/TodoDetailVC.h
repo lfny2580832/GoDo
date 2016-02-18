@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) TodoList *todoList;
 
+- (instancetype)initWithDate:(NSDate *)date;
+
 @end

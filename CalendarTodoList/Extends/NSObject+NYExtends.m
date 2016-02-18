@@ -51,7 +51,7 @@
     return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
 }
 
-#pragma mark 根据日期返回dayId
+#pragma mark 根据时间戳返回dayId
 - (NSInteger)getDayIdWithDateStamp:(long long)startDateStamp
 {
     static NSDateFormatter *dateFormatter = nil;
@@ -59,10 +59,20 @@
         dateFormatter = [[NSDateFormatter alloc] init];
     }
     [dateFormatter setDateFormat:@"yyyyMMdd"];
-    
     NSDate *startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:startDateStamp];
-
     NSString *dateStr = [dateFormatter stringFromDate:startDate];
+    return [dateStr integerValue];
+}
+
+#pragma mark 根据日期返回dayId
+- (NSInteger)getDayIdWithDate:(NSDate *)date
+{
+    static NSDateFormatter *dateFormatter = nil;
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+    }
+    [dateFormatter setDateFormat:@"yyyyMMdd"];
+    NSString *dateStr = [dateFormatter stringFromDate:date];
     return [dateStr integerValue];
 }
 

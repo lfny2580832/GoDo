@@ -19,4 +19,6 @@
 #pragma mark 根据日期返回dayId
 - (NSInteger)getDayIdWithDateStamp:(long long)startDateStamp;
 
+#pragma mark 根据日期返回dayId
+- (NSInteger)getDayIdWithDate:(NSDate *)date;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "RealmManage.h"
+#import "UserDefaultManage.h"
 
 #import "RLMThing.h"
 #import "RLMTodoList.h"
@@ -89,10 +90,8 @@
     thing.thingType = thingType;
     thing.thingStr = contentStr;
     todolistModel.thing = thing;
-    
-    NSInteger tableId = [[NSUserDefaults standardUserDefaults] integerForKey:@"todoMaxId"] + 1;
-    todolistModel.tableId = tableId;
-    [[NSUserDefaults standardUserDefaults] setInteger:tableId forKey:@"todoMaxId"];
+    todolistModel.tableId = [UserDefaultManager todoMaxId] + 1;
+    [UserDefaultManager setTodoMaxId:todolistModel.tableId];
     
     [realm beginWriteTransaction];
     [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];

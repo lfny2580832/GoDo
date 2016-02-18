@@ -86,12 +86,12 @@
 
     self.scrollView.contentSize = _calendarView.frame.size;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCalendarViewAfterCreateTodolist) name:@"ReloadTodoTableView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCalendarViewAfterCreateOrDeleteTodolist) name:@"ReloadTodoTableView" object:nil];
 
 }
 
 #pragma mark 刷新calendarview
-- (void)refreshCalendarViewAfterCreateTodolist
+- (void)refreshCalendarViewAfterCreateOrDeleteTodolist
 {
     [self.scrollView setZoomScale:1.0];
     [_calendarView refreshAfterCreateTodolist];

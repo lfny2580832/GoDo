@@ -9,6 +9,15 @@
 #import <Realm/Realm.h>
 #import "RLMThing.h"
 
+//月界面只显示未开始、进行中和过期 （可设置）
+typedef NS_ENUM(NSInteger, doneType)
+{
+    NotStart = 0,       //未开始
+    Doing,              //进行中
+    OutOfDate,          //过期
+    Done                //已完成
+};
+
 @interface RLMTodoList : RLMObject
 
 @property (nonatomic, assign) NSInteger tableId;
@@ -22,4 +31,5 @@
 ///对应事件;
 @property (nonatomic, strong) RLMThing *thing;
 
+//@property (nonatomic, st)
 @end

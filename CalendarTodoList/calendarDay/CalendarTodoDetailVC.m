@@ -23,7 +23,7 @@
 #pragma mark 点击TodoTableViewCell事件
 - (void)didSelectedTodoTableViewCellWithTodoList:(TodoList *)todoList
 {
-    TodoDetailVC *vc = [[TodoDetailVC alloc]init];
+    TodoDetailVC *vc = [[TodoDetailVC alloc]initWithDate:_chosenDate];
     vc.todoList = todoList;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -31,6 +31,7 @@
 #pragma mark 根据当前日期设置
 - (void)setSelectedDayWithChosenDate:(NSDate *)chosenDate
 {
+    _chosenDate = chosenDate;
     [_todoCollectionView getIndexPageTodoCellWithChosenDate:chosenDate];
 }
 
@@ -57,11 +58,24 @@
     [_weekCollectionView setWeekCellSelectedWithIndexItem:indexItem];
 }
 
-#pragma mark 退出至此页面时刷新
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [_todoCollectionView reloadData];
-//}
+#pragma mark 返回当前选择的日期
+- (void)returnChosenDate:(NSDate *)chosenDate
+{
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+
+    comps = [[NSCalendar currentCalendar] components:
+                                           NSCalendarUnitYear|
+                                           NSCalendarUnitMonth|
+                                           NSCalendarUnitDay|
+                                           NSCalendarUnitHour
+                                            fromDate:chosenDate];
+    
+    [comps setHour:8];
+    
+    NSDate *tempDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    
+    _chosenDate = tempDate;
+}
 
 #pragma mark 初始化
 - (instancetype)init
@@ -76,13 +90,14 @@
 
 - (void)initView
 {
-    _weekCollectionView = [[WeekCollectionView alloc]initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, SCREEN_WIDTH/7)];
+    _weekCollectionView = [[WeekCollectionView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/7)];
     _weekCollectionView.mdelegate = self;
     [self.view addSubview:_weekCollectionView];
     
-    _todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, 200, SCREEN_WIDTH, SCREEN_HEIGHT - 320)];
+    _todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 500)];
     _todoCollectionView.mdelegate = self;
     [self.view addSubview:_todoCollectionView];
+
 }
 
 @end

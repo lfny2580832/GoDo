@@ -19,6 +19,7 @@
 
 - (void)didSelectedTodoTableViewCellWithTodoList:(TodoList *)todoList;
 
+- (void)returnChosenDate:(NSDate *)chosenDate;
 @end
 
 @interface TodoCollectionView : UICollectionView<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate,TodoCollectionCellDelegate>

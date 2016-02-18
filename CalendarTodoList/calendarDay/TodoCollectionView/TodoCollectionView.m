@@ -72,7 +72,7 @@ static NSString * const reuseIdentifier = @"Cell";
 - (instancetype)initWithFrame:(CGRect)frame
 {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT-340)];
+    [flowLayout setItemSize:CGSizeMake(SCREEN_WIDTH, 500)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     [flowLayout setMinimumLineSpacing:0];
     self = [super initWithFrame:frame collectionViewLayout:flowLayout];
@@ -121,6 +121,7 @@ static NSString * const reuseIdentifier = @"Cell";
     TodoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.delegate = self;
     NSDate *chosenDate = [self getChosenDateFromIndexPathRow:indexPath.item];
+    [self.mdelegate returnChosenDate:chosenDate];
     NSInteger dayId = [[_YMDformatter stringFromDate:chosenDate] integerValue];
     [cell refreshTableViewBeforQueryData];
     cell.index = [NSString stringWithFormat:@"%ld",(long)indexPath.item + 1];

@@ -32,6 +32,8 @@
     TodoProjectView *_todoProjectView;
     UITableView *_tableView;
     
+    NSDate *_initialDate;                  //选择当天的日期
+    
     NSMutableDictionary *_selectedIndexes; //所有cell高度的数组
     NSIndexPath *_selectedIndexPath; //当前选择的可变高度cell的index
     
@@ -81,7 +83,14 @@ static CGFloat datePickerCellHeight = 240.f;
         _todoThingType = defaultType;
         _todoProjectView.thingType = _todoThingType;
         _todoContentView.todoContentField.text = @"";
-        _startDate = [NSDate date];
+        
+        //当天八点
+        NSDate *tempDate = [NSDate dateWithTimeInterval:0 sinceDate:_initialDate];
+        if ([[NSDate date] timeIntervalSinceDate:tempDate] > 0)
+            _startDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];
+        else
+            _startDate = tempDate;
+        
         _endDate = [NSDate dateWithTimeInterval:60*60 sinceDate:_startDate];
         return;
     }
@@ -224,10 +233,11 @@ static CGFloat datePickerCellHeight = 240.f;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.view endEditing:YES];
     if (indexPath.section == 0 && (indexPath.row == 1||indexPath.row == 2))
     {
         //处理datepickercell高度逻辑
-        if (_selectedIndexPath == indexPath) {
+        if (_selectedIndexPath == indexPath) {           
             _selectedIndexPath = nil;
             _selectedIndexes = [[NSMutableDictionary alloc] init];
 
@@ -255,11 +265,11 @@ static CGFloat datePickerCellHeight = 240.f;
 }
 
 #pragma mark 初始化
-- (instancetype)init
+- (instancetype)initWithDate:(NSDate *)date
 {
     self = [super init];
     if (self) {
-        self.view.backgroundColor = RGBA(247, 247, 247, 1.0);
+        _initialDate = date;
         _datePickerMode = UIDatePickerModeDateAndTime;
         [self setRightBackButtontile:@"保存"];
         [self initViews];
@@ -269,6 +279,8 @@ static CGFloat datePickerCellHeight = 240.f;
 
 - (void)initViews
 {
+    self.view.backgroundColor = RGBA(247, 247, 247, 1.0);
+
     UIView *headView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 125)];
     
     _todoContentView = [[TodoContentView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 75)];

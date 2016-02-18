@@ -19,6 +19,7 @@
 {
     _todoList = todoList;
     _textLabel.text = todoList.briefStr;
+//    _textLabel.text = @"拉伸的开发及阿里山的开发及阿里山的开发了阿萨德两分开就阿里山的疯狂就阿里是对方空间";
 }
 
 #pragma mark 初始化
@@ -26,17 +27,9 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.clipsToBounds = YES;
         self.backgroundColor = [UIColor clearColor];
         [self initView];
-    }
-    return self;
-}
-
-- (instancetype)initWithContentLabel
-{
-    self = [super init];
-    if (self) {
-        [self initContentLabel];
     }
     return self;
 }
@@ -45,24 +38,14 @@
 {
     _textLabel = [[UILabel alloc]init];
     _textLabel.textColor = [UIColor whiteColor];
+    _textLabel.numberOfLines = 0;
     [self.contentView addSubview:_textLabel];
     [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(self.contentView);
+        make.top.equalTo(self.contentView).offset(15);
+        make.bottom.equalTo(self.contentView).offset(-15);
         make.left.equalTo(self.contentView).offset(15);
         make.width.mas_equalTo(@300);
     }];
 }
 
-- (void)initContentLabel
-{
-    UILabel *contentLabel  = [[UILabel alloc]init];
-    contentLabel.text = @"+添加项目";
-    contentLabel.textColor = [UIColor whiteColor];
-    contentLabel.font = [UIFont systemFontOfSize:15];
-    [self.contentView addSubview:contentLabel];
-    [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(18);
-        make.centerY.equalTo(self.contentView);
-    }];
-}
 @end

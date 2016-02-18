@@ -14,8 +14,10 @@
 #import "RealmManage.h"
 
 #import "TodoTableViewCell.h"
+#import "AddTodoFooterView.h"
 
 #import "NSString+ZZExtends.h"
+#import "NSObject+NYExtends.h"
 
 @interface TodoCollectionViewCell ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -39,6 +41,11 @@
 {
     _dayId = dayId;
     [self realmGetDayInfoFromRealmWithDayId:_dayId];
+    
+    if (dayId < [NSObject getDayIdWithDate:[NSDate date]])
+        _tableView.tableFooterView.hidden = YES;
+    else
+        _tableView.tableFooterView.hidden = NO;
 }
 
 - (void)realmGetDayInfoFromRealmWithDayId:(NSInteger)dayId
@@ -51,8 +58,14 @@
     });
 }
 
+#pragma mark 添加项目
+- (void)addTodoList
+{
+    [self.delegate didSelectedTodoTableCellWithTodoList:nil];
+}
+
 #pragma mark 新建todolist后刷新数据
-- (void)refreshTableViewAfterCreate
+- (void)refreshTableViewAfterCreateOrDelete
 {
     [self realmGetDayInfoFromRealmWithDayId:_dayId];
 }
@@ -80,12 +93,19 @@
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.tableFooterView = [UIView new];
+    _tableView.estimatedRowHeight = 40.0;
+    _tableView.rowHeight = UITableViewAutomaticDimension;
     [self addSubview:_tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.left.right.equalTo(self.contentView);
     }];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewAfterCreate) name:@"ReloadTodoTableView" object:nil];
+    AddTodoFooterView *footerView = [[AddTodoFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    UITapGestureRecognizer *footerTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addTodoList)];
+    [footerView addGestureRecognizer:footerTap];
+    _tableView.tableFooterView = footerView;
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewAfterCreateOrDelete) name:@"ReloadTodoTableView" object:nil];
 }
 
 #pragma mark UITableViewDelegate DataSource
@@ -93,10 +113,6 @@
 {
     static NSString *reuseIdentifier = @"todotableviewcell";
 
-    if (indexPath.row == _todoListArray.count) {
-        TodoTableViewCell *cell = [[TodoTableViewCell alloc]initWithContentLabel];
-        return cell;
-    }
     TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if(!cell){
         cell = [[TodoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
@@ -106,23 +122,14 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 40.f;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _todoListArray.count + 1;
+    return _todoListArray.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if (indexPath.row == _todoListArray.count) {
-        [self.delegate didSelectedTodoTableCellWithTodoList:nil];
-        return;
-    }
     [self.delegate didSelectedTodoTableCellWithTodoList:_todoListArray[indexPath.row]];
 }
 

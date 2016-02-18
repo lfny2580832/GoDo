@@ -15,6 +15,7 @@
 #import "CalendarVC.h"
 #import "BaseNavigationController.h"
 #import "RLMThingType.h"
+#import "UserDefaultManage.h"
 
 @interface MainTabBarVC ()
 
@@ -35,7 +36,6 @@
 - (void)initViews
 {
 //    [self simulateThingType];
-////
 //    [self simulateTodoList];
     
     CalendarVC *calendarVC = [[CalendarVC alloc]init];
@@ -51,8 +51,8 @@
 
 - (void)simulateTodoList
 {
-    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"todoMaxId"];
-
+    [UserDefaultManager setTodoMaxId:1];
+    
     RLMRealm *realm = [RLMRealm defaultRealm];
     RLMThing *thing = [[RLMThing alloc]init];
     RLMThingType *type = [[RLMThingType objectsWhere:@"typeId = 3"] firstObject];

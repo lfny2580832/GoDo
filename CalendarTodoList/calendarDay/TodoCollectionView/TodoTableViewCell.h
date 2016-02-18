@@ -14,6 +14,4 @@
 
 @property (nonatomic, strong) TodoList *todoList;
 
-- (instancetype)initWithContentLabel;
-
 @end
