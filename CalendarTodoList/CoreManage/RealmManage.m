@@ -60,19 +60,44 @@
         todolist.thing.thingType.green = RLMTodoList.thing.thingType.green;
         todolist.thing.thingType.blue = RLMTodoList.thing.thingType.blue;
         
-        NSString *todoListStr;
-        if (RLMTodoList) {
-            NSString *timeStr = [NSString getHourMinuteDateFromTimeInterval:RLMTodoList.startTime];
-            todoListStr = [NSString stringWithFormat:@"%@  %@",timeStr,RLMTodoList.thing.thingStr];
-            todolist.briefStr = todoListStr;
-            [resultArray addObject:todolist];
+        if (RLMTodoList.doneType == Done) {
+            todolist.doneType = Done;
         }
+        else
+        {
+            long long nowStamp = [[NSDate date] timeIntervalSinceReferenceDate];
+            if (nowStamp > todolist.endTime)
+                todolist.doneType = OutOfDate;
+            else if (todolist.startTime < nowStamp && nowStamp < todolist.endTime)
+                todolist.doneType = Doing;
+            else if (nowStamp < todolist.startTime)
+                todolist.doneType = NotStart;
+        }
+        [resultArray addObject:todolist];
     }
-    return resultArray;
+    return [self sortArrayByStartTimeWithArray:resultArray];
 }
 
+- (NSArray *)sortArrayByStartTimeWithArray:(NSArray *)array
+{
+    NSComparator cmptr = ^(TodoList *todo1, TodoList *todo2){
+        if (todo1.startTime > todo2.startTime) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        
+        if (todo1.startTime < todo2.startTime) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    };
+    
+    NSArray *finalArray = [array sortedArrayUsingComparator:cmptr];
+    return finalArray;
+}
+
+
 #pragma mark 创建RLMTodolist
-- (void)createTodoListWithThingType:(ThingType *)type contentStr:(NSString *)contentStr startDate:(NSDate *)startDate endDate:(NSDate *)endDate
+- (void)createTodoListWithThingType:(ThingType *)type contentStr:(NSString *)contentStr startDate:(NSDate *)startDate endDate:(NSDate *)endDate tableId:(NSInteger)tableId
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
 
@@ -90,8 +115,13 @@
     thing.thingType = thingType;
     thing.thingStr = contentStr;
     todolistModel.thing = thing;
-    todolistModel.tableId = [UserDefaultManager todoMaxId] + 1;
-    [UserDefaultManager setTodoMaxId:todolistModel.tableId];
+    
+    if (!tableId) {
+        todolistModel.tableId = [UserDefaultManager todoMaxId] + 1;
+        [UserDefaultManager setTodoMaxId:todolistModel.tableId];
+    }else
+        todolistModel.tableId = tableId;
+
     
     [realm beginWriteTransaction];
     [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];

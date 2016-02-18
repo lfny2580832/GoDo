@@ -151,7 +151,7 @@ static CGFloat datePickerCellHeight = 240.f;
         return;
     }
     
-    [RealmManager createTodoListWithThingType:_todoThingType contentStr:_todoContentStr startDate:_startDate endDate:_endDate];
+    [RealmManager createTodoListWithThingType:_todoThingType contentStr:_todoContentStr startDate:_startDate endDate:_endDate tableId:_tableId];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }

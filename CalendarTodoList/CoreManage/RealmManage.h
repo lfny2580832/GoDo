@@ -26,7 +26,7 @@
 - (NSMutableArray *)getThingTypeArray;
 
 #pragma mark 创建RLMTodolist
-- (void)createTodoListWithThingType:(ThingType *)type contentStr:(NSString *)contentStr startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+- (void)createTodoListWithThingType:(ThingType *)type contentStr:(NSString *)contentStr startDate:(NSDate *)startDate endDate:(NSDate *)endDate tableId:(NSInteger)tableId;
 
 #pragma mark 删除todolist
 - (void)deleteTodoListWithTableId:(NSInteger)tableId;

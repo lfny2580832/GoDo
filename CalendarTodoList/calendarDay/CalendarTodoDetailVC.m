@@ -62,18 +62,14 @@
 - (void)returnChosenDate:(NSDate *)chosenDate
 {
     NSDateComponents *comps = [[NSDateComponents alloc] init];
-
     comps = [[NSCalendar currentCalendar] components:
                                            NSCalendarUnitYear|
                                            NSCalendarUnitMonth|
                                            NSCalendarUnitDay|
                                            NSCalendarUnitHour
                                             fromDate:chosenDate];
-    
     [comps setHour:8];
-    
     NSDate *tempDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
-    
     _chosenDate = tempDate;
 }
 

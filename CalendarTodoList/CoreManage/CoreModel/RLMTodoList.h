@@ -10,7 +10,7 @@
 #import "RLMThing.h"
 
 //月界面只显示未开始、进行中和过期 （可设置）
-typedef NS_ENUM(NSInteger, doneType)
+typedef NS_ENUM(NSInteger, DoneType)
 {
     NotStart = 0,       //未开始
     Doing,              //进行中
@@ -31,5 +31,6 @@ typedef NS_ENUM(NSInteger, doneType)
 ///对应事件;
 @property (nonatomic, strong) RLMThing *thing;
 
-//@property (nonatomic, st)
+@property (nonatomic, assign) DoneType doneType;
+
 @end

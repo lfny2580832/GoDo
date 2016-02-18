@@ -93,6 +93,7 @@
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.tableFooterView = [UIView new];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.estimatedRowHeight = 40.0;
     _tableView.rowHeight = UITableViewAutomaticDimension;
     [self addSubview:_tableView];
@@ -117,7 +118,7 @@
     if(!cell){
         cell = [[TodoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     cell.todoList = _todoListArray[indexPath.row];
     return cell;
 }

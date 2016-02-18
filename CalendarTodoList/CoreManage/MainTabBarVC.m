@@ -59,10 +59,12 @@
     thing.thingType = type;
     thing.thingStr = @"开始创建你的任务吧！";
     RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
-    todolistModel.startTime = [NSDate timeIntervalSinceReferenceDate];
+    NSDate *startDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];
+    todolistModel.startTime = [startDate timeIntervalSinceReferenceDate];
     todolistModel.endTime = todolistModel.startTime + 60 * 60;
     todolistModel.tableId = 1;
     todolistModel.thing = thing;
+    todolistModel.doneType = NotStart;
     
     [realm beginWriteTransaction];
     [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];

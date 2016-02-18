@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RLMTodoList.h"
 #import "Thing.h"
 
 @interface TodoList : NSObject
@@ -21,7 +22,7 @@
 @property (nonatomic, assign) long long endTime;
 ///对应事件;
 @property (nonatomic, strong) Thing *thing;
-///事件概述（RLM模型中没有）
-@property (nonatomic, copy) NSString *briefStr;
+///完成情况
+@property (nonatomic, assign) DoneType doneType;
 
 @end
