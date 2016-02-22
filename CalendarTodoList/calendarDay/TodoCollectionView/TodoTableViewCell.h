@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) TodoList *todoList;
 
+@property (nonatomic, assign) NSInteger tag;
+
 @end

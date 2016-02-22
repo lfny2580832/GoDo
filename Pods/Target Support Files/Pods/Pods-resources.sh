@@ -57,6 +57,42 @@ install_resource()
       ;;
   esac
 }
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/MMVideoPreviewPlay@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/MMVideoPreviewPlayHL@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/navi_back@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/photo_def_photoPickerVc@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/photo_def_previewVc@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/photo_number_icon@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/photo_original_def@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/photo_original_sel@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/photo_sel_photoPickerVc@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/photo_sel_previewVc@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/preview_number_icon@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/preview_original_def@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/TableViewArrow@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/TZAlbumCell.xib"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/TZAssetCell.xib"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/VideoSendIcon@2x.png"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/MMVideoPreviewPlay@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/MMVideoPreviewPlayHL@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/navi_back@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/photo_def_photoPickerVc@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/photo_def_previewVc@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/photo_number_icon@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/photo_original_def@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/photo_original_sel@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/photo_sel_photoPickerVc@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/photo_sel_previewVc@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/preview_number_icon@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/preview_original_def@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/TableViewArrow@2x.png"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/TZAlbumCell.xib"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/TZAssetCell.xib"
+  install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/VideoSendIcon@2x.png"
+fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

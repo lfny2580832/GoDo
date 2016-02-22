@@ -11,6 +11,7 @@
 #import "RLMTodoList.h"
 #import "RLMThingType.h"
 
+#import "TZImagePickerController.h"
 #import "TodoContentView.h"
 #import "TodoProjectView.h"
 #import "ChooseProjectVC.h"
@@ -22,7 +23,7 @@
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"
 
-@interface TodoDetailVC ()<TodoContentViewDelegate,TodoProjectViewDelegate,ChooseProjectVCDelegate,ChooseModeCellDelegate,DatePickerCellDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface TodoDetailVC ()<UITableViewDataSource,UITableViewDelegate,TodoContentViewDelegate,TodoProjectViewDelegate,ChooseProjectVCDelegate,ChooseModeCellDelegate,DatePickerCellDelegate,TZImagePickerControllerDelegate>
 
 @end
 
@@ -39,6 +40,7 @@
     
     UIDatePickerMode _datePickerMode; //全天 or 时段
     
+    TZImagePickerController *_imagePickerVC;
     DatePickerCell *_startCell;
     DatePickerCell *_endCell;
     
@@ -52,6 +54,37 @@
 static CGFloat cellHeight = 50.f;
 static CGFloat datePickerCellHeight = 240.f;
 
+#pragma mark 添加图片
+- (void)pickImageWithCurrentImageCount:(NSInteger)count
+{
+    _imagePickerVC = [[TZImagePickerController alloc] initWithMaxImagesCount:4 - count delegate:self];
+    [_imagePickerVC setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets) {
+        for (int i = 0 ; i < photos.count; i ++)
+        {
+            UIImage *image = [NSObject imageCompressForWidth:photos[i] targetWidth:SCREEN_WIDTH * 1.5];
+            NSData * imageData = UIImageJPEGRepresentation(image,1);
+            NSInteger length = [imageData length]/1024;
+            NSLog(@"图片大小 %ld",(long)length);
+            
+        }
+    }];
+    
+    _imagePickerVC.navigationBar.barTintColor = KNaviColor;
+    _imagePickerVC.allowPickingVideo = NO;
+    _imagePickerVC.allowPickingOriginalPhoto = YES;
+    
+    [self presentViewController:_imagePickerVC animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets
+{
+    
+}
+
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets infos:(NSArray<NSDictionary *> *)infos
+{
+    
+}
 #pragma mark 删除任务
 - (void)deleteTodoList
 {
@@ -168,17 +201,12 @@ static CGFloat datePickerCellHeight = 240.f;
 #pragma mark TableView DataSource Delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (_tableId > 0) {
-        return 2;
-    }else{
-        return 1;
-    }
+    return _tableId > 0? 2:1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section == 0) return 3;
-    return 1;
+    return section == 0 ? 3:1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -281,13 +309,13 @@ static CGFloat datePickerCellHeight = 240.f;
 {
     self.view.backgroundColor = RGBA(247, 247, 247, 1.0);
 
-    UIView *headView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 125)];
+    UIView *headView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 195)];
     
-    _todoContentView = [[TodoContentView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 75)];
+    _todoContentView = [[TodoContentView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 145)];
     _todoContentView.delegate = self;
     [headView addSubview:_todoContentView];
     
-    _todoProjectView = [[TodoProjectView alloc]initWithFrame:CGRectMake(0, 75, SCREEN_WIDTH, 50)];
+    _todoProjectView = [[TodoProjectView alloc]initWithFrame:CGRectMake(0, 145, SCREEN_WIDTH, 50)];
     _todoProjectView.delegate = self;
     [headView addSubview:_todoProjectView];
     

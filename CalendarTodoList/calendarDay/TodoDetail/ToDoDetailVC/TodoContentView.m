@@ -9,13 +9,21 @@
 #import "TodoContentView.h"
 
 @implementation TodoContentView
+{
+    UIImageView *_addImageView;
+}
 
-#pragma mark
+#pragma mark KVO Texfield
 - (void)textFieldChanged:(UITextField *)textField
 {
     [self.delegate getTodoContentWith:textField.text];
 }
 
+#pragma mark 点击添加图片
+- (void)addImageViewClicked
+{
+    [self.delegate pickImageWithCurrentImageCount:0];
+}
 
 #pragma mark 初始化
 - (instancetype)initWithFrame:(CGRect)frame
@@ -46,9 +54,20 @@
     [self addSubview:_todoContentField];
     [_todoContentField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(27);
-        make.bottom.equalTo(self).offset(-26);
+        make.bottom.equalTo(self).offset(-96);
         make.left.equalTo(self).offset(25);
         make.right.equalTo(self).offset(-25);
+    }];
+    
+    _addImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"AlbumAddBtn.png"]];
+    _addImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *addImageRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addImageViewClicked)];
+    [_addImageView addGestureRecognizer:addImageRecognizer];
+    [self addSubview:_addImageView];
+    [_addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_todoContentField.mas_bottom).offset(20);
+        make.left.equalTo(_todoContentField);
+        make.size.mas_equalTo(CGSizeMake(60, 60));
     }];
     
     UIView *lineView2 = [[UIView alloc]init];

@@ -16,6 +16,7 @@
     UILabel *_textLabel;
     UILabel *_timeLabel;
     
+    UIImageView *_testView;
     UIView *_topLine;
     UIView *_cicleView;
     UIView *_bottomLine;
@@ -39,6 +40,24 @@ static NSInteger LineWidth = 2;
     
 }
 
+- (void)setTag:(NSInteger)tag
+{
+    if (tag == 1) {
+        //没图片
+        [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.contentView).offset(-15);
+        }];
+ 
+        _testView.hidden = YES;
+    }else{
+        //有图片
+        [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.contentView).offset(-65);
+        }];
+        _testView.hidden = NO;
+    }
+}
+
 #pragma mark 初始化
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier                                                                             
 {
@@ -54,15 +73,6 @@ static NSInteger LineWidth = 2;
 
 - (void)initView
 {
-    UIImageView *testView = [[UIImageView alloc]init];
-    testView.backgroundColor = [UIColor whiteColor];
-    [self.contentView addSubview:testView];
-    [testView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(85);
-        make.size.mas_equalTo(CGSizeMake(50, 50));
-        make.bottom.equalTo(self.contentView).offset(-10);
-    }];
-    
     _textLabel = [[UILabel alloc]init];
     _textLabel.textColor = [UIColor whiteColor];
     _textLabel.textAlignment = NSTextAlignmentLeft;
@@ -70,9 +80,18 @@ static NSInteger LineWidth = 2;
     [self.contentView addSubview:_textLabel];
     [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(15);
-        make.bottom.equalTo(testView.mas_top).offset(-15);
-        make.left.equalTo(self.contentView).offset(85);
+        make.bottom.equalTo(self.contentView).offset(-65);
+        make.left.equalTo(self.contentView).offset(90);
         make.right.equalTo(self.contentView).offset(-15);
+    }];
+    
+    _testView = [[UIImageView alloc]init];
+    _testView.backgroundColor = [UIColor whiteColor];
+    [self.contentView addSubview:_testView];
+    [_testView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(90);
+        make.size.mas_equalTo(CGSizeMake(50, 50));
+        make.top.equalTo(_textLabel.mas_bottom).offset(10);
     }];
     
     _timeLabel = [[UILabel alloc]init];
@@ -89,7 +108,7 @@ static NSInteger LineWidth = 2;
     [self.contentView addSubview:_topLine];
     [_topLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView);
-        make.left.equalTo(self.contentView).offset(65);
+        make.left.equalTo(self.contentView).offset(70);
         make.size.mas_equalTo(CGSizeMake(LineWidth, 22));
     }];
     

@@ -12,6 +12,8 @@
 
 - (void)getTodoContentWith:(NSString *)todoContentStr;
 
+- (void)pickImageWithCurrentImageCount:(NSInteger)count;
+
 @end
 
 @interface TodoContentView : UIView<UITextFieldDelegate>

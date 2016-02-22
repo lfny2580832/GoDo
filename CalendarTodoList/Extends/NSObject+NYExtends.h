@@ -21,4 +21,8 @@
 
 #pragma mark 根据日期返回dayId
 - (NSInteger)getDayIdWithDate:(NSDate *)date;
+
+#pragma mark 改变图片宽高
+-(UIImage *) imageCompressForWidth:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth;
+
 @end
