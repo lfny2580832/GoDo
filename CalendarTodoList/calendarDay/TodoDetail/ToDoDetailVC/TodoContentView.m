@@ -8,7 +8,7 @@
 
 #import "TodoContentView.h"
 
-#import "NSObject+NYExtends.h"
+#import "ZoomImageView.h"
 
 @implementation TodoContentView
 {
@@ -29,6 +29,7 @@
     [self.delegate pickImageWithCurrentImageCount:_imageCount];
 }
 
+#pragma mark 加载图片
 - (void)updateContentViewWithImageArray:(NSMutableArray *)images
 {
     NSInteger imageEdge = 10;
@@ -48,7 +49,6 @@
         todoImageView.userInteractionEnabled = YES;
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
         [todoImageView addGestureRecognizer:recognizer];
-        todoImageView.tag = i;
         [self addSubview:todoImageView];
         [todoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_todoContentField.mas_bottom).offset(20);
@@ -62,7 +62,8 @@
 - (void)enlargeImageWithImageView:(id)sender
 {
     UITapGestureRecognizer * singleTap = (UITapGestureRecognizer *)sender;
-    [NSObject showImage:(UIImageView *)[singleTap view]];
+    ZoomImageView *zoomImageView = [[ZoomImageView alloc]initWithImageView:(UIImageView *)[singleTap view]];
+    [zoomImageView showBigImageView];
 }
 
 #pragma mark 初始化

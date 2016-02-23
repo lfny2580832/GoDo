@@ -39,6 +39,7 @@
 		4AB09F031C6287D8006EB837 /* ThingType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F021C6287D8006EB837 /* ThingType.m */; };
 		4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F051C62E396006EB837 /* ChooseProjectVC.m */; };
 		4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F081C62E86C006EB837 /* ChooseProjectTableCell.m */; };
+		4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB608F1C7CE3C60040079C /* ZoomImageView.m */; };
 		4AD589EE1C64DBD100E74761 /* AddNewProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */; };
 		4AD589F41C64E07E00E74761 /* ChooseTypeColorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589F31C64E07E00E74761 /* ChooseTypeColorVC.m */; };
 		4AD589F71C64EBCE00E74761 /* TypeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589F61C64EBCE00E74761 /* TypeColor.m */; };
@@ -144,6 +145,8 @@
 		4AB09F051C62E396006EB837 /* ChooseProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseProjectVC.m; sourceTree = "<group>"; };
 		4AB09F071C62E86C006EB837 /* ChooseProjectTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseProjectTableCell.h; sourceTree = "<group>"; };
 		4AB09F081C62E86C006EB837 /* ChooseProjectTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseProjectTableCell.m; sourceTree = "<group>"; };
+		4ABB608E1C7CE3C60040079C /* ZoomImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomImageView.h; sourceTree = "<group>"; };
+		4ABB608F1C7CE3C60040079C /* ZoomImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomImageView.m; sourceTree = "<group>"; };
 		4AD589EC1C64DBD100E74761 /* AddNewProjectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewProjectVC.h; sourceTree = "<group>"; };
 		4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewProjectVC.m; sourceTree = "<group>"; };
 		4AD589F21C64E07E00E74761 /* ChooseTypeColorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseTypeColorVC.h; sourceTree = "<group>"; };
@@ -411,6 +414,8 @@
 		4ADA1D9C1C3E496D001ECBF4 /* Extends */ = {
 			isa = PBXGroup;
 			children = (
+				4ABB608E1C7CE3C60040079C /* ZoomImageView.h */,
+				4ABB608F1C7CE3C60040079C /* ZoomImageView.m */,
 				4ADA1D9D1C3E496D001ECBF4 /* GradientView.h */,
 				4ADA1D9E1C3E496D001ECBF4 /* GradientView.m */,
 				4ADA1DA11C3E496D001ECBF4 /* UILabelZoomable.h */,
@@ -688,6 +693,7 @@
 				4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */,
 				4AB09F031C6287D8006EB837 /* ThingType.m in Sources */,
 				4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */,
+				4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */,
 				4ADA1DA71C3E496D001ECBF4 /* UILabelZoomable.m in Sources */,
 				4AEB373B1C599F17007C9F92 /* RLMThing.m in Sources */,
 				4A9FC1BD1C699FAE00A1D888 /* TodoDetailVC.m in Sources */,
