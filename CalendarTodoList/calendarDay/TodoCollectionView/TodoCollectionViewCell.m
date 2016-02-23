@@ -120,10 +120,6 @@
     }
     
     cell.todoList = _todoListArray[indexPath.row];
-    if (indexPath.row == 1) {
-        cell.tag = 2;
-    }else
-        cell.tag = 1;
     return cell;
 }
 

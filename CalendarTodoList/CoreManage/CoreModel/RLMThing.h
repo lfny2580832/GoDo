@@ -8,7 +8,7 @@
 
 #import <Realm/Realm.h>
 #import "RLMThingType.h"
-
+#import "RLMImage.h"
 
 @interface RLMThing : RLMObject
 
@@ -16,6 +16,8 @@
 @property RLMThingType *thingType;
 ///事件字符串
 @property NSString *thingStr;
+///图片数组
+@property RLMArray <RLMImage>* imageDatas;
 
 @end
 

@@ -40,6 +40,7 @@
 		4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F051C62E396006EB837 /* ChooseProjectVC.m */; };
 		4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F081C62E86C006EB837 /* ChooseProjectTableCell.m */; };
 		4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB608F1C7CE3C60040079C /* ZoomImageView.m */; };
+		4ABB60931C7CE3C60040079C /* RLMImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB60921C7CE3C60040079C /* RLMImage.m */; };
 		4AD589EE1C64DBD100E74761 /* AddNewProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */; };
 		4AD589F41C64E07E00E74761 /* ChooseTypeColorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589F31C64E07E00E74761 /* ChooseTypeColorVC.m */; };
 		4AD589F71C64EBCE00E74761 /* TypeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589F61C64EBCE00E74761 /* TypeColor.m */; };
@@ -147,6 +148,8 @@
 		4AB09F081C62E86C006EB837 /* ChooseProjectTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseProjectTableCell.m; sourceTree = "<group>"; };
 		4ABB608E1C7CE3C60040079C /* ZoomImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomImageView.h; sourceTree = "<group>"; };
 		4ABB608F1C7CE3C60040079C /* ZoomImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomImageView.m; sourceTree = "<group>"; };
+		4ABB60911C7CE3C60040079C /* RLMImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMImage.h; sourceTree = "<group>"; };
+		4ABB60921C7CE3C60040079C /* RLMImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMImage.m; sourceTree = "<group>"; };
 		4AD589EC1C64DBD100E74761 /* AddNewProjectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewProjectVC.h; sourceTree = "<group>"; };
 		4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewProjectVC.m; sourceTree = "<group>"; };
 		4AD589F21C64E07E00E74761 /* ChooseTypeColorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseTypeColorVC.h; sourceTree = "<group>"; };
@@ -439,6 +442,8 @@
 			children = (
 				4AEB37371C599F17007C9F92 /* RLMThing.h */,
 				4AEB37381C599F17007C9F92 /* RLMThing.m */,
+				4ABB60911C7CE3C60040079C /* RLMImage.h */,
+				4ABB60921C7CE3C60040079C /* RLMImage.m */,
 				4AEB37391C599F17007C9F92 /* RLMTodoList.h */,
 				4AEB373A1C599F17007C9F92 /* RLMTodoList.m */,
 				4AB09EFE1C627EF0006EB837 /* RLMThingType.h */,
@@ -662,6 +667,7 @@
 				4AF11FF81C6B1206007DC614 /* ChooseModeCell.m in Sources */,
 				4ADA1DA51C3E496D001ECBF4 /* GradientView.m in Sources */,
 				4AF34A201C74ADAC00004EC4 /* UserDefaultManage.m in Sources */,
+				4ABB60931C7CE3C60040079C /* RLMImage.m in Sources */,
 				4A4F9CBD1C3F3E280000F24C /* RDVCalendarDayCell.m in Sources */,
 				4A84C8741C43DF3F00F83C5B /* NSObject+NYExtends.m in Sources */,
 				4A1290901C5DD4FF006E078B /* TodoCollectionViewCell.m in Sources */,

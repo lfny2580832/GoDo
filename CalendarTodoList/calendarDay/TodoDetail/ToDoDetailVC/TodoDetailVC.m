@@ -94,7 +94,7 @@ static CGFloat datePickerCellHeight = 240.f;
     for (int i = 0 ; i < photos.count; i ++)
     {
         UIImage *image = [NSObject imageCompressForWidth:photos[i] targetWidth:SCREEN_WIDTH * 1.5];
-        NSData * imageData = UIImageJPEGRepresentation(image,1);
+        NSData * imageData = UIImageJPEGRepresentation(image,0.5);
         NSInteger length = [imageData length]/1024;
         NSLog(@"图片大小 %ldkb",(long)length);
         [_chosenImages addObject:image];
@@ -117,10 +117,10 @@ static CGFloat datePickerCellHeight = 240.f;
 {
     UIImage* original = [info objectForKey:UIImagePickerControllerOriginalImage];
     UIImage *image = [NSObject imageCompressForWidth:original targetWidth:SCREEN_WIDTH * 1.5];
-    NSData * imageData = UIImageJPEGRepresentation(image,1);
+    NSData * imageData = UIImageJPEGRepresentation(image,0.5);
     NSInteger length = [imageData length]/1024;
     NSLog(@"图片大小 %ldkb",(long)length);
-    
+    [_chosenImages addObject:image];
     [_todoContentView updateContentViewWithImageArray:_chosenImages];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -224,7 +224,7 @@ static CGFloat datePickerCellHeight = 240.f;
         return;
     }
     
-    [RealmManager createTodoListWithThingType:_todoThingType contentStr:_todoContentStr startDate:_startDate endDate:_endDate tableId:_tableId];
+    [RealmManager createTodoListWithThingType:_todoThingType contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate endDate:_endDate tableId:_tableId];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }

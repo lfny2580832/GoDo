@@ -10,13 +10,13 @@
 
 #import "NSObject+NYExtends.h"
 #import "NSString+ZZExtends.h"
+#import "ZoomImageView.h"
 
 @implementation TodoTableViewCell
 {
     UILabel *_textLabel;
     UILabel *_timeLabel;
     
-    UIImageView *_testView;
     UIView *_topLine;
     UIView *_cicleView;
     UIView *_bottomLine;
@@ -38,24 +38,33 @@ static NSInteger LineWidth = 2;
     NSInteger B = todoList.thing.thingType.blue;
     _cicleView.backgroundColor = RGBA(R, G, B, 1.0);
     
+    if (_todoList.thing.images) {
+        NSInteger imageCount = _todoList.thing.images.count;
+        NSArray *images = _todoList.thing.images;
+        NSInteger imageEdge = 10;
+        //创建iamgeView
+        for (int i = 0; i < imageCount; i ++) {
+            UIImageView *todoImageView = [[UIImageView alloc]initWithImage:images[i]];
+            todoImageView.userInteractionEnabled = YES;
+            todoImageView.contentMode= UIViewContentModeScaleAspectFit;
+            UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
+            [todoImageView addGestureRecognizer:recognizer];
+            [self addSubview:todoImageView];
+            [todoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.contentView).offset(90 + i*(50+imageEdge));
+                make.size.mas_equalTo(CGSizeMake(50, 50));
+                make.top.equalTo(_textLabel.mas_bottom).offset(10);
+            }];
+        }
+    }
 }
 
-- (void)setTag:(NSInteger)tag
+#pragma mark 放大ImageView中的图片
+- (void)enlargeImageWithImageView:(id)sender
 {
-    if (tag == 1) {
-        //没图片
-        [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.contentView).offset(-15);
-        }];
- 
-        _testView.hidden = YES;
-    }else{
-        //有图片
-        [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.contentView).offset(-65);
-        }];
-        _testView.hidden = NO;
-    }
+    UITapGestureRecognizer * singleTap = (UITapGestureRecognizer *)sender;
+    ZoomImageView *zoomImageView = [[ZoomImageView alloc]initWithImageView:(UIImageView *)[singleTap view]];
+    [zoomImageView showBigImageView];
 }
 
 #pragma mark 初始化
@@ -83,15 +92,6 @@ static NSInteger LineWidth = 2;
         make.bottom.equalTo(self.contentView).offset(-65);
         make.left.equalTo(self.contentView).offset(90);
         make.right.equalTo(self.contentView).offset(-15);
-    }];
-    
-    _testView = [[UIImageView alloc]init];
-    _testView.backgroundColor = [UIColor whiteColor];
-    [self.contentView addSubview:_testView];
-    [_testView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(90);
-        make.size.mas_equalTo(CGSizeMake(50, 50));
-        make.top.equalTo(_textLabel.mas_bottom).offset(10);
     }];
     
     _timeLabel = [[UILabel alloc]init];

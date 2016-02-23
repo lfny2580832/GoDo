@@ -14,5 +14,7 @@
 @property (nonatomic, strong) ThingType *thingType;
 ///事件字符串
 @property (nonatomic, copy) NSString *thingStr;
+///图片数组
+@property (nonatomic, strong) NSArray *images;
 
 @end

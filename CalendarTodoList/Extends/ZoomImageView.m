@@ -17,8 +17,8 @@
     
     UIView *_returnView;
 }
-#pragma mark 放大缩小图片
 
+#pragma mark 初始化
 - (instancetype)initWithImageView:(UIImageView *)smallImageView
 {
     self = [super initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -38,6 +38,7 @@
     return self;
 }
 
+#pragma mark 放大
 -(void)showBigImageView
 {
     UIImage *image = _smallImageView.image;

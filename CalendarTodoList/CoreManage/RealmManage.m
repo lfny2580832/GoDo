@@ -60,6 +60,16 @@
         todolist.thing.thingType.green = RLMTodoList.thing.thingType.green;
         todolist.thing.thingType.blue = RLMTodoList.thing.thingType.blue;
         
+        if (RLMTodoList.thing.imageDatas) {
+            NSMutableArray *images = [[NSMutableArray alloc]initWithCapacity:0];
+            for(RLMImage *rlmImage in RLMTodoList.thing.imageDatas)
+            {
+                UIImage *image = [UIImage imageWithData:rlmImage.imageData];
+                [images addObject:image];
+            }
+            todolist.thing.images = (NSArray *)images;
+        }
+        
         if (RLMTodoList.doneType == Done) {
             todolist.doneType = Done;
         }
@@ -78,6 +88,7 @@
     return [self sortArrayByStartTimeWithArray:resultArray];
 }
 
+#pragma mark 根据开始时间进行排序
 - (NSArray *)sortArrayByStartTimeWithArray:(NSArray *)array
 {
     NSComparator cmptr = ^(TodoList *todo1, TodoList *todo2){
@@ -97,7 +108,7 @@
 
 
 #pragma mark 创建RLMTodolist
-- (void)createTodoListWithThingType:(ThingType *)type contentStr:(NSString *)contentStr startDate:(NSDate *)startDate endDate:(NSDate *)endDate tableId:(NSInteger)tableId
+- (void)createTodoListWithThingType:(ThingType *)type contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate endDate:(NSDate *)endDate tableId:(NSInteger)tableId
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
 
@@ -114,7 +125,19 @@
     thingType.blue = type.blue;
     thing.thingType = thingType;
     thing.thingStr = contentStr;
+    
+    if (images) {
+        for(UIImage *image in images)
+        {
+            RLMImage *rlmImage = [[RLMImage alloc]init];
+            NSData *imageData = UIImageJPEGRepresentation(image,1);
+            rlmImage.imageData = imageData;
+            [thing.imageDatas addObject:rlmImage];
+        }
+    }
+    
     todolistModel.thing = thing;
+    
     
     if (!tableId) {
         todolistModel.tableId = [UserDefaultManager todoMaxId] + 1;
