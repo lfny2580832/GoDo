@@ -38,10 +38,13 @@ static NSInteger LineWidth = 2;
     NSInteger B = todoList.thing.thingType.blue;
     _cicleView.backgroundColor = RGBA(R, G, B, 1.0);
     
-    if (_todoList.thing.images) {
+    if (_todoList.thing.images.count > 0) {
         NSInteger imageCount = _todoList.thing.images.count;
         NSArray *images = _todoList.thing.images;
         NSInteger imageEdge = 10;
+        [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.contentView).offset(-65);
+        }];
         //创建iamgeView
         for (int i = 0; i < imageCount; i ++) {
             UIImageView *todoImageView = [[UIImageView alloc]initWithImage:images[i]];
@@ -56,6 +59,10 @@ static NSInteger LineWidth = 2;
                 make.top.equalTo(_textLabel.mas_bottom).offset(10);
             }];
         }
+    }else{
+        [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.contentView).offset(-15);
+        }];
     }
 }
 
@@ -89,7 +96,7 @@ static NSInteger LineWidth = 2;
     [self.contentView addSubview:_textLabel];
     [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(15);
-        make.bottom.equalTo(self.contentView).offset(-65);
+        make.bottom.equalTo(self.contentView).offset(-15);
         make.left.equalTo(self.contentView).offset(90);
         make.right.equalTo(self.contentView).offset(-15);
     }];
