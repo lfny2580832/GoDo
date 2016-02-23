@@ -21,4 +21,7 @@
 @property (nonatomic, strong) UITextField *todoContentField;
 
 @property (nonatomic, weak) id<TodoContentViewDelegate> delegate;
+
+- (void)updateContentViewWithImageArray:(NSMutableArray *)images;
+
 @end

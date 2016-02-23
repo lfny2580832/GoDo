@@ -8,9 +8,13 @@
 
 #import "TodoContentView.h"
 
+#import "NSObject+NYExtends.h"
+
 @implementation TodoContentView
 {
     UIImageView *_addImageView;
+    
+    NSInteger _imageCount;
 }
 
 #pragma mark KVO Texfield
@@ -22,7 +26,43 @@
 #pragma mark 点击添加图片
 - (void)addImageViewClicked
 {
-    [self.delegate pickImageWithCurrentImageCount:0];
+    [self.delegate pickImageWithCurrentImageCount:_imageCount];
+}
+
+- (void)updateContentViewWithImageArray:(NSMutableArray *)images
+{
+    NSInteger imageEdge = 10;
+    _imageCount = images.count;
+    //改变添加按钮的左边距
+    if (_imageCount < 4) {
+        [_addImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(25 + _imageCount * (60 + imageEdge));
+        }];
+    }else if (_imageCount == 4){
+        _addImageView.hidden = YES;
+    }
+    
+    //创建iamgeView
+    for (int i = 0; i < _imageCount; i ++) {
+        UIImageView *todoImageView = [[UIImageView alloc]initWithImage:images[i]];
+        todoImageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
+        [todoImageView addGestureRecognizer:recognizer];
+        todoImageView.tag = i;
+        [self addSubview:todoImageView];
+        [todoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_todoContentField.mas_bottom).offset(20);
+            make.left.equalTo(self).offset(25 + i * (60 + imageEdge));
+            make.size.mas_equalTo(CGSizeMake(60, 60));
+        }];
+    }
+}
+
+#pragma mark 放大ImageView中的图片
+- (void)enlargeImageWithImageView:(id)sender
+{
+    UITapGestureRecognizer * singleTap = (UITapGestureRecognizer *)sender;
+    [NSObject showImage:(UIImageView *)[singleTap view]];
 }
 
 #pragma mark 初始化
@@ -66,7 +106,7 @@
     [self addSubview:_addImageView];
     [_addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_todoContentField.mas_bottom).offset(20);
-        make.left.equalTo(_todoContentField);
+        make.left.equalTo(self).offset(25);
         make.size.mas_equalTo(CGSizeMake(60, 60));
     }];
     

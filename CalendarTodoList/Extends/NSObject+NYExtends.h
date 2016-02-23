@@ -25,4 +25,7 @@
 #pragma mark 改变图片宽高
 -(UIImage *) imageCompressForWidth:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth;
 
+#pragma mark 放大缩小图片
+-(void)showImage:(UIImageView*)avatarImageView;
+
 @end

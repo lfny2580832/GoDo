@@ -23,7 +23,7 @@
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"
 
-@interface TodoDetailVC ()<UITableViewDataSource,UITableViewDelegate,TodoContentViewDelegate,TodoProjectViewDelegate,ChooseProjectVCDelegate,ChooseModeCellDelegate,DatePickerCellDelegate,TZImagePickerControllerDelegate>
+@interface TodoDetailVC ()<UITableViewDataSource,UITableViewDelegate,TodoContentViewDelegate,TodoProjectViewDelegate,ChooseProjectVCDelegate,ChooseModeCellDelegate,DatePickerCellDelegate,TZImagePickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @end
 
@@ -49,6 +49,7 @@
     NSInteger _tableId;
     NSDate *_startDate;
     NSDate *_endDate;
+    NSMutableArray *_chosenImages;
 }
 
 static CGFloat cellHeight = 50.f;
@@ -57,18 +58,29 @@ static CGFloat datePickerCellHeight = 240.f;
 #pragma mark 添加图片
 - (void)pickImageWithCurrentImageCount:(NSInteger)count
 {
-    _imagePickerVC = [[TZImagePickerController alloc] initWithMaxImagesCount:4 - count delegate:self];
-    [_imagePickerVC setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets) {
-        for (int i = 0 ; i < photos.count; i ++)
-        {
-            UIImage *image = [NSObject imageCompressForWidth:photos[i] targetWidth:SCREEN_WIDTH * 1.5];
-            NSData * imageData = UIImageJPEGRepresentation(image,1);
-            NSInteger length = [imageData length]/1024;
-            NSLog(@"图片大小 %ld",(long)length);
-            
-        }
-    }];
     
+    UIAlertController *imageSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [imageSheet addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                    style:UIAlertActionStyleCancel
+                                                  handler:nil]];
+    [imageSheet addAction:[UIAlertAction actionWithTitle:@"拍照"
+                                                    style:UIAlertActionStyleDefault
+                                                  handler:^(UIAlertAction *action) {
+                                                      [self takePhoto];
+                                                  }]];
+    [imageSheet addAction:[UIAlertAction actionWithTitle:@"从相册中选取"
+                                                    style:UIAlertActionStyleDefault
+                                                  handler:^(UIAlertAction *action) {
+                                                      [self chosenImageFromAlbumWithLeftCount:4-count];
+                                                  }]];
+    [self presentViewController:imageSheet animated:YES completion:nil];
+
+}
+
+#pragma mark 从相册选择照片
+- (void)chosenImageFromAlbumWithLeftCount:(NSInteger)count
+{
+    _imagePickerVC = [[TZImagePickerController alloc] initWithMaxImagesCount:count delegate:self];
     _imagePickerVC.navigationBar.barTintColor = KNaviColor;
     _imagePickerVC.allowPickingVideo = NO;
     _imagePickerVC.allowPickingOriginalPhoto = YES;
@@ -76,15 +88,43 @@ static CGFloat datePickerCellHeight = 240.f;
     [self presentViewController:_imagePickerVC animated:YES completion:nil];
 }
 
+//选择照片回调
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets
 {
-    
+    for (int i = 0 ; i < photos.count; i ++)
+    {
+        UIImage *image = [NSObject imageCompressForWidth:photos[i] targetWidth:SCREEN_WIDTH * 1.5];
+        NSData * imageData = UIImageJPEGRepresentation(image,1);
+        NSInteger length = [imageData length]/1024;
+        NSLog(@"图片大小 %ldkb",(long)length);
+        [_chosenImages addObject:image];
+    }
+    [_todoContentView updateContentViewWithImageArray:_chosenImages];
 }
 
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets infos:(NSArray<NSDictionary *> *)infos
+#pragma mark 拍照
+- (void)takePhoto
 {
-    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    picker.allowsEditing = NO;
+    picker.delegate = self;
+    [self presentViewController:picker animated:YES completion:nil];
 }
+
+//拍照回调
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    UIImage* original = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *image = [NSObject imageCompressForWidth:original targetWidth:SCREEN_WIDTH * 1.5];
+    NSData * imageData = UIImageJPEGRepresentation(image,1);
+    NSInteger length = [imageData length]/1024;
+    NSLog(@"图片大小 %ldkb",(long)length);
+    
+    [_todoContentView updateContentViewWithImageArray:_chosenImages];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark 删除任务
 - (void)deleteTodoList
 {
@@ -299,6 +339,7 @@ static CGFloat datePickerCellHeight = 240.f;
     if (self) {
         _initialDate = date;
         _datePickerMode = UIDatePickerModeDateAndTime;
+        _chosenImages = [[NSMutableArray alloc]initWithCapacity:0];
         [self setRightBackButtontile:@"保存"];
         [self initViews];
     }
