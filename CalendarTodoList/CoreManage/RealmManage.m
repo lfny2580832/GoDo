@@ -60,7 +60,7 @@
         todolist.thing.thingType.green = RLMTodoList.thing.thingType.green;
         todolist.thing.thingType.blue = RLMTodoList.thing.thingType.blue;
         
-        if (RLMTodoList.thing.imageDatas) {
+        if (RLMTodoList.thing.imageDatas.count) {
             NSMutableArray *images = [[NSMutableArray alloc]initWithCapacity:0];
             for(RLMImage *rlmImage in RLMTodoList.thing.imageDatas)
             {
@@ -126,7 +126,7 @@
     thing.thingType = thingType;
     thing.thingStr = contentStr;
     
-    if (images) {
+    if (images.count) {
         for(UIImage *image in images)
         {
             RLMImage *rlmImage = [[RLMImage alloc]init];

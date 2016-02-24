@@ -38,7 +38,7 @@ static NSInteger LineWidth = 2;
     NSInteger B = todoList.thing.thingType.blue;
     _cicleView.backgroundColor = RGBA(R, G, B, 1.0);
     
-    if (_todoList.thing.images.count > 0) {
+    if (_todoList.thing.images.count) {
         NSInteger imageCount = _todoList.thing.images.count;
         NSArray *images = _todoList.thing.images;
         NSInteger imageEdge = 10;
@@ -49,7 +49,8 @@ static NSInteger LineWidth = 2;
         for (int i = 0; i < imageCount; i ++) {
             UIImageView *todoImageView = [[UIImageView alloc]initWithImage:images[i]];
             todoImageView.userInteractionEnabled = YES;
-            todoImageView.contentMode= UIViewContentModeScaleAspectFit;
+            todoImageView.contentMode= UIViewContentModeScaleAspectFill;
+            todoImageView.clipsToBounds = YES;
             UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
             [todoImageView addGestureRecognizer:recognizer];
             [self addSubview:todoImageView];

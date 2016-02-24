@@ -175,6 +175,10 @@ static CGFloat datePickerCellHeight = 240.f;
     _todoProjectView.thingType = _todoThingType;
     _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todoList.startTime];
     _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todoList.endTime];
+    NSArray *images = _todoList.thing.images;
+    if (images.count) {
+        [_todoContentView updateContentViewWithImageArray:images];
+    }
 }
 
 #pragma mark 返回全天或时段

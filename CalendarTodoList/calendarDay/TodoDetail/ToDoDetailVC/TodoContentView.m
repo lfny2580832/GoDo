@@ -47,8 +47,8 @@
     for (int i = 0; i < _imageCount; i ++) {
         UIImageView *todoImageView = [[UIImageView alloc]initWithImage:images[i]];
         todoImageView.userInteractionEnabled = YES;
-        todoImageView.contentMode= UIViewContentModeScaleAspectFit;
-        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
+        todoImageView.contentMode= UIViewContentModeScaleAspectFill;
+        todoImageView.clipsToBounds = YES;        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
         [todoImageView addGestureRecognizer:recognizer];
         [self addSubview:todoImageView];
         [todoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
