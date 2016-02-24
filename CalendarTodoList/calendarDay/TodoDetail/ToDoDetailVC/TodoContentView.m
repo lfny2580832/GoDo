@@ -15,6 +15,7 @@
     UIImageView *_addImageView;
     
     NSInteger _imageCount;
+    NSArray *_images;
 }
 
 #pragma mark KVO Texfield
@@ -33,6 +34,7 @@
 - (void)updateContentViewWithImageArray:(NSMutableArray *)images
 {
     NSInteger imageEdge = 10;
+    _images = images;
     _imageCount = images.count;
     //改变添加按钮的左边距
     if (_imageCount < 4) {
@@ -48,7 +50,8 @@
         UIImageView *todoImageView = [[UIImageView alloc]initWithImage:images[i]];
         todoImageView.userInteractionEnabled = YES;
         todoImageView.contentMode= UIViewContentModeScaleAspectFill;
-        todoImageView.clipsToBounds = YES;        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
+        todoImageView.clipsToBounds = YES;
+        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
         [todoImageView addGestureRecognizer:recognizer];
         [self addSubview:todoImageView];
         [todoImageView mas_makeConstraints:^(MASConstraintMaker *make) {

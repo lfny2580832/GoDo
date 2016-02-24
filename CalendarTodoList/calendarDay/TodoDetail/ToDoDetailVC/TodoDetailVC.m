@@ -175,9 +175,9 @@ static CGFloat datePickerCellHeight = 240.f;
     _todoProjectView.thingType = _todoThingType;
     _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todoList.startTime];
     _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todoList.endTime];
-    NSMutableArray *images = (NSMutableArray *)_todoList.thing.images;
-    if (images.count) {
-        [_todoContentView updateContentViewWithImageArray:images];
+    _chosenImages = (NSMutableArray *)_todoList.thing.images;
+    if (_chosenImages.count) {
+        [_todoContentView updateContentViewWithImageArray:_chosenImages];
     }
 }
 
