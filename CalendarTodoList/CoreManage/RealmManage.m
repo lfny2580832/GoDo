@@ -10,11 +10,11 @@
 #import "UserDefaultManage.h"
 
 #import "RLMThing.h"
-#import "RLMTodoList.h"
+#import "RLMTodo.h"
 #import "RLMThingType.h"
 
 #import "Thing.h"
-#import "TodoList.h"
+#import "Todo.h"
 #import "ThingType.h"
 
 #import "NSString+ZZExtends.h"
@@ -33,57 +33,57 @@
     return sharedInstance;
 }
 
-#pragma mark 根据dayId获取todolist数组
+#pragma mark 根据dayId获取todo数组
 - (NSArray *)getDayInfoFromRealmWithDayId:(NSInteger)dayId
 {
-    RLMResults *result = [RLMTodoList objectsWhere:@"dayId = %ld",dayId];
+    RLMResults *result = [RLMTodo objectsWhere:@"dayId = %ld",dayId];
     NSMutableArray *resultArray = [NSMutableArray arrayWithCapacity:result.count];
     if (result.count == 0) {
         return nil;
     }
     for (int i = 0; i < result.count; i ++)
     {
-        RLMTodoList *RLMTodoList = [result objectAtIndex:i];
+        RLMTodo *RLMTodo = [result objectAtIndex:i];
         
-        TodoList *todolist = [[TodoList alloc]init];
-        todolist.startTime = RLMTodoList.startTime;
-        todolist.endTime = RLMTodoList.endTime;
-        todolist.tableId = RLMTodoList.tableId;
+        Todo *todo = [[Todo alloc]init];
+        todo.startTime = RLMTodo.startTime;
+        todo.endTime = RLMTodo.endTime;
+        todo.tableId = RLMTodo.tableId;
         
-        todolist.thing = [[Thing alloc]init];
-        todolist.thing.thingStr = RLMTodoList.thing.thingStr;
+        todo.thing = [[Thing alloc]init];
+        todo.thing.thingStr = RLMTodo.thing.thingStr;
         
-        todolist.thing.thingType = [[ThingType alloc]init];
-        todolist.thing.thingType.typeId = RLMTodoList.thing.thingType.typeId;
-        todolist.thing.thingType.typeStr = RLMTodoList.thing.thingType.typeStr;
-        todolist.thing.thingType.red = RLMTodoList.thing.thingType.red;
-        todolist.thing.thingType.green = RLMTodoList.thing.thingType.green;
-        todolist.thing.thingType.blue = RLMTodoList.thing.thingType.blue;
+        todo.thing.thingType = [[ThingType alloc]init];
+        todo.thing.thingType.typeId = RLMTodo.thing.thingType.typeId;
+        todo.thing.thingType.typeStr = RLMTodo.thing.thingType.typeStr;
+        todo.thing.thingType.red = RLMTodo.thing.thingType.red;
+        todo.thing.thingType.green = RLMTodo.thing.thingType.green;
+        todo.thing.thingType.blue = RLMTodo.thing.thingType.blue;
         
-        if (RLMTodoList.thing.imageDatas.count) {
+        if (RLMTodo.thing.imageDatas.count) {
             NSMutableArray *images = [[NSMutableArray alloc]initWithCapacity:0];
-            for(RLMImage *rlmImage in RLMTodoList.thing.imageDatas)
+            for(RLMImage *rlmImage in RLMTodo.thing.imageDatas)
             {
                 UIImage *image = [UIImage imageWithData:rlmImage.imageData];
                 [images addObject:image];
             }
-            todolist.thing.images = (NSArray *)images;
+            todo.thing.images = (NSArray *)images;
         }
         
-        if (RLMTodoList.doneType == Done) {
-            todolist.doneType = Done;
+        if (RLMTodo.doneType == Done) {
+            todo.doneType = Done;
         }
         else
         {
             long long nowStamp = [[NSDate date] timeIntervalSinceReferenceDate];
-            if (nowStamp > todolist.endTime)
-                todolist.doneType = OutOfDate;
-            else if (todolist.startTime < nowStamp && nowStamp < todolist.endTime)
-                todolist.doneType = Doing;
-            else if (nowStamp < todolist.startTime)
-                todolist.doneType = NotStart;
+            if (nowStamp > todo.endTime)
+                todo.doneType = OutOfDate;
+            else if (todo.startTime < nowStamp && nowStamp < todo.endTime)
+                todo.doneType = Doing;
+            else if (nowStamp < todo.startTime)
+                todo.doneType = NotStart;
         }
-        [resultArray addObject:todolist];
+        [resultArray addObject:todo];
     }
     return [self sortArrayByStartTimeWithArray:resultArray];
 }
@@ -91,7 +91,7 @@
 #pragma mark 根据开始时间进行排序
 - (NSArray *)sortArrayByStartTimeWithArray:(NSArray *)array
 {
-    NSComparator cmptr = ^(TodoList *todo1, TodoList *todo2){
+    NSComparator cmptr = ^(Todo *todo1, Todo *todo2){
         if (todo1.startTime > todo2.startTime) {
             return (NSComparisonResult)NSOrderedDescending;
         }
@@ -107,14 +107,14 @@
 }
 
 
-#pragma mark 创建RLMTodolist
-- (void)createTodoListWithThingType:(ThingType *)type contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate endDate:(NSDate *)endDate tableId:(NSInteger)tableId
+#pragma mark 创建RLMTodo
+- (void)createTodoWithThingType:(ThingType *)type contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate endDate:(NSDate *)endDate tableId:(NSInteger)tableId
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
 
-    RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
-    todolistModel.startTime = [startDate timeIntervalSinceReferenceDate];
-    todolistModel.endTime = [endDate timeIntervalSinceReferenceDate];
+    RLMTodo *todoModel = [[RLMTodo alloc]init];
+    todoModel.startTime = [startDate timeIntervalSinceReferenceDate];
+    todoModel.endTime = [endDate timeIntervalSinceReferenceDate];
     
     RLMThing *thing = [[RLMThing alloc]init];
     RLMThingType *thingType = [[RLMThingType alloc]init];
@@ -136,18 +136,18 @@
         }
     }
     
-    todolistModel.thing = thing;
+    todoModel.thing = thing;
     
     
     if (!tableId) {
-        todolistModel.tableId = [UserDefaultManager todoMaxId] + 1;
-        [UserDefaultManager setTodoMaxId:todolistModel.tableId];
+        todoModel.tableId = [UserDefaultManager todoMaxId] + 1;
+        [UserDefaultManager setTodoMaxId:todoModel.tableId];
     }else
-        todolistModel.tableId = tableId;
+        todoModel.tableId = tableId;
 
     
     [realm beginWriteTransaction];
-    [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];
+    [RLMTodo createOrUpdateInRealm:realm withValue:todoModel];
     [realm commitWriteTransaction];
 }
 
@@ -190,12 +190,12 @@
     return resultArray;
 }
 
-#pragma mark 删除todolist
-- (void)deleteTodoListWithTableId:(NSInteger)tableId
+#pragma mark 删除todo
+- (void)deleteTodoWithTableId:(NSInteger)tableId
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
 
-    RLMResults *results = [RLMTodoList objectsWhere:@"tableId = %d",tableId];
+    RLMResults *results = [RLMTodo objectsWhere:@"tableId = %d",tableId];
     [realm beginWriteTransaction];
     [realm deleteObject:results[0]];
     [realm commitWriteTransaction];

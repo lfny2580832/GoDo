@@ -9,7 +9,7 @@
 #import "MainTabBarVC.h"
 #import "CalendarVC.h"
 #import <Realm/Realm.h>
-#import "RLMTodoList.h"
+#import "RLMTodo.h"
 #import "RLMThing.h"
 #import "RLMThingType.h"
 #import "CalendarVC.h"
@@ -58,16 +58,16 @@
     RLMThingType *type = [[RLMThingType objectsWhere:@"typeId = 3"] firstObject];
     thing.thingType = type;
     thing.thingStr = @"开始创建你的任务吧！";
-    RLMTodoList *todolistModel = [[RLMTodoList alloc]init];
+    RLMTodo *todoModel = [[RLMTodo alloc]init];
     NSDate *startDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];
-    todolistModel.startTime = [startDate timeIntervalSinceReferenceDate];
-    todolistModel.endTime = todolistModel.startTime + 60 * 60;
-    todolistModel.tableId = 1;
-    todolistModel.thing = thing;
-    todolistModel.doneType = NotStart;
+    todoModel.startTime = [startDate timeIntervalSinceReferenceDate];
+    todoModel.endTime = todoModel.startTime + 60 * 60;
+    todoModel.tableId = 1;
+    todoModel.thing = thing;
+    todoModel.doneType = NotStart;
     
     [realm beginWriteTransaction];
-    [RLMTodoList createOrUpdateInRealm:realm withValue:todolistModel];
+    [RLMTodo createOrUpdateInRealm:realm withValue:todoModel];
     [realm commitWriteTransaction];
     
 }

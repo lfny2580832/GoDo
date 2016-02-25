@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TodoCollectionViewCell.h"
 
-@class TodoList;
+@class Todo;
 
 @protocol TodoCollectionViewDelegate <NSObject>
 
@@ -17,7 +17,7 @@
 
 - (void)cellSelectedByChosenDateWithIndexRow:(NSInteger)indexRow;
 
-- (void)didSelectedTodoTableViewCellWithTodoList:(TodoList *)todoList;
+- (void)didSelectedTodoTableViewCellWithTodo:(Todo *)todo;
 
 - (void)returnChosenDate:(NSDate *)chosenDate;
 @end

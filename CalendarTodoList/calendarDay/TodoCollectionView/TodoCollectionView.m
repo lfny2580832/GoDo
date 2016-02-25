@@ -8,7 +8,7 @@
 
 #import "TodoCollectionView.h"
 #import <Realm/Realm.h>
-#import "RLMTodoList.h"
+#import "RLMTodo.h"
 #import "RLMThing.h"
 #import "NSObject+NYExtends.h"
 
@@ -37,9 +37,9 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 #pragma mark tableviewcell点击事件
-- (void)didSelectedTodoTableCellWithTodoList:(TodoList *)todoList
+- (void)didSelectedTodoTableCellWithTodo:(Todo *)todo
 {
-    [self.mdelegate didSelectedTodoTableViewCellWithTodoList:todoList];
+    [self.mdelegate didSelectedTodoTableViewCellWithTodo:todo];
 }
 
 #pragma mark 获取当前日期到本月第一天之间的天数，以便设置第几个cell

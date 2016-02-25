@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class TodoList;
+@class Todo;
 
 @protocol TodoCollectionCellDelegate <NSObject>
 
-- (void)didSelectedTodoTableCellWithTodoList:(TodoList *)todoList;
+- (void)didSelectedTodoTableCellWithTodo:(Todo *)todo;
 
 @end
 

@@ -189,7 +189,7 @@ typedef NS_OPTIONS(NSInteger, RDVCalendarViewDayCellSeparatorType) {
  */
 - (void)showNextMonth;
 
-- (void)refreshAfterCreateTodolist;
+- (void)refreshAfterCreateTodo;
 
 @end
 

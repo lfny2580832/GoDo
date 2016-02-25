@@ -21,10 +21,10 @@
     NSDate *_chosenDate;
 }
 #pragma mark 点击TodoTableViewCell事件
-- (void)didSelectedTodoTableViewCellWithTodoList:(TodoList *)todoList
+- (void)didSelectedTodoTableViewCellWithTodo:(Todo *)todo
 {
     TodoDetailVC *vc = [[TodoDetailVC alloc]initWithDate:_chosenDate];
-    vc.todoList = todoList;
+    vc.todo = todo;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

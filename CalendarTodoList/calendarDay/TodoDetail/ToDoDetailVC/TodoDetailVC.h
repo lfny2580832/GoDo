@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class TodoList;
+@class Todo;
 
 @interface TodoDetailVC : UIViewController
 
-@property (nonatomic, strong) TodoList *todoList;
+@property (nonatomic, strong) Todo *todo;
 
 - (instancetype)initWithDate:(NSDate *)date;
 

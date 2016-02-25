@@ -26,26 +26,26 @@ static NSInteger CircleRadius = 9;
 static NSInteger LineWidth = 2;
 
 #pragma mark Set方法
-- (void)setTodoList:(TodoList *)todoList
+- (void)setTodo:(Todo *)todo
 {
-    _todoList = todoList;
-    _textLabel.text = todoList.thing.thingStr;
-    NSString *timeStr = [NSString getHourMinuteDateFromTimeInterval:todoList.startTime];
+    _todo = todo;
+    _textLabel.text = todo.thing.thingStr;
+    NSString *timeStr = [NSString getHourMinuteDateFromTimeInterval:todo.startTime];
     _timeLabel.text = timeStr;
     
-    NSInteger R = todoList.thing.thingType.red;
-    NSInteger G = todoList.thing.thingType.green;
-    NSInteger B = todoList.thing.thingType.blue;
+    NSInteger R = todo.thing.thingType.red;
+    NSInteger G = todo.thing.thingType.green;
+    NSInteger B = todo.thing.thingType.blue;
     _cicleView.backgroundColor = RGBA(R, G, B, 1.0);
     
-    if (_todoList.thing.images.count) {
-        NSInteger imageCount = _todoList.thing.images.count;
-        NSArray *images = _todoList.thing.images;
+    if (_todo.thing.images.count) {
+        NSInteger imageCount = _todo.thing.images.count;
+        NSArray *images = _todo.thing.images;
         NSInteger imageEdge = 10;
         [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.contentView).offset(-65);
         }];
-        //创建iamgeView
+        //创建imageView
         for (int i = 0; i < imageCount; i ++) {
             UIImageView *todoImageView = [[UIImageView alloc]initWithImage:images[i]];
             todoImageView.userInteractionEnabled = YES;

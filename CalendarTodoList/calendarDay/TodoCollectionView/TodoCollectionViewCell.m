@@ -9,7 +9,7 @@
 #import "TodoCollectionViewCell.h"
 
 #import <Realm/Realm.h>
-#import "TodoList.h"
+#import "Todo.h"
 #import "Thing.h"
 #import "RealmManage.h"
 
@@ -25,14 +25,13 @@
 
 @implementation TodoCollectionViewCell
 {
-    NSArray <TodoList *> *_todoListArray;
-    
+    NSArray <Todo *> *_todoArray;
 }
 
 #pragma mark - 重用TodoCell时先清空数据
 - (void)refreshTableViewBeforQueryData
 {
-    _todoListArray = nil;
+    _todoArray = nil;
     [_tableView reloadData];
 }
 
@@ -51,7 +50,7 @@
 - (void)realmGetDayInfoFromRealmWithDayId:(NSInteger)dayId
 {
     dispatch_async(kBgQueue, ^{
-        _todoListArray = [RealmManager getDayInfoFromRealmWithDayId:dayId];
+        _todoArray = [RealmManager getDayInfoFromRealmWithDayId:dayId];
         dispatch_async(kMainQueue, ^{
             [_tableView reloadData];
         });
@@ -59,12 +58,12 @@
 }
 
 #pragma mark 添加项目
-- (void)addTodoList
+- (void)addTodo
 {
-    [self.delegate didSelectedTodoTableCellWithTodoList:nil];
+    [self.delegate didSelectedTodoTableCellWithTodo:nil];
 }
 
-#pragma mark 新建todolist后刷新数据
+#pragma mark 新建todo后刷新数据
 - (void)refreshTableViewAfterCreateOrDelete
 {
     [self realmGetDayInfoFromRealmWithDayId:_dayId];
@@ -119,19 +118,19 @@
         cell = [[TodoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
     
-    cell.todoList = _todoListArray[indexPath.row];
+    cell.todo = _todoArray[indexPath.row];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _todoListArray.count;
+    return _todoArray.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    [self.delegate didSelectedTodoTableCellWithTodoList:_todoListArray[indexPath.row]];
+    [self.delegate didSelectedTodoTableCellWithTodo:_todoArray[indexPath.row]];
 }
 
 @end

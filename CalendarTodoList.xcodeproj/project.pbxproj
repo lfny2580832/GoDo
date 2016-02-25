@@ -15,7 +15,7 @@
 		4A12909A1C5E181F006E078B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1290991C5E181F006E078B /* libz.tbd */; };
 		4A3FB5B01C7B78CD00C0E6B7 /* AlbumAddBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A3FB5AF1C7B78CD00C0E6B7 /* AlbumAddBtn@2x.png */; };
 		4A4116CE1C5A5E2C0077564D /* Thing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4116CD1C5A5E2C0077564D /* Thing.m */; };
-		4A4116D11C5A5E5D0077564D /* TodoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4116D01C5A5E5D0077564D /* TodoList.m */; };
+		4A4116D11C5A5E5D0077564D /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4116D01C5A5E5D0077564D /* Todo.m */; };
 		4A43AC351C3631A900347E3C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A43AC341C3631A900347E3C /* libc++.tbd */; };
 		4A4F9CBD1C3F3E280000F24C /* RDVCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CB61C3F3E280000F24C /* RDVCalendarDayCell.m */; };
 		4A4F9CBE1C3F3E280000F24C /* RDVCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CB81C3F3E280000F24C /* RDVCalendarView.m */; };
@@ -55,7 +55,7 @@
 		4ADA1DAD1C3E4992001ECBF4 /* UIImage+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1DAA1C3E4992001ECBF4 /* UIImage+ZZExtends.m */; };
 		4ADA1DAE1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1DAC1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m */; };
 		4AEB373B1C599F17007C9F92 /* RLMThing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEB37381C599F17007C9F92 /* RLMThing.m */; };
-		4AEB373C1C599F17007C9F92 /* RLMTodoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEB373A1C599F17007C9F92 /* RLMTodoList.m */; };
+		4AEB373C1C599F17007C9F92 /* RLMTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEB373A1C599F17007C9F92 /* RLMTodo.m */; };
 		4AF11FF81C6B1206007DC614 /* ChooseModeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF11FF71C6B1206007DC614 /* ChooseModeCell.m */; };
 		4AF34A201C74ADAC00004EC4 /* UserDefaultManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF34A1F1C74ADAC00004EC4 /* UserDefaultManage.m */; };
 		4AF34A231C754BA600004EC4 /* AddTodoFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF34A221C754BA600004EC4 /* AddTodoFooterView.m */; };
@@ -96,8 +96,8 @@
 		4A3FB5AF1C7B78CD00C0E6B7 /* AlbumAddBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumAddBtn@2x.png"; sourceTree = "<group>"; };
 		4A4116CC1C5A5E2C0077564D /* Thing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thing.h; sourceTree = "<group>"; };
 		4A4116CD1C5A5E2C0077564D /* Thing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thing.m; sourceTree = "<group>"; };
-		4A4116CF1C5A5E5D0077564D /* TodoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoList.h; sourceTree = "<group>"; };
-		4A4116D01C5A5E5D0077564D /* TodoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoList.m; sourceTree = "<group>"; };
+		4A4116CF1C5A5E5D0077564D /* Todo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Todo.h; sourceTree = "<group>"; };
+		4A4116D01C5A5E5D0077564D /* Todo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Todo.m; sourceTree = "<group>"; };
 		4A43AC341C3631A900347E3C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		4A4F9CB51C3F3E280000F24C /* RDVCalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarDayCell.h; sourceTree = "<group>"; };
 		4A4F9CB61C3F3E280000F24C /* RDVCalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVCalendarDayCell.m; sourceTree = "<group>"; };
@@ -174,8 +174,8 @@
 		4ADA1DAC1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+ZZExtends.m"; sourceTree = "<group>"; };
 		4AEB37371C599F17007C9F92 /* RLMThing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMThing.h; sourceTree = "<group>"; };
 		4AEB37381C599F17007C9F92 /* RLMThing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMThing.m; sourceTree = "<group>"; };
-		4AEB37391C599F17007C9F92 /* RLMTodoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMTodoList.h; sourceTree = "<group>"; };
-		4AEB373A1C599F17007C9F92 /* RLMTodoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMTodoList.m; sourceTree = "<group>"; };
+		4AEB37391C599F17007C9F92 /* RLMTodo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMTodo.h; sourceTree = "<group>"; };
+		4AEB373A1C599F17007C9F92 /* RLMTodo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMTodo.m; sourceTree = "<group>"; };
 		4AF11FF61C6B1206007DC614 /* ChooseModeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseModeCell.h; sourceTree = "<group>"; };
 		4AF11FF71C6B1206007DC614 /* ChooseModeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseModeCell.m; sourceTree = "<group>"; };
 		4AF34A1E1C74ADAC00004EC4 /* UserDefaultManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultManage.h; sourceTree = "<group>"; };
@@ -440,18 +440,18 @@
 		4AEB37361C599EFC007C9F92 /* CoreModel */ = {
 			isa = PBXGroup;
 			children = (
+				4AEB37391C599F17007C9F92 /* RLMTodo.h */,
+				4AEB373A1C599F17007C9F92 /* RLMTodo.m */,
 				4AEB37371C599F17007C9F92 /* RLMThing.h */,
 				4AEB37381C599F17007C9F92 /* RLMThing.m */,
 				4ABB60911C7CE3C60040079C /* RLMImage.h */,
 				4ABB60921C7CE3C60040079C /* RLMImage.m */,
-				4AEB37391C599F17007C9F92 /* RLMTodoList.h */,
-				4AEB373A1C599F17007C9F92 /* RLMTodoList.m */,
 				4AB09EFE1C627EF0006EB837 /* RLMThingType.h */,
 				4AB09EFF1C627EF0006EB837 /* RLMThingType.m */,
 				4A4116CC1C5A5E2C0077564D /* Thing.h */,
 				4A4116CD1C5A5E2C0077564D /* Thing.m */,
-				4A4116CF1C5A5E5D0077564D /* TodoList.h */,
-				4A4116D01C5A5E5D0077564D /* TodoList.m */,
+				4A4116CF1C5A5E5D0077564D /* Todo.h */,
+				4A4116D01C5A5E5D0077564D /* Todo.m */,
 				4AB09F011C6287D8006EB837 /* ThingType.h */,
 				4AB09F021C6287D8006EB837 /* ThingType.m */,
 			);
@@ -675,7 +675,7 @@
 				4A12908F1C5DD4FF006E078B /* TodoCollectionView.m in Sources */,
 				4A4F9CBE1C3F3E280000F24C /* RDVCalendarView.m in Sources */,
 				4A1290911C5DD4FF006E078B /* TodoTableViewCell.m in Sources */,
-				4A4116D11C5A5E5D0077564D /* TodoList.m in Sources */,
+				4A4116D11C5A5E5D0077564D /* Todo.m in Sources */,
 				4ADA1DAE1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m in Sources */,
 				4ADA1DAD1C3E4992001ECBF4 /* UIImage+ZZExtends.m in Sources */,
 				4A9FC1C11C69A30E00A1D888 /* DatePickerCell.m in Sources */,
@@ -705,7 +705,7 @@
 				4A9FC1BD1C699FAE00A1D888 /* TodoDetailVC.m in Sources */,
 				4A4116CE1C5A5E2C0077564D /* Thing.m in Sources */,
 				4A1290861C5DD4E6006E078B /* WeekCollectionView.m in Sources */,
-				4AEB373C1C599F17007C9F92 /* RLMTodoList.m in Sources */,
+				4AEB373C1C599F17007C9F92 /* RLMTodo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

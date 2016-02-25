@@ -1,24 +1,16 @@
 //
-//  TodoListModel.h
+//  TodoList.h
 //  CalendarTodoList
 //
-//  Created by 牛严 on 16/1/5.
+//  Created by 牛严 on 16/1/28.
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import <Realm/Realm.h>
-#import "RLMThing.h"
+#import <Foundation/Foundation.h>
+#import "RLMTodo.h"
+#import "Thing.h"
 
-//月界面只显示未开始、进行中和过期 （可设置）
-typedef NS_ENUM(NSInteger, DoneType)
-{
-    NotStart = 0,       //未开始
-    Doing,              //进行中
-    OutOfDate,          //过期
-    Done                //已完成
-};
-
-@interface RLMTodoList : RLMObject
+@interface Todo : NSObject
 
 @property (nonatomic, assign) NSInteger tableId;
 ///dayId 为年月日，如 20160106
@@ -29,8 +21,8 @@ typedef NS_ENUM(NSInteger, DoneType)
 ///结束时间
 @property (nonatomic, assign) long long endTime;
 ///对应事件;
-@property (nonatomic, strong) RLMThing *thing;
-
+@property (nonatomic, strong) Thing *thing;
+///完成情况
 @property (nonatomic, assign) DoneType doneType;
 
 @end

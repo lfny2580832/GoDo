@@ -6,10 +6,10 @@
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import "RLMTodoList.h"
+#import "RLMTodo.h"
 #import "NSObject+NYExtends.h"
 
-@implementation RLMTodoList
+@implementation RLMTodo
 @synthesize thing;
 
 + (NSString *) primaryKey

@@ -8,7 +8,7 @@
 #import "RDVCalendarDayCell.h"
 #import "UILabelZoomable.h"
 #import "GradientView.h"
-#import "RLMTodoList.h"
+#import "RLMTodo.h"
 
 @interface RDVCalendarView () {
     NSMutableArray *_visibleCells;
@@ -143,7 +143,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 #pragma mark 刷新
-- (void)refreshAfterCreateTodolist
+- (void)refreshAfterCreateTodo
 {
     [self setDisplayedMonth:self.month];
 }

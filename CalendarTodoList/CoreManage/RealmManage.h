@@ -16,7 +16,7 @@
 
 + (id)sharedInstance;
 
-#pragma mark 根据dayId获取todolist数组
+#pragma mark 根据dayId获取todo数组
 - (NSArray *)getDayInfoFromRealmWithDayId:(NSInteger)dayId;
 
 #pragma mark 根据thingType返回类型字符串
@@ -25,10 +25,10 @@
 #pragma mark 获取ThingType数组
 - (NSMutableArray *)getThingTypeArray;
 
-#pragma mark 创建RLMTodolist
-- (void)createTodoListWithThingType:(ThingType *)type contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate endDate:(NSDate *)endDate tableId:(NSInteger)tableId;
+#pragma mark 创建RLMTodo
+- (void)createTodoWithThingType:(ThingType *)type contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate endDate:(NSDate *)endDate tableId:(NSInteger)tableId;
 
-#pragma mark 删除todolist
-- (void)deleteTodoListWithTableId:(NSInteger)tableId;
+#pragma mark 删除todo
+- (void)deleteTodoWithTableId:(NSInteger)tableId;
 
 @end

@@ -8,7 +8,7 @@
 #import "RDVCalendarDayCell.h"
 #import "UILabelZoomable.h"
 #import "ThingType.h"
-#import "TodoList.h"
+#import "Todo.h"
 
 #import "NSString+ZZExtends.h"
 #import "RealmManage.h"
@@ -22,7 +22,7 @@
 
 @implementation RDVCalendarDayCell
 {
-    NSArray *_todoListArray;
+    NSArray *_todoArray;
 }
 
 #pragma mark 初始化
@@ -177,10 +177,10 @@
 - (void)setDayInfoWithDayId:(NSInteger)dayId
 {
     dispatch_async(kBgQueue, ^{
-        _todoListArray = [RealmManager getDayInfoFromRealmWithDayId:dayId];
+        _todoArray = [RealmManager getDayInfoFromRealmWithDayId:dayId];
         dispatch_async(kMainQueue, ^{
-            if (_todoListArray) {
-                [self addCellTodoListWithTodoListCount:_todoListArray.count];
+            if (_todoArray) {
+                [self addCellTodoListWithTodoListCount:_todoArray.count];
             }
         });
     });
@@ -196,24 +196,24 @@
     _labels = [NSMutableArray arrayWithCapacity:0];
     for (int i = 0; i < count ; i++)
     {
-        TodoList *todoList = _todoListArray[i];
-        ThingType *type = todoList.thing.thingType;
-        UILabelZoomable *todoListLabel = [[UILabelZoomable alloc]initWithFrame:CGRectMake(x, y, width, height)];
-        todoListLabel.numberOfLines = 0;
-        todoListLabel.alpha = 0;
-        todoListLabel.textColor = [UIColor blackColor];
-        todoListLabel.font = [UIFont systemFontOfSize:5];
-        todoListLabel.text = [NSString stringWithFormat:@" %@",todoList.thing.thingStr];
-        todoListLabel.backgroundColor = RGBA(type.red, type.green, type.blue, 1.0);
-        todoListLabel.layer.masksToBounds = YES;
-        todoListLabel.layer.cornerRadius = 1.5f;
-        CATiledLayer *listLabelLayer = (CATiledLayer *)todoListLabel.layer;
-        listLabelLayer.levelsOfDetail = 2;
-        listLabelLayer.levelsOfDetailBias = 2;
-        [_contentView addSubview:todoListLabel];
+        Todo *todo = _todoArray[i];
+        ThingType *type = todo.thing.thingType;
+        UILabelZoomable *todoLabel = [[UILabelZoomable alloc]initWithFrame:CGRectMake(x, y, width, height)];
+        todoLabel.numberOfLines = 0;
+        todoLabel.alpha = 0;
+        todoLabel.textColor = [UIColor blackColor];
+        todoLabel.font = [UIFont systemFontOfSize:5];
+        todoLabel.text = [NSString stringWithFormat:@" %@",todo.thing.thingStr];
+        todoLabel.backgroundColor = RGBA(type.red, type.green, type.blue, 1.0);
+        todoLabel.layer.masksToBounds = YES;
+        todoLabel.layer.cornerRadius = 1.5f;
+        CATiledLayer *todoLabelLayer = (CATiledLayer *)todoLabel.layer;
+        todoLabelLayer.levelsOfDetail = 2;
+        todoLabelLayer.levelsOfDetailBias = 2;
+        [_contentView addSubview:todoLabel];
         y = y + height + 2;
         
-        [_labels addObject:todoListLabel];
+        [_labels addObject:todoLabel];
     }
 }
 

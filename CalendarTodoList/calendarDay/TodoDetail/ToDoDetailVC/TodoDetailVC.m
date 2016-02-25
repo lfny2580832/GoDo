@@ -7,8 +7,8 @@
 //
 
 #import "TodoDetailVC.h"
-#import "TodoList.h"
-#import "RLMTodoList.h"
+#import "Todo.h"
+#import "RLMTodo.h"
 #import "RLMThingType.h"
 
 #import "TZImagePickerController.h"
@@ -58,7 +58,7 @@ static CGFloat datePickerCellHeight = 240.f;
 #pragma mark 添加图片
 - (void)pickImageWithCurrentImageCount:(NSInteger)count
 {
-    
+    [self.view endEditing:YES];
     UIAlertController *imageSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [imageSheet addAction:[UIAlertAction actionWithTitle:@"取消"
                                                     style:UIAlertActionStyleCancel
@@ -126,7 +126,7 @@ static CGFloat datePickerCellHeight = 240.f;
 }
 
 #pragma mark 删除任务
-- (void)deleteTodoList
+- (void)deleteTodo
 {
     UIAlertController *deleteSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [deleteSheet addAction:[UIAlertAction actionWithTitle:@"取消"
@@ -135,22 +135,22 @@ static CGFloat datePickerCellHeight = 240.f;
     [deleteSheet addAction:[UIAlertAction actionWithTitle:@"删除任务"
                                                     style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action) {
-                                                    [self deleteTodoListFromRealm];
+                                                    [self deleteTodoFromRealm];
                                                 }]];
     [self presentViewController:deleteSheet animated:YES completion:nil];
 }
 
-- (void)deleteTodoListFromRealm
+- (void)deleteTodoFromRealm
 {
-    [RealmManager deleteTodoListWithTableId:_tableId];
+    [RealmManager deleteTodoWithTableId:_tableId];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark Set Methods
-- (void)setTodoList:(TodoList *)todoList
+- (void)setTodo:(Todo *)todo
 {
-    if(!todoList)
+    if(!todo)
     {
         ThingType *defaultType = [[RealmManager getThingTypeArray] firstObject];
         _todoThingType = defaultType;
@@ -167,15 +167,15 @@ static CGFloat datePickerCellHeight = 240.f;
         _endDate = [NSDate dateWithTimeInterval:60*60 sinceDate:_startDate];
         return;
     }
-    _todoList = todoList;
-    _tableId = _todoList.tableId;
-    _todoContentStr =  _todoList.thing.thingStr;
+    _todo = todo;
+    _tableId = _todo.tableId;
+    _todoContentStr =  _todo.thing.thingStr;
     _todoContentView.todoContentField.text = _todoContentStr;
-    _todoThingType = [RealmManager getThingTypeWithThingTypeId:_todoList.thing.thingType.typeId];
+    _todoThingType = [RealmManager getThingTypeWithThingTypeId:_todo.thing.thingType.typeId];
     _todoProjectView.thingType = _todoThingType;
-    _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todoList.startTime];
-    _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todoList.endTime];
-    _chosenImages = (NSMutableArray *)_todoList.thing.images;
+    _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.startTime];
+    _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.endTime];
+    _chosenImages = (NSMutableArray *)_todo.thing.images;
     if (_chosenImages.count) {
         [_todoContentView updateContentViewWithImageArray:_chosenImages];
     }
@@ -228,7 +228,7 @@ static CGFloat datePickerCellHeight = 240.f;
         return;
     }
     
-    [RealmManager createTodoListWithThingType:_todoThingType contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate endDate:_endDate tableId:_tableId];
+    [RealmManager createTodoWithThingType:_todoThingType contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate endDate:_endDate tableId:_tableId];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -324,7 +324,7 @@ static CGFloat datePickerCellHeight = 240.f;
         [tableView beginUpdates];
         [tableView endUpdates];
     }else if (indexPath.section == 1 && indexPath.row == 0)
-        [self deleteTodoList];
+        [self deleteTodo];
     
     [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
 
