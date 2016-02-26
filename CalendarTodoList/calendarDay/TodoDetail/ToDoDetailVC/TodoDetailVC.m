@@ -9,7 +9,7 @@
 #import "TodoDetailVC.h"
 #import "Todo.h"
 #import "RLMTodo.h"
-#import "RLMThingType.h"
+#import "RLMProject.h"
 
 #import "TZImagePickerController.h"
 #import "TodoContentView.h"
@@ -45,7 +45,7 @@
     DatePickerCell *_endCell;
     
     NSString *_todoContentStr;
-    ThingType *_todoThingType;
+    Project *_project;
     NSInteger _tableId;
     NSDate *_startDate;
     NSDate *_endDate;
@@ -152,9 +152,9 @@ static CGFloat datePickerCellHeight = 240.f;
 {
     if(!todo)
     {
-        ThingType *defaultType = [[RealmManager getThingTypeArray] firstObject];
-        _todoThingType = defaultType;
-        _todoProjectView.thingType = _todoThingType;
+        Project *defaultProject = [[RealmManager getProjectArray] firstObject];
+        _project = defaultProject;
+        _todoProjectView.project = _project;
         _todoContentView.todoContentField.text = @"";
         
         //当天八点
@@ -169,13 +169,13 @@ static CGFloat datePickerCellHeight = 240.f;
     }
     _todo = todo;
     _tableId = _todo.tableId;
-    _todoContentStr =  _todo.thing.thingStr;
+    _todoContentStr =  _todo.thingStr;
     _todoContentView.todoContentField.text = _todoContentStr;
-    _todoThingType = [RealmManager getThingTypeWithThingTypeId:_todo.thing.thingType.typeId];
-    _todoProjectView.thingType = _todoThingType;
+    _project = [RealmManager getProjectWithId:_todo.project.projectId];
+    _todoProjectView.project = _project;
     _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.startTime];
     _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.endTime];
-    _chosenImages = (NSMutableArray *)_todo.thing.images;
+    _chosenImages = (NSMutableArray *)_todo.images;
     if (_chosenImages.count) {
         [_todoContentView updateContentViewWithImageArray:_chosenImages];
     }
@@ -203,11 +203,11 @@ static CGFloat datePickerCellHeight = 240.f;
         _endCell.dateLabel.textColor = [UIColor blackColor];
 }
 
-#pragma mark ChooseProjectVC Delegate 获取返回的type类型
-- (void)returnProjectWithThingType:(ThingType *)type
+#pragma mark ChooseProjectVC Delegate 获取返回的project
+- (void)returnProject:(Project *)project
 {
-    _todoThingType = type;
-    _todoProjectView.thingType = _todoThingType;
+    _project = project;
+    _todoProjectView.project = _project;
 }
 
 #pragma mark 获取TodoContent
@@ -228,7 +228,7 @@ static CGFloat datePickerCellHeight = 240.f;
         return;
     }
     
-    [RealmManager createTodoWithThingType:_todoThingType contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate endDate:_endDate tableId:_tableId];
+    [RealmManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate endDate:_endDate tableId:_tableId];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }

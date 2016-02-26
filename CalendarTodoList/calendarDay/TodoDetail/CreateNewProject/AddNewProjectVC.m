@@ -9,7 +9,7 @@
 #import "AddNewProjectVC.h"
 #import "ChooseTypeColorVC.h"
 
-#import "RLMThingType.h"
+#import "RLMProject.h"
 #import "TypeColor.h"
 
 @interface AddNewProjectVC ()<ChooseTypeColorDelegate>
@@ -41,18 +41,18 @@
 #pragma mark 点击保存按钮
 - (void)rightbarButtonItemOnclick:(id)sender
 {
-    RLMResults *result = [RLMThingType allObjects];
+    RLMResults *result = [RLMProject allObjects];
     NSInteger count = result.count;
     RLMRealm *realm = [RLMRealm defaultRealm];
-    RLMThingType *rlmThingType = [[RLMThingType alloc]init];
+    RLMProject *rlmProject = [[RLMProject alloc]init];
     
-    rlmThingType.typeId = count + 1;
-    rlmThingType.typeStr = _contentTextField.text;
-    rlmThingType.red = _color.red;
-    rlmThingType.green = _color.green;
-    rlmThingType.blue = _color.blue;
+    rlmProject.projectId = count + 1;
+    rlmProject.projectStr = _contentTextField.text;
+    rlmProject.red = _color.red;
+    rlmProject.green = _color.green;
+    rlmProject.blue = _color.blue;
     [realm beginWriteTransaction];
-    [RLMThingType createOrUpdateInRealm:realm withValue:rlmThingType];
+    [RLMProject createOrUpdateInRealm:realm withValue:rlmProject];
     [realm commitWriteTransaction];
     
     [self.navigationController popViewControllerAnimated:YES];

@@ -10,7 +10,6 @@
 
 #import <Realm/Realm.h>
 #import "Todo.h"
-#import "Thing.h"
 #import "RealmManage.h"
 
 #import "TodoTableViewCell.h"
@@ -101,7 +100,7 @@
     }];
     
     AddTodoFooterView *footerView = [[AddTodoFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-    UITapGestureRecognizer *footerTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addTodoList)];
+    UITapGestureRecognizer *footerTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addTodo)];
     [footerView addGestureRecognizer:footerTap];
     _tableView.tableFooterView = footerView;
     

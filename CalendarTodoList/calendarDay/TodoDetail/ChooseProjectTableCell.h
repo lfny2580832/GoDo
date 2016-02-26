@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class ThingType;
+@class Project;
 
 @interface ChooseProjectTableCell : UITableViewCell
 
-@property (nonatomic, strong) ThingType *type;
+@property (nonatomic, strong) Project *type;
 
 - (instancetype)initWithContentLabel;
 

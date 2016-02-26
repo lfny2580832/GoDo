@@ -10,11 +10,10 @@
 #import "CalendarVC.h"
 #import <Realm/Realm.h>
 #import "RLMTodo.h"
-#import "RLMThing.h"
-#import "RLMThingType.h"
+#import "RLMProject.h"
 #import "CalendarVC.h"
 #import "BaseNavigationController.h"
-#import "RLMThingType.h"
+#import "RLMProject.h"
 #import "UserDefaultManage.h"
 
 @interface MainTabBarVC ()
@@ -35,8 +34,8 @@
 
 - (void)initViews
 {
-//    [self simulateThingType];
-//    [self simulateTodoList];
+//    [self simulateProject];
+//    [self sim3zulateTodoList];
     
     CalendarVC *calendarVC = [[CalendarVC alloc]init];
     BaseNavigationController *calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
@@ -54,16 +53,15 @@
     [UserDefaultManager setTodoMaxId:1];
     
     RLMRealm *realm = [RLMRealm defaultRealm];
-    RLMThing *thing = [[RLMThing alloc]init];
-    RLMThingType *type = [[RLMThingType objectsWhere:@"typeId = 3"] firstObject];
-    thing.thingType = type;
-    thing.thingStr = @"开始创建你的任务吧！";
     RLMTodo *todoModel = [[RLMTodo alloc]init];
+
+    RLMProject *type = [[RLMProject objectsWhere:@"projectId = 3"] firstObject];
+    todoModel.project = type;
+    todoModel.thingStr = @"开始创建你的任务吧！";
     NSDate *startDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];
     todoModel.startTime = [startDate timeIntervalSinceReferenceDate];
     todoModel.endTime = todoModel.startTime + 60 * 60;
     todoModel.tableId = 1;
-    todoModel.thing = thing;
     todoModel.doneType = NotStart;
     
     [realm beginWriteTransaction];
@@ -72,57 +70,57 @@
     
 }
 
-- (void)simulateThingType
+- (void)simulateProject
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
-    RLMThingType *rlmThingType = [[RLMThingType alloc]init];
+    RLMProject *rlmProject = [[RLMProject alloc]init];
     
-    rlmThingType.typeId = 1;
-    rlmThingType.typeStr = @"学习";
-    rlmThingType.red = 251;
-    rlmThingType.green = 136;
-    rlmThingType.blue = 110;
+    rlmProject.projectId = 1;
+    rlmProject.projectStr = @"学习";
+    rlmProject.red = 251;
+    rlmProject.green = 136;
+    rlmProject.blue = 110;
     [realm beginWriteTransaction];
-    [RLMThingType createOrUpdateInRealm:realm withValue:rlmThingType];
+    [RLMProject createOrUpdateInRealm:realm withValue:rlmProject];
     [realm commitWriteTransaction];
     
-    rlmThingType.typeId = 2;
-    rlmThingType.typeStr = @"社团";
-    rlmThingType.red = 59;
-    rlmThingType.green = 213;
-    rlmThingType.blue = 251;
+    rlmProject.projectId = 2;
+    rlmProject.projectStr = @"社团";
+    rlmProject.red = 59;
+    rlmProject.green = 213;
+    rlmProject.blue = 251;
     [realm beginWriteTransaction];
-    [RLMThingType createOrUpdateInRealm:realm withValue:rlmThingType];
+    [RLMProject createOrUpdateInRealm:realm withValue:rlmProject];
     [realm commitWriteTransaction];
     
-    rlmThingType.typeId = 3;
-    rlmThingType.typeStr = @"个人";
-    rlmThingType.red = 255;
-    rlmThingType.green = 204;
-    rlmThingType.blue = 0;
+    rlmProject.projectId = 3;
+    rlmProject.projectStr = @"个人";
+    rlmProject.red = 255;
+    rlmProject.green = 204;
+    rlmProject.blue = 0;
     
     [realm beginWriteTransaction];
-    [RLMThingType createOrUpdateInRealm:realm withValue:rlmThingType];
+    [RLMProject createOrUpdateInRealm:realm withValue:rlmProject];
     [realm commitWriteTransaction];
     
-    rlmThingType.typeId = 4;
-    rlmThingType.typeStr = @"工作";
-    rlmThingType.red = 226;
-    rlmThingType.green = 168;
-    rlmThingType.blue = 228;
+    rlmProject.projectId = 4;
+    rlmProject.projectStr = @"工作";
+    rlmProject.red = 226;
+    rlmProject.green = 168;
+    rlmProject.blue = 228;
     
     [realm beginWriteTransaction];
-    [RLMThingType createOrUpdateInRealm:realm withValue:rlmThingType];
+    [RLMProject createOrUpdateInRealm:realm withValue:rlmProject];
     [realm commitWriteTransaction];
     
-    rlmThingType.typeId = 5;
-    rlmThingType.typeStr = @"休闲";
-    rlmThingType.red = 210;
-    rlmThingType.green = 184;
-    rlmThingType.blue = 163;
+    rlmProject.projectId = 5;
+    rlmProject.projectStr = @"休闲";
+    rlmProject.red = 210;
+    rlmProject.green = 184;
+    rlmProject.blue = 163;
     
     [realm beginWriteTransaction];
-    [RLMThingType createOrUpdateInRealm:realm withValue:rlmThingType];
+    [RLMProject createOrUpdateInRealm:realm withValue:rlmProject];
     [realm commitWriteTransaction];
 }
 

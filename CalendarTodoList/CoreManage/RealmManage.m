@@ -9,13 +9,11 @@
 #import "RealmManage.h"
 #import "UserDefaultManage.h"
 
-#import "RLMThing.h"
 #import "RLMTodo.h"
-#import "RLMThingType.h"
+#import "RLMProject.h"
 
-#import "Thing.h"
 #import "Todo.h"
-#import "ThingType.h"
+#import "Project.h"
 
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"
@@ -50,24 +48,23 @@
         todo.endTime = RLMTodo.endTime;
         todo.tableId = RLMTodo.tableId;
         
-        todo.thing = [[Thing alloc]init];
-        todo.thing.thingStr = RLMTodo.thing.thingStr;
+        todo.thingStr = RLMTodo.thingStr;
         
-        todo.thing.thingType = [[ThingType alloc]init];
-        todo.thing.thingType.typeId = RLMTodo.thing.thingType.typeId;
-        todo.thing.thingType.typeStr = RLMTodo.thing.thingType.typeStr;
-        todo.thing.thingType.red = RLMTodo.thing.thingType.red;
-        todo.thing.thingType.green = RLMTodo.thing.thingType.green;
-        todo.thing.thingType.blue = RLMTodo.thing.thingType.blue;
+        todo.project = [[Project alloc]init];
+        todo.project.projectId = RLMTodo.project.projectId;
+        todo.project.projectStr = RLMTodo.project.projectStr;
+        todo.project.red = RLMTodo.project.red;
+        todo.project.green = RLMTodo.project.green;
+        todo.project.blue = RLMTodo.project.blue;
         
-        if (RLMTodo.thing.imageDatas.count) {
+        if (RLMTodo.imageDatas.count) {
             NSMutableArray *images = [[NSMutableArray alloc]initWithCapacity:0];
-            for(RLMImage *rlmImage in RLMTodo.thing.imageDatas)
+            for(RLMImage *rlmImage in RLMTodo.imageDatas)
             {
                 UIImage *image = [UIImage imageWithData:rlmImage.imageData];
                 [images addObject:image];
             }
-            todo.thing.images = (NSArray *)images;
+            todo.images = (NSArray *)images;
         }
         
         if (RLMTodo.doneType == Done) {
@@ -108,7 +105,7 @@
 
 
 #pragma mark 创建RLMTodo
-- (void)createTodoWithThingType:(ThingType *)type contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate endDate:(NSDate *)endDate tableId:(NSInteger)tableId
+- (void)createTodoWithProject:(Project *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate endDate:(NSDate *)endDate tableId:(NSInteger)tableId
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
 
@@ -116,15 +113,14 @@
     todoModel.startTime = [startDate timeIntervalSinceReferenceDate];
     todoModel.endTime = [endDate timeIntervalSinceReferenceDate];
     
-    RLMThing *thing = [[RLMThing alloc]init];
-    RLMThingType *thingType = [[RLMThingType alloc]init];
-    thingType.typeId = type.typeId;
-    thingType.typeStr = type.typeStr;
-    thingType.red = type.red;
-    thingType.green = type.green;
-    thingType.blue = type.blue;
-    thing.thingType = thingType;
-    thing.thingStr = contentStr;
+    RLMProject *rlmProject = [[RLMProject alloc]init];
+    rlmProject.projectId = project.projectId;
+    rlmProject.projectStr = project.projectStr;
+    rlmProject.red = project.red;
+    rlmProject.green = project.green;
+    rlmProject.blue = project.blue;
+    todoModel.project = rlmProject;
+    todoModel.thingStr = contentStr;
     
     if (images.count) {
         for(UIImage *image in images)
@@ -132,12 +128,9 @@
             RLMImage *rlmImage = [[RLMImage alloc]init];
             NSData *imageData = UIImageJPEGRepresentation(image,1);
             rlmImage.imageData = imageData;
-            [thing.imageDatas addObject:rlmImage];
+            [todoModel.imageDatas addObject:rlmImage];
         }
     }
-    
-    todoModel.thing = thing;
-    
     
     if (!tableId) {
         todoModel.tableId = [UserDefaultManager todoMaxId] + 1;
@@ -145,46 +138,45 @@
     }else
         todoModel.tableId = tableId;
 
-    
     [realm beginWriteTransaction];
     [RLMTodo createOrUpdateInRealm:realm withValue:todoModel];
     [realm commitWriteTransaction];
 }
 
-#pragma mark 根据thingTypeId返回thingType
-- (ThingType *)getThingTypeWithThingTypeId:(NSInteger)typeId
+#pragma mark 根据projectId返回project
+- (Project *)getProjectWithId:(NSInteger)projectId
 {
-    RLMResults *result = [RLMThingType objectsWhere:@"typeId = %ld",typeId];
-    RLMThingType *rlmThingtype = [result firstObject];
-    ThingType *thingType = [[ThingType alloc]init];
-    thingType.typeId = rlmThingtype.typeId;
-    thingType.typeStr = rlmThingtype.typeStr;
-    thingType.red = rlmThingtype.red;
-    thingType.green = rlmThingtype.green;
-    thingType.blue = rlmThingtype.blue;
+    RLMResults *result = [RLMProject objectsWhere:@"projectId = %ld",projectId];
+    RLMProject *rlmProject = [result firstObject];
+    Project *project = [[Project alloc]init];
+    project.projectId = rlmProject.projectId;
+    project.projectStr = rlmProject.projectStr;
+    project.red = rlmProject.red;
+    project.green = rlmProject.green;
+    project.blue = rlmProject.blue;
     
-    return thingType;
+    return project;
 }
 
-#pragma mark 获取ThingType数组
-- (NSMutableArray *)getThingTypeArray
+#pragma mark 获取project数组
+- (NSMutableArray *)getProjectArray
 {
-    RLMResults *result = [RLMThingType allObjects];
+    RLMResults *result = [RLMProject allObjects];
     NSMutableArray *resultArray = [NSMutableArray arrayWithCapacity:0];
     if (result.count == 0) {
         return nil;
     }
     if (result) {
         for (int i = 0; i < result.count; i ++) {
-            RLMThingType *rlmThingType = [result objectAtIndex:i];
-            ThingType *thingType = [[ThingType alloc]init];
-            thingType.typeId = rlmThingType.typeId;
-            thingType.typeStr = rlmThingType.typeStr;
-            thingType.red = rlmThingType.red;
-            thingType.green = rlmThingType.green;
-            thingType.blue = rlmThingType.blue;
+            RLMProject *rlmProject = [result objectAtIndex:i];
+            Project *project = [[Project alloc]init];
+            project.projectId = rlmProject.projectId;
+            project.projectStr = rlmProject.projectStr;
+            project.red = rlmProject.red;
+            project.green = rlmProject.green;
+            project.blue = rlmProject.blue;
             
-            [resultArray addObject:thingType];
+            [resultArray addObject:project];
         }
     }
     return resultArray;

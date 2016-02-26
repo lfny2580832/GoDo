@@ -7,7 +7,7 @@
 //
 
 #import "TodoProjectView.h"
-#import "ThingType.h"
+#import "Project.h"
 
 @implementation TodoProjectView
 {
@@ -16,11 +16,11 @@
 }
 
 #pragma mark Set 方法
-- (void)setThingType:(ThingType *)thingType
+- (void)setProject:(Project *)project
 {
-    _thingType = thingType;
-    _contentLabel.text = thingType.typeStr;
-    _colorView.backgroundColor = RGBA(thingType.red, thingType.green, thingType.blue, 1.0);
+    _project = project;
+    _contentLabel.text = project.projectStr;
+    _colorView.backgroundColor = RGBA(project.red, project.green, project.blue, 1.0);
 }
 
 #pragma mark 选择项目

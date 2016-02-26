@@ -9,7 +9,6 @@
 #import "TodoCollectionView.h"
 #import <Realm/Realm.h>
 #import "RLMTodo.h"
-#import "RLMThing.h"
 #import "NSObject+NYExtends.h"
 
 @implementation TodoCollectionView

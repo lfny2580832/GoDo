@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Todo.h"
-#import "Thing.h"
 
 @interface TodoTableViewCell : UITableViewCell
 

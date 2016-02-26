@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "RLMTodo.h"
-#import "Thing.h"
+#import "Project.h"
 
 @interface Todo : NSObject
 
@@ -20,8 +20,12 @@
 @property (nonatomic, assign) long long startTime;
 ///结束时间
 @property (nonatomic, assign) long long endTime;
-///对应事件;
-@property (nonatomic, strong) Thing *thing;
+///事件类型
+@property (nonatomic, strong) Project *project;
+///事件字符串
+@property (nonatomic, copy)   NSString *thingStr;
+///图片数组
+@property (nonatomic, strong) NSArray *images;
 ///完成情况
 @property (nonatomic, assign) DoneType doneType;
 

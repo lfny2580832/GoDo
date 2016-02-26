@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ThingType;
+@class Project;
 
 @protocol TodoProjectViewDelegate <NSObject>
 
@@ -17,7 +17,7 @@
 
 @interface TodoProjectView : UIView
 
-@property (nonatomic, strong)ThingType *thingType;
+@property (nonatomic, strong)Project *project;
 @property (nonatomic, weak)id<TodoProjectViewDelegate> delegate;
 
 @end

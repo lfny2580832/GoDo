@@ -7,7 +7,7 @@
 //
 
 #import "ChooseProjectTableCell.h"
-#import "ThingType.h"
+#import "Project.h"
 
 @implementation ChooseProjectTableCell
 {
@@ -16,10 +16,10 @@
 }
 
 #pragma mark Set Methods
-- (void)setType:(ThingType *)type
+- (void)setType:(Project *)type
 {
     _type = type;
-    _projectLabel.text = type.typeStr;
+    _projectLabel.text = type.projectStr;
     
     UIColor *typeColor = RGBA(type.red, type.green, type.blue, 1.0);
     _colorView.backgroundColor = typeColor;

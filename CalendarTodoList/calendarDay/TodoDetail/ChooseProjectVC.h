@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class ThingType;
+@class Project;
 
 @protocol ChooseProjectVCDelegate <NSObject>
 
-- (void)returnProjectWithThingType:(ThingType *)type;
+- (void)returnProject:(Project *)project;
 
 @end
 

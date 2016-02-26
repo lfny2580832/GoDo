@@ -1,5 +1,5 @@
 //
-//  RLMThingType.h
+//  RLMProject.h
 //  CalendarTodoList
 //
 //  Created by 牛严 on 16/2/4.
@@ -8,11 +8,11 @@
 
 #import <Realm/Realm.h>
 
-@interface RLMThingType : RLMObject
+@interface RLMProject : RLMObject
 ///事件类型ID 主键
-@property (nonatomic, assign) NSInteger typeId;
+@property (nonatomic, assign) NSInteger projectId;
 ///事件类型字符串
-@property (nonatomic, copy) NSString *typeStr;
+@property (nonatomic, copy) NSString *projectStr;
 ///事件类型标记颜色
 @property (nonatomic, assign) NSInteger red;
 @property (nonatomic, assign) NSInteger green;

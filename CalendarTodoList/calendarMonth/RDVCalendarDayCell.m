@@ -7,7 +7,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "RDVCalendarDayCell.h"
 #import "UILabelZoomable.h"
-#import "ThingType.h"
+#import "Project.h"
 #import "Todo.h"
 
 #import "NSString+ZZExtends.h"
@@ -197,13 +197,13 @@
     for (int i = 0; i < count ; i++)
     {
         Todo *todo = _todoArray[i];
-        ThingType *type = todo.thing.thingType;
+        Project *type = todo.project;
         UILabelZoomable *todoLabel = [[UILabelZoomable alloc]initWithFrame:CGRectMake(x, y, width, height)];
         todoLabel.numberOfLines = 0;
         todoLabel.alpha = 0;
         todoLabel.textColor = [UIColor blackColor];
         todoLabel.font = [UIFont systemFontOfSize:5];
-        todoLabel.text = [NSString stringWithFormat:@" %@",todo.thing.thingStr];
+        todoLabel.text = [NSString stringWithFormat:@" %@",todo.thingStr];
         todoLabel.backgroundColor = RGBA(type.red, type.green, type.blue, 1.0);
         todoLabel.layer.masksToBounds = YES;
         todoLabel.layer.cornerRadius = 1.5f;

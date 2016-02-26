@@ -7,7 +7,8 @@
 //
 
 #import <Realm/Realm.h>
-#import "RLMThing.h"
+#import "RLMProject.h"
+#import "RLMImage.h"
 
 //月界面只显示未开始、进行中和过期 （可设置）
 typedef NS_ENUM(NSInteger, DoneType)
@@ -23,15 +24,17 @@ typedef NS_ENUM(NSInteger, DoneType)
 @property (nonatomic, assign) NSInteger tableId;
 ///dayId 为年月日，如 20160106
 @property (nonatomic, assign) NSInteger dayId;
-
 ///开始时间戳 精确到秒
 @property (nonatomic, assign) long long startTime;
 ///结束时间
 @property (nonatomic, assign) long long endTime;
-///对应事件;
-@property (nonatomic, strong) RLMThing *thing;
-
-
+///事件类型
+@property RLMProject *project;
+///事件字符串
+@property NSString *thingStr;
+///图片数组
+@property RLMArray <RLMImage>* imageDatas;
+//完成情况
 @property (nonatomic, assign) DoneType doneType;
 
 @end

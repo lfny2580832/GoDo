@@ -1,13 +1,18 @@
 //
-//  ThingType.m
+//  RLMProject.h
 //  CalendarTodoList
 //
 //  Created by 牛严 on 16/2/4.
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import "ThingType.h"
+#import "RLMProject.h"
 
-@implementation ThingType
+@implementation RLMProject
+
++ (NSString *) primaryKey
+{
+    return @"projectId";
+}
 
 @end

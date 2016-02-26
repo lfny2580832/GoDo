@@ -10,7 +10,6 @@
 #import "NSObject+NYExtends.h"
 
 @implementation RLMTodo
-@synthesize thing;
 
 + (NSString *) primaryKey
 {

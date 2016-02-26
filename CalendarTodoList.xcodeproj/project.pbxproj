@@ -14,7 +14,6 @@
 		4A1290911C5DD4FF006E078B /* TodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A12908E1C5DD4FF006E078B /* TodoTableViewCell.m */; };
 		4A12909A1C5E181F006E078B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1290991C5E181F006E078B /* libz.tbd */; };
 		4A3FB5B01C7B78CD00C0E6B7 /* AlbumAddBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A3FB5AF1C7B78CD00C0E6B7 /* AlbumAddBtn@2x.png */; };
-		4A4116CE1C5A5E2C0077564D /* Thing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4116CD1C5A5E2C0077564D /* Thing.m */; };
 		4A4116D11C5A5E5D0077564D /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4116D01C5A5E5D0077564D /* Todo.m */; };
 		4A43AC351C3631A900347E3C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A43AC341C3631A900347E3C /* libc++.tbd */; };
 		4A4F9CBD1C3F3E280000F24C /* RDVCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CB61C3F3E280000F24C /* RDVCalendarDayCell.m */; };
@@ -35,8 +34,8 @@
 		4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3934D1C58AC2E00DA3C16 /* BaseNavigationController.m */; };
 		4AA393511C58AC2E00DA3C16 /* MainTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3934F1C58AC2E00DA3C16 /* MainTabBarVC.m */; };
 		4AA393541C58AC6D00DA3C16 /* RealmManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA393531C58AC6D00DA3C16 /* RealmManage.m */; };
-		4AB09F001C627EF0006EB837 /* RLMThingType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09EFF1C627EF0006EB837 /* RLMThingType.m */; };
-		4AB09F031C6287D8006EB837 /* ThingType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F021C6287D8006EB837 /* ThingType.m */; };
+		4AB09F001C627EF0006EB837 /* RLMProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09EFF1C627EF0006EB837 /* RLMProject.m */; };
+		4AB09F031C6287D8006EB837 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F021C6287D8006EB837 /* Project.m */; };
 		4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F051C62E396006EB837 /* ChooseProjectVC.m */; };
 		4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F081C62E86C006EB837 /* ChooseProjectTableCell.m */; };
 		4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB608F1C7CE3C60040079C /* ZoomImageView.m */; };
@@ -54,7 +53,6 @@
 		4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1DA41C3E496D001ECBF4 /* UIViewController+ZZExtends.m */; };
 		4ADA1DAD1C3E4992001ECBF4 /* UIImage+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1DAA1C3E4992001ECBF4 /* UIImage+ZZExtends.m */; };
 		4ADA1DAE1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1DAC1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m */; };
-		4AEB373B1C599F17007C9F92 /* RLMThing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEB37381C599F17007C9F92 /* RLMThing.m */; };
 		4AEB373C1C599F17007C9F92 /* RLMTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEB373A1C599F17007C9F92 /* RLMTodo.m */; };
 		4AF11FF81C6B1206007DC614 /* ChooseModeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF11FF71C6B1206007DC614 /* ChooseModeCell.m */; };
 		4AF34A201C74ADAC00004EC4 /* UserDefaultManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF34A1F1C74ADAC00004EC4 /* UserDefaultManage.m */; };
@@ -92,10 +90,7 @@
 		4A12908E1C5DD4FF006E078B /* TodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewCell.m; sourceTree = "<group>"; };
 		4A1290961C5E1766006E078B /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		4A1290991C5E181F006E078B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		4A3FB5AD1C7B738C00C0E6B7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		4A3FB5AF1C7B78CD00C0E6B7 /* AlbumAddBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumAddBtn@2x.png"; sourceTree = "<group>"; };
-		4A4116CC1C5A5E2C0077564D /* Thing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thing.h; sourceTree = "<group>"; };
-		4A4116CD1C5A5E2C0077564D /* Thing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thing.m; sourceTree = "<group>"; };
 		4A4116CF1C5A5E5D0077564D /* Todo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Todo.h; sourceTree = "<group>"; };
 		4A4116D01C5A5E5D0077564D /* Todo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Todo.m; sourceTree = "<group>"; };
 		4A43AC341C3631A900347E3C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -138,10 +133,10 @@
 		4AA3934F1C58AC2E00DA3C16 /* MainTabBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarVC.m; sourceTree = "<group>"; };
 		4AA393521C58AC6D00DA3C16 /* RealmManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealmManage.h; sourceTree = "<group>"; };
 		4AA393531C58AC6D00DA3C16 /* RealmManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealmManage.m; sourceTree = "<group>"; };
-		4AB09EFE1C627EF0006EB837 /* RLMThingType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMThingType.h; sourceTree = "<group>"; };
-		4AB09EFF1C627EF0006EB837 /* RLMThingType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMThingType.m; sourceTree = "<group>"; };
-		4AB09F011C6287D8006EB837 /* ThingType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThingType.h; sourceTree = "<group>"; };
-		4AB09F021C6287D8006EB837 /* ThingType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThingType.m; sourceTree = "<group>"; };
+		4AB09EFE1C627EF0006EB837 /* RLMProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMProject.h; sourceTree = "<group>"; };
+		4AB09EFF1C627EF0006EB837 /* RLMProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMProject.m; sourceTree = "<group>"; };
+		4AB09F011C6287D8006EB837 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
+		4AB09F021C6287D8006EB837 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
 		4AB09F041C62E396006EB837 /* ChooseProjectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseProjectVC.h; sourceTree = "<group>"; };
 		4AB09F051C62E396006EB837 /* ChooseProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseProjectVC.m; sourceTree = "<group>"; };
 		4AB09F071C62E86C006EB837 /* ChooseProjectTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseProjectTableCell.h; sourceTree = "<group>"; };
@@ -172,8 +167,6 @@
 		4ADA1DAA1C3E4992001ECBF4 /* UIImage+ZZExtends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZZExtends.m"; sourceTree = "<group>"; };
 		4ADA1DAB1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+ZZExtends.h"; sourceTree = "<group>"; };
 		4ADA1DAC1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+ZZExtends.m"; sourceTree = "<group>"; };
-		4AEB37371C599F17007C9F92 /* RLMThing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMThing.h; sourceTree = "<group>"; };
-		4AEB37381C599F17007C9F92 /* RLMThing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMThing.m; sourceTree = "<group>"; };
 		4AEB37391C599F17007C9F92 /* RLMTodo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMTodo.h; sourceTree = "<group>"; };
 		4AEB373A1C599F17007C9F92 /* RLMTodo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMTodo.m; sourceTree = "<group>"; };
 		4AF11FF61C6B1206007DC614 /* ChooseModeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseModeCell.h; sourceTree = "<group>"; };
@@ -442,18 +435,14 @@
 			children = (
 				4AEB37391C599F17007C9F92 /* RLMTodo.h */,
 				4AEB373A1C599F17007C9F92 /* RLMTodo.m */,
-				4AEB37371C599F17007C9F92 /* RLMThing.h */,
-				4AEB37381C599F17007C9F92 /* RLMThing.m */,
+				4AB09EFE1C627EF0006EB837 /* RLMProject.h */,
+				4AB09EFF1C627EF0006EB837 /* RLMProject.m */,
 				4ABB60911C7CE3C60040079C /* RLMImage.h */,
 				4ABB60921C7CE3C60040079C /* RLMImage.m */,
-				4AB09EFE1C627EF0006EB837 /* RLMThingType.h */,
-				4AB09EFF1C627EF0006EB837 /* RLMThingType.m */,
-				4A4116CC1C5A5E2C0077564D /* Thing.h */,
-				4A4116CD1C5A5E2C0077564D /* Thing.m */,
 				4A4116CF1C5A5E5D0077564D /* Todo.h */,
 				4A4116D01C5A5E5D0077564D /* Todo.m */,
-				4AB09F011C6287D8006EB837 /* ThingType.h */,
-				4AB09F021C6287D8006EB837 /* ThingType.m */,
+				4AB09F011C6287D8006EB837 /* Project.h */,
+				4AB09F021C6287D8006EB837 /* Project.m */,
 			);
 			path = CoreModel;
 			sourceTree = "<group>";
@@ -461,7 +450,6 @@
 		5AD3F6B00E743D84CCA1C8D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4A3FB5AD1C7B738C00C0E6B7 /* MobileCoreServices.framework */,
 				4A1290991C5E181F006E078B /* libz.tbd */,
 				4A1290961C5E1766006E078B /* Reveal.framework */,
 				4A43AC341C3631A900347E3C /* libc++.tbd */,
@@ -695,15 +683,13 @@
 				4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */,
 				4A95AA111C71702F00DFB118 /* DeleteTodoCell.m in Sources */,
 				4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */,
-				4AB09F001C627EF0006EB837 /* RLMThingType.m in Sources */,
+				4AB09F001C627EF0006EB837 /* RLMProject.m in Sources */,
 				4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */,
-				4AB09F031C6287D8006EB837 /* ThingType.m in Sources */,
+				4AB09F031C6287D8006EB837 /* Project.m in Sources */,
 				4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */,
 				4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */,
 				4ADA1DA71C3E496D001ECBF4 /* UILabelZoomable.m in Sources */,
-				4AEB373B1C599F17007C9F92 /* RLMThing.m in Sources */,
 				4A9FC1BD1C699FAE00A1D888 /* TodoDetailVC.m in Sources */,
-				4A4116CE1C5A5E2C0077564D /* Thing.m in Sources */,
 				4A1290861C5DD4E6006E078B /* WeekCollectionView.m in Sources */,
 				4AEB373C1C599F17007C9F92 /* RLMTodo.m in Sources */,
 			);
