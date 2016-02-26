@@ -51,6 +51,7 @@
         todo.thingStr = RLMTodo.thingStr;
         
         todo.project = [[Project alloc]init];
+        todo.projectId = RLMTodo.projectId;
         todo.project.projectId = RLMTodo.project.projectId;
         todo.project.projectStr = RLMTodo.project.projectStr;
         todo.project.red = RLMTodo.project.red;
@@ -120,6 +121,7 @@
     rlmProject.green = project.green;
     rlmProject.blue = project.blue;
     todoModel.project = rlmProject;
+    todoModel.projectId = project.projectId;
     todoModel.thingStr = contentStr;
     
     if (images.count) {

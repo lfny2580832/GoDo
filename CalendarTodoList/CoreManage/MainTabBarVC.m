@@ -35,7 +35,7 @@
 - (void)initViews
 {
 //    [self simulateProject];
-//    [self sim3zulateTodoList];
+//    [self simulateTodoList];
     
     CalendarVC *calendarVC = [[CalendarVC alloc]init];
     BaseNavigationController *calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];

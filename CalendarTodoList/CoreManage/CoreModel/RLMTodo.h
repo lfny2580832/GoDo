@@ -30,6 +30,8 @@ typedef NS_ENUM(NSInteger, DoneType)
 @property (nonatomic, assign) long long endTime;
 ///事件类型
 @property RLMProject *project;
+///项目ID
+@property NSInteger projectId;
 ///事件字符串
 @property NSString *thingStr;
 ///图片数组

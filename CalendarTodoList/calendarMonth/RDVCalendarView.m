@@ -525,10 +525,10 @@
             self.month.year == self.currentDay.year) {
 //            dayCell.backgroundView.backgroundColor = self.currentDayColor;
             dayCell.backgroundView.backgroundColor = RGBA(255, 204, 153, 0.5);
-            dayCell.backgroundView.layer.borderWidth = 1.0f;
+//            dayCell.backgroundView.layer.borderWidth = 1.0f;
         } else {
 //            dayCell.backgroundView.backgroundColor = self.normalDayColor;
-            dayCell.backgroundView.layer.borderWidth = 0.0f;
+//            dayCell.backgroundView.layer.borderWidth = 0.0f;
         }
 
 //        dayCell.selectedBackgroundView.backgroundColor = self.selectedDayColor;

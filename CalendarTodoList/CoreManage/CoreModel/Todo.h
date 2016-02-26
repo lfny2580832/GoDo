@@ -22,6 +22,8 @@
 @property (nonatomic, assign) long long endTime;
 ///事件类型
 @property (nonatomic, strong) Project *project;
+///项目ID
+@property NSInteger projectId;
 ///事件字符串
 @property (nonatomic, copy)   NSString *thingStr;
 ///图片数组

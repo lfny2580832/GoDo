@@ -116,7 +116,6 @@
     if(!cell){
         cell = [[TodoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
-    
     cell.todo = _todoArray[indexPath.row];
     return cell;
 }

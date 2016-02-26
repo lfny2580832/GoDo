@@ -92,12 +92,12 @@
         void (^block)() = ^{
             if (selected) {
                 weakSelf.backgroundView.alpha = 1.0f;
-                weakSelf.backgroundView.layer.borderWidth = 1.0f;
+//                weakSelf.backgroundView.layer.borderWidth = 1.0f;
                 weakSelf.backgroundView.layer.borderColor = [UIColor blueColor].CGColor;
 //                weakSelf.selectedBackgroundView.alpha = 1.0f;
             } else {
                 weakSelf.backgroundView.alpha = 1.0f;
-                weakSelf.backgroundView.layer.borderWidth = 0.0f;
+//                weakSelf.backgroundView.layer.borderWidth = 0.0f;
 //                weakSelf.selectedBackgroundView.alpha = 0.0f;
             }
 //            for (id subview in weakSelf.contentView.subviews) {
@@ -137,12 +137,12 @@
         void (^block)() = ^{
             if (highlighted) {
                 weakSelf.backgroundView.alpha = 1.0f;
-                weakSelf.backgroundView.layer.borderWidth = 1.0f;
+//                weakSelf.backgroundView.layer.borderWidth = 1.0f;
                 weakSelf.backgroundView.layer.borderColor = [UIColor blueColor].CGColor;
 //                weakSelf.selectedBackgroundView.alpha = 1.0f;
             } else {
                 weakSelf.backgroundView.alpha = 1.0f;
-                weakSelf.backgroundView.layer.borderWidth = 0.0f;
+//                weakSelf.backgroundView.layer.borderWidth = 0.0f;
 
 //                weakSelf.selectedBackgroundView.alpha = 0.0f;
             }

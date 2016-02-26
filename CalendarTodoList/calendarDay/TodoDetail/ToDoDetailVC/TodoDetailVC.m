@@ -150,6 +150,7 @@ static CGFloat datePickerCellHeight = 240.f;
 #pragma mark Set Methods
 - (void)setTodo:(Todo *)todo
 {
+    //创建新项目
     if(!todo)
     {
         Project *defaultProject = [[RealmManager getProjectArray] firstObject];
@@ -167,16 +168,18 @@ static CGFloat datePickerCellHeight = 240.f;
         _endDate = [NSDate dateWithTimeInterval:60*60 sinceDate:_startDate];
         return;
     }
+    
+    //修改项目
     _todo = todo;
     _tableId = _todo.tableId;
-    _todoContentStr =  _todo.thingStr;
+    _todoContentStr = _todo.thingStr;
     _todoContentView.todoContentField.text = _todoContentStr;
     _project = [RealmManager getProjectWithId:_todo.project.projectId];
     _todoProjectView.project = _project;
     _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.startTime];
     _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.endTime];
-    _chosenImages = (NSMutableArray *)_todo.images;
-    if (_chosenImages.count) {
+    if (_todo.images.count) {
+        _chosenImages = (NSMutableArray *)_todo.images;
         [_todoContentView updateContentViewWithImageArray:_chosenImages];
     }
 }
