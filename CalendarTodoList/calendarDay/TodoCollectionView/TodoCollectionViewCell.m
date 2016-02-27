@@ -27,16 +27,12 @@
     NSArray <Todo *> *_todoArray;
 }
 
-#pragma mark - 重用TodoCell时先清空数据
-- (void)refreshTableViewBeforQueryData
-{
-    _todoArray = nil;
-    [_tableView reloadData];
-}
-
 #pragma mark Set方法
 - (void)setDayId:(NSInteger)dayId
 {
+    _todoArray = nil;
+    [_tableView reloadData];
+    
     _dayId = dayId;
     [self realmGetDayInfoFromRealmWithDayId:_dayId];
     
@@ -78,6 +74,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = KNaviColor;
         [self initView];
     }
     return self;
@@ -92,7 +89,7 @@
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.tableFooterView = [UIView new];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.estimatedRowHeight = 40.0;
+    _tableView.estimatedRowHeight = 50.0;
     _tableView.rowHeight = UITableViewAutomaticDimension;
     [self addSubview:_tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -117,6 +114,7 @@
         cell = [[TodoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
     cell.todo = _todoArray[indexPath.row];
+
     return cell;
 }
 

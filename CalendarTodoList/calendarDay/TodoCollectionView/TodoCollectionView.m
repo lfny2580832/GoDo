@@ -117,16 +117,14 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark 生成CollectionView的Item
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    TodoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.delegate = self;
     NSDate *chosenDate = [self getChosenDateFromIndexPathRow:indexPath.item];
     [self.mdelegate returnChosenDate:chosenDate];
     NSInteger dayId = [[_YMDformatter stringFromDate:chosenDate] integerValue];
-    [cell refreshTableViewBeforQueryData];
-    cell.index = [NSString stringWithFormat:@"%ld",(long)indexPath.item + 1];
+
+    TodoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    cell.delegate = self;
     cell.date = chosenDate;
     cell.dayId = dayId;
-    cell.backgroundColor = [NSObject randomColor];
     [self.mdelegate selectedTodoCellWithIndexItem:indexPath.item];
     return cell;
 }

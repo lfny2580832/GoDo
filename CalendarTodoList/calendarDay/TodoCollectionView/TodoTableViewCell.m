@@ -20,6 +20,8 @@
     UIView *_topLine;
     UIView *_cicleView;
     UIView *_bottomLine;
+    
+    NSMutableArray *_imageArray;
 }
 
 static NSInteger CircleRadius = 9;
@@ -38,26 +40,39 @@ static NSInteger LineWidth = 2;
     NSInteger B = todo.project.blue;
     _cicleView.backgroundColor = RGBA(R, G, B, 1.0);
     
+    _imageArray = [[NSMutableArray alloc]initWithCapacity:0];
+    
     if (_todo.images.count) {
         NSInteger imageCount = _todo.images.count;
         NSArray *images = _todo.images;
         NSInteger imageEdge = 10;
         [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.contentView).offset(-65);
+            make.bottom.equalTo(self.contentView).offset(-70);
         }];
+        for(UIImageView *subView in self.subviews)
+        {
+            if (subView.tag > 100000) {
+                [subView removeFromSuperview];
+            }
+        }
         //创建imageView
-        for (int i = 0; i < imageCount; i ++) {
-            UIImageView *todoImageView = [[UIImageView alloc]initWithImage:images[i]];
+        for (int i = 0; i < 4; i ++) {
+            UIImageView *todoImageView = [[UIImageView alloc]init];
             todoImageView.userInteractionEnabled = YES;
             todoImageView.contentMode= UIViewContentModeScaleAspectFill;
             todoImageView.clipsToBounds = YES;
-            UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
-            [todoImageView addGestureRecognizer:recognizer];
-            [self addSubview:todoImageView];
+            if (i < imageCount) {
+                todoImageView.tag = _todo.tableId *4 + i;
+                todoImageView.image = images[i];
+                UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
+                [todoImageView addGestureRecognizer:recognizer];
+            }else
+                todoImageView.backgroundColor = KNaviColor;
+            [self.contentView addSubview:todoImageView];
             [todoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.contentView).offset(90 + i*(50+imageEdge));
                 make.size.mas_equalTo(CGSizeMake(50, 50));
-                make.top.equalTo(_textLabel.mas_bottom).offset(10);
+                make.top.equalTo(_textLabel.mas_bottom).offset(15);
             }];
         }
     }else{
