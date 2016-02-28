@@ -33,11 +33,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == _projects.count) {
-        ChooseProjectTableCell *cell = [[ChooseProjectTableCell alloc]initWithContentLabel];
+        ChooseProjectTableCell *cell =
+        [[ChooseProjectTableCell alloc]initWithContentLabel];
         return cell;
     }
     ChooseProjectTableCell *cell = [[ChooseProjectTableCell alloc]init];
-    cell.type = _projects[indexPath.row];
+    cell.project = _projects[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

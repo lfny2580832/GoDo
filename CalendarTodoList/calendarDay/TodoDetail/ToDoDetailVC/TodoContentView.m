@@ -28,7 +28,7 @@
 #pragma mark 点击添加图片
 - (void)addImageViewClicked
 {
-    [self.delegate pickImageWithCurrentImageCount:_imageCount];
+    [self.delegate pickImageWithCurrentImages:_modifyImages];
 }
 
 #pragma mark 加载图片

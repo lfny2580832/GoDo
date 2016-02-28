@@ -30,16 +30,13 @@
 #pragma mark Set方法
 - (void)setDayId:(NSInteger)dayId
 {
+    _tableView.tableFooterView.hidden = YES;
     _todoArray = nil;
     [_tableView reloadData];
-    
+
     _dayId = dayId;
     [self realmGetDayInfoFromRealmWithDayId:_dayId];
-    
-    if (dayId < [NSObject getDayIdWithDate:[NSDate date]])
-        _tableView.tableFooterView.hidden = YES;
-    else
-        _tableView.tableFooterView.hidden = NO;
+
 }
 
 - (void)realmGetDayInfoFromRealmWithDayId:(NSInteger)dayId
@@ -48,6 +45,10 @@
         _todoArray = [RealmManager getDayInfoFromRealmWithDayId:dayId];
         dispatch_async(kMainQueue, ^{
             [_tableView reloadData];
+            if (dayId < [NSObject getDayIdWithDate:[NSDate date]])
+                _tableView.tableFooterView.hidden = YES;
+            else
+                _tableView.tableFooterView.hidden = NO;
         });
     });
 }

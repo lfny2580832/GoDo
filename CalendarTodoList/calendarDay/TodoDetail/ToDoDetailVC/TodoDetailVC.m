@@ -56,7 +56,7 @@ static CGFloat cellHeight = 50.f;
 static CGFloat datePickerCellHeight = 240.f;
 
 #pragma mark 添加图片
-- (void)pickImageWithCurrentImageCount:(NSInteger)count
+- (void)pickImageWithCurrentImages:(NSArray *)images
 {
     [self.view endEditing:YES];
     UIAlertController *imageSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
@@ -71,16 +71,17 @@ static CGFloat datePickerCellHeight = 240.f;
     [imageSheet addAction:[UIAlertAction actionWithTitle:@"从相册中选取"
                                                     style:UIAlertActionStyleDefault
                                                   handler:^(UIAlertAction *action) {
-                                                      [self chosenImageFromAlbumWithLeftCount:4-count];
+                                                      [self chosenImageFromAlbumWithImages:images];
                                                   }]];
     [self presentViewController:imageSheet animated:YES completion:nil];
 
 }
 
 #pragma mark 从相册选择照片
-- (void)chosenImageFromAlbumWithLeftCount:(NSInteger)count
+- (void)chosenImageFromAlbumWithImages:(NSArray *)images
 {
-    _imagePickerVC = [[TZImagePickerController alloc] initWithMaxImagesCount:count delegate:self];
+    _chosenImages = [NSMutableArray arrayWithArray:images];
+    _imagePickerVC = [[TZImagePickerController alloc] initWithMaxImagesCount:4 - images.count delegate:self];
     _imagePickerVC.navigationBar.barTintColor = KNaviColor;
     _imagePickerVC.allowPickingVideo = NO;
     _imagePickerVC.allowPickingOriginalPhoto = YES;

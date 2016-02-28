@@ -12,7 +12,7 @@
 
 - (void)getTodoContentWith:(NSString *)todoContentStr;
 
-- (void)pickImageWithCurrentImageCount:(NSInteger)count;
+- (void)pickImageWithCurrentImages:(NSArray *)images;
 
 @end
 

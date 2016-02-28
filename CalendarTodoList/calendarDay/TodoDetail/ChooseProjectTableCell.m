@@ -16,12 +16,12 @@
 }
 
 #pragma mark Set Methods
-- (void)setType:(Project *)type
+- (void)setProject:(Project *)project
 {
-    _type = type;
-    _projectLabel.text = type.projectStr;
+    _project = project;
+    _projectLabel.text = project.projectStr;
     
-    UIColor *typeColor = RGBA(type.red, type.green, type.blue, 1.0);
+    UIColor *typeColor = RGBA(project.red, project.green, project.blue, 1.0);
     _colorView.backgroundColor = typeColor;
 }
 

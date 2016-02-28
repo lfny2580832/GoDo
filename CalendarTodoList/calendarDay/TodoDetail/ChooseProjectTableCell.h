@@ -12,7 +12,7 @@
 
 @interface ChooseProjectTableCell : UITableViewCell
 
-@property (nonatomic, strong) Project *type;
+@property (nonatomic, strong) Project *project;
 
 - (instancetype)initWithContentLabel;
 
