@@ -11,6 +11,8 @@
 
 @interface TodoTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) Todo *todo;
+//@property (nonatomic, strong) Todo *todo;
+
+- (void)loadTodo:(Todo *)todo;
 
 @end

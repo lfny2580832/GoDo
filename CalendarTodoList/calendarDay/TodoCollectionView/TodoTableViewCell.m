@@ -20,17 +20,13 @@
     UIView *_topLine;
     UIView *_cicleView;
     UIView *_bottomLine;
-    
-    NSMutableArray *_imageArray;
 }
 
 static NSInteger CircleRadius = 9;
 static NSInteger LineWidth = 2;
 
-#pragma mark Set方法
-- (void)setTodo:(Todo *)todo
+- (void)loadTodo:(Todo *)todo
 {
-    _todo = todo;
     _textLabel.text = todo.thingStr;
     NSString *timeStr = [NSString getHourMinuteDateFromTimeInterval:todo.startTime];
     _timeLabel.text = timeStr;
@@ -40,21 +36,13 @@ static NSInteger LineWidth = 2;
     NSInteger B = todo.project.blue;
     _cicleView.backgroundColor = RGBA(R, G, B, 1.0);
     
-    _imageArray = [[NSMutableArray alloc]initWithCapacity:0];
-    
-    if (_todo.images.count) {
-        NSInteger imageCount = _todo.images.count;
-        NSArray *images = _todo.images;
+    if (todo.images.count) {
+        NSInteger imageCount = todo.images.count;
+        NSArray *images = todo.images;
         NSInteger imageEdge = 10;
         [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.contentView).offset(-70);
         }];
-        for(UIImageView *subView in self.subviews)
-        {
-            if (subView.tag > 100000) {
-                [subView removeFromSuperview];
-            }
-        }
         //创建imageView
         for (int i = 0; i < 4; i ++) {
             UIImageView *todoImageView = [[UIImageView alloc]init];
@@ -62,7 +50,7 @@ static NSInteger LineWidth = 2;
             todoImageView.contentMode= UIViewContentModeScaleAspectFill;
             todoImageView.clipsToBounds = YES;
             if (i < imageCount) {
-                todoImageView.tag = _todo.tableId *4 + i;
+                todoImageView.tag = todo.tableId *4 + i;
                 todoImageView.image = images[i];
                 UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
                 [todoImageView addGestureRecognizer:recognizer];
@@ -80,7 +68,13 @@ static NSInteger LineWidth = 2;
             make.bottom.equalTo(self.contentView).offset(-15);
         }];
     }
+
 }
+//
+//- (void)setTodo:(Todo *)todo
+//{
+////    _todo = todo;
+// }
 
 #pragma mark 放大ImageView中的图片
 - (void)enlargeImageWithImageView:(id)sender

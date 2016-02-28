@@ -15,7 +15,8 @@
     UIImageView *_addImageView;
     
     NSInteger _imageCount;
-    NSArray *_images;
+    
+    NSMutableArray *_imageViews;
 }
 
 #pragma mark KVO Texfield
@@ -34,17 +35,20 @@
 - (void)updateContentViewWithImageArray:(NSMutableArray *)images
 {
     NSInteger imageEdge = 10;
-    _images = images;
+    
+    //不用赋值，用arraywitharray，这样指针指向就不是同一个数组，导致cell的数据模型改变
+    _modifyImages = [NSMutableArray arrayWithArray:images];
     _imageCount = images.count;
     //改变添加按钮的左边距
     if (_imageCount < 4) {
         [_addImageView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(25 + _imageCount * (60 + imageEdge));
         }];
+        _addImageView.hidden = NO;
     }else if (_imageCount == 4){
         _addImageView.hidden = YES;
     }
-    
+    _imageViews = [[NSMutableArray alloc]initWithCapacity:0];
     //创建iamgeView
     for (int i = 0; i < _imageCount; i ++) {
         UIImageView *todoImageView = [[UIImageView alloc]initWithImage:images[i]];
@@ -53,12 +57,28 @@
         todoImageView.clipsToBounds = YES;
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
         [todoImageView addGestureRecognizer:recognizer];
+        
+        
+        UIImageView *deleteView = [[UIImageView alloc]init];
+        deleteView.userInteractionEnabled = YES;
+        deleteView.backgroundColor = [UIColor redColor];
+        deleteView.tag = i;
+        UITapGestureRecognizer *deleteRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(deleteImageWithIndexRow:)];
+        [deleteView addGestureRecognizer:deleteRecognizer];
+        [todoImageView addSubview:deleteView];
+        [deleteView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.right.equalTo(todoImageView);
+            make.size.mas_equalTo(CGSizeMake(30, 30));
+        }];
+        
         [self addSubview:todoImageView];
         [todoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_todoContentField.mas_bottom).offset(20);
             make.left.equalTo(self).offset(25 + i * (60 + imageEdge));
             make.size.mas_equalTo(CGSizeMake(60, 60));
         }];
+        
+        [_imageViews addObject:todoImageView];
     }
 }
 
@@ -68,6 +88,20 @@
     UITapGestureRecognizer * singleTap = (UITapGestureRecognizer *)sender;
     ZoomImageView *zoomImageView = [[ZoomImageView alloc]initWithImageView:(UIImageView *)[singleTap view]];
     [zoomImageView showBigImageView];
+}
+
+#pragma mark 删除图片
+- (void)deleteImageWithIndexRow:(id)sender
+{
+    for(UIImageView *imageView in _imageViews)
+    {
+        [imageView removeFromSuperview];
+    }
+    UITapGestureRecognizer * singleTap = (UITapGestureRecognizer *)sender;
+    NSInteger IndexRow = [singleTap view].tag;
+    
+    [_modifyImages removeObjectAtIndex:IndexRow];
+    [self updateContentViewWithImageArray:_modifyImages];
 }
 
 #pragma mark 初始化

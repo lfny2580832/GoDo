@@ -178,8 +178,8 @@ static CGFloat datePickerCellHeight = 240.f;
     _todoProjectView.project = _project;
     _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.startTime];
     _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.endTime];
-    if (_todo.images.count) {
-        _chosenImages = (NSMutableArray *)_todo.images;
+    _chosenImages = [NSMutableArray arrayWithArray:todo.images];
+    if (_chosenImages.count) {
         [_todoContentView updateContentViewWithImageArray:_chosenImages];
     }
 }
@@ -231,6 +231,7 @@ static CGFloat datePickerCellHeight = 240.f;
         return;
     }
     
+    _chosenImages = _todoContentView.modifyImages;
     [RealmManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate endDate:_endDate tableId:_tableId];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
     [self.navigationController popViewControllerAnimated:YES];

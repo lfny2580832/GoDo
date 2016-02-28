@@ -203,6 +203,7 @@
         todoLabel.alpha = 0;
         todoLabel.textColor = [UIColor blackColor];
         todoLabel.font = [UIFont systemFontOfSize:5];
+        todoLabel.textAlignment = NSTextAlignmentCenter;
         todoLabel.text = [NSString stringWithFormat:@" %@",todo.thingStr];
         todoLabel.backgroundColor = RGBA(type.red, type.green, type.blue, 1.0);
         todoLabel.layer.masksToBounds = YES;
