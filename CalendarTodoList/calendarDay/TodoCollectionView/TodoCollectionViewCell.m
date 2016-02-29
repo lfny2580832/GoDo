@@ -49,6 +49,12 @@
                 _tableView.tableFooterView.hidden = YES;
             else
                 _tableView.tableFooterView.hidden = NO;
+            _tableView.alpha = 0;
+            [UIView animateWithDuration:0.2 animations:^{
+                _tableView.alpha = 1;
+            } completion:^(BOOL finished) {
+                
+            }];
         });
     });
 }
