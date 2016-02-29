@@ -9,7 +9,6 @@
 #import "RealmManage.h"
 #import "UserDefaultManage.h"
 
-#import "RLMTodo.h"
 #import "RLMProject.h"
 
 #import "Todo.h"
@@ -143,6 +142,22 @@
     [realm beginWriteTransaction];
     [RLMTodo createOrUpdateInRealm:realm withValue:todoModel];
     [realm commitWriteTransaction];
+}
+
+#pragma mark 根据todo tableID 修改todo 的doneType完成情况
+- (void)changeTodoDoneTypeWithTableId:(NSInteger)tableId doneType:(DoneType)doneType
+{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    RLMResults *result = [RLMTodo objectsWhere:@"tableId = %ld",tableId];
+    
+    [realm beginWriteTransaction];
+    
+    RLMTodo *rlmTodo = [result firstObject];
+    rlmTodo.doneType = doneType;
+    [RLMTodo createOrUpdateInRealm:realm withValue:rlmTodo];
+    
+    [realm commitWriteTransaction];
+    
 }
 
 #pragma mark 根据projectId返回project

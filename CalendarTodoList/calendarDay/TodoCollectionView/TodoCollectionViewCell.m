@@ -52,9 +52,7 @@
             _tableView.alpha = 0;
             [UIView animateWithDuration:0.2 animations:^{
                 _tableView.alpha = 1;
-            } completion:^(BOOL finished) {
-                
-            }];
+            } completion:nil];
         });
     });
 }

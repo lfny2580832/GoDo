@@ -53,6 +53,7 @@
 		4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1DA41C3E496D001ECBF4 /* UIViewController+ZZExtends.m */; };
 		4ADA1DAD1C3E4992001ECBF4 /* UIImage+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1DAA1C3E4992001ECBF4 /* UIImage+ZZExtends.m */; };
 		4ADA1DAE1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1DAC1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m */; };
+		4AEAE9A21C84A804009F814E /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEAE9A11C84A804009F814E /* check.png */; };
 		4AEB373C1C599F17007C9F92 /* RLMTodo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEB373A1C599F17007C9F92 /* RLMTodo.m */; };
 		4AF11FF81C6B1206007DC614 /* ChooseModeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF11FF71C6B1206007DC614 /* ChooseModeCell.m */; };
 		4AF34A201C74ADAC00004EC4 /* UserDefaultManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF34A1F1C74ADAC00004EC4 /* UserDefaultManage.m */; };
@@ -167,6 +168,7 @@
 		4ADA1DAA1C3E4992001ECBF4 /* UIImage+ZZExtends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZZExtends.m"; sourceTree = "<group>"; };
 		4ADA1DAB1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+ZZExtends.h"; sourceTree = "<group>"; };
 		4ADA1DAC1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+ZZExtends.m"; sourceTree = "<group>"; };
+		4AEAE9A11C84A804009F814E /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		4AEB37391C599F17007C9F92 /* RLMTodo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMTodo.h; sourceTree = "<group>"; };
 		4AEB373A1C599F17007C9F92 /* RLMTodo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMTodo.m; sourceTree = "<group>"; };
 		4AF11FF61C6B1206007DC614 /* ChooseModeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseModeCell.h; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 		4ADA1D901C3E478C001ECBF4 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4AEAE9A11C84A804009F814E /* check.png */,
 				4A3FB5AF1C7B78CD00C0E6B7 /* AlbumAddBtn@2x.png */,
 				4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */,
 				4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */,
@@ -576,6 +579,7 @@
 			files = (
 				4A88CB2C1C2B925F001C13D8 /* Assets.xcassets in Resources */,
 				4ADA1D971C3E478C001ECBF4 /* ico_nav_back_white@2x.png in Resources */,
+				4AEAE9A21C84A804009F814E /* check.png in Resources */,
 				4ADA1D951C3E478C001ECBF4 /* ico_nav_back@2x.png in Resources */,
 				4ADA1D961C3E478C001ECBF4 /* ico_nav_back@3x.png in Resources */,
 				4ADA1D981C3E478C001ECBF4 /* ico_nav_back_white@3x.png in Resources */,

@@ -8,6 +8,8 @@
 
 #import "TodoTableViewCell.h"
 
+#import "RealmManage.h"
+
 #import "NSObject+NYExtends.h"
 #import "NSString+ZZExtends.h"
 #import "ZoomImageView.h"
@@ -18,15 +20,18 @@
     UILabel *_timeLabel;
     
     UIView *_topLine;
-    UIView *_cicleView;
+    UIImageView *_cicleView;
     UIView *_bottomLine;
+    
+    Todo *_todo;
 }
 
-static NSInteger CircleRadius = 9;
+static NSInteger CircleRadius = 13;
 static NSInteger LineWidth = 2;
 
 - (void)loadTodo:(Todo *)todo
 {
+    _todo = todo;
     _textLabel.text = todo.thingStr;
     NSString *timeStr = [NSString getHourMinuteDateFromTimeInterval:todo.startTime];
     _timeLabel.text = timeStr;
@@ -35,6 +40,12 @@ static NSInteger LineWidth = 2;
     NSInteger G = todo.project.green;
     NSInteger B = todo.project.blue;
     _cicleView.backgroundColor = RGBA(R, G, B, 1.0);
+    _cicleView.layer.borderWidth = 2;
+    _cicleView.layer.borderColor = [RGBA(R, G, B, 1.0) CGColor];
+    
+    
+    todo.doneType == Done?  _cicleView.highlighted = YES:NO;
+    
     
     if (todo.images.count) {
         NSInteger imageCount = todo.images.count;
@@ -58,7 +69,7 @@ static NSInteger LineWidth = 2;
                 todoImageView.backgroundColor = KNaviColor;
             [self.contentView addSubview:todoImageView];
             [todoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(self.contentView).offset(90 + i*(50+imageEdge));
+                make.left.equalTo(self.contentView).offset(98 + i*(50+imageEdge));
                 make.size.mas_equalTo(CGSizeMake(50, 50));
                 make.top.equalTo(_textLabel.mas_bottom).offset(15);
             }];
@@ -70,11 +81,18 @@ static NSInteger LineWidth = 2;
     }
 
 }
-//
-//- (void)setTodo:(Todo *)todo
-//{
-////    _todo = todo;
-// }
+
+- (void)circleViewClicked
+{
+    _cicleView.highlighted = !_cicleView.highlighted;
+    DoneType doneType;
+    if (_cicleView.highlighted)   doneType = Done;
+    else doneType = NotStart;
+    
+    dispatch_async(kBgQueue, ^{
+        [RealmManager changeTodoDoneTypeWithTableId:_todo.tableId doneType:doneType];
+    });
+}
 
 #pragma mark 放大ImageView中的图片
 - (void)enlargeImageWithImageView:(id)sender
@@ -99,18 +117,6 @@ static NSInteger LineWidth = 2;
 
 - (void)initView
 {
-    _textLabel = [[UILabel alloc]init];
-    _textLabel.textColor = [UIColor whiteColor];
-    _textLabel.textAlignment = NSTextAlignmentLeft;
-    _textLabel.numberOfLines = 0;
-    [self.contentView addSubview:_textLabel];
-    [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(15);
-        make.bottom.equalTo(self.contentView).offset(-15);
-        make.left.equalTo(self.contentView).offset(90);
-        make.right.equalTo(self.contentView).offset(-15);
-    }];
-    
     _timeLabel = [[UILabel alloc]init];
     _timeLabel.textColor = [UIColor whiteColor];
     [self.contentView addSubview:_timeLabel];
@@ -125,7 +131,7 @@ static NSInteger LineWidth = 2;
     [self.contentView addSubview:_topLine];
     [_topLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView);
-        make.left.equalTo(self.contentView).offset(70);
+        make.left.equalTo(_timeLabel.mas_right).offset(16);
         make.size.mas_equalTo(CGSizeMake(LineWidth, 22));
     }];
     
@@ -139,10 +145,14 @@ static NSInteger LineWidth = 2;
         make.bottom.equalTo(self.contentView);
     }];
     
-    _cicleView = [[UIView alloc]init];
+    _cicleView = [[UIImageView alloc]init];
+    _cicleView.userInteractionEnabled = YES;
+    _cicleView.highlightedImage = [UIImage imageNamed:@"check.png"];
     _cicleView.layer.masksToBounds = YES;
     _cicleView.layer.cornerRadius = CircleRadius;
     _cicleView.backgroundColor = [UIColor whiteColor];
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(circleViewClicked)];
+    [_cicleView addGestureRecognizer:recognizer];
     [self.contentView addSubview:_cicleView];
     [_cicleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(_timeLabel);
@@ -150,6 +160,17 @@ static NSInteger LineWidth = 2;
         make.size.mas_equalTo(CGSizeMake(CircleRadius*2, CircleRadius*2));
     }];
     
+    _textLabel = [[UILabel alloc]init];
+    _textLabel.textColor = [UIColor whiteColor];
+    _textLabel.textAlignment = NSTextAlignmentLeft;
+    _textLabel.numberOfLines = 0;
+    [self.contentView addSubview:_textLabel];
+    [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.contentView).offset(15);
+        make.bottom.equalTo(self.contentView).offset(-15);
+        make.left.equalTo(_topLine.mas_right).offset(18);
+        make.right.equalTo(self.contentView).offset(-15);
+    }];
 }
 
 @end
