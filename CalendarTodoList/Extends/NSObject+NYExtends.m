@@ -10,36 +10,37 @@
 
 @implementation NSObject (NYExtends)
 
-#pragma mark 获取当前三个月天数
-+ (NSInteger)numberOfDaysOfThreeMonths {
+#pragma mark 获取现在开始一年的天数
++ (NSInteger)numberOfDaysInThisYear
+{
     NSCalendar *currentCalendar = [NSCalendar autoupdatingCurrentCalendar];
-    NSDateComponents *currentComponents = [currentCalendar components:NSCalendarUnitYear|
-                                           NSCalendarUnitMonth|
-                                           NSCalendarUnitDay|
-                                           NSCalendarUnitWeekday|
-                                           NSCalendarUnitCalendar
-                                                             fromDate:[NSDate date]];
-    //用来加一个月的component
     NSDateComponents *inc = [[NSDateComponents alloc] init];
     inc.month = 1;
-    //第一个月的日期和天数
-    NSInteger firstMonthDays = [currentCalendar rangeOfUnit:NSCalendarUnitDay
-                                                     inUnit:NSCalendarUnitMonth
-                                                    forDate:[NSDate date]].length;
-    
-    NSDate *currentDate = [currentCalendar dateFromComponents:currentComponents];
-    //第二个月的日期和天数
-    NSDate *secondDate = [currentCalendar dateByAddingComponents:inc toDate:currentDate options:0];
-    NSInteger secondMonthDays = [currentCalendar rangeOfUnit:NSCalendarUnitDay
-                                                      inUnit:NSCalendarUnitMonth
-                                                     forDate:secondDate].length;
-    //第三个月的日期和天数
-    NSDate *thirdDate = [currentCalendar dateByAddingComponents:inc toDate:secondDate options:0];
-    NSInteger thirdMonthDays = [currentCalendar rangeOfUnit:NSCalendarUnitDay
-                                                     inUnit:NSCalendarUnitMonth
-                                                    forDate:thirdDate].length;
-    
-    return firstMonthDays + secondMonthDays + thirdMonthDays;
+
+    NSDate *thisDate = [NSDate date];
+    NSInteger sumDays = 0;
+    for (int i = 0; i < 13; i ++) {
+        NSInteger days = [currentCalendar rangeOfUnit:NSCalendarUnitDay
+                                               inUnit:NSCalendarUnitMonth
+                                              forDate:thisDate].length;
+        NSDate *nextDate = [currentCalendar dateByAddingComponents:inc toDate:thisDate options:0];
+        thisDate = nextDate;
+        sumDays = sumDays + days;
+    }
+    return sumDays;
+}
+
+#pragma mark 获取上个月的天数
++ (NSInteger)numberOfDaysInLastMonth
+{
+    NSCalendar *currentCalendar = [NSCalendar autoupdatingCurrentCalendar];
+    NSDateComponents *inc = [[NSDateComponents alloc] init];
+    inc.month = -1;
+    NSDate *lastDate = [currentCalendar dateByAddingComponents:inc toDate:[NSDate date] options:0];
+    NSInteger days = [currentCalendar rangeOfUnit:NSCalendarUnitDay
+                                           inUnit:NSCalendarUnitMonth
+                                          forDate:lastDate].length;
+    return days;
 }
 
 #pragma mark 获取随机颜色

@@ -14,7 +14,7 @@
 {
     NSCalendar *_calendar;
     NSInteger _unitFlags;
-    NSDate *_firstDayInCurrentMonth;
+    NSDate *_firstDayInLastMonth;
     NSDateFormatter *_YMDformatter;
 
     NSIndexPath *_selectedIndexPath;
@@ -45,13 +45,13 @@ static NSString * const reuseIdentifier = @"Cell";
     [self setContentOffset:CGPointMake(indexItem * SCREEN_WIDTH, 0) animated:animated];
 }
 
-#pragma mark 获取当前日期到本月第一天之间的天数，以便设置第几个cell
-- (NSInteger)daysBetweenFirstDayInCurrentMonthAndDate:(NSDate *)chosenDate
+#pragma mark 获取当前日期到上个月第一天之间的天数，以便设置第几个cell
+- (NSInteger)daysBetweenFirstDayInLastMonthAndDate:(NSDate *)chosenDate
 {
     NSDateComponents *comps = [_calendar components:_unitFlags fromDate:chosenDate];
     comps.hour = 12;
     NSDate *newEnd  = [_calendar dateFromComponents:comps];
-    NSTimeInterval interval = [newEnd timeIntervalSinceDate:_firstDayInCurrentMonth];
+    NSTimeInterval interval = [newEnd timeIntervalSinceDate:_firstDayInLastMonth];
     NSInteger beginDays=((NSInteger)interval)/(3600*24);
     return beginDays;
 }
@@ -59,8 +59,8 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark 根据现在的Indexpath，获取当前日期
 - (NSDate *)getChosenDateFromIndexPathRow:(NSInteger)indexpathrow
 {
-    NSTimeInterval interval = 3600*24*(indexpathrow);
-    NSDate * chosenDate = [_firstDayInCurrentMonth dateByAddingTimeInterval:interval];
+    NSTimeInterval interval = 60*60*24*(indexpathrow);
+    NSDate * chosenDate = [_firstDayInLastMonth dateByAddingTimeInterval:interval];
     return chosenDate;
 }
 
@@ -84,11 +84,12 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     _calendar = [NSCalendar currentCalendar];
     _unitFlags = NSCalendarUnitDay| NSCalendarUnitMonth | NSCalendarUnitYear;
-    //获取当前月第一天的日期
+    //获取当上月第一天的日期
     NSDateComponents *comps = [_calendar components:_unitFlags fromDate:[NSDate date]];
+    comps.month = comps.month - 1;
     comps.day = 1;
     comps.hour = 12;
-    _firstDayInCurrentMonth = [_calendar dateFromComponents:comps];
+    _firstDayInLastMonth = [_calendar dateFromComponents:comps];
     _YMDformatter = [[NSDateFormatter alloc]init];
     [_YMDformatter setDateFormat:@"yyyyMMdd"];
 }
@@ -109,7 +110,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark CollectionView返回三个月天数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return [NSObject numberOfDaysOfThreeMonths];
+    return [NSObject numberOfDaysInThisYear] + [NSObject numberOfDaysInLastMonth];
 }
 
 #pragma mark 生成CollectionView的Item

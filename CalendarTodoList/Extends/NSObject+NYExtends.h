@@ -10,8 +10,11 @@
 
 @interface NSObject (NYExtends)
 
-#pragma mark 获取当前三个月天数
-+ (NSInteger)numberOfDaysOfThreeMonths;
+#pragma mark 获取现在开始一年的天数
++ (NSInteger)numberOfDaysInThisYear
+;
+#pragma mark 获取上个月的天数
++ (NSInteger)numberOfDaysInLastMonth;
 
 #pragma mark 获取随机颜色
 + (UIColor *)randomColor;

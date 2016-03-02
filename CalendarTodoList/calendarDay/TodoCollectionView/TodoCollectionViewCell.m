@@ -61,6 +61,7 @@
 - (void)addTodo
 {
     [self.delegate didSelectedTodoTableCellWithTodo:nil];
+
 }
 
 #pragma mark 新建todo后刷新数据
@@ -69,9 +70,14 @@
     [self realmGetDayInfoFromRealmWithDayId:_dayId];
 }
 
-- (void)dealloc
+#pragma mark cell被重用前调用，重写此方法
+- (void)prepareForReuse
 {
+    [super prepareForReuse];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+    [_tableView removeFromSuperview];
+    [self initView];
+
 }
 
 #pragma mark 初始化
@@ -79,7 +85,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = KNaviColor;
+        self.backgroundColor = [NSObject randomColor];
         [self initView];
     }
     return self;
@@ -87,24 +93,29 @@
 
 - (void)initView
 {
-    _tableView = [[UITableView alloc]init];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.backgroundColor = [UIColor clearColor];
-    _tableView.showsVerticalScrollIndicator = NO;
-    _tableView.tableFooterView = [UIView new];
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.estimatedRowHeight = 50.0;
-    _tableView.rowHeight = UITableViewAutomaticDimension;
-    [self addSubview:_tableView];
-    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.left.right.equalTo(self.contentView);
-    }];
     
-    AddTodoFooterView *footerView = [[AddTodoFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-    UITapGestureRecognizer *footerTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addTodo)];
-    [footerView addGestureRecognizer:footerTap];
-    _tableView.tableFooterView = footerView;
+//    dispatch_async(kBgQueue, ^{
+        _tableView = [[UITableView alloc]init];
+        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.tableFooterView = [UIView new];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.estimatedRowHeight = 50.0;
+        _tableView.rowHeight = UITableViewAutomaticDimension;
+        AddTodoFooterView *footerView = [[AddTodoFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+        UITapGestureRecognizer *footerTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addTodo)];
+        [footerView addGestureRecognizer:footerTap];
+        
+//        dispatch_async(kMainQueue, ^{
+                    _tableView.tableFooterView = footerView;
+            _tableView.delegate = self;
+            _tableView.dataSource = self;
+            [self addSubview:_tableView];
+            [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.bottom.left.right.equalTo(self.contentView);
+            }];
+//        });
+//    });
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewAfterCreateOrDelete) name:@"ReloadTodoTableView" object:nil];
 }
@@ -118,7 +129,6 @@
     if(!cell){
         cell = [[TodoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
-//    cell.todo = _todoArray[indexPath.row];
     [cell loadTodo:_todoArray[indexPath.row]];
 
     return cell;

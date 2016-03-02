@@ -24,6 +24,8 @@
     UIView *_bottomLine;
     
     Todo *_todo;
+    
+    NSMutableArray *_imageViews;
 }
 
 static NSInteger CircleRadius = 13;
@@ -45,8 +47,7 @@ static NSInteger LineWidth = 2;
     
     
     todo.doneType == Done?  _cicleView.highlighted = YES:NO;
-    
-    
+    _imageViews = [NSMutableArray arrayWithCapacity:0];
     if (todo.images.count) {
         NSInteger imageCount = todo.images.count;
         NSArray *images = todo.images;
@@ -55,25 +56,25 @@ static NSInteger LineWidth = 2;
             make.bottom.equalTo(self.contentView).offset(-70);
         }];
         //创建imageView
-        for (int i = 0; i < 4; i ++) {
+        for (int i = 0; i < imageCount; i ++) {
             UIImageView *todoImageView = [[UIImageView alloc]init];
             todoImageView.userInteractionEnabled = YES;
             todoImageView.contentMode= UIViewContentModeScaleAspectFill;
             todoImageView.clipsToBounds = YES;
-            if (i < imageCount) {
-                todoImageView.tag = todo.tableId *4 + i;
-                todoImageView.image = images[i];
-                UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
-                [todoImageView addGestureRecognizer:recognizer];
-            }else
-                todoImageView.backgroundColor = KNaviColor;
+            todoImageView.tag = todo.tableId *4 + i;
+            todoImageView.image = images[i];
+            UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
+            [todoImageView addGestureRecognizer:recognizer];
             [self.contentView addSubview:todoImageView];
             [todoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.contentView).offset(98 + i*(50+imageEdge));
                 make.size.mas_equalTo(CGSizeMake(50, 50));
                 make.top.equalTo(_textLabel.mas_bottom).offset(15);
             }];
+            [_imageViews addObject:todoImageView];
         }
+        
+        
     }else{
         [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.contentView).offset(-15);
@@ -102,6 +103,13 @@ static NSInteger LineWidth = 2;
     [zoomImageView showBigImageView];
 }
 
+- (void)dealloc
+{
+    for (UIImageView *imageView in _imageViews)
+    {
+        [imageView removeFromSuperview];
+    }
+}
 #pragma mark 初始化
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier                                                                             
 {
@@ -151,8 +159,6 @@ static NSInteger LineWidth = 2;
     _cicleView.layer.masksToBounds = YES;
     _cicleView.layer.cornerRadius = CircleRadius;
     _cicleView.backgroundColor = [UIColor whiteColor];
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(circleViewClicked)];
-    [_cicleView addGestureRecognizer:recognizer];
     [self.contentView addSubview:_cicleView];
     [_cicleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(_timeLabel);
@@ -160,6 +166,17 @@ static NSInteger LineWidth = 2;
         make.size.mas_equalTo(CGSizeMake(CircleRadius*2, CircleRadius*2));
     }];
     
+    UIView *circleButtonView = [[UIView alloc]init];
+    circleButtonView.backgroundColor =[UIColor clearColor];
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(circleViewClicked)];
+    [circleButtonView addGestureRecognizer:recognizer];
+    [self.contentView addSubview:circleButtonView];
+    [circleButtonView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(_cicleView);
+        make.size.mas_equalTo(CGSizeMake(CircleRadius*2 + 8, CircleRadius*2 + 8));
+    }];
+    
+
     _textLabel = [[UILabel alloc]init];
     _textLabel.textColor = [UIColor whiteColor];
     _textLabel.textAlignment = NSTextAlignmentLeft;

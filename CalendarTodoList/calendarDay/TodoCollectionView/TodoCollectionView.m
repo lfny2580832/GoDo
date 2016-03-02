@@ -15,7 +15,7 @@
 {
     NSInteger _unitFlags;
     NSCalendar *_calendar;
-    NSDate *_firstDayInCurrentMonth;
+    NSDate *_firstDayInLastMonth;
     NSDateFormatter *_YMDformatter;
     
 }
@@ -47,7 +47,7 @@ static NSString * const reuseIdentifier = @"Cell";
     NSDateComponents *comps = [_calendar components:_unitFlags fromDate:chosenDate];
     comps.hour = 12;
     NSDate *newEnd  = [_calendar dateFromComponents:comps];
-    NSTimeInterval interval = [newEnd timeIntervalSinceDate:_firstDayInCurrentMonth];
+    NSTimeInterval interval = [newEnd timeIntervalSinceDate:_firstDayInLastMonth];
     NSInteger beginDays=((NSInteger)interval)/(3600*24);
     return beginDays;
 }
@@ -56,7 +56,7 @@ static NSString * const reuseIdentifier = @"Cell";
 - (NSDate *)getChosenDateFromIndexPathRow:(NSInteger)indexpathrow
 {
     NSTimeInterval interval = 3600*24*(indexpathrow);
-    NSDate * chosenDate = [_firstDayInCurrentMonth dateByAddingTimeInterval:interval];
+    NSDate * chosenDate = [_firstDayInLastMonth dateByAddingTimeInterval:interval];
     return chosenDate;
 }
 
@@ -88,9 +88,10 @@ static NSString * const reuseIdentifier = @"Cell";
     _unitFlags = NSCalendarUnitDay| NSCalendarUnitMonth | NSCalendarUnitYear;
     //获取当前月第一天的日期
     NSDateComponents *comps = [_calendar components:_unitFlags fromDate:[NSDate date]];
+    comps.month = comps.month - 1;
     comps.day = 1;
     comps.hour = 12;
-    _firstDayInCurrentMonth = [_calendar dateFromComponents:comps];
+    _firstDayInLastMonth = [_calendar dateFromComponents:comps];
     _YMDformatter = [[NSDateFormatter alloc]init];
     [_YMDformatter setDateFormat:@"yyyyMMdd"];
 }
@@ -111,17 +112,16 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark CollectionView返回三个月天数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return [NSObject numberOfDaysOfThreeMonths];
+    return [NSObject numberOfDaysInThisYear] + [NSObject numberOfDaysInLastMonth];
 }
 
 #pragma mark 生成CollectionView的Item
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    TodoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     NSDate *chosenDate = [self getChosenDateFromIndexPathRow:indexPath.item];
     [self.mdelegate returnChosenDate:chosenDate];
     NSInteger dayId = [[_YMDformatter stringFromDate:chosenDate] integerValue];
-
-    TodoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.delegate = self;
     cell.date = chosenDate;
     cell.dayId = dayId;

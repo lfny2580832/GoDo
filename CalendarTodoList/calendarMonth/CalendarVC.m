@@ -40,6 +40,12 @@
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
+
+- (void)rightbarButtonItemOnclick:(id)sender
+{
+    [_calendarView showCurrentMonth];
+}
+
 #pragma mark 初始化方法
 - (instancetype)init
 {
@@ -47,6 +53,7 @@
     if (self)
     {
         [self setCustomTitle:@"日历"];
+        [self setRightBackButtontile:@"回到今日"];
         [self initScrollView];
         [self initView];
     }

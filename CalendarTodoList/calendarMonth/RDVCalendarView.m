@@ -87,7 +87,6 @@
         [_backButton setTitle:@"<" forState:UIControlStateNormal];
         [_backButton addTarget:self action:@selector(showPreviousMonth)
               forControlEvents:UIControlEventTouchUpInside];
-        _backButton.hidden = YES;
         [self addSubview:_backButton];
         
         _forwardButton = [[UIButton alloc] init];
@@ -303,7 +302,7 @@
     
     //加载好daycell之后，再加载weekdaylabelview，以放在最daycell的上方
     [_weekDaysView setFrame:CGRectMake(0, CGRectGetMaxY(self.monthLabel.frame), SCREEN_WIDTH, 30)];
-    GradientView *view1 = [[GradientView alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH, 20)];
+    GradientView *view1 = [[GradientView alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH, 10)];
     _weekDaysView.backgroundColor = [UIColor whiteColor];
     [_weekDaysView addSubview:view1];
     [self addSubview:_weekDaysView];
@@ -387,17 +386,29 @@
 //更新顶部年月
 - (void)updateMonthLabelMonth:(NSDateComponents*)month {
     
-    if (month.year <= _currentDay.year && month.month <= _currentDay.month)
+    if (month.year < _currentDay.year && month.month == 12)
     {
         _backButton.hidden = YES;
+        _forwardButton.hidden = NO;
     }
-    else if (month.year >= _currentDay.year && month.month < _currentDay.month + 2)
+    else if (month.year == _currentDay.year && month.month < _currentDay.month)
+    {
+        _backButton.hidden = YES;
+        _forwardButton.hidden = NO;
+    }
+    else if (month.year == _currentDay.year && month.month >= _currentDay.month)
     {
         _backButton.hidden = NO;
         _forwardButton.hidden = NO;
     }
-    else if(month.year >= _currentDay.year && month.month == _currentDay.month + 2)
+    else if (month.year == _currentDay.year + 1 && month.month < _currentDay.month)
     {
+        _backButton.hidden = NO;
+        _forwardButton.hidden = NO;
+    }
+    else if (month.year == _currentDay.year + 1 && month.month == _currentDay.month)
+    {
+        _backButton.hidden = NO;
         _forwardButton.hidden = YES;
     }
     
@@ -655,17 +666,29 @@
 
 - (void)setDisplayedMonth:(NSDateComponents *)month {
     
-    if (month.year <= _currentDay.year && month.month <= _currentDay.month)
+    if (month.year < _currentDay.year && month.month == 12)
     {
         _backButton.hidden = YES;
+        _forwardButton.hidden = NO;
     }
-    else if (month.year >= _currentDay.year && month.month < _currentDay.month + 2)
+    else if (month.year == _currentDay.year && month.month < _currentDay.month)
+    {
+        _backButton.hidden = YES;
+        _forwardButton.hidden = NO;
+    }
+    else if (month.year == _currentDay.year && month.month >= _currentDay.month)
     {
         _backButton.hidden = NO;
         _forwardButton.hidden = NO;
     }
-    else if(month.year >= _currentDay.year && month.month == _currentDay.month + 2)
+    else if (month.year == _currentDay.year + 1 && month.month < _currentDay.month)
     {
+        _backButton.hidden = NO;
+        _forwardButton.hidden = NO;
+    }
+    else if (month.year == _currentDay.year + 1 && month.month == _currentDay.month)
+    {
+        _backButton.hidden = NO;
         _forwardButton.hidden = YES;
     }
     
@@ -681,7 +704,10 @@
     [self.month setMonth:self.currentDay.month];
     [self.month setYear:self.currentDay.year];
  
-    [self setDisplayedMonth:self.month];
+    NSDateComponents *inc = [[NSDateComponents alloc] init];
+    inc.month = 0;
+    [self showMonthWithComponent:inc];
+//    [self setDisplayedMonth:self.month];
 }
 
 #pragma mark 展示上一个月
