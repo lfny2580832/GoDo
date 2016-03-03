@@ -11,7 +11,7 @@
 
 @interface TodoTableViewCell : UITableViewCell
 
-//@property (nonatomic, strong) Todo *todo;
+@property (nonatomic, strong) NSMutableArray *imageViews;
 
 - (void)loadTodo:(Todo *)todo;
 

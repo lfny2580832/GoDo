@@ -44,7 +44,7 @@
         
         Todo *todo = [[Todo alloc]init];
         todo.startTime = RLMTodo.startTime;
-        todo.endTime = RLMTodo.endTime;
+//        todo.endTime = RLMTodo.endTime;
         todo.tableId = RLMTodo.tableId;
         
         todo.thingStr = RLMTodo.thingStr;
@@ -70,16 +70,16 @@
         if (RLMTodo.doneType == Done) {
             todo.doneType = Done;
         }
-        else
-        {
-            long long nowStamp = [[NSDate date] timeIntervalSinceReferenceDate];
-            if (nowStamp > todo.endTime)
-                todo.doneType = OutOfDate;
-            else if (todo.startTime < nowStamp && nowStamp < todo.endTime)
-                todo.doneType = Doing;
-            else if (nowStamp < todo.startTime)
-                todo.doneType = NotStart;
-        }
+//        else
+//        {
+//            long long nowStamp = [[NSDate date] timeIntervalSinceReferenceDate];
+//            if (nowStamp > todo.endTime)
+//                todo.doneType = OutOfDate;
+//            else if (todo.startTime < nowStamp && nowStamp < todo.endTime)
+//                todo.doneType = Doing;
+//            else if (nowStamp < todo.startTime)
+//                todo.doneType = NotStart;
+//        }
         [resultArray addObject:todo];
     }
     return [self sortArrayByStartTimeWithArray:resultArray];
@@ -105,13 +105,13 @@
 
 
 #pragma mark 创建RLMTodo
-- (void)createTodoWithProject:(Project *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate endDate:(NSDate *)endDate tableId:(NSInteger)tableId
+- (void)createTodoWithProject:(Project *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate tableId:(NSInteger)tableId
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
 
     RLMTodo *todoModel = [[RLMTodo alloc]init];
     todoModel.startTime = [startDate timeIntervalSinceReferenceDate];
-    todoModel.endTime = [endDate timeIntervalSinceReferenceDate];
+//    todoModel.endTime = [endDate timeIntervalSinceReferenceDate];
     
     RLMProject *rlmProject = [[RLMProject alloc]init];
     rlmProject.projectId = project.projectId;

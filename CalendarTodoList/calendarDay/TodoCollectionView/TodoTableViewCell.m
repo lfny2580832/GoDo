@@ -24,8 +24,6 @@
     UIView *_bottomLine;
     
     Todo *_todo;
-    
-    NSMutableArray *_imageViews;
 }
 
 static NSInteger CircleRadius = 13;
@@ -47,7 +45,6 @@ static NSInteger LineWidth = 2;
     
     
     todo.doneType == Done?  _cicleView.highlighted = YES:NO;
-    _imageViews = [NSMutableArray arrayWithCapacity:0];
     if (todo.images.count) {
         NSInteger imageCount = todo.images.count;
         NSArray *images = todo.images;
@@ -56,15 +53,22 @@ static NSInteger LineWidth = 2;
             make.bottom.equalTo(self.contentView).offset(-70);
         }];
         //创建imageView
-        for (int i = 0; i < imageCount; i ++) {
-            UIImageView *todoImageView = [[UIImageView alloc]init];
-            todoImageView.userInteractionEnabled = YES;
-            todoImageView.contentMode= UIViewContentModeScaleAspectFill;
-            todoImageView.clipsToBounds = YES;
-            todoImageView.tag = todo.tableId *4 + i;
-            todoImageView.image = images[i];
-            UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
-            [todoImageView addGestureRecognizer:recognizer];
+        for (int i = 0; i < 4; i ++) {
+            UIImageView *todoImageView = [_imageViews objectAtIndex:i];
+            if (i < imageCount) {
+                todoImageView.hidden = NO;
+                todoImageView.userInteractionEnabled = YES;
+                todoImageView.contentMode= UIViewContentModeScaleAspectFill;
+                todoImageView.clipsToBounds = YES;
+                todoImageView.tag = todo.tableId *4 + i;
+                todoImageView.image = images[i];
+                UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
+                [todoImageView addGestureRecognizer:recognizer];
+            }else{
+                todoImageView.image = nil;
+                todoImageView.hidden = YES;
+            }
+
             [self.contentView addSubview:todoImageView];
             [todoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.contentView).offset(98 + i*(50+imageEdge));
@@ -73,8 +77,6 @@ static NSInteger LineWidth = 2;
             }];
             [_imageViews addObject:todoImageView];
         }
-        
-        
     }else{
         [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.contentView).offset(-15);
@@ -103,13 +105,6 @@ static NSInteger LineWidth = 2;
     [zoomImageView showBigImageView];
 }
 
-- (void)dealloc
-{
-    for (UIImageView *imageView in _imageViews)
-    {
-        [imageView removeFromSuperview];
-    }
-}
 #pragma mark 初始化
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier                                                                             
 {
@@ -118,6 +113,12 @@ static NSInteger LineWidth = 2;
         self.clipsToBounds = YES;
         self.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        _imageViews = [NSMutableArray arrayWithCapacity:4];
+        for(int i = 0 ;i < 4 ; i ++)
+        {
+            UIImageView *imageView = [[UIImageView alloc]init];
+            [_imageViews addObject:imageView];
+        }
         [self initView];
     }
     return self;

@@ -18,8 +18,8 @@
 
 ///开始时间戳 精确到秒
 @property (nonatomic, assign) long long startTime;
-///结束时间
-@property (nonatomic, assign) long long endTime;
+/////结束时间
+//@property (nonatomic, assign) long long endTime;
 ///事件类型
 @property (nonatomic, strong) Project *project;
 ///项目ID

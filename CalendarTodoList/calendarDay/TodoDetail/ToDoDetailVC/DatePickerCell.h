@@ -10,7 +10,7 @@
 
 @protocol DatePickerCellDelegate <NSObject>
 
-- (void)returnStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+- (void)returnStartDate:(NSDate *)startDate;
 
 @end
 

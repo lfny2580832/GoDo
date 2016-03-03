@@ -50,9 +50,12 @@
             else
                 _tableView.tableFooterView.hidden = NO;
             _tableView.alpha = 0;
+
             [UIView animateWithDuration:0.2 animations:^{
                 _tableView.alpha = 1;
-            } completion:nil];
+            } completion:^(BOOL finished) {
+ 
+            }];
         });
     });
 }
@@ -74,10 +77,10 @@
 - (void)prepareForReuse
 {
     [super prepareForReuse];
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
-    [_tableView removeFromSuperview];
-    [self initView];
-
+//    [_tableView removeFromSuperview];
+//    [self initView];
+    
+    
 }
 
 #pragma mark 初始化
@@ -86,6 +89,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [NSObject randomColor];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewAfterCreateOrDelete) name:@"ReloadTodoTableView" object:nil];
         [self initView];
     }
     return self;
@@ -94,30 +98,25 @@
 - (void)initView
 {
     
-//    dispatch_async(kBgQueue, ^{
-        _tableView = [[UITableView alloc]init];
-        _tableView.backgroundColor = [UIColor clearColor];
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.tableFooterView = [UIView new];
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.estimatedRowHeight = 50.0;
-        _tableView.rowHeight = UITableViewAutomaticDimension;
-        AddTodoFooterView *footerView = [[AddTodoFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-        UITapGestureRecognizer *footerTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addTodo)];
-        [footerView addGestureRecognizer:footerTap];
-        
-//        dispatch_async(kMainQueue, ^{
-                    _tableView.tableFooterView = footerView;
-            _tableView.delegate = self;
-            _tableView.dataSource = self;
-            [self addSubview:_tableView];
-            [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.bottom.left.right.equalTo(self.contentView);
-            }];
-//        });
-//    });
+    _tableView = [[UITableView alloc]init];
+    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.tableFooterView = [UIView new];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableView.estimatedRowHeight = 50.0;
+    _tableView.rowHeight = UITableViewAutomaticDimension;
+    AddTodoFooterView *footerView = [[AddTodoFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    UITapGestureRecognizer *footerTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addTodo)];
+    [footerView addGestureRecognizer:footerTap];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewAfterCreateOrDelete) name:@"ReloadTodoTableView" object:nil];
+    _tableView.tableFooterView = footerView;
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [self addSubview:_tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.left.right.equalTo(self.contentView);
+    }];
+    
 }
 
 #pragma mark UITableViewDelegate DataSource

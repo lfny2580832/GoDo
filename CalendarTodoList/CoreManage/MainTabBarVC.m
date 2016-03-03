@@ -60,7 +60,7 @@
     todoModel.thingStr = @"开始创建你的任务吧！";
     NSDate *startDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];
     todoModel.startTime = [startDate timeIntervalSinceReferenceDate];
-    todoModel.endTime = todoModel.startTime + 60 * 60;
+//    todoModel.endTime = todoModel.startTime + 60 * 60;
     todoModel.tableId = 1;
     todoModel.doneType = NotStart;
     

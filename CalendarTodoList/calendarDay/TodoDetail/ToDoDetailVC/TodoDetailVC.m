@@ -42,13 +42,13 @@
     
     TZImagePickerController *_imagePickerVC;
     DatePickerCell *_startCell;
-    DatePickerCell *_endCell;
+//    DatePickerCell *_endCell;
     
     NSString *_todoContentStr;
     Project *_project;
     NSInteger _tableId;
     NSDate *_startDate;
-    NSDate *_endDate;
+//    NSDate *_endDate;
     NSMutableArray *_chosenImages;
 }
 
@@ -166,7 +166,7 @@ static CGFloat datePickerCellHeight = 240.f;
         else
             _startDate = tempDate;
         
-        _endDate = [NSDate dateWithTimeInterval:60*60 sinceDate:_startDate];
+//        _endDate = [NSDate dateWithTimeInterval:60*60 sinceDate:_startDate];
         return;
     }
     
@@ -178,7 +178,7 @@ static CGFloat datePickerCellHeight = 240.f;
     _project = [RealmManager getProjectWithId:_todo.project.projectId];
     _todoProjectView.project = _project;
     _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.startTime];
-    _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.endTime];
+//    _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.endTime];
     _chosenImages = [NSMutableArray arrayWithArray:todo.images];
     if (_chosenImages.count) {
         [_todoContentView updateContentViewWithImageArray:_chosenImages];
@@ -192,19 +192,19 @@ static CGFloat datePickerCellHeight = 240.f;
     else _datePickerMode = UIDatePickerModeDateAndTime;
     
     [_startCell setDatePickerMode:_datePickerMode date:_startDate];
-    [_endCell setDatePickerMode:_datePickerMode date:_endDate];
+//    [_endCell setDatePickerMode:_datePickerMode date:_endDate];
 }
 
 #pragma mark 返回开始日期
-- (void)returnStartDate:(NSDate *)startDate endDate:(NSDate *)endDate
+- (void)returnStartDate:(NSDate *)startDate
 {
     if (startDate)  _startDate = startDate;
-    else _endDate = endDate;
+//    else _endDate = endDate;
     
-    if ([_startDate timeIntervalSinceDate:_endDate] >= 0.0)
-        _endCell.dateLabel.textColor = [UIColor redColor];
-    else
-        _endCell.dateLabel.textColor = [UIColor blackColor];
+//    if ([_startDate timeIntervalSinceDate:_endDate] >= 0.0)
+//        _endCell.dateLabel.textColor = [UIColor redColor];
+//    else
+//        _endCell.dateLabel.textColor = [UIColor blackColor];
 }
 
 #pragma mark ChooseProjectVC Delegate 获取返回的project
@@ -227,13 +227,13 @@ static CGFloat datePickerCellHeight = 240.f;
         NSLog(@"请输入内容");
         return;
     }
-    if ([_endDate isKindOfClass:[NSNull class]]) {
-        NSLog(@"请选择正确日期");
-        return;
-    }
+//    if ([_endDate isKindOfClass:[NSNull class]]) {
+//        NSLog(@"请选择正确日期");
+//        return;
+//    }
     
     _chosenImages = _todoContentView.modifyImages;
-    [RealmManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate endDate:_endDate tableId:_tableId];
+    [RealmManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate tableId:_tableId];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -255,7 +255,7 @@ static CGFloat datePickerCellHeight = 240.f;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 3:1;
+    return section == 0 ? 2:1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -285,14 +285,14 @@ static CGFloat datePickerCellHeight = 240.f;
         _startCell.titleLabel.text = @"开始";
         return _startCell;
     }
-    else if (indexPath.section == 0 && indexPath.row == 2)
-    {
-        _endCell = [[DatePickerCell alloc]init];
-        _endCell.delegate = self;
-        [_endCell setDatePickerMode:_datePickerMode date:_endDate];
-        _endCell.titleLabel.text = @"结束";
-        return _endCell;
-    }
+//    else if (indexPath.section == 0 && indexPath.row == 2)
+//    {
+//        _endCell = [[DatePickerCell alloc]init];
+//        _endCell.delegate = self;
+//        [_endCell setDatePickerMode:_datePickerMode date:_endDate];
+//        _endCell.titleLabel.text = @"结束";
+//        return _endCell;
+//    }
     else
     {
         DeleteTodoCell *cell = [[DeleteTodoCell alloc]init];

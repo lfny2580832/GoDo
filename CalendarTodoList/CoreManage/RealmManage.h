@@ -27,7 +27,7 @@
 - (NSMutableArray *)getProjectArray;
 
 #pragma mark 创建RLMTodo
-- (void)createTodoWithProject:(Project *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate endDate:(NSDate *)endDate tableId:(NSInteger)tableId;
+- (void)createTodoWithProject:(Project *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate tableId:(NSInteger)tableId;
 
 #pragma mark 根据todo tableID 修改todo 的doneType完成情况
 - (void)changeTodoDoneTypeWithTableId:(NSInteger)tableId doneType:(DoneType)doneType;

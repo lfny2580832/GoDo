@@ -27,10 +27,11 @@
     }
     _dateLabel.text = dateStr;
     if ([_titleLabel.text isEqualToString:@"开始"]) {
-        [self.delegate returnStartDate:date endDate:nil];
-    }else{
-        [self.delegate returnStartDate:nil endDate:date];
+        [self.delegate returnStartDate:date];
     }
+//        else{
+//        [self.delegate returnStartDate:nil endDate:date];
+//    }
 }
 
 - (void)setDatePickerMode:(UIDatePickerMode )datePickerMode date:(NSDate *)date
