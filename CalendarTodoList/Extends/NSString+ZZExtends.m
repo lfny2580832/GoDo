@@ -33,12 +33,12 @@
 + (NSString *)appVersionString {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
-
-#pragma mark 获取时间戳
-+ (NSString *)timeIntervalSince1970
-{
-    return [NSString stringWithFormat:@"%lld", (long long)[[NSDate date] timeIntervalSince1970]];
-}
+//
+//#pragma mark 获取时间戳
+//+ (NSString *)timeIntervalSince1970
+//{
+//    return [NSString stringWithFormat:@"%lld", (long long)[[NSDate date] timeIntervalSince1970]];
+//}
 
 #pragma mark 判断邮箱格式是否正确
 - (BOOL)emailFormatCheck

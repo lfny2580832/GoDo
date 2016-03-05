@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A0441CD1C89A397005E23D9 /* RepeatModeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0441CC1C89A397005E23D9 /* RepeatModeCell.m */; };
+		4A0441D01C89A82F005E23D9 /* RepeateModeChooseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0441CF1C89A82F005E23D9 /* RepeateModeChooseVC.m */; };
+		4A0441D31C89AAA3005E23D9 /* RepeatModeChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0441D21C89AAA3005E23D9 /* RepeatModeChooseCell.m */; };
 		4A1290861C5DD4E6006E078B /* WeekCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1290831C5DD4E6006E078B /* WeekCollectionView.m */; };
 		4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1290851C5DD4E6006E078B /* WeekCollectionViewCell.m */; };
 		4A12908F1C5DD4FF006E078B /* TodoCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A12908A1C5DD4FF006E078B /* TodoCollectionView.m */; };
@@ -16,6 +19,8 @@
 		4A3FB5B01C7B78CD00C0E6B7 /* AlbumAddBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A3FB5AF1C7B78CD00C0E6B7 /* AlbumAddBtn@2x.png */; };
 		4A4116D11C5A5E5D0077564D /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4116D01C5A5E5D0077564D /* Todo.m */; };
 		4A43AC351C3631A900347E3C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A43AC341C3631A900347E3C /* libc++.tbd */; };
+		4A4ED6541C8B8C9F0024A63A /* RLMDateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4ED6531C8B8C9F0024A63A /* RLMDateList.m */; };
+		4A4ED65A1C8B8D3B0024A63A /* RLMTodoID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4ED6591C8B8D3B0024A63A /* RLMTodoID.m */; };
 		4A4F9CBD1C3F3E280000F24C /* RDVCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CB61C3F3E280000F24C /* RDVCalendarDayCell.m */; };
 		4A4F9CBE1C3F3E280000F24C /* RDVCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CB81C3F3E280000F24C /* RDVCalendarView.m */; };
 		4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CC31C3F3ECE0000F24C /* CalendarTodoDetailVC.m */; };
@@ -79,6 +84,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A0441CB1C89A397005E23D9 /* RepeatModeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatModeCell.h; sourceTree = "<group>"; };
+		4A0441CC1C89A397005E23D9 /* RepeatModeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatModeCell.m; sourceTree = "<group>"; };
+		4A0441CE1C89A82F005E23D9 /* RepeateModeChooseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeateModeChooseVC.h; sourceTree = "<group>"; };
+		4A0441CF1C89A82F005E23D9 /* RepeateModeChooseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeateModeChooseVC.m; sourceTree = "<group>"; };
+		4A0441D11C89AAA3005E23D9 /* RepeatModeChooseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatModeChooseCell.h; sourceTree = "<group>"; };
+		4A0441D21C89AAA3005E23D9 /* RepeatModeChooseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatModeChooseCell.m; sourceTree = "<group>"; };
 		4A1290821C5DD4E6006E078B /* WeekCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCollectionView.h; sourceTree = "<group>"; };
 		4A1290831C5DD4E6006E078B /* WeekCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekCollectionView.m; sourceTree = "<group>"; };
 		4A1290841C5DD4E6006E078B /* WeekCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCollectionViewCell.h; sourceTree = "<group>"; };
@@ -95,6 +106,10 @@
 		4A4116CF1C5A5E5D0077564D /* Todo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Todo.h; sourceTree = "<group>"; };
 		4A4116D01C5A5E5D0077564D /* Todo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Todo.m; sourceTree = "<group>"; };
 		4A43AC341C3631A900347E3C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		4A4ED6521C8B8C9F0024A63A /* RLMDateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMDateList.h; sourceTree = "<group>"; };
+		4A4ED6531C8B8C9F0024A63A /* RLMDateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMDateList.m; sourceTree = "<group>"; };
+		4A4ED6581C8B8D3B0024A63A /* RLMTodoID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLMTodoID.h; sourceTree = "<group>"; };
+		4A4ED6591C8B8D3B0024A63A /* RLMTodoID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLMTodoID.m; sourceTree = "<group>"; };
 		4A4F9CB51C3F3E280000F24C /* RDVCalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarDayCell.h; sourceTree = "<group>"; };
 		4A4F9CB61C3F3E280000F24C /* RDVCalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVCalendarDayCell.m; sourceTree = "<group>"; };
 		4A4F9CB71C3F3E280000F24C /* RDVCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarView.h; sourceTree = "<group>"; };
@@ -360,6 +375,12 @@
 				4AF11FF71C6B1206007DC614 /* ChooseModeCell.m */,
 				4A9FC1BF1C69A30E00A1D888 /* DatePickerCell.h */,
 				4A9FC1C01C69A30E00A1D888 /* DatePickerCell.m */,
+				4A0441CB1C89A397005E23D9 /* RepeatModeCell.h */,
+				4A0441CC1C89A397005E23D9 /* RepeatModeCell.m */,
+				4A0441CE1C89A82F005E23D9 /* RepeateModeChooseVC.h */,
+				4A0441CF1C89A82F005E23D9 /* RepeateModeChooseVC.m */,
+				4A0441D11C89AAA3005E23D9 /* RepeatModeChooseCell.h */,
+				4A0441D21C89AAA3005E23D9 /* RepeatModeChooseCell.m */,
 				4A95AA0F1C71702F00DFB118 /* DeleteTodoCell.h */,
 				4A95AA101C71702F00DFB118 /* DeleteTodoCell.m */,
 				4A9FC1B81C699FAE00A1D888 /* TodoDetailVC.h */,
@@ -442,6 +463,10 @@
 				4AB09EFF1C627EF0006EB837 /* RLMProject.m */,
 				4ABB60911C7CE3C60040079C /* RLMImage.h */,
 				4ABB60921C7CE3C60040079C /* RLMImage.m */,
+				4A4ED6521C8B8C9F0024A63A /* RLMDateList.h */,
+				4A4ED6531C8B8C9F0024A63A /* RLMDateList.m */,
+				4A4ED6581C8B8D3B0024A63A /* RLMTodoID.h */,
+				4A4ED6591C8B8D3B0024A63A /* RLMTodoID.m */,
 				4A4116CF1C5A5E5D0077564D /* Todo.h */,
 				4A4116D01C5A5E5D0077564D /* Todo.m */,
 				4AB09F011C6287D8006EB837 /* Project.h */,
@@ -672,6 +697,7 @@
 				4ADA1DAD1C3E4992001ECBF4 /* UIImage+ZZExtends.m in Sources */,
 				4A9FC1C11C69A30E00A1D888 /* DatePickerCell.m in Sources */,
 				4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */,
+				4A4ED65A1C8B8D3B0024A63A /* RLMTodoID.m in Sources */,
 				4AF34A231C754BA600004EC4 /* AddTodoFooterView.m in Sources */,
 				4A4F9CC71C3F3EEA0000F24C /* CalendarVC.m in Sources */,
 				4A9FC1BE1C699FAE00A1D888 /* TodoProjectView.m in Sources */,
@@ -684,10 +710,14 @@
 				4A9FC1BC1C699FAE00A1D888 /* TodoContentView.m in Sources */,
 				4AD589EE1C64DBD100E74761 /* AddNewProjectVC.m in Sources */,
 				4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */,
+				4A0441D31C89AAA3005E23D9 /* RepeatModeChooseCell.m in Sources */,
 				4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */,
 				4A95AA111C71702F00DFB118 /* DeleteTodoCell.m in Sources */,
 				4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */,
 				4AB09F001C627EF0006EB837 /* RLMProject.m in Sources */,
+				4A4ED6541C8B8C9F0024A63A /* RLMDateList.m in Sources */,
+				4A0441D01C89A82F005E23D9 /* RepeateModeChooseVC.m in Sources */,
+				4A0441CD1C89A397005E23D9 /* RepeatModeCell.m in Sources */,
 				4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */,
 				4AB09F031C6287D8006EB837 /* Project.m in Sources */,
 				4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */,

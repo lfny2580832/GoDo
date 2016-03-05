@@ -13,8 +13,8 @@
 @interface Todo : NSObject
 
 @property (nonatomic, assign) NSInteger tableId;
-///dayId 为年月日，如 20160106
-@property (nonatomic, assign) NSInteger dayId;
+/////dayId 为年月日，如 20160106
+//@property (nonatomic, assign) NSInteger dayId;
 
 ///开始时间戳 精确到秒
 @property (nonatomic, assign) long long startTime;
@@ -30,5 +30,9 @@
 @property (nonatomic, strong) NSArray *images;
 ///完成情况
 @property (nonatomic, assign) DoneType doneType;
+//重复模式
+@property (nonatomic, assign) RepeatMode repeatMode;
+//每周几 或者 每月几号，int
+@property (nonatomic, assign) NSInteger repeatParam;
 
 @end

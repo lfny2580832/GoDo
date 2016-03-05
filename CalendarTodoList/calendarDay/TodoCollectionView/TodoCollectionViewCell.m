@@ -42,7 +42,7 @@
 - (void)realmGetDayInfoFromRealmWithDayId:(NSInteger)dayId
 {
     dispatch_async(kBgQueue, ^{
-        _todoArray = [RealmManager getDayInfoFromRealmWithDayId:dayId];
+//        _todoArray = [RealmManager getDayInfoFromRealmWithDayId:dayId];
         dispatch_async(kMainQueue, ^{
             [_tableView reloadData];
             if (dayId < [NSObject getDayIdWithDate:[NSDate date]])
@@ -71,16 +71,6 @@
 - (void)refreshTableViewAfterCreateOrDelete
 {
     [self realmGetDayInfoFromRealmWithDayId:_dayId];
-}
-
-#pragma mark cell被重用前调用，重写此方法
-- (void)prepareForReuse
-{
-    [super prepareForReuse];
-//    [_tableView removeFromSuperview];
-//    [self initView];
-    
-    
 }
 
 #pragma mark 初始化

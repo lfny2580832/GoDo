@@ -56,7 +56,6 @@ static NSInteger LineWidth = 2;
         for (int i = 0; i < 4; i ++) {
             UIImageView *todoImageView = [_imageViews objectAtIndex:i];
             if (i < imageCount) {
-                todoImageView.hidden = NO;
                 todoImageView.userInteractionEnabled = YES;
                 todoImageView.contentMode= UIViewContentModeScaleAspectFill;
                 todoImageView.clipsToBounds = YES;
@@ -66,7 +65,6 @@ static NSInteger LineWidth = 2;
                 [todoImageView addGestureRecognizer:recognizer];
             }else{
                 todoImageView.image = nil;
-                todoImageView.hidden = YES;
             }
 
             [self.contentView addSubview:todoImageView];

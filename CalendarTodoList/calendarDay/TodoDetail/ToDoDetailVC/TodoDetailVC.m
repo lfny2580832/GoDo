@@ -18,12 +18,15 @@
 #import "DatePickerCell.h"
 #import "ChooseModeCell.h"
 #import "DeleteTodoCell.h"
+#import "RepeatModeCell.h"
+#import "RepeateModeChooseVC.h"
 
 #import "RealmManage.h"
+
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"
 
-@interface TodoDetailVC ()<UITableViewDataSource,UITableViewDelegate,TodoContentViewDelegate,TodoProjectViewDelegate,ChooseProjectVCDelegate,ChooseModeCellDelegate,DatePickerCellDelegate,TZImagePickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface TodoDetailVC ()<UITableViewDataSource,UITableViewDelegate,TodoContentViewDelegate,TodoProjectViewDelegate,ChooseProjectVCDelegate,ChooseModeCellDelegate,DatePickerCellDelegate,TZImagePickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RepeatModeChooseVCDelegate>
 
 @end
 
@@ -43,17 +46,27 @@
     TZImagePickerController *_imagePickerVC;
     DatePickerCell *_startCell;
 //    DatePickerCell *_endCell;
+    RepeatModeCell *_repeatCell;
     
     NSString *_todoContentStr;
     Project *_project;
     NSInteger _tableId;
     NSDate *_startDate;
+    NSDate *_OldStartDate;
 //    NSDate *_endDate;
+    RepeatMode _repeatMode;
     NSMutableArray *_chosenImages;
 }
 
 static CGFloat cellHeight = 50.f;
 static CGFloat datePickerCellHeight = 240.f;
+
+#pragma mark 选择重复模式
+- (void)returnRepeatModeWith:(RepeatMode)repeatMode modeName:(NSString *)modeName
+{
+    _repeatMode = repeatMode;
+    _repeatCell.modeLabel.text = modeName;
+}
 
 #pragma mark 添加图片
 - (void)pickImageWithCurrentImages:(NSArray *)images
@@ -158,7 +171,7 @@ static CGFloat datePickerCellHeight = 240.f;
         _project = defaultProject;
         _todoProjectView.project = _project;
         _todoContentView.todoContentField.text = @"";
-        
+        _repeatMode = Never;
         //当天八点
         NSDate *tempDate = [NSDate dateWithTimeInterval:0 sinceDate:_initialDate];
         if ([[NSDate date] timeIntervalSinceDate:tempDate] > 0)
@@ -172,12 +185,14 @@ static CGFloat datePickerCellHeight = 240.f;
     
     //修改项目
     _todo = todo;
+    _repeatMode = todo.repeatMode;
     _tableId = _todo.tableId;
     _todoContentStr = _todo.thingStr;
     _todoContentView.todoContentField.text = _todoContentStr;
     _project = [RealmManager getProjectWithId:_todo.project.projectId];
     _todoProjectView.project = _project;
     _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.startTime];
+    _OldStartDate = _startDate;
 //    _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.endTime];
     _chosenImages = [NSMutableArray arrayWithArray:todo.images];
     if (_chosenImages.count) {
@@ -233,9 +248,14 @@ static CGFloat datePickerCellHeight = 240.f;
 //    }
     
     _chosenImages = _todoContentView.modifyImages;
-    [RealmManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate tableId:_tableId];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    dispatch_async(kBgQueue, ^{
+        [RealmManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate tableId:_tableId repeatMode:_repeatMode];
+        dispatch_async(kMainQueue, ^{
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    });
+
 }
 
 
@@ -255,7 +275,7 @@ static CGFloat datePickerCellHeight = 240.f;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 2:1;
+    return section == 0 ? 3:1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -285,14 +305,12 @@ static CGFloat datePickerCellHeight = 240.f;
         _startCell.titleLabel.text = @"开始";
         return _startCell;
     }
-//    else if (indexPath.section == 0 && indexPath.row == 2)
-//    {
-//        _endCell = [[DatePickerCell alloc]init];
-//        _endCell.delegate = self;
-//        [_endCell setDatePickerMode:_datePickerMode date:_endDate];
-//        _endCell.titleLabel.text = @"结束";
-//        return _endCell;
-//    }
+    else if (indexPath.section == 0 && indexPath.row == 2)
+    {
+        _repeatCell = [[RepeatModeCell alloc]init];
+        
+        return _repeatCell;
+    }
     else
     {
         DeleteTodoCell *cell = [[DeleteTodoCell alloc]init];
@@ -311,7 +329,7 @@ static CGFloat datePickerCellHeight = 240.f;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.view endEditing:YES];
-    if (indexPath.section == 0 && (indexPath.row == 1||indexPath.row == 2))
+    if (indexPath.section == 0 && indexPath.row == 1)
     {
         //处理datepickercell高度逻辑
         if (_selectedIndexPath == indexPath) {           
@@ -328,7 +346,14 @@ static CGFloat datePickerCellHeight = 240.f;
         //处理cell重新赋值逻辑
         [tableView beginUpdates];
         [tableView endUpdates];
-    }else if (indexPath.section == 1 && indexPath.row == 0)
+    }
+    else if (indexPath.section == 0 && indexPath.row == 2)
+    {
+        RepeateModeChooseVC *vc = [[RepeateModeChooseVC alloc]init];
+        vc.delegate = self;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.section == 1 && indexPath.row == 0)
         [self deleteTodo];
     
     [tableView deselectRowAtIndexPath:indexPath animated:TRUE];

@@ -34,8 +34,8 @@
 
 - (void)initViews
 {
-//    [self simulateProject];
-//    [self simulateTodoList];
+    [self simulateProject];
+    [self simulateTodoList];
     
     CalendarVC *calendarVC = [[CalendarVC alloc]init];
     BaseNavigationController *calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
@@ -63,6 +63,7 @@
 //    todoModel.endTime = todoModel.startTime + 60 * 60;
     todoModel.tableId = 1;
     todoModel.doneType = NotStart;
+    todoModel.repeatMode = Never;
     
     [realm beginWriteTransaction];
     [RLMTodo createOrUpdateInRealm:realm withValue:todoModel];

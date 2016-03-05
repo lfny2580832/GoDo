@@ -10,12 +10,15 @@
 #import "UserDefaultManage.h"
 
 #import "RLMProject.h"
+#import "RLMDateList.h"
 
 #import "Todo.h"
 #import "Project.h"
 
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"
+
+#define defalultRealm [RLMRealm defaultRealm]
 
 @implementation RealmManage
 
@@ -105,14 +108,14 @@
 
 
 #pragma mark 创建RLMTodo
-- (void)createTodoWithProject:(Project *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate tableId:(NSInteger)tableId
+- (void)createTodoWithProject:(Project *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate oldStartDate:(NSDate *)oldStartDate tableId:(NSInteger)tableId repeatMode:(RepeatMode)repeatMode
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
 
     RLMTodo *todoModel = [[RLMTodo alloc]init];
+
     todoModel.startTime = [startDate timeIntervalSinceReferenceDate];
-//    todoModel.endTime = [endDate timeIntervalSinceReferenceDate];
-    
+    //    todoModel.endTime = [endDate timeIntervalSinceReferenceDate];
     RLMProject *rlmProject = [[RLMProject alloc]init];
     rlmProject.projectId = project.projectId;
     rlmProject.projectStr = project.projectStr;
@@ -122,7 +125,6 @@
     todoModel.project = rlmProject;
     todoModel.projectId = project.projectId;
     todoModel.thingStr = contentStr;
-    
     if (images.count) {
         for(UIImage *image in images)
         {
@@ -136,12 +138,83 @@
     if (!tableId) {
         todoModel.tableId = [UserDefaultManager todoMaxId] + 1;
         [UserDefaultManager setTodoMaxId:todoModel.tableId];
-    }else
+    }else{
         todoModel.tableId = tableId;
-
+    }
     [realm beginWriteTransaction];
     [RLMTodo createOrUpdateInRealm:realm withValue:todoModel];
     [realm commitWriteTransaction];
+    
+    [self CreateOrUpdateDateListWithStartDate:startDate oldStartDate:oldStartDate repeatMode:repeatMode RLMTodo:todoModel];
+
+}
+
+#pragma mark 根据老时间和todo.tableID 删除那天对应的任务
+- (void)deleteOldTodoWithOldStartDate:(NSDate *)oldStartDate tableID:(NSInteger)tableID
+{
+    NSInteger dayID = [NSObject getDayIdWithDate:oldStartDate];
+    RLMResults *result = [RLMDateList objectsWhere:@"dayID = %d",dayID];
+    RLMDateList *rlmDateList = [result firstObject];
+    for (int i = 0 ; i < rlmDateList.todoIDs.count; i++)
+    {
+        RLMTodoID *rlmTodoID = [rlmDateList.todoIDs objectAtIndex:i];
+        NSInteger todoID = [rlmTodoID.tableId integerValue];
+        if (todoID == tableID)
+        {
+            [rlmDateList.todoIDs removeObjectAtIndex:i];
+            
+            [defalultRealm beginWriteTransaction];
+            [RLMTodo createOrUpdateInRealm:defalultRealm withValue:rlmDateList];
+            [defalultRealm commitWriteTransaction];
+            
+            return;
+        }
+    }
+}
+
+#pragma mark 新建更新day与tableId关系数据
+- (void)CreateOrUpdateDateListWithStartDate:(NSDate *)startDate oldStartDate:(NSDate *)oldStartDate repeatMode:(RepeatMode)repeatMode RLMTodo:(RLMTodo *)rlmTodo
+{
+    if (oldStartDate) {
+        //存在表示修改过时间，删除之前的记录
+        [self deleteOldTodoWithOldStartDate:oldStartDate tableID:rlmTodo.tableId];
+    }
+    
+    NSInteger dayID = [NSObject getDayIdWithDate:startDate];
+    if (repeatMode == Never)
+    {
+        RLMResults *result = [RLMDateList objectsWhere:@"dayID = %d",dayID];
+        RLMDateList *rlmDateList = [result firstObject];
+        if (rlmDateList)
+        {
+            BOOL exsit = NO;
+            for(RLMTodoID *rlmTodoID in rlmDateList.todoIDs)
+            {
+                NSInteger tableId = [rlmTodoID.tableId integerValue];
+                if (tableId == rlmTodo.tableId ) {
+                    //任务已存在，不进行操作
+                    exsit = YES;
+                }
+            }
+            if (!exsit)
+            {
+                //任务不存在，添加元素
+                RLMTodoID *rlmTodoID = [[RLMTodoID alloc]init];
+                rlmTodoID.tableId = [NSNumber numberWithInteger:rlmTodo.tableId];
+                [rlmDateList.todoIDs addObject:rlmTodoID];
+            }
+        }
+        else
+        {
+            //当天日期任务对应表不存在，先建表再插入数据
+            rlmDateList = [[RLMDateList alloc]init];
+            rlmDateList.dayID = dayID;
+            
+            RLMTodoID *rlmTodoID = [[RLMTodoID alloc]init];
+            rlmTodoID.tableId = [NSNumber numberWithInteger:rlmTodo.tableId];
+            [rlmDateList.todoIDs addObject:rlmTodoID];
+        }
+    }
 }
 
 #pragma mark 根据todo tableID 修改todo 的doneType完成情况

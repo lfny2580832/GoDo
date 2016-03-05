@@ -16,10 +16,10 @@
     return @"tableId";
 }
 
-- (void)setStartTime:(long long)startTime
-{
-    _startTime = startTime;
-    _dayId = [NSObject getDayIdWithDateStamp:startTime];
-}
+//- (void)setStartTime:(long long)startTime
+//{
+//    _startTime = startTime;
+//    _dayId = [NSObject getDayIdWithDateStamp:startTime];
+//}
 
 @end
