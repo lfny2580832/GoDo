@@ -14,7 +14,10 @@
 #import "CalendarVC.h"
 #import "BaseNavigationController.h"
 #import "RLMProject.h"
+#import "RLMDayList.h"
 #import "UserDefaultManage.h"
+
+#import "NSObject+NYExtends.h"
 
 @interface MainTabBarVC ()
 
@@ -62,13 +65,23 @@
     todoModel.startTime = [startDate timeIntervalSinceReferenceDate];
 //    todoModel.endTime = todoModel.startTime + 60 * 60;
     todoModel.tableId = 1;
-    todoModel.doneType = NotStart;
+    todoModel.doneType = NotDone;
     todoModel.repeatMode = Never;
     
     [realm beginWriteTransaction];
     [RLMTodo createOrUpdateInRealm:realm withValue:todoModel];
     [realm commitWriteTransaction];
     
+    RLMDayList *rlmDayList = [[RLMDayList alloc]init];
+    NSInteger dayID = [NSObject getDayIdWithDateStamp:[startDate timeIntervalSinceReferenceDate]];
+    rlmDayList.dayID = dayID;
+    RLMTodoTableID *rlmTodoID = [[RLMTodoTableID alloc]init];
+    rlmTodoID.todoTableID = 1;
+    [rlmDayList.todoIDs addObject:rlmTodoID];
+    
+    [realm beginWriteTransaction];
+    [RLMDayList createOrUpdateInRealm:realm withValue:rlmDayList];
+    [realm commitWriteTransaction];
 }
 
 - (void)simulateProject

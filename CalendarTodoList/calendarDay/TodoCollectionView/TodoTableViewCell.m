@@ -88,7 +88,7 @@ static NSInteger LineWidth = 2;
     _cicleView.highlighted = !_cicleView.highlighted;
     DoneType doneType;
     if (_cicleView.highlighted)   doneType = Done;
-    else doneType = NotStart;
+    else doneType = NotDone;
     
     dispatch_async(kBgQueue, ^{
         [RealmManager changeTodoDoneTypeWithTableId:_todo.tableId doneType:doneType];

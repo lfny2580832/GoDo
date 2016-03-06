@@ -13,9 +13,7 @@
 //完成状态
 typedef NS_ENUM(NSInteger, DoneType)
 {
-    NotStart = 0,       //未开始
-    Doing,              //进行中
-    OutOfDate,          //过期
+    NotDone,            //未完成
     Done                //已完成
 };
 //重复状态

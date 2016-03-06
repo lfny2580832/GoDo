@@ -18,7 +18,7 @@
 + (id)sharedInstance;
 
 #pragma mark 根据dayId获取todo数组
-- (NSArray *)getDayInfoFromRealmWithDayId:(NSInteger)dayId;
+- (NSArray *)getDayInfoFromDateList:(NSInteger)dayId;
 
 #pragma mark 根据project返回类型字符串
 - (Project *)getProjectWithId:(NSInteger)projectId;

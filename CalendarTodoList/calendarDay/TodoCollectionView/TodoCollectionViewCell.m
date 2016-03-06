@@ -42,7 +42,7 @@
 - (void)realmGetDayInfoFromRealmWithDayId:(NSInteger)dayId
 {
     dispatch_async(kBgQueue, ^{
-//        _todoArray = [RealmManager getDayInfoFromRealmWithDayId:dayId];
+        _todoArray = [RealmManager getDayInfoFromDateList:dayId];
         dispatch_async(kMainQueue, ^{
             [_tableView reloadData];
             if (dayId < [NSObject getDayIdWithDate:[NSDate date]])

@@ -242,14 +242,10 @@ static CGFloat datePickerCellHeight = 240.f;
         NSLog(@"请输入内容");
         return;
     }
-//    if ([_endDate isKindOfClass:[NSNull class]]) {
-//        NSLog(@"请选择正确日期");
-//        return;
-//    }
     
     _chosenImages = _todoContentView.modifyImages;
     dispatch_async(kBgQueue, ^{
-        [RealmManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate tableId:_tableId repeatMode:_repeatMode];
+        [RealmManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate oldStartDate:_OldStartDate tableId:_tableId repeatMode:_repeatMode];
         dispatch_async(kMainQueue, ^{
             [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
             [self.navigationController popViewControllerAnimated:YES];

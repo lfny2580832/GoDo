@@ -7,7 +7,6 @@
 //
 
 #import "RLMTodo.h"
-#import "NSObject+NYExtends.h"
 
 @implementation RLMTodo
 
@@ -16,10 +15,5 @@
     return @"tableId";
 }
 
-//- (void)setStartTime:(long long)startTime
-//{
-//    _startTime = startTime;
-//    _dayId = [NSObject getDayIdWithDateStamp:startTime];
-//}
 
 @end

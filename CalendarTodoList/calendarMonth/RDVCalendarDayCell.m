@@ -176,14 +176,14 @@
 #pragma mark 获取数据库信息
 - (void)setDayInfoWithDayId:(NSInteger)dayId
 {
-//    dispatch_async(kBgQueue, ^{
-//        _todoArray = [RealmManager getDayInfoFromRealmWithDayId:dayId];
-//        dispatch_async(kMainQueue, ^{
-//            if (_todoArray) {
-//                [self addCellTodoListWithTodoListCount:_todoArray.count];
-//            }
-//        });
-//    });
+    dispatch_async(kBgQueue, ^{
+        _todoArray = [RealmManager getDayInfoFromDateList:dayId];
+        dispatch_async(kMainQueue, ^{
+            if (_todoArray) {
+                [self addCellTodoListWithTodoListCount:_todoArray.count];
+            }
+        });
+    });
 }
 
 #pragma mark 根据数量创建label
