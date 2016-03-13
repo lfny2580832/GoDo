@@ -7,9 +7,8 @@
 //
 
 #import "TodoCollectionView.h"
-#import <Realm/Realm.h>
-#import "RLMTodo.h"
 #import "NSObject+NYExtends.h"
+#import "FMTodoModel.h"
 
 @implementation TodoCollectionView
 {
@@ -36,7 +35,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 #pragma mark tableviewcell点击事件
-- (void)didSelectedTodoTableCellWithTodo:(Todo *)todo
+- (void)didSelectedTodoTableCellWithTodo:(FMTodoModel *)todo
 {
     [self.mdelegate didSelectedTodoTableViewCellWithTodo:todo];
 }

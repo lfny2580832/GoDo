@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class Todo;
+@class FMTodoModel;
 
 @protocol TodoCollectionCellDelegate <NSObject>
 
-- (void)didSelectedTodoTableCellWithTodo:(Todo *)todo;
+- (void)didSelectedTodoTableCellWithTodo:(FMTodoModel *)todo;
 
 @end
 

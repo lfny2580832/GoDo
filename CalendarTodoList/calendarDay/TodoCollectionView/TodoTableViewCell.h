@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Todo.h"
+@class FMTodoModel;
 
 @interface TodoTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) NSMutableArray *imageViews;
 
-- (void)loadTodo:(Todo *)todo;
+- (void)loadTodo:(FMTodoModel *)todo;
 
 @end

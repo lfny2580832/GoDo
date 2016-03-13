@@ -8,15 +8,13 @@
 
 #import "TodoCollectionViewCell.h"
 
-#import <Realm/Realm.h>
-#import "Todo.h"
-#import "RealmManage.h"
-
 #import "TodoTableViewCell.h"
 #import "AddTodoFooterView.h"
 
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"
+
+#import "RealmManage.h"
 
 @interface TodoCollectionViewCell ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -24,7 +22,7 @@
 
 @implementation TodoCollectionViewCell
 {
-    NSArray <Todo *> *_todoArray;
+    NSArray <FMTodoModel *> *_todoArray;
 }
 
 #pragma mark Set方法

@@ -5,7 +5,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Realm/Realm.h>
 
 typedef NS_ENUM(NSInteger, RDVCalendarDayCellSelectionStyle) {
     RDVCalendarDayCellSelectionStyleNone,

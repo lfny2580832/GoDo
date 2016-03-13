@@ -7,7 +7,7 @@
 //
 
 #import "ChooseProjectTableCell.h"
-#import "Project.h"
+#import "FMTodoModel.h"
 
 @implementation ChooseProjectTableCell
 {
@@ -16,7 +16,7 @@
 }
 
 #pragma mark Set Methods
-- (void)setProject:(Project *)project
+- (void)setProject:(FMProject *)project
 {
     _project = project;
     _projectLabel.text = project.projectStr;

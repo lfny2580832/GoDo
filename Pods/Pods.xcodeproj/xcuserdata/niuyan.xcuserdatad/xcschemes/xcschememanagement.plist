@@ -24,11 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Realm.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>TZImagePickerController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,22 +42,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>624C9D04C0C972D548A617B3EAF4FB19</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>62FBBA8CAAE106AE2436FFD95E213CAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9F12FB4A63E20F601CFB2E64A65B57C1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BB5C7E30FE33000ED8D443D6841BCDE6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CF869276F097DBA91215179E585DD065</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E5435755EBA8085E6C9420D85B45E1FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

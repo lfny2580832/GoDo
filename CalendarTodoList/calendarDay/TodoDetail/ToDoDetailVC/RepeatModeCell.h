@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Todo.h"
 
 
 @interface RepeatModeCell : UITableViewCell

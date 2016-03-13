@@ -9,7 +9,7 @@
 #import "AddNewProjectVC.h"
 #import "ChooseTypeColorVC.h"
 
-#import "RLMProject.h"
+#import "FMTodoModel.h"
 #import "TypeColor.h"
 
 @interface AddNewProjectVC ()<ChooseTypeColorDelegate>
@@ -41,19 +41,18 @@
 #pragma mark 点击保存按钮
 - (void)rightbarButtonItemOnclick:(id)sender
 {
-    RLMResults *result = [RLMProject allObjects];
-    NSInteger count = result.count;
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    RLMProject *rlmProject = [[RLMProject alloc]init];
+    NSMutableArray *projectArray = [[NSMutableArray alloc]init];
+    projectArray = [FMProject searchWithSQL:@"select * from @t"];
+    NSInteger count = projectArray.count;
     
-    rlmProject.projectId = count + 1;
-    rlmProject.projectStr = _contentTextField.text;
-    rlmProject.red = _color.red;
-    rlmProject.green = _color.green;
-    rlmProject.blue = _color.blue;
-    [realm beginWriteTransaction];
-    [RLMProject createOrUpdateInRealm:realm withValue:rlmProject];
-    [realm commitWriteTransaction];
+    FMProject * project = [[FMProject alloc]init];
+    project.projectId = count + 1;
+    project.projectStr = _contentTextField.text;
+    project.red = _color.red;
+    project.green = _color.green;
+    project.blue = _color.blue;
+    
+    [[FMProject getUsingLKDBHelper]insertToDB:project];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

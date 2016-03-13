@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class Project;
+@class FMProject;
 
 @interface ChooseProjectTableCell : UITableViewCell
 
-@property (nonatomic, strong) Project *project;
+@property (nonatomic, strong) FMProject *project;
 
 - (instancetype)initWithContentLabel;
 

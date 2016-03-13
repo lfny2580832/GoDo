@@ -7,8 +7,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "RDVCalendarDayCell.h"
 #import "UILabelZoomable.h"
-#import "Project.h"
-#import "Todo.h"
 
 #import "NSString+ZZExtends.h"
 #import "RealmManage.h"
@@ -196,8 +194,8 @@
     _labels = [NSMutableArray arrayWithCapacity:0];
     for (int i = 0; i < count ; i++)
     {
-        Todo *todo = _todoArray[i];
-        Project *type = todo.project;
+        FMTodoModel *todo = _todoArray[i];
+        FMProject *type = todo.project;
         UILabelZoomable *todoLabel = [[UILabelZoomable alloc]initWithFrame:CGRectMake(x, y, width, height)];
         todoLabel.numberOfLines = 0;
         todoLabel.alpha = 0;

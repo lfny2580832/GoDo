@@ -8,24 +8,23 @@
 
 #import <Foundation/Foundation.h>
 #import <LKDBHelper/LKDBHelper.h>
-#import "RLMTodo.h"
 
-////完成状态
-//typedef NS_ENUM(NSInteger, DoneType)
-//{
-//    NotDone,            //未完成
-//    Done                //已完成
-//};
-////重复状态
-//typedef NS_ENUM(NSInteger, RepeatMode)
-//{
-//    Never = 0,          //不重复
-//    EveryDay,           //每天
-//    EveryWeek,          //每周当天
-//    EveryMonth,         //每月当天
-//    EveryWorkDay,       //每个工作日
-//    EveryWeekend       //每个周末
-//};
+//完成状态
+typedef NS_ENUM(NSInteger, DoneType)
+{
+    NotDone,            //未完成
+    Done                //已完成
+};
+//重复状态
+typedef NS_ENUM(NSInteger, RepeatMode)
+{
+    Never = 0,          //不重复
+    EveryDay,           //每天
+    EveryWeek,          //每周当天
+    EveryMonth,         //每月当天
+    EveryWorkDay,       //每个工作日
+    EveryWeekend       //每个周末
+};
 
 @interface FMProject : NSObject
 ///事件类型ID 主键

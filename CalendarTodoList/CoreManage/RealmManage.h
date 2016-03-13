@@ -7,12 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RLMTodo.h"
 #import <LKDBHelper/LKDBHelper.h>
+#import "FMTodoModel.h"
 
 #define RealmManager [RealmManage sharedInstance]
-
-@class FMProject;
 
 @interface RealmManage : NSObject
 

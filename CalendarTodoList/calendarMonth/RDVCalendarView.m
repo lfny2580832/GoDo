@@ -8,7 +8,6 @@
 #import "RDVCalendarDayCell.h"
 #import "UILabelZoomable.h"
 #import "GradientView.h"
-#import "RLMTodo.h"
 
 @interface RDVCalendarView () {
     NSMutableArray *_visibleCells;

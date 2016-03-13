@@ -7,9 +7,6 @@
 //
 
 #import "TodoDetailVC.h"
-#import "Todo.h"
-#import "RLMTodo.h"
-#import "RLMProject.h"
 
 #import "TZImagePickerController.h"
 #import "TodoContentView.h"

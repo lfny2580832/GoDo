@@ -9,14 +9,7 @@
 #import "RealmManage.h"
 #import "UserDefaultManage.h"
 
-#import "RLMProject.h"
-#import "RLMDayList.h"
-
-#import "Todo.h"
-#import "Project.h"
-
 #import "FMDayList.h"
-#import "FMTodoModel.h"
 #import "FMTodoImage.h"
 
 #import "NSString+ZZExtends.h"
@@ -63,7 +56,7 @@
 #pragma mark 根据开始时间进行排序
 - (NSArray *)sortArrayByStartTimeWithArray:(NSArray *)array
 {
-    NSComparator cmptr = ^(Todo *todo1, Todo *todo2){
+    NSComparator cmptr = ^(FMTodoModel *todo1, FMTodoModel *todo2){
         if (todo1.startTime > todo2.startTime) {
             return (NSComparisonResult)NSOrderedDescending;
         }

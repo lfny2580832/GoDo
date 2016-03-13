@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Todo.h"
+#import "FMTodoModel.h"
 
 @protocol RepeatModeChooseVCDelegate <NSObject>
 
