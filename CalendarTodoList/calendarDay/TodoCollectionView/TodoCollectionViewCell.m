@@ -53,11 +53,10 @@
 
             [UIView animateWithDuration:0.2 animations:^{
                 _tableView.alpha = 1;
-            } completion:^(BOOL finished) {
- 
-            }];
+            } completion:nil];
         });
     });
+
 }
 
 #pragma mark 添加项目

@@ -96,7 +96,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCalendarViewAfterCreateOrDeleteTodo) name:@"ReloadTodoTableView" object:nil];
 
 }
-
 #pragma mark 刷新calendarview
 - (void)refreshCalendarViewAfterCreateOrDeleteTodo
 {

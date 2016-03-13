@@ -1,4 +1,9 @@
 PODS:
+  - FMDB (2.6):
+    - FMDB/standard (= 2.6)
+  - FMDB/standard (2.6)
+  - LKDBHelper (HEAD based on 2.1.8):
+    - FMDB
   - Masonry (0.6.4)
   - Realm (0.97.0):
     - Realm/Headers (= 0.97.0)
@@ -6,11 +11,14 @@ PODS:
   - TZImagePickerController (1.0.9)
 
 DEPENDENCIES:
+  - LKDBHelper (HEAD)
   - Masonry
   - Realm
   - TZImagePickerController (~> 1.0.9)
 
 SPEC CHECKSUMS:
+  FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
+  LKDBHelper: 1b55f67e44f34af8828b31aa36b36141fdde03a8
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   Realm: b498a6fb9d288b171ff98d0e2d4384c295be8990
   TZImagePickerController: 56080f944f0ca5a719b91e4540927e1736cff18f

@@ -13,6 +13,7 @@
 #import "NSObject+NYExtends.h"
 #import "NSString+ZZExtends.h"
 #import "ZoomImageView.h"
+#import "FMTodoModel.h"
 
 @implementation TodoTableViewCell
 {
@@ -23,13 +24,13 @@
     UIImageView *_cicleView;
     UIView *_bottomLine;
     
-    Todo *_todo;
+    FMTodoModel *_todo;
 }
 
 static NSInteger CircleRadius = 13;
 static NSInteger LineWidth = 2;
 
-- (void)loadTodo:(Todo *)todo
+- (void)loadTodo:(FMTodoModel *)todo
 {
     _todo = todo;
     _textLabel.text = todo.thingStr;
@@ -47,7 +48,6 @@ static NSInteger LineWidth = 2;
     todo.doneType == Done?  _cicleView.highlighted = YES:NO;
     if (todo.images.count) {
         NSInteger imageCount = todo.images.count;
-        NSArray *images = todo.images;
         NSInteger imageEdge = 10;
         [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.contentView).offset(-70);
@@ -60,13 +60,13 @@ static NSInteger LineWidth = 2;
                 todoImageView.contentMode= UIViewContentModeScaleAspectFill;
                 todoImageView.clipsToBounds = YES;
                 todoImageView.tag = todo.tableId *4 + i;
-                todoImageView.image = images[i];
+                todoImageView.image = todo.images[i];
                 UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
                 [todoImageView addGestureRecognizer:recognizer];
             }else{
                 todoImageView.image = nil;
             }
-
+            
             [self.contentView addSubview:todoImageView];
             [todoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.contentView).offset(98 + i*(50+imageEdge));
@@ -80,7 +80,7 @@ static NSInteger LineWidth = 2;
             make.bottom.equalTo(self.contentView).offset(-15);
         }];
     }
-
+    
 }
 
 - (void)circleViewClicked

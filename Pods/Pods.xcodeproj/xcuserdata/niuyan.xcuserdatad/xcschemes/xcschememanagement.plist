@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>FMDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>LKDBHelper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,7 +37,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>500D1FC5CF5EDA63618E3E3070F5AFEA</key>
+		<key>3528FA1DBE3E5C6AB799FC7BEA473755</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -37,12 +47,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B87DC9FE5EE404B36A0A40F0512CF17D</key>
+		<key>9F12FB4A63E20F601CFB2E64A65B57C1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FF4808C6D1104AB48460B65EF1DDAEA1</key>
+		<key>BB5C7E30FE33000ED8D443D6841BCDE6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CF869276F097DBA91215179E585DD065</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E5435755EBA8085E6C9420D85B45E1FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

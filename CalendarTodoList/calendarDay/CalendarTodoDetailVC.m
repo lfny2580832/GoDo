@@ -10,6 +10,7 @@
 #import "TodoCollectionView.h"
 #import "WeekCollectionView.h"
 #import "TodoDetailVC.h"
+#import "FMTodoModel.h"
 
 @interface CalendarTodoDetailVC ()<WeekCellDelegate,TodoCollectionViewDelegate>
 @property (nonatomic,strong) TodoCollectionView *todoCollectionView;
@@ -21,7 +22,7 @@
     NSDate *_chosenDate;
 }
 #pragma mark 点击TodoTableViewCell事件
-- (void)didSelectedTodoTableViewCellWithTodo:(Todo *)todo
+- (void)didSelectedTodoTableViewCellWithTodo:(FMTodoModel *)todo
 {
     TodoDetailVC *vc = [[TodoDetailVC alloc]initWithDate:_chosenDate];
     vc.todo = todo;
@@ -79,6 +80,8 @@
     self = [super init];
     if (self) {
         self.view.backgroundColor = [UIColor whiteColor];
+        [self setCustomTitle:@"时间轴"];
+
         [self initView];
     }
     return self;

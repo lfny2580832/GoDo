@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class Todo;
+@class FMTodoModel;
 
 @interface TodoDetailVC : UIViewController
 
-@property (nonatomic, strong) Todo *todo;
+@property (nonatomic, strong) FMTodoModel *todo;
 
 - (instancetype)initWithDate:(NSDate *)date;
 

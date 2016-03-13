@@ -19,6 +19,10 @@
 
 #import "NSObject+NYExtends.h"
 
+#import <LKDBHelper/LKDBHelper.h>
+#import "FMTodoModel.h"
+#import "FMDayList.h"
+
 @interface MainTabBarVC ()
 
 @end
@@ -55,87 +59,79 @@
 {
     [UserDefaultManager setTodoMaxId:1];
     
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    RLMTodo *todoModel = [[RLMTodo alloc]init];
-
-    RLMProject *type = [[RLMProject objectsWhere:@"projectId = 3"] firstObject];
-    todoModel.project = type;
+    LKDBHelper *DBHelper = [FMTodoModel getUsingLKDBHelper];
+    [LKDBHelper clearTableData:[FMTodoModel class]];
+    
+    FMTodoModel *todoModel = [[FMTodoModel alloc]init];
+    todoModel.tableId = 1;
     todoModel.thingStr = @"开始创建你的任务吧！";
     NSDate *startDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];
     todoModel.startTime = [startDate timeIntervalSinceReferenceDate];
-//    todoModel.endTime = todoModel.startTime + 60 * 60;
-    todoModel.tableId = 1;
     todoModel.doneType = NotDone;
     todoModel.repeatMode = Never;
+    FMProject *project = [[DBHelper searchWithSQL:@"select * from @t where projectId = '3'" toClass:[FMProject class]] firstObject];
+    todoModel.project = project;
     
-    [realm beginWriteTransaction];
-    [RLMTodo createOrUpdateInRealm:realm withValue:todoModel];
-    [realm commitWriteTransaction];
+    [DBHelper insertToDB:todoModel];
     
-    RLMDayList *rlmDayList = [[RLMDayList alloc]init];
-    NSInteger dayID = [NSObject getDayIdWithDateStamp:[startDate timeIntervalSinceReferenceDate]];
-    rlmDayList.dayID = dayID;
-    RLMTodoTableID *rlmTodoID = [[RLMTodoTableID alloc]init];
-    rlmTodoID.todoTableID = 1;
-    [rlmDayList.todoIDs addObject:rlmTodoID];
+    FMDayList *dayList = [[FMDayList alloc]init];
+    dayList.dayID = [NSObject getDayIdWithDateStamp:[startDate timeIntervalSinceReferenceDate]];
+    dayList.tableIDs = [[NSMutableArray alloc]init];
+    [dayList.tableIDs addObject:[NSNumber numberWithInteger:todoModel.tableId]];
     
-    [realm beginWriteTransaction];
-    [RLMDayList createOrUpdateInRealm:realm withValue:rlmDayList];
-    [realm commitWriteTransaction];
+    [[FMDayList getUsingLKDBHelper] insertToDB:dayList];
 }
 
 - (void)simulateProject
 {
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    RLMProject *rlmProject = [[RLMProject alloc]init];
+    LKDBHelper *DBHelper = [[LKDBHelper alloc]init];
+    [LKDBHelper clearTableData:[FMProject class]];
+    FMProject *project = [[FMProject alloc]init];
+    project.projectId = 1;
+    project.projectStr = @"学习";
+    project.red = 251;
+    project.green = 136;
+    project.blue = 110;
     
-    rlmProject.projectId = 1;
-    rlmProject.projectStr = @"学习";
-    rlmProject.red = 251;
-    rlmProject.green = 136;
-    rlmProject.blue = 110;
-    [realm beginWriteTransaction];
-    [RLMProject createOrUpdateInRealm:realm withValue:rlmProject];
-    [realm commitWriteTransaction];
+    [DBHelper insertToDB:project];
     
-    rlmProject.projectId = 2;
-    rlmProject.projectStr = @"社团";
-    rlmProject.red = 59;
-    rlmProject.green = 213;
-    rlmProject.blue = 251;
-    [realm beginWriteTransaction];
-    [RLMProject createOrUpdateInRealm:realm withValue:rlmProject];
-    [realm commitWriteTransaction];
+    project.projectId = 2;
+    project.projectStr = @"社团";
+    project.red = 59;
+    project.green = 213;
+    project.blue = 251;
     
-    rlmProject.projectId = 3;
-    rlmProject.projectStr = @"个人";
-    rlmProject.red = 255;
-    rlmProject.green = 204;
-    rlmProject.blue = 0;
+    [DBHelper insertToDB:project];
     
-    [realm beginWriteTransaction];
-    [RLMProject createOrUpdateInRealm:realm withValue:rlmProject];
-    [realm commitWriteTransaction];
+    project.projectId = 3;
+    project.projectStr = @"个人";
+    project.red = 255;
+    project.green = 204;
+    project.blue = 0;
     
-    rlmProject.projectId = 4;
-    rlmProject.projectStr = @"工作";
-    rlmProject.red = 226;
-    rlmProject.green = 168;
-    rlmProject.blue = 228;
+    [DBHelper insertToDB:project];
     
-    [realm beginWriteTransaction];
-    [RLMProject createOrUpdateInRealm:realm withValue:rlmProject];
-    [realm commitWriteTransaction];
+    project.projectId = 4;
+    project.projectStr = @"工作";
+    project.red = 226;
+    project.green = 168;
+    project.blue = 228;
     
-    rlmProject.projectId = 5;
-    rlmProject.projectStr = @"休闲";
-    rlmProject.red = 210;
-    rlmProject.green = 184;
-    rlmProject.blue = 163;
+    [DBHelper insertToDB:project];
     
-    [realm beginWriteTransaction];
-    [RLMProject createOrUpdateInRealm:realm withValue:rlmProject];
-    [realm commitWriteTransaction];
+    project.projectId = 5;
+    project.projectStr = @"休闲";
+    project.red = 210;
+    project.green = 184;
+    project.blue = 163;
+    
+    [DBHelper insertToDB:project];
+    
+    NSMutableArray *projectArray = [DBHelper searchWithSQL:@"select * from @t" toClass:[FMProject class]];
+    for (int i = 0; i < projectArray.count; i ++) {
+        FMProject *resultproject = projectArray[i];
+        NSLog(@"shit %@",resultproject.projectStr);
+    }
 }
 
 @end

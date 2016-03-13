@@ -23,7 +23,7 @@
         if ([[change objectForKey:@"new"]boolValue] == 1) {
             self.backgroundColor = [UIColor blackColor];
         }else if ([[change objectForKey:@"new"]boolValue] == 0){
-            self.backgroundColor = [UIColor redColor];
+            self.backgroundColor = KNaviColor;
         }
     }
 }

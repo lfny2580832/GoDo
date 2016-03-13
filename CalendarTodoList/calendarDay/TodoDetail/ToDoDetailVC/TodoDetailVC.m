@@ -20,6 +20,7 @@
 #import "DeleteTodoCell.h"
 #import "RepeatModeCell.h"
 #import "RepeateModeChooseVC.h"
+#import "FMTodoModel.h"
 
 #import "RealmManage.h"
 
@@ -49,7 +50,7 @@
     RepeatModeCell *_repeatCell;
     
     NSString *_todoContentStr;
-    Project *_project;
+    FMProject *_project;
     NSInteger _tableId;
     NSDate *_startDate;
     NSDate *_OldStartDate;
@@ -162,12 +163,12 @@ static CGFloat datePickerCellHeight = 240.f;
 }
 
 #pragma mark Set Methods
-- (void)setTodo:(Todo *)todo
+- (void)setTodo:(FMTodoModel *)todo
 {
     //创建新项目
     if(!todo)
     {
-        Project *defaultProject = [[RealmManager getProjectArray] firstObject];
+        FMProject *defaultProject = [[RealmManager getProjectArray] firstObject];
         _project = defaultProject;
         _todoProjectView.project = _project;
         _todoContentView.todoContentField.text = @"";
@@ -178,8 +179,6 @@ static CGFloat datePickerCellHeight = 240.f;
             _startDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];
         else
             _startDate = tempDate;
-        
-//        _endDate = [NSDate dateWithTimeInterval:60*60 sinceDate:_startDate];
         return;
     }
     
@@ -193,7 +192,7 @@ static CGFloat datePickerCellHeight = 240.f;
     _todoProjectView.project = _project;
     _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.startTime];
     _OldStartDate = _startDate;
-//    _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.endTime];
+    //    _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.endTime];
     _chosenImages = [NSMutableArray arrayWithArray:todo.images];
     if (_chosenImages.count) {
         [_todoContentView updateContentViewWithImageArray:_chosenImages];
@@ -223,7 +222,7 @@ static CGFloat datePickerCellHeight = 240.f;
 }
 
 #pragma mark ChooseProjectVC Delegate 获取返回的project
-- (void)returnProject:(Project *)project
+- (void)returnProject:(FMProject *)project
 {
     _project = project;
     _todoProjectView.project = _project;

@@ -7,7 +7,7 @@
 //
 
 #import "TodoProjectView.h"
-#import "Project.h"
+#import "FMTodoModel.h"
 
 @implementation TodoProjectView
 {
@@ -16,7 +16,7 @@
 }
 
 #pragma mark Set 方法
-- (void)setProject:(Project *)project
+- (void)setProject:(FMProject *)project
 {
     _project = project;
     _contentLabel.text = project.projectStr;

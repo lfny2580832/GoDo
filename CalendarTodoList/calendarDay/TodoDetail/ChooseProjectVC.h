@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class Project;
+@class FMProject;
 
 @protocol ChooseProjectVCDelegate <NSObject>
 
-- (void)returnProject:(Project *)project;
+- (void)returnProject:(FMProject *)project;
 
 @end
 
