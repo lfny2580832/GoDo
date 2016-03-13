@@ -14,7 +14,7 @@
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"
 
-#import "RealmManage.h"
+#import "DBManage.h"
 
 @interface TodoCollectionViewCell ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -40,7 +40,7 @@
 - (void)realmGetDayInfoFromRealmWithDayId:(NSInteger)dayId
 {
     dispatch_async(kBgQueue, ^{
-        _todoArray = [RealmManager getDayInfoFromDateList:dayId];
+        _todoArray = [DBManager getDayInfoFromDateList:dayId];
         dispatch_async(kMainQueue, ^{
             [_tableView reloadData];
             if (dayId < [NSObject getDayIdWithDate:[NSDate date]])

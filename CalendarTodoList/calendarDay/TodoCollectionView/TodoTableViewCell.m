@@ -8,7 +8,7 @@
 
 #import "TodoTableViewCell.h"
 
-#import "RealmManage.h"
+#import "DBManage.h"
 
 #import "NSObject+NYExtends.h"
 #import "NSString+ZZExtends.h"
@@ -91,7 +91,7 @@ static NSInteger LineWidth = 2;
     else doneType = NotDone;
     
     dispatch_async(kBgQueue, ^{
-        [RealmManager changeTodoDoneTypeWithTableId:_todo.tableId doneType:doneType];
+        [DBManager changeTodoDoneTypeWithTableId:_todo.tableId doneType:doneType];
     });
 }
 

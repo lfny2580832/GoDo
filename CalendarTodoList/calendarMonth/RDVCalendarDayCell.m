@@ -9,7 +9,7 @@
 #import "UILabelZoomable.h"
 
 #import "NSString+ZZExtends.h"
-#import "RealmManage.h"
+#import "DBManage.h"
 
 @interface RDVCalendarDayCell() {
     BOOL _selected;
@@ -175,7 +175,7 @@
 - (void)setDayInfoWithDayId:(NSInteger)dayId
 {
     dispatch_async(kBgQueue, ^{
-        _todoArray = [RealmManager getDayInfoFromDateList:dayId];
+        _todoArray = [DBManager getDayInfoFromDateList:dayId];
         dispatch_async(kMainQueue, ^{
             if (_todoArray) {
                 [self addCellTodoListWithTodoListCount:_todoArray.count];

@@ -19,7 +19,7 @@
 #import "RepeateModeChooseVC.h"
 #import "FMTodoModel.h"
 
-#import "RealmManage.h"
+#import "DBManage.h"
 
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"
@@ -154,7 +154,7 @@ static CGFloat datePickerCellHeight = 240.f;
 
 - (void)deleteTodoFromRealm
 {
-    [RealmManager deleteTodoWithTableId:_tableId];
+    [DBManager deleteTodoWithTableId:_tableId];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -165,7 +165,7 @@ static CGFloat datePickerCellHeight = 240.f;
     //创建新项目
     if(!todo)
     {
-        FMProject *defaultProject = [[RealmManager getProjectArray] firstObject];
+        FMProject *defaultProject = [[DBManager getProjectArray] firstObject];
         _project = defaultProject;
         _todoProjectView.project = _project;
         _todoContentView.todoContentField.text = @"";
@@ -185,7 +185,7 @@ static CGFloat datePickerCellHeight = 240.f;
     _tableId = _todo.tableId;
     _todoContentStr = _todo.thingStr;
     _todoContentView.todoContentField.text = _todoContentStr;
-    _project = [RealmManager getProjectWithId:_todo.project.projectId];
+    _project = [DBManager getProjectWithId:_todo.project.projectId];
     _todoProjectView.project = _project;
     _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.startTime];
     _OldStartDate = _startDate;
@@ -241,7 +241,7 @@ static CGFloat datePickerCellHeight = 240.f;
     
     _chosenImages = _todoContentView.modifyImages;
     dispatch_async(kBgQueue, ^{
-        [RealmManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate oldStartDate:_OldStartDate tableId:_tableId repeatMode:_repeatMode];
+        [DBManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate oldStartDate:_OldStartDate tableId:_tableId repeatMode:_repeatMode];
         dispatch_async(kMainQueue, ^{
             [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
             [self.navigationController popViewControllerAnimated:YES];

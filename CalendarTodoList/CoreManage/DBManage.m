@@ -1,12 +1,12 @@
 //
-//  RealmManage.m
+//  DBManage.h
 //  CalendarTodoList
 //
 //  Created by 牛严 on 16/1/27.
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import "RealmManage.h"
+#import "DBManage.h"
 #import "UserDefaultManage.h"
 
 #import "FMDayList.h"
@@ -15,13 +15,11 @@
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"
 
-#define defalultRealm [RLMRealm defaultRealm]
-
-@implementation RealmManage
+@implementation DBManage
 
 + (id)sharedInstance
 {
-    static RealmManage *sharedInstance = nil;
+    static DBManage *sharedInstance = nil;
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         sharedInstance = [[self alloc] init];

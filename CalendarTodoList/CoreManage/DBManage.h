@@ -1,5 +1,5 @@
 //
-//  RealmManage.h
+//  DBManage.h
 //  CalendarTodoList
 //
 //  Created by 牛严 on 16/1/27.
@@ -10,9 +10,9 @@
 #import <LKDBHelper/LKDBHelper.h>
 #import "FMTodoModel.h"
 
-#define RealmManager [RealmManage sharedInstance]
+#define DBManager [DBManage sharedInstance]
 
-@interface RealmManage : NSObject
+@interface DBManage : NSObject
 
 + (id)sharedInstance;
 

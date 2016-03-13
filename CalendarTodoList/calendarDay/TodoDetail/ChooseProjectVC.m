@@ -12,7 +12,7 @@
 
 #import "FMTodoModel.h"
 
-#import "RealmManage.h"
+#import "DBManage.h"
 
 @interface ChooseProjectVC ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -92,7 +92,7 @@
 - (void)loadData
 {
     dispatch_async(kBgQueue, ^{
-        _projects = [RealmManager getProjectArray];
+        _projects = [DBManager getProjectArray];
         dispatch_async(kMainQueue, ^{
             if (_projects) {
                 [_tableView reloadData];

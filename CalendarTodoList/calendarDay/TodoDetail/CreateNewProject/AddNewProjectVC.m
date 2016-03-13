@@ -63,8 +63,16 @@
     self = [super init];
     if (self) {
         self.view.backgroundColor = RGBA(235, 235, 241, 1.0);
+        [self setCustomTitle:@"创建新项目"];
         [self setRightBackButtontile:@"保存"];
         [self initView];
+        FMProject *defaultProject = [[FMProject searchWithWhere:nil] firstObject];
+        _color = [[TypeColor alloc]init];
+        _color.red = defaultProject.red;
+        _color.green = defaultProject.green;
+        _color.blue = defaultProject.blue;
+        _colorView.backgroundColor = RGBA(_color.red, _color.green, _color.blue, 1.0);
+
     }
     return self;
 }
@@ -112,7 +120,6 @@
     
     _colorView = [[UIView alloc]init];
     _colorView.layer.cornerRadius = 10.f;
-    _colorView.backgroundColor = RGBA(59, 213, 251, 1.0);
     [backView addSubview:_colorView];
     [_colorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(backView).offset(-20);
