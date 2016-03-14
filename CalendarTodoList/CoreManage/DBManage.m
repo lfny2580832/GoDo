@@ -196,10 +196,7 @@
         dayList.tableIDs = [[NSMutableArray alloc]init];
         [dayList.tableIDs addObject:[NSNumber numberWithInteger:tableID]];
         [[FMDayList getUsingLKDBHelper] insertToDB:dayList];
-        
     }
-    
-    NSLog(@"---%@",dayList.tableIDs.description);
 }
 
 #pragma mark 根据当前日期返回repeatMode为EveryDay的DayID

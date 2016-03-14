@@ -148,16 +148,24 @@ static CGFloat datePickerCellHeight = 240.f;
     [deleteSheet addAction:[UIAlertAction actionWithTitle:@"删除任务"
                                                     style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action) {
-                                                    [self deleteTodoFromRealm];
+                                                    [self deleteTodoFromDateBase];
                                                 }]];
     [self presentViewController:deleteSheet animated:YES completion:nil];
 }
 
-- (void)deleteTodoFromRealm
+- (void)deleteTodoFromDateBase
 {
-    [DBManager deleteTodoWithTableId:_tableId];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"删除任务中";
+    dispatch_async(kBgQueue, ^{
+        [DBManager deleteTodoWithTableId:_tableId];
+        dispatch_async(kMainQueue, ^{
+            [hud hide:YES];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    });
+
 }
 
 #pragma mark Set Methods
@@ -240,14 +248,20 @@ static CGFloat datePickerCellHeight = 240.f;
 - (void)rightbarButtonItemOnclick:(id)sender
 {
     if (_todoContentStr.length <= 0) {
-        NSLog(@"请输入内容");
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"请输入任务内容";
+        [hud hide:YES afterDelay:2];
         return;
     }
     
     _chosenImages = _todoContentView.modifyImages;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"创建任务中";
     dispatch_async(kBgQueue, ^{
         [DBManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate oldStartDate:_OldStartDate tableId:_tableId repeatMode:_repeatMode];
         dispatch_async(kMainQueue, ^{
+            [hud hide:YES];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
             [self.navigationController popViewControllerAnimated:YES];
         });
@@ -347,7 +361,10 @@ static CGFloat datePickerCellHeight = 240.f;
     else if (indexPath.section == 0 && indexPath.row == 2)
     {
         if (!_canChange) {
-            NSLog(@"不能选择模式");
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"重复任务不能再次选择重复模式";
+            [hud hide:YES afterDelay:2];
             return;
         }
         RepeateModeChooseVC *vc = [[RepeateModeChooseVC alloc]init];
