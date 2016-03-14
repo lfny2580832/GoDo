@@ -23,7 +23,6 @@ typedef NS_ENUM(NSInteger, RepeatMode)
     EveryWeek,          //每周当天
     EveryMonth,         //每月当天
     EveryWorkDay,       //每个工作日
-    EveryWeekend       //每个周末
 };
 
 @interface FMProject : NSObject

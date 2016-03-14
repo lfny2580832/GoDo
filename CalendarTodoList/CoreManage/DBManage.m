@@ -94,10 +94,9 @@
     todoModel.repeatMode = repeatMode;
     [self saveImageWith:todoModel images:images];
     
-    [[FMTodoModel getUsingLKDBHelper] insertToDB:todoModel];
-    
     [self CreateOrUpdateDateListWithStartDate:startDate oldStartDate:oldStartDate repeatMode:repeatMode FMTodo:todoModel];
-    
+    [[FMTodoModel getUsingLKDBHelper] insertToDB:todoModel];
+
 }
 
 - (void)saveImageWith:(FMTodoModel *)todoModel images:(NSArray *)images
@@ -142,10 +141,41 @@
                 NSInteger dayId = [dayIDNumber integerValue];
                 [self updateDayListWithDayID:dayId tableID:fmTodo.tableId];
             }
-        }else{
-            
         }
     }
+    else if (repeatMode == EveryMonth)
+    {
+//        if (!oldStartDate) {
+            NSArray *dayIDs = [self dayIDsForEveryMonthRepeatWithStartDate:startDate];
+            for(NSNumber *dayIDNumber in dayIDs)
+            {
+                NSInteger dayId = [dayIDNumber integerValue];
+                [self updateDayListWithDayID:dayId tableID:fmTodo.tableId];
+            }
+//        }
+    }
+    else if (repeatMode == EveryWeek)
+    {
+//        if (!oldStartDate) {
+            NSArray *dayIDs = [self dayIDsForEveryWeekRepeatWithStartDate:startDate];
+            for(NSNumber *dayIDNumber in dayIDs)
+            {
+                NSInteger dayId = [dayIDNumber integerValue];
+                [self updateDayListWithDayID:dayId tableID:fmTodo.tableId];
+            }
+//        }
+    }
+    else if (repeatMode == EveryWorkDay)
+    {
+//        if (!oldStartDate) {
+            NSArray *dayIDs = [self dayIDsForEveryworkdayRepeatWithStartDate:startDate];
+            for(NSNumber *dayIDNumber in dayIDs)
+            {
+                NSInteger dayId = [dayIDNumber integerValue];
+                [self updateDayListWithDayID:dayId tableID:fmTodo.tableId];
+            }
+        }
+//    }
 }
 
 #pragma mark 根据dayID和tableID维护日期-任务关系表
@@ -186,6 +216,82 @@
     return dayIDs;
 }
 
+#pragma mark 根据当前日期返回repeatMode为EveryMonth的DayID
+- (NSArray *)dayIDsForEveryMonthRepeatWithStartDate:(NSDate *)startDate
+{
+    NSMutableArray *dayIDs = [[NSMutableArray alloc]initWithCapacity:0];
+    for (int i = 0; i < 12; i ++ ) {
+        NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear |NSCalendarUnitHour |NSCalendarUnitMinute fromDate:startDate];
+        comps.month = comps.month + i;
+        if (comps.month > 12) {
+            comps.month -= 12;
+            comps.year += 1;
+        }
+        NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
+        NSInteger dayID = [NSObject getDayIdWithDate:date];
+        [dayIDs addObject:[NSNumber numberWithInteger:dayID]];
+    }
+    return dayIDs;
+}
+
+#pragma mark 根据当前日期返回repeatMode为EveryWeek的DayID
+- (NSArray *)dayIDsForEveryWeekRepeatWithStartDate:(NSDate *)startDate
+{
+    NSMutableArray *dayIDs = [[NSMutableArray alloc]initWithCapacity:0];
+    long long  currentDayTimeStamp = [startDate timeIntervalSinceReferenceDate];
+
+    for(int i = 0; i < 52; i ++)
+    {
+        long long timeStamp = currentDayTimeStamp + 60 * 60 * 24 * 7 * i ;
+        NSInteger dayID = [NSObject getDayIdWithDateStamp:timeStamp];
+        [dayIDs addObject:[NSNumber numberWithInteger:dayID]];
+    }
+    return dayIDs;
+}
+
+#pragma mark 根据当前日期返回repeatMode为EveryWorkday的DayID
+- (NSArray *)dayIDsForEveryworkdayRepeatWithStartDate:(NSDate *)startDate
+{
+    NSMutableArray *dayIDs = [[NSMutableArray alloc]initWithCapacity:0];
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekOfYear|NSCalendarUnitWeekday|NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear |NSCalendarUnitHour |NSCalendarUnitMinute fromDate:startDate];
+    long long  currentDayTimeStamp = [startDate timeIntervalSinceReferenceDate];
+    //第一周的dayIDs
+    long long timeStamp = 0;
+    NSInteger firstWeekNum = comps.weekday > 1 ? 9-comps.weekday:1;
+    for(int i = 0 ; i < firstWeekNum; i ++)
+    {
+        timeStamp = currentDayTimeStamp + 60 * 60 * 24 * i;
+        if (i < 5) {
+            NSInteger dayID = [NSObject getDayIdWithDateStamp:timeStamp];
+            [dayIDs addObject:[NSNumber numberWithInteger:dayID]];
+        }
+    }
+    //中间周的dayIDs
+    NSInteger otherDayNum = 365 - firstWeekNum;
+    NSInteger midWeekNum = floorf(otherDayNum/7);//去头去尾，中间有多少个周
+    for(int i = 0 ;i < midWeekNum; i ++)
+    {
+        for(int j = 0;j < 7;j ++)
+        {
+            timeStamp = timeStamp + 60 * 60 * 24;
+            if (j < 5) {
+                NSInteger dayID = [NSObject getDayIdWithDateStamp:timeStamp];
+                [dayIDs addObject:[NSNumber numberWithInteger:dayID]];
+            }
+        }
+    }
+    //最后一周
+    for(int i = 0; i < otherDayNum - 7*midWeekNum; i ++)
+    {
+        if (i < 5) {
+            timeStamp = timeStamp + 60 * 60 * 24;
+            NSInteger dayID = [NSObject getDayIdWithDateStamp:timeStamp];
+            [dayIDs addObject:[NSNumber numberWithInteger:dayID]];
+        }
+    }
+    return dayIDs;
+}
+
 #pragma mark 根据老时间和todo.tableID 删除那天对应的任务
 - (void)deleteOldTodoWithOldStartDate:(NSDate *)oldStartDate tableID:(NSInteger)tableID
 {
@@ -199,6 +305,7 @@
     dayList.tableIDs = [NSMutableArray arrayWithArray:tableIDs];
     [helper updateToDB:dayList where:nil];
 }
+
 #pragma mark 根据todo tableID 修改todo 的doneType完成情况
 - (void)changeTodoDoneTypeWithTableId:(NSInteger)tableId doneType:(DoneType)doneType
 {

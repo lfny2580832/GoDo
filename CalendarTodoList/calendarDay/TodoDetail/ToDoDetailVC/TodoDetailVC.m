@@ -54,6 +54,7 @@
 //    NSDate *_endDate;
     RepeatMode _repeatMode;
     NSMutableArray *_chosenImages;
+    BOOL _canChange;
 }
 
 static CGFloat cellHeight = 50.f;
@@ -165,6 +166,7 @@ static CGFloat datePickerCellHeight = 240.f;
     //创建新项目
     if(!todo)
     {
+        _canChange = YES;
         FMProject *defaultProject = [[DBManager getProjectArray] firstObject];
         _project = defaultProject;
         _todoProjectView.project = _project;
@@ -182,6 +184,9 @@ static CGFloat datePickerCellHeight = 240.f;
     //修改项目
     _todo = todo;
     _repeatMode = todo.repeatMode;
+    if (todo.repeatMode != Never) {
+        _canChange = NO;
+    }
     _tableId = _todo.tableId;
     _todoContentStr = _todo.thingStr;
     _todoContentView.todoContentField.text = _todoContentStr;
@@ -341,6 +346,10 @@ static CGFloat datePickerCellHeight = 240.f;
     }
     else if (indexPath.section == 0 && indexPath.row == 2)
     {
+        if (!_canChange) {
+            NSLog(@"不能选择模式");
+            return;
+        }
         RepeateModeChooseVC *vc = [[RepeateModeChooseVC alloc]init];
         vc.delegate = self;
         [self.navigationController pushViewController:vc animated:YES];
@@ -366,8 +375,10 @@ static CGFloat datePickerCellHeight = 240.f;
         _initialDate = date;
         _datePickerMode = UIDatePickerModeDateAndTime;
         _chosenImages = [[NSMutableArray alloc]initWithCapacity:0];
+        _canChange = YES;
         [self setRightBackButtontile:@"保存"];
         [self initViews];
+        
     }
     return self;
 }

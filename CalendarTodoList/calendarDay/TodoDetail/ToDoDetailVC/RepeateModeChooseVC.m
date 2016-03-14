@@ -82,9 +82,8 @@
               [NSNumber numberWithInteger:EveryDay],
               [NSNumber numberWithInteger:EveryMonth],
               [NSNumber numberWithInteger:EveryWeek],
-              [NSNumber numberWithInteger:EveryWeekend],
               [NSNumber numberWithInteger:EveryWorkDay],nil];
-    _modelNames = [NSMutableArray arrayWithObjects:@"不重复",@"每天",@"每月",@"每周",@"每周末",@"工作日", nil];
+    _modelNames = [NSMutableArray arrayWithObjects:@"不重复",@"每天",@"每月",@"每周",@"工作日", nil];
 }
 
 @end

@@ -85,6 +85,9 @@ static NSInteger LineWidth = 2;
 
 - (void)circleViewClicked
 {
+    if (_todo.repeatMode != Never) {
+        return;
+    }
     _cicleView.highlighted = !_cicleView.highlighted;
     DoneType doneType;
     if (_cicleView.highlighted)   doneType = Done;
@@ -175,7 +178,6 @@ static NSInteger LineWidth = 2;
         make.size.mas_equalTo(CGSizeMake(CircleRadius*2 + 8, CircleRadius*2 + 8));
     }];
     
-
     _textLabel = [[UILabel alloc]init];
     _textLabel.textColor = [UIColor whiteColor];
     _textLabel.textAlignment = NSTextAlignmentLeft;
