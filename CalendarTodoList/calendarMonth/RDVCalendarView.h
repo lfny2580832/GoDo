@@ -191,6 +191,8 @@ typedef NS_OPTIONS(NSInteger, RDVCalendarViewDayCellSeparatorType) {
 
 - (void)refreshAfterCreateTodo;
 
+- (void)tapDayCellWithGesture:(UIGestureRecognizer *)sender;
+
 @end
 
 @protocol RDVCalendarViewDelegate <NSObject>
@@ -232,6 +234,7 @@ typedef NS_OPTIONS(NSInteger, RDVCalendarViewDayCellSeparatorType) {
  * @param month The newly selected month.
  */
 - (void)calendarView:(RDVCalendarView *)calendarView didChangeMonth:(NSDateComponents *)month;
+
 
 #pragma mark - Customization
 

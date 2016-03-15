@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MainTabBarVC.h"
+#import "BaseNavigationController.h"
+#import "CalendarVC.h"
 
 @interface AppDelegate ()
 
@@ -20,8 +22,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    MainTabBarVC *mainTabbarVC = [[MainTabBarVC alloc]init];
-    [self.window setRootViewController:mainTabbarVC];
+//    MainTabBarVC *mainTabbarVC = [[MainTabBarVC alloc]init];
+    CalendarVC *calendarVC = [[CalendarVC alloc]init];
+    BaseNavigationController *calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
+    [self.window setRootViewController:calendarNavVC];
     [self.window makeKeyAndVisible];
     
     return YES;

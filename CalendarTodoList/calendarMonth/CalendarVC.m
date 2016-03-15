@@ -41,9 +41,39 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
+#pragma mark 回到今日
 - (void)rightbarButtonItemOnclick:(id)sender
 {
+    [self.scrollView setZoomScale:1.0 animated:YES];
     [_calendarView showCurrentMonth];
+}
+
+#pragma mark 单击手势
+- (void)singleTap:(UIGestureRecognizer *)sender
+{
+    [_calendarView tapDayCellWithGesture:sender];
+}
+
+#pragma mark 双击手势
+- (void)doubleTap:(UIGestureRecognizer *)sender
+{
+    CGFloat outScale = 2.8;
+    CGPoint tapPoint = [sender locationInView:self.scrollView];
+    if (self.scrollView.zoomScale > 1) {
+        [self.scrollView setZoomScale:1.0 animated:YES];
+    }
+    else
+    {
+        CGSize scrollViewSize=self.scrollView.bounds.size;
+        //宽高是小的，以放大，point是zoomscale为1时的point
+        CGFloat width = scrollViewSize.width/outScale;
+        CGFloat height = scrollViewSize.height /outScale;
+        CGFloat x = tapPoint.x-(width/2.0);
+        CGFloat y = tapPoint.y-(height/2.0);
+        CGRect zoomRect = CGRectMake(x, y, width, height);
+
+        [self.scrollView zoomToRect:zoomRect animated:YES];
+    }
 }
 
 #pragma mark 初始化方法
@@ -62,7 +92,7 @@
 
 - (void)initScrollView
 {
-    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 49)];
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 )];
     self.scrollView.delegate = self;
     self.scrollView.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -78,6 +108,18 @@
     self.scrollView.maximumZoomScale = 4.5f;
     self.scrollView.zoomScale = self.scrollView.minimumZoomScale;
     [self.view addSubview:self.scrollView];
+    
+    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTap:)];
+    [singleTapGestureRecognizer setNumberOfTapsRequired:1];
+    [self.scrollView addGestureRecognizer:singleTapGestureRecognizer];
+    
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doubleTap:)];
+    doubleTap.numberOfTapsRequired = 2;
+    doubleTap.numberOfTouchesRequired = 1;
+    [self.scrollView addGestureRecognizer:doubleTap];
+    
+    [singleTapGestureRecognizer requireGestureRecognizerToFail:doubleTap];
+
     //年月日日期格式，生成dayId
     _YMDformatter = [[NSDateFormatter alloc]init];
     [_YMDformatter setDateFormat:@"yyyyMMdd"];

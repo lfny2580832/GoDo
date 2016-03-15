@@ -42,10 +42,10 @@
     BaseNavigationController *calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
     [calendarVC setTitle:@"日历"];
     
-    UINavigationController *secondController = [[UINavigationController alloc]init];
-    [secondController setTitle:@"second"];
+//    UINavigationController *secondController = [[UINavigationController alloc]init];
+//    [secondController setTitle:@"second"];
     
-    [self setViewControllers:@[calendarNavVC, secondController]];
+    [self setViewControllers:@[calendarNavVC]];
     
 }
 

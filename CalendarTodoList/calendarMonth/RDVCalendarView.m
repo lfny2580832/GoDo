@@ -787,78 +787,12 @@
 }
 
 #pragma mark - Touch handling
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [[event allTouches] anyObject];
-    
-    CGPoint touchLocation = [touch locationInView:self];
-    
-    if (touchLocation.y >= CGRectGetMaxY([self.weekDayLabels[0] frame])) {
-        RDVCalendarDayCell *selectedDayCell = [self viewAtLocation:touchLocation];
-        
-        if (selectedDayCell && selectedDayCell != _selectedDayCell) {
-            NSInteger cellIndex = [self indexForDayCell:selectedDayCell];
-            
-            if ([self.delegate respondsToSelector:@selector(calendarView:shouldSelectDate:)]) {
-                if (![self.delegate calendarView:self shouldSelectDate:[self dateForIndex:cellIndex]]) {
-                    return;
-                }
-            }
-            
-            if ([self.delegate respondsToSelector:@selector(calendarView:shouldSelectCellAtIndex:)]) {
-                if (![self.delegate calendarView:self shouldSelectCellAtIndex:cellIndex]) {
-                    return;
-                }
-            }
-            
-            [self deselectDayCellAtIndex:[self indexForDayCell:_selectedDayCell]
-                                animated:NO];
-            _selectedDayCell = selectedDayCell;
-            _selectedDayCell.highlighted = YES;
-        }
-    }
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [[event allTouches] anyObject];
-    
-    CGPoint touchLocation = [touch locationInView:self];
-    
-    if (touchLocation.y >= CGRectGetMaxY([self.weekDayLabels[0] frame])) {
-        RDVCalendarDayCell *selectedDayCell = [self viewAtLocation:touchLocation];
-        
-        if (selectedDayCell != _selectedDayCell) {
-            [self deselectDayCellAtIndex:[self indexForDayCell:_selectedDayCell]
-                                animated:NO];
-        }
-    } else if (_selectedDayCell.isHighlighted) {
-        _selectedDayCell.highlighted = NO;
-        _selectedDayCell = nil;
-    }
-}
-
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (_selectedDayCell.isHighlighted) {
-        _selectedDayCell.highlighted = NO;
-        _selectedDayCell = nil;
-    }
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [[event allTouches] anyObject];
-    
-    RDVCalendarDayCell *selectedDayCell = [self viewAtLocation:[touch locationInView:self]];
-    
-    if (selectedDayCell) {
-        if (selectedDayCell == _selectedDayCell) {
-            NSInteger cellIndex = [self indexForDayCell:selectedDayCell];
-            
-            [self selectDayCellAtIndex:cellIndex animated:NO];
-        } else {
-            [self deselectDayCellAtIndex:[self indexForDayCell:_selectedDayCell]
-                                animated:NO];
-        }
-    }
+- (void)tapDayCellWithGesture:(UIGestureRecognizer *)sender
+{
+    CGPoint location = [sender locationInView:self];
+    RDVCalendarDayCell *selectedDayCell = [self viewAtLocation:location];
+    NSInteger cellIndex = [self indexForDayCell:selectedDayCell];
+    [self selectDayCellAtIndex:cellIndex animated:NO];
 }
 
 @end
