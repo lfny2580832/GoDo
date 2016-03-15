@@ -54,6 +54,7 @@
 //    NSDate *_endDate;
     RepeatMode _repeatMode;
     NSMutableArray *_chosenImages;
+    BOOL _isAllDay;
     BOOL _canChange;
 }
 
@@ -186,6 +187,7 @@ static CGFloat datePickerCellHeight = 240.f;
             _startDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];
         else
             _startDate = tempDate;
+        _isAllDay = NO;
         return;
     }
     
@@ -201,6 +203,10 @@ static CGFloat datePickerCellHeight = 240.f;
     _project = [DBManager getProjectWithId:_todo.project.projectId];
     _todoProjectView.project = _project;
     _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.startTime];
+    _isAllDay = todo.isAllDay;
+    _datePickerMode = (_isAllDay)? UIDatePickerModeDate:UIDatePickerModeDateAndTime;
+    [_startCell setDatePickerMode:_datePickerMode date:_startDate];
+
     _OldStartDate = _startDate;
     //    _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.endTime];
     _chosenImages = [NSMutableArray arrayWithArray:todo.images];
@@ -212,9 +218,16 @@ static CGFloat datePickerCellHeight = 240.f;
 #pragma mark 返回全天或时段
 - (void)datePickerModeValueChanged:(BOOL)value
 {
-    if (value)  _datePickerMode = UIDatePickerModeDate;
-    else _datePickerMode = UIDatePickerModeDateAndTime;
-    
+    if (value)
+    {
+        _datePickerMode = UIDatePickerModeDate;
+        _isAllDay = YES;
+    }
+    else
+    {
+        _datePickerMode = UIDatePickerModeDateAndTime;
+        _isAllDay = NO;
+    }
     [_startCell setDatePickerMode:_datePickerMode date:_startDate];
 //    [_endCell setDatePickerMode:_datePickerMode date:_endDate];
 }
@@ -259,7 +272,7 @@ static CGFloat datePickerCellHeight = 240.f;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"创建任务中";
     dispatch_async(kBgQueue, ^{
-        [DBManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate oldStartDate:_OldStartDate tableId:_tableId repeatMode:_repeatMode];
+        [DBManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate oldStartDate:_OldStartDate isAllDay:_isAllDay tableId:_tableId repeatMode:_repeatMode];
         dispatch_async(kMainQueue, ^{
             [hud hide:YES];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];

@@ -38,6 +38,9 @@
     {
         NSInteger tableID = [idNumber integerValue];
         FMTodoModel *todoModel = [[[FMTodoModel getUsingLKDBHelper] searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableId = '%ld'",(long)tableID] toClass:[FMTodoModel class]] firstObject];
+        if (todoModel.isAllDay) {
+            todoModel.startTime = [self changeStartDateWith:todoModel.startTime];
+        }
         NSMutableArray *fmTodoimageArray = [FMTodoImage searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableId = '%ld'",(long)tableID]];
         NSMutableArray *imageArray = [[NSMutableArray alloc]init];
         for(FMTodoImage *todoImage in fmTodoimageArray)
@@ -49,6 +52,18 @@
         [resultArray addObject:todoModel];
     }
     return [self sortArrayByStartTimeWithArray:resultArray];
+}
+
+#pragma mark 根据全天的开始时间设置当天0点
+- (long long)changeStartDateWith:(long long)startDate
+{
+    NSDate * oriDate = [NSDate dateWithTimeIntervalSinceReferenceDate:startDate];
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitMinute |NSCalendarUnitHour |NSCalendarUnitDay | NSCalendarUnitMonth |NSCalendarUnitYear fromDate:oriDate];
+    comps.hour = 0;
+    comps.minute = 0;
+    NSDate * date = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    long long timeStamp = [date timeIntervalSinceReferenceDate];
+    return timeStamp;
 }
 
 #pragma mark 根据开始时间进行排序
@@ -71,10 +86,11 @@
 
 
 #pragma mark 创建RLMTodo
-- (void)createTodoWithProject:(FMProject *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate oldStartDate:(NSDate *)oldStartDate tableId:(NSInteger)tableId repeatMode:(RepeatMode)repeatMode
+- (void)createTodoWithProject:(FMProject *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate oldStartDate:(NSDate *)oldStartDate isAllDay:(BOOL)isAllDay tableId:(NSInteger)tableId repeatMode:(RepeatMode)repeatMode
 {
     FMTodoModel *todoModel = [[FMTodoModel alloc]init];
     todoModel.startTime = [startDate timeIntervalSinceReferenceDate];
+    todoModel.isAllDay = isAllDay;
     FMProject *fmProject = [[FMProject alloc]init];
     fmProject.projectId = project.projectId;
     fmProject.projectStr = project.projectStr;

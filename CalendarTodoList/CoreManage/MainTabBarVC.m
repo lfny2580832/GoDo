@@ -37,7 +37,6 @@
 {
     [self simulateProject];
     [self simulateTodoList];
-    [self dayIDsForEveryMonthRepeatWithStartDate:[NSDate date]];
     
     CalendarVC *calendarVC = [[CalendarVC alloc]init];
     BaseNavigationController *calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
@@ -48,49 +47,6 @@
     
     [self setViewControllers:@[calendarNavVC, secondController]];
     
-}
-#pragma mark 根据当前日期返回repeatMode为EveryMonth的DayID
-- (void)dayIDsForEveryMonthRepeatWithStartDate:(NSDate *)startDate
-{
-    NSMutableArray *dayIDs = [[NSMutableArray alloc]initWithCapacity:0];
-    long long  currentDayTimeStamp = [startDate timeIntervalSinceReferenceDate];
-    
-    NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekOfYear|NSCalendarUnitWeekday|NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear |NSCalendarUnitHour |NSCalendarUnitMinute fromDate:startDate];
-    //第一周的dayIDs
-    long long timeStamp = 0;
-    NSInteger firstWeekNum = comps.weekday > 1 ? 9-comps.weekday:1;
-    
-    for(int i = 0 ; i < firstWeekNum; i ++)
-    {
-        timeStamp = currentDayTimeStamp + 60 * 60 * 24 * i;
-        if (i < 5) {
-            NSInteger dayID = [NSObject getDayIdWithDateStamp:timeStamp];
-            [dayIDs addObject:[NSNumber numberWithInteger:dayID]];
-        }
-    }
-    //中间周的dayIDs
-    NSInteger otherDayNum = 365 - firstWeekNum;
-    NSInteger midWeekNum = floorf(otherDayNum/7);//去头去尾，中间有多少个周
-    for(int i = 0 ;i < midWeekNum; i ++)
-    {
-        for(int j = 0;j < 7;j ++)
-        {
-            timeStamp = timeStamp + 60 * 60 * 24;
-            if (j < 5) {
-                NSInteger dayID = [NSObject getDayIdWithDateStamp:timeStamp];
-                [dayIDs addObject:[NSNumber numberWithInteger:dayID]];
-            }
-        }
-    }
-    //最后一周
-    for(int i = 0; i < otherDayNum - 7*midWeekNum; i ++)
-    {
-        if (i < 5) {
-            timeStamp = timeStamp + 60 * 60 * 24;
-            NSInteger dayID = [NSObject getDayIdWithDateStamp:timeStamp];
-            [dayIDs addObject:[NSNumber numberWithInteger:dayID]];
-        }
-    }
 }
 
 - (void)simulateTodoList
@@ -105,6 +61,7 @@
     todoModel.thingStr = @"开始创建你的任务吧！";
     NSDate *startDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];
     todoModel.startTime = [startDate timeIntervalSinceReferenceDate];
+    todoModel.isAllDay = NO;
     todoModel.doneType = NotDone;
     todoModel.repeatMode = Never;
     FMProject *project = [[DBHelper searchWithSQL:@"select * from @t where projectId = '3'" toClass:[FMProject class]] firstObject];
@@ -164,12 +121,6 @@
     project.blue = 163;
     
     [DBHelper insertToDB:project];
-    
-    NSMutableArray *projectArray = [DBHelper searchWithSQL:@"select * from @t" toClass:[FMProject class]];
-    for (int i = 0; i < projectArray.count; i ++) {
-        FMProject *resultproject = projectArray[i];
-        NSLog(@"shit %@",resultproject.projectStr);
-    }
 }
 
 @end

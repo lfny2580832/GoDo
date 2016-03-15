@@ -34,9 +34,14 @@ static NSInteger LineWidth = 2;
 {
     _todo = todo;
     _textLabel.text = todo.thingStr;
-    NSString *timeStr = [NSString getHourMinuteDateFromTimeInterval:todo.startTime];
+    NSString *timeStr;
+    if (todo.isAllDay) {
+        timeStr = @"全天";
+    }else{
+        timeStr = [NSString getHourMinuteDateFromTimeInterval:todo.startTime];
+    }
     _timeLabel.text = timeStr;
-    
+
     NSInteger R = todo.project.red;
     NSInteger G = todo.project.green;
     NSInteger B = todo.project.blue;
