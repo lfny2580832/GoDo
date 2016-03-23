@@ -32,6 +32,15 @@
     [super tearDown];
 }
 
+- (void)testUI
+{
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.scrollViews.otherElements.buttons[@">"] tap];
+    [app.navigationBars[@"\u65e5\u5386"].buttons[@"\u56de\u5230\u4eca\u65e5"] tap];
+    
+
+}
+
 - (void)testExample {
     // Use recording to get started writing UI tests.
     // Use XCTAssert and related functions to verify your tests produce the correct results.

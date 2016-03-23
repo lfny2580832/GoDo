@@ -7,8 +7,29 @@
 //
 
 #import "NSObject+NYExtends.h"
+#import <objc/runtime.h>
 
 @implementation NSObject (NYExtends)
+//@dynamic testStr;
+
+
+const char testStringkey;
+
+- (NSString *)testStr
+{
+    NSString * associatedObject = (NSString *)objc_getAssociatedObject(self, &testStringkey);
+    return associatedObject;
+}
+
+- (void)setTestStr:(NSString *)testStr
+{
+    objc_setAssociatedObject(self, &testStringkey, testStr, OBJC_ASSOCIATION_RETAIN);
+}
+
+- (void)removeTestStr
+{
+    objc_setAssociatedObject(self, &testStringkey, nil, OBJC_ASSOCIATION_RETAIN);
+}
 
 #pragma mark 获取现在开始一年的天数
 + (NSInteger)numberOfDaysInThisYear

@@ -402,6 +402,11 @@ static CGFloat datePickerCellHeight = 240.f;
 {
     self = [super init];
     if (self) {
+
+        NSLog(@"前 %@",[NSObject testStr]);
+        [NSObject removeTestStr];
+        NSLog(@"后 %@",[NSObject testStr]);
+
         _initialDate = date;
         _datePickerMode = UIDatePickerModeDateAndTime;
         _chosenImages = [[NSMutableArray alloc]initWithCapacity:0];

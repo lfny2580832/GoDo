@@ -845,7 +845,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"AsyncDisplayKit\"",
 					"-l\"Masonry\"",
 					"-l\"c++\"",
 					"-framework",
@@ -888,7 +887,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"AsyncDisplayKit\"",
 					"-l\"Masonry\"",
 					"-l\"c++\"",
 					"-framework",

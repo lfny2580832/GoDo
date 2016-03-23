@@ -736,7 +736,7 @@
                   NSCalendarUnitWeekday|
                   NSCalendarUnitCalendar fromDate:newDate];
     
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:0.15 animations:^{
         self.alpha = 0;
     } completion:^(BOOL finished) {
         [self setDisplayedMonth:self.month];

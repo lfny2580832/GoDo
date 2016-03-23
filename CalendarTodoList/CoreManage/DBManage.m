@@ -113,8 +113,46 @@
     [self CreateOrUpdateDateListWithStartDate:startDate oldStartDate:oldStartDate repeatMode:repeatMode FMTodo:todoModel];
     [[FMTodoModel getUsingLKDBHelper] insertToDB:todoModel];
 
+    [self saveClockWithDate:startDate tableID:todoModel.tableId];
 }
 
+#pragma mark 保存闹钟
+- (void)saveClockWithDate:(NSDate *)startDate tableID:(NSInteger)tableID
+{
+    UILocalNotification *notification=[[UILocalNotification alloc] init];
+    if (notification!=nil) {
+        
+        notification.fireDate=[startDate dateByAddingTimeInterval:-10];//10秒前通知
+
+        notification.repeatInterval=kCFCalendarUnitDay;//循环次数，kCFCalendarUnitWeekday一周一次
+        
+        notification.timeZone=[NSTimeZone defaultTimeZone];
+        
+        notification.applicationIconBadgeNumber=1; //应用的红色数字
+        
+        notification.soundName= UILocalNotificationDefaultSoundName;//声音，可以换成alarm.soundName = @"myMusic.caf"
+        
+        //去掉下面2行就不会弹出提示框
+        
+        notification.alertBody=@"通知内容";//提示信息 弹出提示框
+        
+        notification.alertAction = @"打开";  //提示框按钮
+        
+        //notification.hasAction = NO; //是否显示额外的按钮，为no时alertAction消失
+        
+        
+        
+        // NSDictionary *infoDict = [NSDictionary dictionaryWithObject:@"someValue" forKey:@"someKey"];
+        
+        //notification.userInfo = infoDict; //添加额外的信息
+        
+        
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }
+}
+
+#pragma mark 保存图片及对应ID
 - (void)saveImageWith:(FMTodoModel *)todoModel images:(NSArray *)images
 {
     NSInteger tableID = todoModel.tableId;
