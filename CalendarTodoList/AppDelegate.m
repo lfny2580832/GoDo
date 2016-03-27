@@ -16,19 +16,49 @@
 @end
 
 @implementation AppDelegate
+{
+//    BaseNavigationController *_calendarNavVC;
+    MainTabBarVC *_mainTabbarVC;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    [self registLocalNotification];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-//    MainTabBarVC *mainTabbarVC = [[MainTabBarVC alloc]init];
-    CalendarVC *calendarVC = [[CalendarVC alloc]init];
-    BaseNavigationController *calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
-    [self.window setRootViewController:calendarNavVC];
+    _mainTabbarVC = [[MainTabBarVC alloc]init];
+//    CalendarVC *calendarVC = [[CalendarVC alloc]init];
+//    _calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
+    [self.window setRootViewController:_mainTabbarVC];
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+//注册通知
+- (void)registLocalNotification
+{
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
+    {
+        UIUserNotificationType type =  UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type
+                                                                                 categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    NSString *message = [notification.userInfo objectForKey:@"todoStr"];
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"您有新任务"
+                                                                     message:message
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+    
+    [_mainTabbarVC presentViewController:alertVC animated:YES completion:nil];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -17,14 +17,16 @@
 #import "DeleteTodoCell.h"
 #import "RepeatModeCell.h"
 #import "RepeateModeChooseVC.h"
-#import "FMTodoModel.h"
+#import "RemindModeCell.h"
+#import "RemindModeChooseVC.h"
 
+#import "FMTodoModel.h"
 #import "DBManage.h"
 
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"
 
-@interface TodoDetailVC ()<UITableViewDataSource,UITableViewDelegate,TodoContentViewDelegate,TodoProjectViewDelegate,ChooseProjectVCDelegate,ChooseModeCellDelegate,DatePickerCellDelegate,TZImagePickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RepeatModeChooseVCDelegate>
+@interface TodoDetailVC ()<UITableViewDataSource,UITableViewDelegate,TodoContentViewDelegate,TodoProjectViewDelegate,ChooseProjectVCDelegate,ChooseModeCellDelegate,DatePickerCellDelegate,TZImagePickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RepeatModeChooseVCDelegate,RemindModeChooseVCDelegate>
 
 @end
 
@@ -45,6 +47,7 @@
     DatePickerCell *_startCell;
 //    DatePickerCell *_endCell;
     RepeatModeCell *_repeatCell;
+    RemindModeCell *_remindCell;
     
     NSString *_todoContentStr;
     FMProject *_project;
@@ -53,6 +56,7 @@
     NSDate *_OldStartDate;
 //    NSDate *_endDate;
     RepeatMode _repeatMode;
+    RemindMode _remindMode;
     NSMutableArray *_chosenImages;
     BOOL _isAllDay;
     BOOL _canChange;
@@ -66,6 +70,13 @@ static CGFloat datePickerCellHeight = 240.f;
 {
     _repeatMode = repeatMode;
     _repeatCell.modeLabel.text = modeName;
+}
+
+#pragma mark 选择提醒模式
+- (void)returnRemindModeWith:(RemindMode)remindMode modeName:(NSString *)modeName
+{
+    _remindMode = remindMode;
+    _remindCell.modeLabel.text = modeName;
 }
 
 #pragma mark 添加图片
@@ -181,6 +192,7 @@ static CGFloat datePickerCellHeight = 240.f;
         _todoProjectView.project = _project;
         _todoContentView.todoContentField.text = @"";
         _repeatMode = Never;
+        _remindMode = NoRemind;
         //当天八点
         NSDate *tempDate = [NSDate dateWithTimeInterval:0 sinceDate:_initialDate];
         if ([[NSDate date] timeIntervalSinceDate:tempDate] > 0)
@@ -196,7 +208,29 @@ static CGFloat datePickerCellHeight = 240.f;
     _repeatMode = todo.repeatMode;
     if (todo.repeatMode != Never) {
         _canChange = NO;
+    }else if (todo.repeatMode == EveryDay){
+        _repeatCell.modeLabel.text = @"每天";
+    }else if (todo.repeatMode == EveryMonth){
+        _repeatCell.modeLabel.text = @"每月";
+    }else if (todo.repeatMode == EveryWeek){
+        _repeatCell.modeLabel.text = @"每周";
+    }else if (todo.repeatMode == EveryWorkDay){
+        _repeatCell.modeLabel.text = @"工作日";
     }
+    
+    _remindMode = todo.remindMode;
+    if (_remindMode == Never) {
+        _remindCell.modeLabel.text = @"不提醒";
+    }else if (_remindMode == FiveMinutesEarlier){
+        _remindCell.modeLabel.text = @"提前5分钟";
+    }else if (_remindMode == TenMinutesEarlier){
+        _remindCell.modeLabel.text = @"提前10分钟";
+    }else if (_remindMode == FifteenMinutesEarlier){
+        _remindCell.modeLabel.text = @"提前15分钟";
+    }else if (_remindMode == ThirtyMinutesEarlier){
+        _remindCell.modeLabel.text = @"提前半小时";
+    }
+    
     _tableId = _todo.tableId;
     _todoContentStr = _todo.thingStr;
     _todoContentView.todoContentField.text = _todoContentStr;
@@ -272,7 +306,7 @@ static CGFloat datePickerCellHeight = 240.f;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"创建任务中";
     dispatch_async(kBgQueue, ^{
-        [DBManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate oldStartDate:_OldStartDate isAllDay:_isAllDay tableId:_tableId repeatMode:_repeatMode];
+        [DBManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate oldStartDate:_OldStartDate isAllDay:_isAllDay tableId:_tableId repeatMode:_repeatMode remindMode:_remindMode];
         dispatch_async(kMainQueue, ^{
             [hud hide:YES];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
@@ -299,7 +333,7 @@ static CGFloat datePickerCellHeight = 240.f;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 3:1;
+    return section == 0 ? 4:1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -332,8 +366,12 @@ static CGFloat datePickerCellHeight = 240.f;
     else if (indexPath.section == 0 && indexPath.row == 2)
     {
         _repeatCell = [[RepeatModeCell alloc]init];
-        
         return _repeatCell;
+    }
+    else if (indexPath.section == 0 && indexPath.row == 3)
+    {
+        _remindCell = [[RemindModeCell alloc]init];
+        return _remindCell;
     }
     else
     {
@@ -384,11 +422,23 @@ static CGFloat datePickerCellHeight = 240.f;
         vc.delegate = self;
         [self.navigationController pushViewController:vc animated:YES];
     }
+    else if (indexPath.section == 0 && indexPath.row == 3)
+    {
+        if (_repeatMode != Never) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"重复任务不能选择提醒";
+            [hud hide:YES afterDelay:2];
+            return;
+        }
+        RemindModeChooseVC *vc = [[RemindModeChooseVC alloc]init];
+        vc.delegate = self;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     else if (indexPath.section == 1 && indexPath.row == 0)
         [self deleteTodo];
     
     [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
-
 }
 
 - (BOOL)cellIsSelected:(NSIndexPath *)indexPath
@@ -402,10 +452,6 @@ static CGFloat datePickerCellHeight = 240.f;
 {
     self = [super init];
     if (self) {
-
-        NSLog(@"前 %@",[NSObject testStr]);
-        [NSObject removeTestStr];
-        NSLog(@"后 %@",[NSObject testStr]);
 
         _initialDate = date;
         _datePickerMode = UIDatePickerModeDateAndTime;

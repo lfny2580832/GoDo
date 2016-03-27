@@ -86,11 +86,9 @@
 {
     self = [super init];
     if (self)
-    {
-        [NSObject setTestStr:@"shit"];
-        
-        [self simulateProject];
-        [self simulateTodoList];
+    {        
+//        [self simulateProject];
+//        [self simulateTodoList];
         
         [self setCustomTitle:@"日历"];
         [self setRightBackButtontile:@"回到今日"];
@@ -115,6 +113,7 @@
     todoModel.isAllDay = NO;
     todoModel.doneType = NotDone;
     todoModel.repeatMode = Never;
+    todoModel.remindMode = NoRemind;
     FMProject *project = [[DBHelper searchWithSQL:@"select * from @t where projectId = '3'" toClass:[FMProject class]] firstObject];
     todoModel.project = project;
     

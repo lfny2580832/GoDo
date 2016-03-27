@@ -86,7 +86,7 @@
 
 
 #pragma mark 创建RLMTodo
-- (void)createTodoWithProject:(FMProject *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate oldStartDate:(NSDate *)oldStartDate isAllDay:(BOOL)isAllDay tableId:(NSInteger)tableId repeatMode:(RepeatMode)repeatMode
+- (void)createTodoWithProject:(FMProject *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate oldStartDate:(NSDate *)oldStartDate isAllDay:(BOOL)isAllDay tableId:(NSInteger)tableId repeatMode:(RepeatMode)repeatMode remindMode:(RemindMode)remindMode
 {
     FMTodoModel *todoModel = [[FMTodoModel alloc]init];
     todoModel.startTime = [startDate timeIntervalSinceReferenceDate];
@@ -100,6 +100,7 @@
     todoModel.project = fmProject;
     todoModel.projectId = project.projectId;
     todoModel.thingStr = contentStr;
+    todoModel.remindMode = remindMode;
     
     if (!tableId) {
         todoModel.tableId = [UserDefaultManager todoMaxId] + 1;
@@ -113,44 +114,54 @@
     [self CreateOrUpdateDateListWithStartDate:startDate oldStartDate:oldStartDate repeatMode:repeatMode FMTodo:todoModel];
     [[FMTodoModel getUsingLKDBHelper] insertToDB:todoModel];
 
-    [self saveClockWithDate:startDate tableID:todoModel.tableId];
+    
+    NSNumber *todoID = [NSNumber numberWithInteger:todoModel.tableId];
+    NSDictionary *notiDic = [NSDictionary dictionaryWithObjectsAndKeys:todoID,@"todoID",todoModel.thingStr,@"todoStr", nil];
+    NSDate *fireDate = [self fireDateWithRemindMode:remindMode startDate:startDate];
+    [self saveClockWithInfoDic:notiDic fireDate:fireDate];
 }
 
-#pragma mark 保存闹钟
-- (void)saveClockWithDate:(NSDate *)startDate tableID:(NSInteger)tableID
+#pragma mark 返回根据RemindMode本地通知时间
+- (NSDate *)fireDateWithRemindMode:(RemindMode)remindMode startDate:(NSDate *)startDate
 {
+    NSDate *fireDate = startDate;
+    if (remindMode == OnTime) {
+        fireDate = startDate;
+    }else if (remindMode == FiveMinutesEarlier){
+        fireDate = [startDate dateByAddingTimeInterval:- 60 * 5];
+    }else if (remindMode == TenMinutesEarlier){
+        fireDate = [startDate dateByAddingTimeInterval:- 60 * 10];
+    }else if (remindMode == FifteenMinutesEarlier){
+        fireDate = [startDate dateByAddingTimeInterval:- 60 * 15];
+    }else if (remindMode == ThirtyMinutesEarlier){
+        fireDate = [startDate dateByAddingTimeInterval:- 60 * 30];
+    }
+    return fireDate;
+}
+
+#pragma mark 保存通知
+- (void)saveClockWithInfoDic:(NSDictionary *)infoDic fireDate:(NSDate *)fireDate
+{
+    //先删除
+    
+    
     UILocalNotification *notification=[[UILocalNotification alloc] init];
     if (notification!=nil) {
-        
-        notification.fireDate=[startDate dateByAddingTimeInterval:-10];//10秒前通知
-
-        notification.repeatInterval=kCFCalendarUnitDay;//循环次数，kCFCalendarUnitWeekday一周一次
-        
+        notification.fireDate=fireDate;//10秒后通知
+        notification.repeatInterval=0;//循环次数，kCFCalendarUnitWeekday一周一次
         notification.timeZone=[NSTimeZone defaultTimeZone];
-        
-        notification.applicationIconBadgeNumber=1; //应用的红色数字
-        
         notification.soundName= UILocalNotificationDefaultSoundName;//声音，可以换成alarm.soundName = @"myMusic.caf"
-        
         //去掉下面2行就不会弹出提示框
-        
-        notification.alertBody=@"通知内容";//提示信息 弹出提示框
-        
+        notification.alertBody= [infoDic valueForKey:@"todoStr"];//提示信息 弹出提示框
         notification.alertAction = @"打开";  //提示框按钮
-        
-        //notification.hasAction = NO; //是否显示额外的按钮，为no时alertAction消失
-        
-        
-        
-        // NSDictionary *infoDict = [NSDictionary dictionaryWithObject:@"someValue" forKey:@"someKey"];
-        
-        //notification.userInfo = infoDict; //添加额外的信息
-        
-        
+        notification.hasAction = NO; //是否显示额外的按钮，为no时alertAction消失
+        NSDictionary *infoDict = infoDic;
+        notification.userInfo = infoDict;
         
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
 }
+
 
 #pragma mark 保存图片及对应ID
 - (void)saveImageWith:(FMTodoModel *)todoModel images:(NSArray *)images

@@ -59,6 +59,9 @@
 		4AF11FF81C6B1206007DC614 /* ChooseModeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF11FF71C6B1206007DC614 /* ChooseModeCell.m */; };
 		4AF34A201C74ADAC00004EC4 /* UserDefaultManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF34A1F1C74ADAC00004EC4 /* UserDefaultManage.m */; };
 		4AF34A231C754BA600004EC4 /* AddTodoFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF34A221C754BA600004EC4 /* AddTodoFooterView.m */; };
+		4AF918FE1CA74197002BFF12 /* RemindModeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF918FD1CA74197002BFF12 /* RemindModeCell.m */; };
+		4AF919011CA7435E002BFF12 /* RemindModeChooseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF919001CA7435E002BFF12 /* RemindModeChooseVC.m */; };
+		4AF919041CA74456002BFF12 /* RemindModeChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF919031CA74456002BFF12 /* RemindModeChooseCell.m */; };
 		988604FC5CF4599DBC5A9AA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 640C26EC2089C43C666A53BB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -180,6 +183,12 @@
 		4AF34A1F1C74ADAC00004EC4 /* UserDefaultManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultManage.m; sourceTree = "<group>"; };
 		4AF34A211C754BA600004EC4 /* AddTodoFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTodoFooterView.h; sourceTree = "<group>"; };
 		4AF34A221C754BA600004EC4 /* AddTodoFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTodoFooterView.m; sourceTree = "<group>"; };
+		4AF918FC1CA74197002BFF12 /* RemindModeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindModeCell.h; sourceTree = "<group>"; };
+		4AF918FD1CA74197002BFF12 /* RemindModeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindModeCell.m; sourceTree = "<group>"; };
+		4AF918FF1CA7435E002BFF12 /* RemindModeChooseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindModeChooseVC.h; sourceTree = "<group>"; };
+		4AF919001CA7435E002BFF12 /* RemindModeChooseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindModeChooseVC.m; sourceTree = "<group>"; };
+		4AF919021CA74456002BFF12 /* RemindModeChooseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindModeChooseCell.h; sourceTree = "<group>"; };
+		4AF919031CA74456002BFF12 /* RemindModeChooseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindModeChooseCell.m; sourceTree = "<group>"; };
 		640C26EC2089C43C666A53BB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2673CA96F7B03EE1014712 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E72E51CDFFC69871C1738A6E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -369,6 +378,12 @@
 				4A0441CF1C89A82F005E23D9 /* RepeateModeChooseVC.m */,
 				4A0441D11C89AAA3005E23D9 /* RepeatModeChooseCell.h */,
 				4A0441D21C89AAA3005E23D9 /* RepeatModeChooseCell.m */,
+				4AF918FC1CA74197002BFF12 /* RemindModeCell.h */,
+				4AF918FD1CA74197002BFF12 /* RemindModeCell.m */,
+				4AF918FF1CA7435E002BFF12 /* RemindModeChooseVC.h */,
+				4AF919001CA7435E002BFF12 /* RemindModeChooseVC.m */,
+				4AF919021CA74456002BFF12 /* RemindModeChooseCell.h */,
+				4AF919031CA74456002BFF12 /* RemindModeChooseCell.m */,
 				4A95AA0F1C71702F00DFB118 /* DeleteTodoCell.h */,
 				4A95AA101C71702F00DFB118 /* DeleteTodoCell.m */,
 				4A9FC1B81C699FAE00A1D888 /* TodoDetailVC.h */,
@@ -688,15 +703,18 @@
 				4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */,
 				4A9FC1BC1C699FAE00A1D888 /* TodoContentView.m in Sources */,
 				4AD589EE1C64DBD100E74761 /* AddNewProjectVC.m in Sources */,
+				4AF919011CA7435E002BFF12 /* RemindModeChooseVC.m in Sources */,
 				4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */,
 				4A0441D31C89AAA3005E23D9 /* RepeatModeChooseCell.m in Sources */,
 				4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */,
 				4A95AA111C71702F00DFB118 /* DeleteTodoCell.m in Sources */,
 				4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */,
+				4AF918FE1CA74197002BFF12 /* RemindModeCell.m in Sources */,
 				4A0441D01C89A82F005E23D9 /* RepeateModeChooseVC.m in Sources */,
 				4A0441CD1C89A397005E23D9 /* RepeatModeCell.m in Sources */,
 				4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */,
 				4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */,
+				4AF919041CA74456002BFF12 /* RemindModeChooseCell.m in Sources */,
 				4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */,
 				4ADA1DA71C3E496D001ECBF4 /* UILabelZoomable.m in Sources */,
 				4A9FC1BD1C699FAE00A1D888 /* TodoDetailVC.m in Sources */,

@@ -18,4 +18,5 @@
 @interface RepeateModeChooseVC : UIViewController
 
 @property (nonatomic ,weak)id <RepeatModeChooseVCDelegate>delegate;
+
 @end

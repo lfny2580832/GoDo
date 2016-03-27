@@ -10,9 +10,6 @@
 
 @interface NSObject (NYExtends)
 
-@property (nonatomic, copy) NSString *testStr;
-
-- (void)removeTestStr;
 
 #pragma mark 获取现在开始一年的天数
 + (NSInteger)numberOfDaysInThisYear

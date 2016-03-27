@@ -24,6 +24,16 @@ typedef NS_ENUM(NSInteger, RepeatMode)
     EveryMonth,         //每月当天
     EveryWorkDay,       //每个工作日
 };
+//提醒模式
+typedef NS_ENUM(NSInteger, RemindMode)
+{
+    NoRemind = 0,               //不提醒
+    OnTime,                     //准时提醒
+    FiveMinutesEarlier,         //五分钟前
+    TenMinutesEarlier,
+    FifteenMinutesEarlier,
+    ThirtyMinutesEarlier
+};
 
 @interface FMProject : NSObject
 ///事件类型ID 主键
@@ -58,10 +68,8 @@ typedef NS_ENUM(NSInteger, RepeatMode)
 @property (nonatomic, assign) RepeatMode repeatMode;
 //每周几 或者 每月几号，int
 @property (nonatomic, assign) NSInteger repeatParam;
+//提醒模式(重复任务不能设置提醒)
+@property (nonatomic, assign) RemindMode remindMode;
 
 @end
 
-
-@interface NSObject(PrintSQL)
-+(NSString*)getCreateTableSQL;
-@end
