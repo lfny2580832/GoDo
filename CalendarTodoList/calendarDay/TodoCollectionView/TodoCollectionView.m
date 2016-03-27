@@ -67,10 +67,10 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 #pragma mark 初始化方法
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame cellHeight:(CGFloat)cellHeight
 {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(SCREEN_WIDTH, 500)];
+    [flowLayout setItemSize:CGSizeMake(SCREEN_WIDTH, cellHeight)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     [flowLayout setMinimumLineSpacing:0];
     self = [super initWithFrame:frame collectionViewLayout:flowLayout];

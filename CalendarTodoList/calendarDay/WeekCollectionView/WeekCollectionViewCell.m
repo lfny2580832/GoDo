@@ -52,6 +52,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.layer.masksToBounds = YES;
+        self.layer.cornerRadius = SCREEN_WIDTH/14;
+        self.layer.borderWidth = 4.f;
+        self.layer.borderColor = [[UIColor whiteColor] CGColor];
         _monthDayFormatter = [[NSDateFormatter alloc]init];
         [_monthDayFormatter setDateFormat:@"M-d"];
         [self initView];

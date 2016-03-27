@@ -23,7 +23,7 @@
 {
     UILabel *contentLabel  = [[UILabel alloc]init];
     contentLabel.text = @"+添加项目";
-    contentLabel.textColor = [UIColor whiteColor];
+    contentLabel.textColor = [UIColor blackColor];
     contentLabel.font = [UIFont systemFontOfSize:15];
     [self addSubview:contentLabel];
     [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {

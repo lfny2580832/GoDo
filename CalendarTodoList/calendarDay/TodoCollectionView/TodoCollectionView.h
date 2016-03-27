@@ -26,6 +26,8 @@
 
 @property (nonatomic, weak) id<TodoCollectionViewDelegate> mdelegate;
 
+- (instancetype)initWithFrame:(CGRect)frame cellHeight:(CGFloat)cellHeight;
+
 - (void)getIndexPageTodoCellWithChosenDate:(NSDate *)chosenDate;
 
 - (void)setSelectedDayTodoCellWithIndexRow:(NSInteger)indexRow;

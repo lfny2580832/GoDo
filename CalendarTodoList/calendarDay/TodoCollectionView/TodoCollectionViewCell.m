@@ -75,7 +75,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [NSObject randomColor];
+        self.backgroundColor = [UIColor whiteColor];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewAfterCreateOrDelete) name:@"ReloadTodoTableView" object:nil];
         [self initView];
     }

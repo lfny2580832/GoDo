@@ -1,4 +1,4 @@
-//
+ //
 //  DBManage.h
 //  CalendarTodoList
 //
@@ -118,7 +118,7 @@
     NSNumber *todoID = [NSNumber numberWithInteger:todoModel.tableId];
     NSDictionary *notiDic = [NSDictionary dictionaryWithObjectsAndKeys:todoID,@"todoID",todoModel.thingStr,@"todoStr", nil];
     NSDate *fireDate = [self fireDateWithRemindMode:remindMode startDate:startDate];
-    [self saveClockWithInfoDic:notiDic fireDate:fireDate];
+    [self saveClockWithInfoDic:notiDic fireDate:fireDate remindMode:remindMode];
 }
 
 #pragma mark 返回根据RemindMode本地通知时间
@@ -140,11 +140,14 @@
 }
 
 #pragma mark 保存通知
-- (void)saveClockWithInfoDic:(NSDictionary *)infoDic fireDate:(NSDate *)fireDate
+- (void)saveClockWithInfoDic:(NSDictionary *)infoDic fireDate:(NSDate *)fireDate remindMode:(RemindMode)remindMode
 {
     //先删除
-    
-    
+    [self cancelLocalNotificationWithTableID:[[infoDic objectForKey:@"todoID"] integerValue]];
+    //再创建
+    if (remindMode == NoRemind) {
+        return;
+    }
     UILocalNotification *notification=[[UILocalNotification alloc] init];
     if (notification!=nil) {
         notification.fireDate=fireDate;//10秒后通知
@@ -155,13 +158,25 @@
         notification.alertBody= [infoDic valueForKey:@"todoStr"];//提示信息 弹出提示框
         notification.alertAction = @"打开";  //提示框按钮
         notification.hasAction = NO; //是否显示额外的按钮，为no时alertAction消失
-        NSDictionary *infoDict = infoDic;
-        notification.userInfo = infoDict;
+        notification.userInfo = infoDic;
         
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
 }
 
+#pragma makr 删除通知
+- (void)cancelLocalNotificationWithTableID:(NSInteger)tableID
+{
+    NSArray *localNotifications = [UIApplication sharedApplication].scheduledLocalNotifications;
+    for (UILocalNotification *notification in localNotifications) {
+        NSDictionary *userInfo = notification.userInfo;
+        if (userInfo) {
+            if (tableID == [[userInfo objectForKey:@"todoID"] integerValue]) {
+                [[UIApplication sharedApplication] cancelLocalNotification:notification];
+            }
+        }
+    }
+}
 
 #pragma mark 保存图片及对应ID
 - (void)saveImageWith:(FMTodoModel *)todoModel images:(NSArray *)images
@@ -409,6 +424,8 @@
         dayList.tableIDs = [NSMutableArray arrayWithArray:tableIDs];
         [[FMDayList getUsingLKDBHelper] updateToDB:dayList where:nil];
     }
+    
+    [self cancelLocalNotificationWithTableID:tableId];
 }
 
 @end

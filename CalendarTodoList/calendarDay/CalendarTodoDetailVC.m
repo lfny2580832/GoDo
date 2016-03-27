@@ -79,7 +79,7 @@
 {
     self = [super init];
     if (self) {
-        self.view.backgroundColor = [UIColor whiteColor];
+        self.view.backgroundColor = [UIColor grayColor];
         [self setCustomTitle:@"时间轴"];
 
         [self initView];
@@ -93,7 +93,8 @@
     _weekCollectionView.mdelegate = self;
     [self.view addSubview:_weekCollectionView];
     
-    _todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 500)];
+    CGFloat timeLineHeight = self.view.frame.size.height - SCREEN_WIDTH/7;
+    _todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, SCREEN_WIDTH/7, SCREEN_WIDTH, timeLineHeight) cellHeight:timeLineHeight];
     _todoCollectionView.mdelegate = self;
     [self.view addSubview:_todoCollectionView];
 

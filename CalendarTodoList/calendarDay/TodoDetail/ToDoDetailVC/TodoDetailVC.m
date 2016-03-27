@@ -208,7 +208,8 @@ static CGFloat datePickerCellHeight = 240.f;
     _repeatMode = todo.repeatMode;
     if (todo.repeatMode != Never) {
         _canChange = NO;
-    }else if (todo.repeatMode == EveryDay){
+    }
+    if (todo.repeatMode == EveryDay){
         _repeatCell.modeLabel.text = @"每天";
     }else if (todo.repeatMode == EveryMonth){
         _repeatCell.modeLabel.text = @"每月";
@@ -219,15 +220,28 @@ static CGFloat datePickerCellHeight = 240.f;
     }
     
     _remindMode = todo.remindMode;
-    if (_remindMode == Never) {
+    if (todo.remindMode == Never)
+    {
         _remindCell.modeLabel.text = @"不提醒";
-    }else if (_remindMode == FiveMinutesEarlier){
+    }
+    else if (todo.remindMode == OnTime)
+    {
+        _remindCell.modeLabel.text = @"准时提醒";
+    }
+    else if (todo.remindMode == FiveMinutesEarlier)
+    {
         _remindCell.modeLabel.text = @"提前5分钟";
-    }else if (_remindMode == TenMinutesEarlier){
+    }
+    else if (todo.remindMode == TenMinutesEarlier)
+    {
         _remindCell.modeLabel.text = @"提前10分钟";
-    }else if (_remindMode == FifteenMinutesEarlier){
+    }
+    else if (todo.remindMode == FifteenMinutesEarlier)
+    {
         _remindCell.modeLabel.text = @"提前15分钟";
-    }else if (_remindMode == ThirtyMinutesEarlier){
+    }
+    else if (todo.remindMode == ThirtyMinutesEarlier)
+    {
         _remindCell.modeLabel.text = @"提前半小时";
     }
     
@@ -365,12 +379,10 @@ static CGFloat datePickerCellHeight = 240.f;
     }
     else if (indexPath.section == 0 && indexPath.row == 2)
     {
-        _repeatCell = [[RepeatModeCell alloc]init];
         return _repeatCell;
     }
     else if (indexPath.section == 0 && indexPath.row == 3)
     {
-        _remindCell = [[RemindModeCell alloc]init];
         return _remindCell;
     }
     else
@@ -418,6 +430,12 @@ static CGFloat datePickerCellHeight = 240.f;
             [hud hide:YES afterDelay:2];
             return;
         }
+        if (_remindMode != NoRemind) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"重复任务不能选择提醒";
+            [hud hide:YES afterDelay:2];
+        }
         RepeateModeChooseVC *vc = [[RepeateModeChooseVC alloc]init];
         vc.delegate = self;
         [self.navigationController pushViewController:vc animated:YES];
@@ -457,6 +475,9 @@ static CGFloat datePickerCellHeight = 240.f;
         _datePickerMode = UIDatePickerModeDateAndTime;
         _chosenImages = [[NSMutableArray alloc]initWithCapacity:0];
         _canChange = YES;
+        _remindCell = [[RemindModeCell alloc]init];
+        _repeatCell = [[RepeatModeCell alloc]init];
+
         [self setRightBackButtontile:@"保存"];
         [self initViews];
         

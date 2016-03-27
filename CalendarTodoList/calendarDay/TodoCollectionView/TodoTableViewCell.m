@@ -23,6 +23,7 @@
     UIView *_topLine;
     UIImageView *_cicleView;
     UIView *_bottomLine;
+    UIImageView *_repeatTagView;
     
     FMTodoModel *_todo;
 }
@@ -51,6 +52,7 @@ static NSInteger LineWidth = 2;
     
     
     todo.doneType == Done?  _cicleView.highlighted = YES:NO;
+    todo.repeatMode != Never? _repeatTagView.highlighted = YES:NO;
     if (todo.images.count) {
         NSInteger imageCount = todo.images.count;
         NSInteger imageEdge = 10;
@@ -91,6 +93,10 @@ static NSInteger LineWidth = 2;
 - (void)circleViewClicked
 {
     if (_todo.repeatMode != Never) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"重复任务不能标记已完成";
+        [hud hide:YES afterDelay:2];
         return;
     }
     _cicleView.highlighted = !_cicleView.highlighted;
@@ -133,7 +139,7 @@ static NSInteger LineWidth = 2;
 - (void)initView
 {
     _timeLabel = [[UILabel alloc]init];
-    _timeLabel.textColor = [UIColor whiteColor];
+    _timeLabel.textColor = [UIColor blackColor];
     [self.contentView addSubview:_timeLabel];
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(10);
@@ -142,7 +148,7 @@ static NSInteger LineWidth = 2;
     }];
     
     _topLine = [[UIView alloc]init];
-    _topLine.backgroundColor = [UIColor whiteColor];
+    _topLine.backgroundColor = [UIColor blackColor];
     [self.contentView addSubview:_topLine];
     [_topLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView);
@@ -151,7 +157,7 @@ static NSInteger LineWidth = 2;
     }];
     
     _bottomLine = [[UIView alloc]init];
-    _bottomLine.backgroundColor = [UIColor whiteColor];
+    _bottomLine.backgroundColor = [UIColor blackColor];
     [self.contentView addSubview:_bottomLine];
     [_bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(25);
@@ -183,8 +189,17 @@ static NSInteger LineWidth = 2;
         make.size.mas_equalTo(CGSizeMake(CircleRadius*2 + 8, CircleRadius*2 + 8));
     }];
     
+    _repeatTagView = [[UIImageView alloc]init];
+    _repeatTagView.highlightedImage = [UIImage imageNamed:@"check.png"];
+    [self.contentView addSubview:_repeatTagView];
+    [_repeatTagView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(20, 20));
+        make.centerY.equalTo(_timeLabel);
+        make.right.mas_equalTo(self.contentView).offset(-15);
+    }];
+    
     _textLabel = [[UILabel alloc]init];
-    _textLabel.textColor = [UIColor whiteColor];
+    _textLabel.textColor = [UIColor blackColor];
     _textLabel.textAlignment = NSTextAlignmentLeft;
     _textLabel.numberOfLines = 0;
     [self.contentView addSubview:_textLabel];
@@ -192,7 +207,7 @@ static NSInteger LineWidth = 2;
         make.top.equalTo(self.contentView).offset(15);
         make.bottom.equalTo(self.contentView).offset(-15);
         make.left.equalTo(_topLine.mas_right).offset(18);
-        make.right.equalTo(self.contentView).offset(-15);
+        make.right.equalTo(_repeatTagView.mas_left).offset(-15);
     }];
 }
 
