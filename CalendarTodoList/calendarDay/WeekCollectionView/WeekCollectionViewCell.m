@@ -32,12 +32,30 @@
 - (void)setIndex:(NSString *)index
 {
     _index = index;
-    _indexLabel.text = index;
+//    _indexLabel.text = index;
 }
 
 - (void)setDate:(NSDate *)date
 {
     _date = date;
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekOfYear|NSCalendarUnitWeekday|NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear |NSCalendarUnitHour |NSCalendarUnitMinute fromDate:_date];
+    NSString *weekDay;
+    if (comps.weekday == 1) {
+        weekDay = @"周日";
+    }else if (comps.weekday == 2){
+        weekDay = @"周一";
+    }else if (comps.weekday == 3){
+        weekDay = @"周二";
+    }else if (comps.weekday == 4){
+        weekDay = @"周三";
+    }else if (comps.weekday == 5){
+        weekDay = @"周四";
+    }else if (comps.weekday == 6){
+        weekDay = @"周五";
+    }else if (comps.weekday == 7){
+        weekDay = @"周六";
+    }
+    _indexLabel.text = weekDay;
     NSString *dateStr = [_monthDayFormatter stringFromDate:date];
     _dateLabel.text = dateStr;
 }
@@ -52,10 +70,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.layer.masksToBounds = YES;
-        self.layer.cornerRadius = SCREEN_WIDTH/14;
-        self.layer.borderWidth = 4.f;
-        self.layer.borderColor = [[UIColor whiteColor] CGColor];
         _monthDayFormatter = [[NSDateFormatter alloc]init];
         [_monthDayFormatter setDateFormat:@"M-d"];
         [self initView];
@@ -81,7 +95,7 @@
     _dateLabel.font = [UIFont systemFontOfSize:13];
     [self addSubview:_dateLabel];
     [_dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_indexLabel.mas_bottom).offset(3);
+        make.top.equalTo(_indexLabel.mas_bottom).offset(8);
         make.centerX.equalTo(self);
     }];
     

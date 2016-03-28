@@ -43,6 +43,7 @@
         _todoArray = [DBManager getDayInfoFromDateList:dayId];
         dispatch_async(kMainQueue, ^{
             [_tableView reloadData];
+            [_tableView layoutIfNeeded];
             if (dayId < [NSObject getDayIdWithDate:[NSDate date]])
                 _tableView.tableFooterView.hidden = YES;
             else
@@ -51,7 +52,12 @@
 
             [UIView animateWithDuration:0.2 animations:^{
                 _tableView.alpha = 1;
-            } completion:nil];
+            } completion:^(BOOL finished) {
+                [_tableView setContentSize:CGSizeMake(_tableView.contentSize.width, _tableView.contentSize.height + 100)];
+                if (_tableView.contentSize.height > _tableView.frame.size.height - 60) {
+                    _tableView.scrollEnabled = YES;
+                }
+            }];
         });
     });
 
@@ -99,7 +105,8 @@
     _tableView.tableFooterView = footerView;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    [self addSubview:_tableView];
+    _tableView.scrollEnabled = NO;
+    [self.contentView addSubview:_tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.left.right.equalTo(self.contentView);
     }];
