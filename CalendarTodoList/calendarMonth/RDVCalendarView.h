@@ -32,17 +32,17 @@ typedef NS_OPTIONS(NSInteger, RDVCalendarViewDayCellSeparatorType) {
 /**
  * Returns the label, which contains the name of the currently displayed month. (read-only)
  */
-@property (nonatomic, readonly) UILabel *monthLabel;
+//@property (nonatomic, readonly) UILabel *monthLabel;
 
 /**
  * Returns the back (previous month) button. (read-only)
  */
-@property (nonatomic, readonly) UIButton *backButton;
+//@property (nonatomic, readonly) UIButton *backButton;
 
 /**
  * Returns the forward (next month) button. (read-only)
  */
-@property (nonatomic, readonly) UIButton *forwardButton;
+//@property (nonatomic, readonly) UIButton *forwardButton;
 
 /**
  * Returns array containing the week day labels.
@@ -235,6 +235,7 @@ typedef NS_OPTIONS(NSInteger, RDVCalendarViewDayCellSeparatorType) {
  */
 - (void)calendarView:(RDVCalendarView *)calendarView didChangeMonth:(NSDateComponents *)month;
 
+- (void)didChangeTitleDateWith:(NSString *)dateStr;
 
 #pragma mark - Customization
 

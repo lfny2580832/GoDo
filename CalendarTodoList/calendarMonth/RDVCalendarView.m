@@ -72,28 +72,28 @@
         [self addGestureRecognizer:leftSwipeGestureRecognizer];
         [self addGestureRecognizer:rightSwipeGestureRecognizer];
         
-        _monthLabel = [[UILabelZoomable alloc] init];
-        _monthLabel.font = [UIFont systemFontOfSize:22];
-        _monthLabel.textColor = [UIColor blackColor];
-        _monthLabel.textAlignment = NSTextAlignmentCenter;
-        CATiledLayer *listLabelLayer = (CATiledLayer *)_monthLabel.layer;
-        listLabelLayer.levelsOfDetail = 2;
-        listLabelLayer.levelsOfDetailBias = 2;
-        [self addSubview:_monthLabel];
+//        _monthLabel = [[UILabelZoomable alloc] init];
+//        _monthLabel.font = [UIFont systemFontOfSize:22];
+//        _monthLabel.textColor = [UIColor blackColor];
+//        _monthLabel.textAlignment = NSTextAlignmentCenter;
+//        CATiledLayer *listLabelLayer = (CATiledLayer *)_monthLabel.layer;
+//        listLabelLayer.levelsOfDetail = 2;
+//        listLabelLayer.levelsOfDetailBias = 2;
+//        [self addSubview:_monthLabel];
         
-        _backButton = [[UIButton alloc] init];
-        [_backButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [_backButton setTitle:@"<" forState:UIControlStateNormal];
-        [_backButton addTarget:self action:@selector(showPreviousMonth)
-              forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:_backButton];
-        
-        _forwardButton = [[UIButton alloc] init];
-        [_forwardButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [_forwardButton setTitle:@">" forState:UIControlStateNormal];
-        [_forwardButton addTarget:self action:@selector(showNextMonth)
-                 forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:_forwardButton];
+//        _backButton = [[UIButton alloc] init];
+//        [_backButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+//        [_backButton setTitle:@"<" forState:UIControlStateNormal];
+//        [_backButton addTarget:self action:@selector(showPreviousMonth)
+//              forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:_backButton];
+//        
+//        _forwardButton = [[UIButton alloc] init];
+//        [_forwardButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+//        [_forwardButton setTitle:@">" forState:UIControlStateNormal];
+//        [_forwardButton addTarget:self action:@selector(showNextMonth)
+//                 forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:_forwardButton];
         
         // Setup calendar
         
@@ -149,27 +149,7 @@
 #pragma mark 布局方法
 - (void)layoutSubviews {
     CGSize viewSize = self.frame.size;
-    CGSize headerSize = CGSizeMake(viewSize.width, 60.0f);
-    CGFloat backButtonWidth = MAX([[self backButton] sizeThatFits:CGSizeMake(100, 50)].width, 44);
-    CGFloat forwardButtonWidth = MAX([[self forwardButton] sizeThatFits:CGSizeMake(100, 50)].width, 44);
-    
-    CGSize previousMonthButtonSize = CGSizeMake(backButtonWidth, 50);
-    CGSize nextMonthButtonSize = CGSizeMake(forwardButtonWidth, 50);
-    CGSize titleSize = CGSizeMake(viewSize.width - previousMonthButtonSize.width - nextMonthButtonSize.width - 10 - 10,60);
-    
-    // Layout header view
-    
-    [self.backButton setFrame:CGRectMake(10, roundf(headerSize.height / 2 - previousMonthButtonSize.height / 2),
-                                         previousMonthButtonSize.width, previousMonthButtonSize.height)];
-    
-    [self.monthLabel setFrame:CGRectMake(roundf(headerSize.width / 2 - titleSize.width / 2),
-                                         roundf(headerSize.height / 2 - titleSize.height / 2),
-                                         titleSize.width, titleSize.height)];
-    
-    [self.forwardButton setFrame:CGRectMake(headerSize.width - 10 - nextMonthButtonSize.width,
-                                            roundf(headerSize.height / 2 - nextMonthButtonSize.height / 2),
-                                            nextMonthButtonSize.width, nextMonthButtonSize.height)];
-    
+
     // Calculate sizes and distances
     
     CGFloat rowCount = 6; // 6 is the maximum number of weeks in a month
@@ -187,7 +167,7 @@
         }
     }
     
-    CGFloat weekDayLabelsEndY = CGRectGetMaxY(self.monthLabel.frame) + self.weekDayHeight;
+    CGFloat weekDayLabelsEndY =  self.weekDayHeight;
     
     CGFloat dayHeight = 0;
     if ([self.delegate respondsToSelector:@selector(heightForDayCellInCalendarView:)]) {
@@ -300,7 +280,7 @@
     }
     
     //加载好daycell之后，再加载weekdaylabelview，以放在最daycell的上方
-    [_weekDaysView setFrame:CGRectMake(0, CGRectGetMaxY(self.monthLabel.frame), SCREEN_WIDTH, 30)];
+    [_weekDaysView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
     GradientView *view1 = [[GradientView alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH, 10)];
     _weekDaysView.backgroundColor = [UIColor whiteColor];
     [_weekDaysView addSubview:view1];
@@ -352,7 +332,6 @@
     
     //包含七个周xlabel的view，便于控制整体位置
     _weekDaysView = [[UIView alloc]init];
-//    _weekDaysView.backgroundColor = [UIColor whiteColor];
     
     if (![_weekDayLabels count]) {
         NSMutableArray *weekDayLabels = [[NSMutableArray alloc] initWithCapacity:[_weekDays count]];
@@ -384,38 +363,12 @@
 
 //更新顶部年月
 - (void)updateMonthLabelMonth:(NSDateComponents*)month {
-    
-    if (month.year < _currentDay.year && month.month == 12)
-    {
-        _backButton.hidden = YES;
-        _forwardButton.hidden = NO;
-    }
-    else if (month.year == _currentDay.year && month.month < _currentDay.month)
-    {
-        _backButton.hidden = YES;
-        _forwardButton.hidden = NO;
-    }
-    else if (month.year == _currentDay.year && month.month >= _currentDay.month)
-    {
-        _backButton.hidden = NO;
-        _forwardButton.hidden = NO;
-    }
-    else if (month.year == _currentDay.year + 1 && month.month < _currentDay.month)
-    {
-        _backButton.hidden = NO;
-        _forwardButton.hidden = NO;
-    }
-    else if (month.year == _currentDay.year + 1 && month.month == _currentDay.month)
-    {
-        _backButton.hidden = NO;
-        _forwardButton.hidden = YES;
-    }
-    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy年LLLL";
+    formatter.dateFormat = @"yyyy年M月";
     
     NSDate *date = [month.calendar dateFromComponents:month];
-    self.monthLabel.text = [formatter stringFromDate:date];
+    NSString *dateStr = [formatter stringFromDate:date];
+    [self.delegate didChangeTitleDateWith:dateStr];
 }
 
 //更新每月的daycell
@@ -533,16 +486,12 @@
         if (index + 1 == self.currentDay.day &&
             self.month.month == self.currentDay.month &&
             self.month.year == self.currentDay.year) {
-//            dayCell.backgroundView.backgroundColor = self.currentDayColor;
             dayCell.backgroundView.backgroundColor = RGBA(255, 204, 153, 0.5);
-//            dayCell.backgroundView.layer.borderWidth = 1.0f;
+            dayCell.layer.masksToBounds = YES;
+            dayCell.layer.cornerRadius = 2.f;
         } else {
-//            dayCell.backgroundView.backgroundColor = self.normalDayColor;
-//            dayCell.backgroundView.layer.borderWidth = 0.0f;
+
         }
-
-//        dayCell.selectedBackgroundView.backgroundColor = self.selectedDayColor;
-
         //setneedslayout 会默认调用layoutsubviews
         [dayCell setNeedsLayout];
     }
@@ -665,31 +614,31 @@
 
 - (void)setDisplayedMonth:(NSDateComponents *)month {
     
-    if (month.year < _currentDay.year && month.month == 12)
-    {
-        _backButton.hidden = YES;
-        _forwardButton.hidden = NO;
-    }
-    else if (month.year == _currentDay.year && month.month < _currentDay.month)
-    {
-        _backButton.hidden = YES;
-        _forwardButton.hidden = NO;
-    }
-    else if (month.year == _currentDay.year && month.month >= _currentDay.month)
-    {
-        _backButton.hidden = NO;
-        _forwardButton.hidden = NO;
-    }
-    else if (month.year == _currentDay.year + 1 && month.month < _currentDay.month)
-    {
-        _backButton.hidden = NO;
-        _forwardButton.hidden = NO;
-    }
-    else if (month.year == _currentDay.year + 1 && month.month == _currentDay.month)
-    {
-        _backButton.hidden = NO;
-        _forwardButton.hidden = YES;
-    }
+//    if (month.year < _currentDay.year && month.month == 12)
+//    {
+//        _backButton.hidden = YES;
+//        _forwardButton.hidden = NO;
+//    }
+//    else if (month.year == _currentDay.year && month.month < _currentDay.month)
+//    {
+//        _backButton.hidden = YES;
+//        _forwardButton.hidden = NO;
+//    }
+//    else if (month.year == _currentDay.year && month.month >= _currentDay.month)
+//    {
+//        _backButton.hidden = NO;
+//        _forwardButton.hidden = NO;
+//    }
+//    else if (month.year == _currentDay.year + 1 && month.month < _currentDay.month)
+//    {
+//        _backButton.hidden = NO;
+//        _forwardButton.hidden = NO;
+//    }
+//    else if (month.year == _currentDay.year + 1 && month.month == _currentDay.month)
+//    {
+//        _backButton.hidden = NO;
+//        _forwardButton.hidden = YES;
+//    }
     
     [self updateMonthLabelMonth:self.month];
     [self updateMonthViewMonth:self.month];
@@ -751,7 +700,7 @@
 {
     if (sender.direction == UISwipeGestureRecognizerDirectionLeft)
     {
-        if (_forwardButton.hidden == YES) {
+        if (self.month.year == _currentDay.year + 1 && self.month.month == _currentDay.month) {
             return;
         }
         [self showNextMonth];
@@ -759,7 +708,11 @@
     
     if (sender.direction == UISwipeGestureRecognizerDirectionRight)
     {
-        if (_backButton.hidden == YES) {
+        if (self.month.year < _currentDay.year && self.month.month == 12) {
+            return;
+        }
+        if (self.month.year == _currentDay.year && self.month.month < _currentDay.month)
+        {
             return;
         }
         [self showPreviousMonth];

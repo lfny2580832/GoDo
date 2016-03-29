@@ -46,6 +46,11 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
+- (void)didChangeTitleDateWith:(NSString *)dateStr
+{
+    [self setCustomTitle:dateStr];
+}
+
 #pragma mark 回到今日
 - (void)rightbarButtonItemOnclick:(id)sender
 {
@@ -89,8 +94,10 @@
     {        
 //        [self simulateProject];
 //        [self simulateTodoList];
-        
-        [self setCustomTitle:@"日历"];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyy年M月";
+        NSString *dateStr = [formatter stringFromDate:[NSDate date]];
+        [self setCustomTitle:dateStr];
         [self setRightBackButtontile:@"回到今日"];
         [self initScrollView];
         [self initView];
@@ -238,31 +245,25 @@
 #pragma mark 实时获取zoomscale的值
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
-    if (self.scrollView.zoomScale <= 3.0f && self.scrollView.zoomScale > 1.5f) {
-        [_calendarView changeCellTransparentWithAlpha: self.scrollView.zoomScale / 1.5 - 1];
+    //减少方法执行频率
+    CGFloat scale = floor(scrollView.zoomScale * 100) / 100;
+    if (fabs(scale - scrollView.zoomScale) < 0.002)
+    {
+        if (self.scrollView.zoomScale <= 3.0f && self.scrollView.zoomScale > 1.5f) {
+            [_calendarView changeCellTransparentWithAlpha: self.scrollView.zoomScale / 1.5 - 1];
+        }
+        else if (self.scrollView.zoomScale <= 1.5f) {
+            [_calendarView changeCellTransparentWithAlpha:0];
+        }
     }
-    else if (self.scrollView.zoomScale <= 1.5f) {
-        [_calendarView changeCellTransparentWithAlpha:0];
-    }
-    //防止放大状态切换月份，不能用hidden，会导致可以滑到其他月份
-    if (self.scrollView.zoomScale > 1) {
-        _calendarView.forwardButton.alpha = 0;
-        _calendarView.forwardButton.enabled = NO;
-        _calendarView.backButton.alpha = 0;
-        _calendarView.backButton.enabled = NO;
-    }else{
-        _calendarView.forwardButton.alpha = 1;
-        _calendarView.forwardButton.enabled = YES;
-        _calendarView.backButton.alpha = 1;
-        _calendarView.backButton.enabled = YES;
-    }
+
 }
 
 //检测scrollview的contentoffset，到了60说明weekdaylabel到了屏幕顶端;此时将weekdaylabel悬在self的顶端
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat weekLabelOffset = self.scrollView.contentOffset.y/self.scrollView.zoomScale;
-    if(weekLabelOffset >= 60)
+    if(weekLabelOffset >= 0)
     {
         CGRect temp = _calendarView.weekDaysView.frame;
         temp.origin.y = weekLabelOffset;
@@ -271,7 +272,7 @@
     else
     {
         CGRect temp = _calendarView.weekDaysView.frame;
-        temp.origin.y = 60;
+        temp.origin.y = 0;
         _calendarView.weekDaysView.frame = temp;
     }
 }
