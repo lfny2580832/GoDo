@@ -33,7 +33,6 @@ typedef NS_OPTIONS(NSInteger, RDVCalendarViewDayCellSeparatorType) {
 //包装7个label的view
 @property (nonatomic, strong) UIView *weekDaysView;
 
-@property (nonatomic, strong) UIView *daysView;
 /**
  * The style for separators used between day cells.
  */

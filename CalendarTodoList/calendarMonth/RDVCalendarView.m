@@ -22,6 +22,7 @@
     
 //    NSArray *_weekDays;
     Class _dayCellClass;
+    UIView *_maskView;
     
     UIInterfaceOrientation _orientation;
 }
@@ -57,6 +58,9 @@
         _dayCellEdgeInsets = UIEdgeInsetsMake(1, 1, 1, 1);
         
         _dayCellClass = [RDVCalendarDayCell class];
+        
+        _maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH, self.frame.size.height - 30)];
+        _maskView.backgroundColor = [UIColor whiteColor];
         
         // Setup header view
         [self setupWeekDays];
@@ -250,13 +254,10 @@
     
     //加载好daycell之后，再加载weekdaylabelview，以放在最daycell的上方
 
-    for(UIView *view in self.subviews)
-    {
-        if (_weekDaysView == view) {
-            return;
-        }
-        [self addSubview:_weekDaysView];
-    }
+
+    [self addSubview:_weekDaysView];
+    [self addSubview:_maskView];
+    _maskView.hidden = YES;
 }
 
 #pragma mark - Creating Calendar View Day Cells
@@ -545,13 +546,15 @@
                   NSCalendarUnitWeekday|
                   NSCalendarUnitCalendar fromDate:newDate];
     
+    _maskView.hidden = NO;
+    _maskView.alpha = 0;
     [UIView animateWithDuration:0.15 animations:^{
-        self.alpha = 0;
-        
+        _maskView.alpha = 1;
     } completion:^(BOOL finished) {
         [self setDisplayedMonth:self.month];
         [UIView animateWithDuration:0.2 animations:^{
-            self.alpha = 1;
+            _maskView.alpha = 0;
+            _maskView.hidden = YES;
         }];
     }];
 }
