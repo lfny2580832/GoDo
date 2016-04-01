@@ -7,6 +7,7 @@
 //
 
 #import "LoginVC.h"
+#import "LoginView.h"
 
 @interface LoginVC ()
 
@@ -14,6 +15,23 @@
 
 @implementation LoginVC
 
-   
+#pragma mark 初始化
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self initView];
+    }
+    return self;
+}
 
+- (void)initView
+{
+    LoginView *loginView =  [[LoginView alloc]init];
+    [self.view addSubview:loginView];
+    [loginView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.left.right.equalTo(self.view);
+    }];
+    
+}
 @end

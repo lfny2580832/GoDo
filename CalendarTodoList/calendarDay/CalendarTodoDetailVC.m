@@ -79,7 +79,7 @@
 {
     self = [super init];
     if (self) {
-        self.view.backgroundColor = [UIColor grayColor];
+        self.view.backgroundColor = KNaviColor;
         [self setCustomTitle:@"时间轴"];
 
         [self initView];

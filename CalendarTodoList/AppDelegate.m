@@ -10,6 +10,7 @@
 #import "MainTabBarVC.h"
 #import "BaseNavigationController.h"
 #import "CalendarVC.h"
+#import <YTKNetwork/YTKNetworkConfig.h>
 
 @interface AppDelegate ()
 
@@ -24,17 +25,22 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     [self registLocalNotification];
-    
+    [self setNetworkConfig];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
     _mainTabbarVC = [[MainTabBarVC alloc]init];
-//    CalendarVC *calendarVC = [[CalendarVC alloc]init];
-//    _calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
+
     [self.window setRootViewController:_mainTabbarVC];
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+- (void)setNetworkConfig
+{
+    YTKNetworkConfig *config = [YTKNetworkConfig sharedInstance];
+    config.baseUrl = @"https://api.samaritan.tech";
 }
 
 //注册通知

@@ -20,8 +20,7 @@
     
     RDVCalendarDayCell *_selectedDayCell;
     
-    NSArray *_weekDays;
-    
+//    NSArray *_weekDays;
     Class _dayCellClass;
     
     UIInterfaceOrientation _orientation;
@@ -55,13 +54,12 @@
         _separatorColor = [UIColor lightGrayColor];
         
         _separatorEdgeInsets = UIEdgeInsetsZero;
-        _dayCellEdgeInsets = UIEdgeInsetsZero;
+        _dayCellEdgeInsets = UIEdgeInsetsMake(1, 1, 1, 1);
         
         _dayCellClass = [RDVCalendarDayCell class];
         
-        _weekDayHeight = 20.0f;
-
         // Setup header view
+        [self setupWeekDays];
         
         UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
         UISwipeGestureRecognizer *rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
@@ -71,29 +69,6 @@
         
         [self addGestureRecognizer:leftSwipeGestureRecognizer];
         [self addGestureRecognizer:rightSwipeGestureRecognizer];
-        
-//        _monthLabel = [[UILabelZoomable alloc] init];
-//        _monthLabel.font = [UIFont systemFontOfSize:22];
-//        _monthLabel.textColor = [UIColor blackColor];
-//        _monthLabel.textAlignment = NSTextAlignmentCenter;
-//        CATiledLayer *listLabelLayer = (CATiledLayer *)_monthLabel.layer;
-//        listLabelLayer.levelsOfDetail = 2;
-//        listLabelLayer.levelsOfDetailBias = 2;
-//        [self addSubview:_monthLabel];
-        
-//        _backButton = [[UIButton alloc] init];
-//        [_backButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-//        [_backButton setTitle:@"<" forState:UIControlStateNormal];
-//        [_backButton addTarget:self action:@selector(showPreviousMonth)
-//              forControlEvents:UIControlEventTouchUpInside];
-//        [self addSubview:_backButton];
-//        
-//        _forwardButton = [[UIButton alloc] init];
-//        [_forwardButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-//        [_forwardButton setTitle:@">" forState:UIControlStateNormal];
-//        [_forwardButton addTarget:self action:@selector(showNextMonth)
-//                 forControlEvents:UIControlEventTouchUpInside];
-//        [self addSubview:_forwardButton];
         
         // Setup calendar
         
@@ -117,9 +92,6 @@
         
         [self updateMonthViewMonth:_month];
         
-        //周一 周二 周三 7个label
-        [self setupWeekDays];
-        
         NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
         
         [defaultCenter addObserver:self
@@ -127,19 +99,50 @@
                              name:NSCurrentLocaleDidChangeNotification
                            object:nil];
         
-        [defaultCenter addObserver:self
-                          selector:@selector(deviceDidChangeOrientation:)
-                              name:UIDeviceOrientationDidChangeNotification
-                            object:nil];
-        
-        _orientation = [[UIApplication sharedApplication] statusBarOrientation];
     }
     return self;
+}
+
+#pragma mark 创建周一至周末七个label
+- (void)setupWeekDays {
+    
+    NSArray *weekDays = [NSArray arrayWithObjects:@"周日",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六", nil];
+    
+    //包含七个周xlabel的view，便于控制整体位置
+    _weekDaysView = [[UIView alloc]init];
+    
+    NSMutableArray *weekDayLabels = [[NSMutableArray alloc] initWithCapacity:7];
+    
+    for (int i = 0; i < 7; i ++) {
+        UILabelZoomable *weekDayLabel = [[UILabelZoomable alloc] init];
+        weekDayLabel.font = [UIFont systemFontOfSize:14];
+        weekDayLabel.textColor = [UIColor whiteColor];
+        weekDayLabel.textAlignment = NSTextAlignmentCenter;
+        weekDayLabel.text = weekDays[i];
+        CATiledLayer *listLabelLayer = (CATiledLayer *)weekDayLabel.layer;
+        listLabelLayer.levelsOfDetail = 2;
+        listLabelLayer.levelsOfDetailBias = 2;
+        [weekDayLabels addObject:weekDayLabel];
+        [_weekDaysView addSubview:weekDayLabel];
+        CGFloat left = i * (SCREEN_WIDTH/7);
+        [weekDayLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.equalTo(_weekDaysView);
+            make.width.mas_equalTo(SCREEN_WIDTH/7);
+            make.left.equalTo(_weekDaysView).offset(left);
+        }];
+
+    }
+    _weekDayLabels = [NSArray arrayWithArray:weekDayLabels];
+    [_weekDaysView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
+    GradientView *view1 = [[GradientView alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH, 10)];
+    _weekDaysView.backgroundColor = KNaviColor;
+    [_weekDaysView addSubview:view1];
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 #pragma mark 刷新
 - (void)refreshAfterCreateTodo
 {
@@ -167,7 +170,6 @@
         }
     }
     
-    CGFloat weekDayLabelsEndY =  self.weekDayHeight;
     
     CGFloat dayHeight = 0;
     if ([self.delegate respondsToSelector:@selector(heightForDayCellInCalendarView:)]) {
@@ -176,11 +178,11 @@
         dayHeight = self.dayCellHeight;
     } else {
         if (viewSize.width > viewSize.height) {
-            dayHeight = roundf((viewSize.height - weekDayLabelsEndY) / 6) -
+            dayHeight = roundf((viewSize.height ) / 6) -
             self.dayCellEdgeInsets.top - self.dayCellEdgeInsets.bottom;
         } else {
 //            dayHeight = dayWidth;
-            dayHeight = roundf((viewSize.height - weekDayLabelsEndY) / 6) -
+            dayHeight = roundf((viewSize.height ) / 6) -
             self.dayCellEdgeInsets.top - self.dayCellEdgeInsets.bottom - 6;
             self.dayCellHeight = dayHeight;
         }
@@ -192,16 +194,11 @@
     // Week days layout,周一到周日 7个label 布局
     
     NSInteger column = 0;
-    for (UILabel *weekDayLabel in self.weekDayLabels) {
-        CGFloat labelXPosition = self.dayCellEdgeInsets.left + (column * dayWidth) + (column * elementHorizonralDistance);
-        [weekDayLabel setFrame:CGRectMake(labelXPosition, 0, dayWidth, 30)];
-        column++;
-    }
     
     // Calendar grid layout 栅格布局
     
     //日期开始的Y坐标，『周一』label下方
-    CGFloat startigCalendarY = CGRectGetMaxY(self.weekDaysView.frame);
+    CGFloat startigCalendarY = 30;
     
     CGFloat elementVerticalDistance = round(((viewSize.height - startigCalendarY - 20) - self.dayCellEdgeInsets.top - self.dayCellEdgeInsets.bottom - (dayHeight * rowCount)) / rowCount);
     
@@ -242,34 +239,6 @@
             [self addSubview:dayCell];
         }
         
-        // Layout separators 分割线布局
-        
-        if (dayIndex == 0 || column == 0) {
-            if ([self separatorStyle] & RDVCalendarViewDayCellSeparatorTypeHorizontal) {
-                if (dayIndex < self.numberOfDays) {
-                    UIView *separator = [self dayCellSeparator];
-                    
-                    [separator setFrame:CGRectMake(self.separatorEdgeInsets.left, CGRectGetMinY(dayCell.frame) +
-                                                   (self.separatorEdgeInsets.top - self.separatorEdgeInsets.bottom),
-                                                   viewSize.width - self.separatorEdgeInsets.left -
-                                                   self.separatorEdgeInsets.right, 1)];
-                }
-            }
-        }
-        
-        if (row == 1 && column < [[self weekDayLabels] count]) {
-            if (self.separatorStyle & RDVCalendarViewDayCellSeparatorTypeVertical) {
-                UIView *separator = self.dayCellSeparator;
-                
-                [separator setFrame:CGRectMake(self.separatorEdgeInsets.left + CGRectGetMaxX(dayCell.frame) +
-                                               roundf(elementHorizonralDistance / 2),
-                                               weekDayLabelsEndY + (self.separatorEdgeInsets.top -
-                                                                               self.separatorEdgeInsets.bottom),
-                                               1, viewSize.height - self.separatorEdgeInsets.top -
-                                               self.separatorEdgeInsets.bottom)];
-            }
-        }
-        
         if (column == 6) {
             column = 0;
             
@@ -280,11 +249,14 @@
     }
     
     //加载好daycell之后，再加载weekdaylabelview，以放在最daycell的上方
-    [_weekDaysView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
-    GradientView *view1 = [[GradientView alloc] initWithFrame:CGRectMake(0, 30, SCREEN_WIDTH, 10)];
-    _weekDaysView.backgroundColor = [UIColor whiteColor];
-    [_weekDaysView addSubview:view1];
-    [self addSubview:_weekDaysView];
+
+    for(UIView *view in self.subviews)
+    {
+        if (_weekDaysView == view) {
+            return;
+        }
+        [self addSubview:_weekDaysView];
+    }
 }
 
 #pragma mark - Creating Calendar View Day Cells
@@ -301,64 +273,6 @@
         calendar = [NSCalendar autoupdatingCurrentCalendar];
     });
     return calendar;
-}
-
-#pragma mark 创建周一至周末七个label
-- (void)setupWeekDays {
-    NSCalendar *calendar = [self calendar];
-    
-    //firstweekday = 1 代表周日 ； 传入星期日，返回0
-    NSInteger firstWeekDay = [calendar firstWeekday] - 1;
-    
-    // We need an NSDateFormatter to have access to the localized weekday strings
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    
-    //周日 周一 周二 .....
-    NSArray *weekSymbols = [formatter shortWeekdaySymbols];
-    
-    // weekdaySymbols returns and array of strings
-    NSMutableArray *weekDays = [[NSMutableArray alloc] initWithCapacity:[weekSymbols count]];
-    for (NSInteger day = firstWeekDay; day < [weekSymbols count]; day++) {
-        [weekDays addObject:[weekSymbols objectAtIndex:day]];
-    }
-    
-    if (firstWeekDay != 0) {
-        for (NSInteger day = 0; day < firstWeekDay; day++) {
-            [weekDays addObject:[weekSymbols objectAtIndex:day]];
-        }
-    }
-    
-    _weekDays = [NSArray arrayWithArray:weekDays];
-    
-    //包含七个周xlabel的view，便于控制整体位置
-    _weekDaysView = [[UIView alloc]init];
-    
-    if (![_weekDayLabels count]) {
-        NSMutableArray *weekDayLabels = [[NSMutableArray alloc] initWithCapacity:[_weekDays count]];
-        
-        for (NSString *weekDayString in _weekDays) {
-            UILabelZoomable *weekDayLabel = [[UILabelZoomable alloc] init];
-            weekDayLabel.font = [UIFont systemFontOfSize:14];
-            weekDayLabel.textColor = KRedColor;
-            weekDayLabel.textAlignment = NSTextAlignmentCenter;
-            weekDayLabel.text = weekDayString;
-            CATiledLayer *listLabelLayer = (CATiledLayer *)weekDayLabel.layer;
-            listLabelLayer.levelsOfDetail = 2;
-            listLabelLayer.levelsOfDetailBias = 2;
-            
-            [weekDayLabels addObject:weekDayLabel];
-            [_weekDaysView addSubview:weekDayLabel];
-        }
-        
-        _weekDayLabels = [NSArray arrayWithArray:weekDayLabels];
-    } else {
-        NSInteger index = 0;
-        for (NSString *weekDayString in _weekDays) {
-            UILabel *weekDayLabel = self.weekDayLabels[index];
-            weekDayLabel.text = weekDayString;
-            index++;
-        }
-    }
 }
 
 //更新顶部年月
@@ -386,11 +300,6 @@
         [_dayCells addObject:visibleCell];
     }
     
-    for (UIView *separator in _visibleSeparators) {
-        [_separators addObject:separator];
-        [separator removeFromSuperview];
-    }
-    
     [_visibleSeparators removeAllObjects];
     [_visibleCells removeAllObjects];
 }
@@ -402,28 +311,6 @@
     {
         visibleCell.scaleAlpha = alpha;
     }
-}
-
-#pragma mark - Separators
-
-- (UIView *)dayCellSeparator {
-    UIView *separator = nil;
-    if (_separators.count) {
-        separator = _separators.lastObject;
-        [_separators removeObject:separator];
-        [_visibleSeparators addObject:separator];
-    } else {
-        separator = [[UIView alloc] init];
-        [_visibleSeparators addObject:separator];
-    }
-    
-    [separator setBackgroundColor:self.separatorColor];
-    
-    if ([separator superview] != self) {
-        [self addSubview:separator];
-    }
-    
-    return separator;
 }
 
 #pragma mark - Date selection
@@ -612,34 +499,8 @@
 
 #pragma mark - Navigation
 
-- (void)setDisplayedMonth:(NSDateComponents *)month {
-    
-//    if (month.year < _currentDay.year && month.month == 12)
-//    {
-//        _backButton.hidden = YES;
-//        _forwardButton.hidden = NO;
-//    }
-//    else if (month.year == _currentDay.year && month.month < _currentDay.month)
-//    {
-//        _backButton.hidden = YES;
-//        _forwardButton.hidden = NO;
-//    }
-//    else if (month.year == _currentDay.year && month.month >= _currentDay.month)
-//    {
-//        _backButton.hidden = NO;
-//        _forwardButton.hidden = NO;
-//    }
-//    else if (month.year == _currentDay.year + 1 && month.month < _currentDay.month)
-//    {
-//        _backButton.hidden = NO;
-//        _forwardButton.hidden = NO;
-//    }
-//    else if (month.year == _currentDay.year + 1 && month.month == _currentDay.month)
-//    {
-//        _backButton.hidden = NO;
-//        _forwardButton.hidden = YES;
-//    }
-    
+- (void)setDisplayedMonth:(NSDateComponents *)month
+{
     [self updateMonthLabelMonth:self.month];
     [self updateMonthViewMonth:self.month];
     
@@ -655,7 +516,6 @@
     NSDateComponents *inc = [[NSDateComponents alloc] init];
     inc.month = 0;
     [self showMonthWithComponent:inc];
-//    [self setDisplayedMonth:self.month];
 }
 
 #pragma mark 展示上一个月
@@ -687,6 +547,7 @@
     
     [UIView animateWithDuration:0.15 animations:^{
         self.alpha = 0;
+        
     } completion:^(BOOL finished) {
         [self setDisplayedMonth:self.month];
         [UIView animateWithDuration:0.2 animations:^{
@@ -722,22 +583,10 @@
 #pragma mark - Locale change handling
 
 - (void)currentLocaleDidChange:(NSNotification *)notification {
-    [self setupWeekDays];
-    [self updateMonthLabelMonth:self.month];
-    [self setNeedsLayout];
+//    [self updateMonthLabelMonth:self.month];
+//    [self setNeedsLayout];
 }
 
-#pragma mark - Orientation cnahge handling
-
-- (void)deviceDidChangeOrientation:(NSNotification *)notification {
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    
-    // orientation has changed to a new one
-    if (UIInterfaceOrientationIsLandscape(orientation) != UIInterfaceOrientationIsLandscape(_orientation)) {
-        _orientation = orientation;
-        [self reloadData];
-    }
-}
 
 #pragma mark - Touch handling
 - (void)tapDayCellWithGesture:(UIGestureRecognizer *)sender

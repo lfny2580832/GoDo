@@ -16,7 +16,7 @@
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 #define kMainQueue dispatch_get_main_queue()
 #define RGBA(Red,Green,Blue,Alpha) [UIColor colorWithRed:Red/255.0f green:Green/255.0f blue:Blue/255.0f alpha:Alpha]
-#define KNaviColor RGBA(168, 19, 4, 1.0f)
+#define KNaviColor RGBA(19, 113, 229, 1.0f)
 #define KRedColor RGBA(202, 36, 44, 1.0f)
 
 #import <UIKit/UIKit.h>

@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JSONModel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>LKDBHelper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,6 +57,21 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0138D520E1E09C74ADED530C54A1B955</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>09FA060F1A0492FB25232F489AC4E573</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2763260F0BB4CFB497E73FFA1AB004AA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>28EDA0AC3272A77B0575F728B99261BC</key>
 		<dict>
 			<key>primary</key>
@@ -67,7 +87,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7F2C83C150FFDCB04DFCC43BBAE979AD</key>
+		<key>561C22B5B0E33C1EDC87F43C561678FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -78,16 +98,6 @@
 			<true/>
 		</dict>
 		<key>B3C760711B585710870482548EF04B3F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D26F3790E0D09809875DAA0F7851391B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FC48A7937016393ECA7A33E11BB01154</key>
 		<dict>
 			<key>primary</key>
 			<true/>

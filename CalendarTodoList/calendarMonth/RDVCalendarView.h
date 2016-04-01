@@ -28,34 +28,12 @@ typedef NS_OPTIONS(NSInteger, RDVCalendarViewDayCellSeparatorType) {
 @property (weak) id <RDVCalendarViewDelegate> delegate;
 
 #pragma mark - Configuring a Calendar View
-
-/**
- * Returns the label, which contains the name of the currently displayed month. (read-only)
- */
-//@property (nonatomic, readonly) UILabel *monthLabel;
-
-/**
- * Returns the back (previous month) button. (read-only)
- */
-//@property (nonatomic, readonly) UIButton *backButton;
-
-/**
- * Returns the forward (next month) button. (read-only)
- */
-//@property (nonatomic, readonly) UIButton *forwardButton;
-
-/**
- * Returns array containing the week day labels.
- */
 @property (nonatomic, readonly) NSArray *weekDayLabels;
 
 //包装7个label的view
 @property (nonatomic, strong) UIView *weekDaysView;
-/**
- * Returns the height for week day elements.
- */
-@property (nonatomic) CGFloat weekDayHeight;
 
+@property (nonatomic, strong) UIView *daysView;
 /**
  * The style for separators used between day cells.
  */

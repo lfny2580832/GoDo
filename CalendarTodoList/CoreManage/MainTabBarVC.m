@@ -8,6 +8,8 @@
 
 #import "MainTabBarVC.h"
 #import "CalendarVC.h"
+#import "ProjectVC.h"
+
 #import "BaseNavigationController.h"
 #import "UserDefaultManage.h"
 
@@ -39,11 +41,12 @@
     BaseNavigationController *calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
     [calendarVC setTitle:@"日历"];
     
-//    UINavigationController *secondController = [[UINavigationController alloc]init];
-//    [secondController setTitle:@"second"];
+    ProjectVC *projectVC = [[ProjectVC alloc]init];
+    BaseNavigationController *projectNavVC = [[BaseNavigationController alloc]initWithRootViewController:projectVC];
+
+    [projectNavVC setTitle:@"项目"];
     
-    [self setViewControllers:@[calendarNavVC]];
-    
+    [self setViewControllers:@[calendarNavVC,projectNavVC]];
 }
 
 @end

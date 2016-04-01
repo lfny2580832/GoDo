@@ -34,16 +34,9 @@
         _backgroundView.backgroundColor = [UIColor whiteColor];
         [self addSubview:_backgroundView];
         
-//        _selectedBackgroundView = [[UIView alloc] init];
-//        _selectedBackgroundView.backgroundColor = [UIColor lightGrayColor];
-//        _selectedBackgroundView.alpha = 0;
-//        [self addSubview:_selectedBackgroundView];
-        
         _contentView = [[UIView alloc] init];
         _contentView.backgroundColor = [UIColor clearColor];
         [self addSubview:_contentView];
-        
-//        [self addCellTodoList];
         
         _textLabel = [[UILabelZoomable alloc]init];
         _textLabel.textColor = [UIColor blackColor];
@@ -63,7 +56,6 @@
     CGSize dateTitleSize = [self.textLabel sizeThatFits:CGSizeMake(frameSize.width, frameSize.height)];
     
     self.backgroundView.frame = self.bounds;
-//    self.selectedBackgroundView.frame = self.bounds;
     self.contentView.frame = self.bounds;
     self.textLabel.frame = CGRectMake(roundf(frameSize.width / 2 - dateTitleSize.width / 2),
                                            roundf(frameSize.height / 2 - dateTitleSize.height / 2),
@@ -90,19 +82,11 @@
         void (^block)() = ^{
             if (selected) {
                 weakSelf.backgroundView.alpha = 1.0f;
-//                weakSelf.backgroundView.layer.borderWidth = 1.0f;
                 weakSelf.backgroundView.layer.borderColor = [UIColor blueColor].CGColor;
-//                weakSelf.selectedBackgroundView.alpha = 1.0f;
             } else {
                 weakSelf.backgroundView.alpha = 1.0f;
-//                weakSelf.backgroundView.layer.borderWidth = 0.0f;
-//                weakSelf.selectedBackgroundView.alpha = 0.0f;
             }
-//            for (id subview in weakSelf.contentView.subviews) {
-//                if ([subview respondsToSelector:@selector(setHighlighted:)]) {
-//                    [subview setHighlighted:selected];
-//                }
-//            }
+
         };
         
         if (animated) {
@@ -135,20 +119,10 @@
         void (^block)() = ^{
             if (highlighted) {
                 weakSelf.backgroundView.alpha = 1.0f;
-//                weakSelf.backgroundView.layer.borderWidth = 1.0f;
                 weakSelf.backgroundView.layer.borderColor = [UIColor blueColor].CGColor;
-//                weakSelf.selectedBackgroundView.alpha = 1.0f;
             } else {
                 weakSelf.backgroundView.alpha = 1.0f;
-//                weakSelf.backgroundView.layer.borderWidth = 0.0f;
-
-//                weakSelf.selectedBackgroundView.alpha = 0.0f;
             }
-//            for (id subview in [weakSelf.contentView subviews]) {
-//                if ([subview respondsToSelector:@selector(setHighlighted:)]) {
-//                    [subview setHighlighted:highlighted];
-//                }
-//            }
         };
     
         if (animated) {

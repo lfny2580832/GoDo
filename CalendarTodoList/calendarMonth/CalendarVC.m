@@ -14,15 +14,17 @@
 #import "FMTodoModel.h"
 #import "FMDayList.h"
 #import "NSObject+NYExtends.h"
+#import "WeekDayLabelView.h"
 
 @interface CalendarVC ()<UIScrollViewDelegate,RDVCalendarViewDelegate>
-@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) UIScrollView *bigScrollView;
 @property (nonatomic, strong) CalendarTodoDetailVC *calendarTodoDetailVC;
 
 @end
 
 @implementation CalendarVC
 {
+    WeekDayLabelView *_weekDayView;
     RDVCalendarView *_calendarView;
     NSDateFormatter *_YMDformatter;
 }
@@ -54,7 +56,7 @@
 #pragma mark 回到今日
 - (void)rightbarButtonItemOnclick:(id)sender
 {
-    [self.scrollView setZoomScale:1.0 animated:YES];
+    [self.bigScrollView setZoomScale:1.0 animated:YES];
     [_calendarView showCurrentMonth];
 }
 
@@ -68,13 +70,13 @@
 - (void)doubleTap:(UIGestureRecognizer *)sender
 {
     CGFloat outScale = 2.8;
-    CGPoint tapPoint = [sender locationInView:self.scrollView];
-    if (self.scrollView.zoomScale > 1) {
-        [self.scrollView setZoomScale:1.0 animated:YES];
+    CGPoint tapPoint = [sender locationInView:self.bigScrollView];
+    if (self.bigScrollView.zoomScale > 1) {
+        [self.bigScrollView setZoomScale:1.0 animated:YES];
     }
     else
     {
-        CGSize scrollViewSize=self.scrollView.bounds.size;
+        CGSize scrollViewSize=self.bigScrollView.bounds.size;
         //宽高是小的，以放大，point是zoomscale为1时的point
         CGFloat width = scrollViewSize.width/outScale;
         CGFloat height = scrollViewSize.height /outScale;
@@ -82,7 +84,7 @@
         CGFloat y = tapPoint.y-(height/2.0);
         CGRect zoomRect = CGRectMake(x, y, width, height);
 
-        [self.scrollView zoomToRect:zoomRect animated:YES];
+        [self.bigScrollView zoomToRect:zoomRect animated:YES];
     }
 }
 
@@ -182,48 +184,51 @@
 
 - (void)initScrollView
 {
-    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 )];
-    self.scrollView.delegate = self;
-    self.scrollView.backgroundColor = [UIColor whiteColor];
+
+    
+    self.bigScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 )];
+    self.bigScrollView.delegate = self;
+    self.bigScrollView.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.showsVerticalScrollIndicator = NO;
-    self.scrollView.scrollEnabled = YES;
+    self.bigScrollView.showsHorizontalScrollIndicator = NO;
+    self.bigScrollView.showsVerticalScrollIndicator = NO;
+    self.bigScrollView.scrollEnabled = YES;
     //缩放、滑动弹性动画
-    self.scrollView.bouncesZoom = NO;
-    self.scrollView.bounces = NO;
+    self.bigScrollView.bouncesZoom = NO;
+    self.bigScrollView.bounces = NO;
     //锁定方位，但是可以斜着滑
-    self.scrollView.directionalLockEnabled = YES;
-    self.scrollView.minimumZoomScale = 1.0f;
-    self.scrollView.maximumZoomScale = 4.5f;
-    self.scrollView.zoomScale = self.scrollView.minimumZoomScale;
-    [self.view addSubview:self.scrollView];
+    self.bigScrollView.directionalLockEnabled = YES;
+    self.bigScrollView.minimumZoomScale = 1.0f;
+    self.bigScrollView.maximumZoomScale = 4.5f;
+    self.bigScrollView.zoomScale = self.bigScrollView.minimumZoomScale;
+    [self.view addSubview:self.bigScrollView];
     
     UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTap:)];
     [singleTapGestureRecognizer setNumberOfTapsRequired:1];
-    [self.scrollView addGestureRecognizer:singleTapGestureRecognizer];
+    [self.bigScrollView addGestureRecognizer:singleTapGestureRecognizer];
     
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doubleTap:)];
     doubleTap.numberOfTapsRequired = 2;
     doubleTap.numberOfTouchesRequired = 1;
-    [self.scrollView addGestureRecognizer:doubleTap];
+    [self.bigScrollView addGestureRecognizer:doubleTap];
     
     [singleTapGestureRecognizer requireGestureRecognizerToFail:doubleTap];
 
     //年月日日期格式，生成dayId
     _YMDformatter = [[NSDateFormatter alloc]init];
     [_YMDformatter setDateFormat:@"yyyyMMdd"];
+    
 }
 
 - (void)initView
 {
-    _calendarView = [[RDVCalendarView alloc] initWithFrame:CGRectMake(1, 0, SCREEN_WIDTH-2, self.scrollView.frame.size.height)];
+    _calendarView = [[RDVCalendarView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.bigScrollView.frame.size.height)];
     [_calendarView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     _calendarView.backgroundColor = [UIColor whiteColor];
     _calendarView.delegate = self;
-    [self.scrollView addSubview:_calendarView];
-
-    self.scrollView.contentSize = _calendarView.frame.size;
+    [self.bigScrollView addSubview:_calendarView];
+    
+    self.bigScrollView.contentSize = _calendarView.frame.size;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCalendarViewAfterCreateOrDeleteTodo) name:@"ReloadTodoTableView" object:nil];
 
@@ -232,7 +237,7 @@
 #pragma mark 刷新calendarview
 - (void)refreshCalendarViewAfterCreateOrDeleteTodo
 {
-    [self.scrollView setZoomScale:1.0];
+    [self.bigScrollView setZoomScale:1.0];
     [_calendarView refreshAfterCreateTodo];
 }
 
@@ -246,41 +251,33 @@
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
     //减少方法执行频率
-    CGFloat scale = floor(scrollView.zoomScale * 100) / 100;
-    if (fabs(scale - scrollView.zoomScale) < 0.002)
+    CGFloat scale = ceil(scrollView.zoomScale * 100) / 100;
+    if (fabs(scale - scrollView.zoomScale) < 0.001)
     {
-        if (self.scrollView.zoomScale <= 3.0f && self.scrollView.zoomScale > 1.5f) {
-            [_calendarView changeCellTransparentWithAlpha: self.scrollView.zoomScale / 1.5 - 1];
+        if (self.bigScrollView.zoomScale <= 3.0f && self.bigScrollView.zoomScale > 1.5f) {
+            [_calendarView changeCellTransparentWithAlpha: self.bigScrollView.zoomScale / 1.5 - 1];
         }
-        else if (self.scrollView.zoomScale <= 1.5f) {
+        else if (self.bigScrollView.zoomScale <= 1.5f) {
             [_calendarView changeCellTransparentWithAlpha:0];
         }
     }
-
 }
 
-//检测scrollview的contentoffset，到了60说明weekdaylabel到了屏幕顶端;此时将weekdaylabel悬在self的顶端
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGFloat weekLabelOffset = self.scrollView.contentOffset.y/self.scrollView.zoomScale;
+    CGFloat weekLabelOffset = scrollView.contentOffset.y/scrollView.zoomScale;
     if(weekLabelOffset >= 0)
     {
         CGRect temp = _calendarView.weekDaysView.frame;
         temp.origin.y = weekLabelOffset;
         _calendarView.weekDaysView.frame = temp;
     }
-    else
-    {
-        CGRect temp = _calendarView.weekDaysView.frame;
-        temp.origin.y = 0;
-        _calendarView.weekDaysView.frame = temp;
-    }
+
 }
 
 #pragma mark RDVClendarView Delegate
 - (void)calendarView:(RDVCalendarView *)calendarView didSelectDate:(NSDate *)date
 {
-//    NSInteger dayId = [[_YMDformatter stringFromDate:date] integerValue];
     //leftbaritem被覆盖后，侧滑手势delegate自动置为nil。设置delegate为self实现侧滑
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
     [self.navigationController pushViewController:self.calendarTodoDetailVC animated:YES];
