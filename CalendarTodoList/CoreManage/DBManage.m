@@ -38,18 +38,20 @@
     {
         NSInteger tableID = [idNumber integerValue];
         FMTodoModel *todoModel = [[[FMTodoModel getUsingLKDBHelper] searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableId = '%ld'",(long)tableID] toClass:[FMTodoModel class]] firstObject];
-        if (todoModel.isAllDay) {
-            todoModel.startTime = [self changeStartDateWith:todoModel.startTime];
+        if (todoModel) {
+            if (todoModel.isAllDay) {
+                todoModel.startTime = [self changeStartDateWith:todoModel.startTime];
+            }
+            NSMutableArray *fmTodoimageArray = [FMTodoImage searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableId = '%ld'",(long)tableID]];
+            NSMutableArray *imageArray = [[NSMutableArray alloc]init];
+            for(FMTodoImage *todoImage in fmTodoimageArray)
+            {
+                UIImage *image = todoImage.image;
+                [imageArray addObject:image];
+            }
+            todoModel.images = imageArray;
+            [resultArray addObject:todoModel];
         }
-        NSMutableArray *fmTodoimageArray = [FMTodoImage searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableId = '%ld'",(long)tableID]];
-        NSMutableArray *imageArray = [[NSMutableArray alloc]init];
-        for(FMTodoImage *todoImage in fmTodoimageArray)
-        {
-            UIImage *image = todoImage.image;
-            [imageArray addObject:image];
-        }
-        todoModel.images = imageArray;
-        [resultArray addObject:todoModel];
     }
     return [self sortArrayByStartTimeWithArray:resultArray];
 }

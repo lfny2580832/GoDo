@@ -91,18 +91,8 @@
                                       NSCalendarUnitCalendar
                              fromDate:currentDate];
         _month.day = 1;
-        
         [self updateMonthLabelMonth:_month];
-        
         [self updateMonthViewMonth:_month];
-        
-        NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
-        
-        [defaultCenter addObserver:self
-                         selector:@selector(currentLocaleDidChange:)
-                             name:NSCurrentLocaleDidChangeNotification
-                           object:nil];
-        
     }
     return self;
 }
@@ -582,14 +572,6 @@
         [self showPreviousMonth];
     }
 }
-
-#pragma mark - Locale change handling
-
-- (void)currentLocaleDidChange:(NSNotification *)notification {
-//    [self updateMonthLabelMonth:self.month];
-//    [self setNeedsLayout];
-}
-
 
 #pragma mark - Touch handling
 - (void)tapDayCellWithGesture:(UIGestureRecognizer *)sender

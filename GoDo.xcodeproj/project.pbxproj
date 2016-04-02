@@ -39,6 +39,9 @@
 		4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F051C62E396006EB837 /* ChooseProjectVC.m */; };
 		4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F081C62E86C006EB837 /* ChooseProjectTableCell.m */; };
 		4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB608F1C7CE3C60040079C /* ZoomImageView.m */; };
+		4AD3DD1B1CAF409200D5FDC4 /* LogInAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD181CAF409200D5FDC4 /* LogInAPI.m */; };
+		4AD3DD1C1CAF409200D5FDC4 /* RegistAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD1A1CAF409200D5FDC4 /* RegistAPI.m */; };
+		4AD3DD201CAF411100D5FDC4 /* LoginTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD1F1CAF411100D5FDC4 /* LoginTokenModel.m */; };
 		4AD589EE1C64DBD100E74761 /* AddNewProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */; };
 		4AD589F41C64E07E00E74761 /* ChooseTypeColorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589F31C64E07E00E74761 /* ChooseTypeColorVC.m */; };
 		4AD589F71C64EBCE00E74761 /* TypeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589F61C64EBCE00E74761 /* TypeColor.m */; };
@@ -60,7 +63,6 @@
 		4AF086011CABDCB200138097 /* login_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AF086001CABDCB200138097 /* login_background.png */; };
 		4AF086041CABDCD600138097 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF086031CABDCD600138097 /* LoginView.m */; };
 		4AF086081CABF16300138097 /* ProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF086071CABF16300138097 /* ProjectVC.m */; };
-		4AF0860C1CABFDD900138097 /* RegistAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0860B1CABFDD900138097 /* RegistAPI.m */; };
 		4AF11FF81C6B1206007DC614 /* ChooseModeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF11FF71C6B1206007DC614 /* ChooseModeCell.m */; };
 		4AF34A201C74ADAC00004EC4 /* UserDefaultManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF34A1F1C74ADAC00004EC4 /* UserDefaultManage.m */; };
 		4AF34A231C754BA600004EC4 /* AddTodoFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF34A221C754BA600004EC4 /* AddTodoFooterView.m */; };
@@ -155,6 +157,12 @@
 		4AB09F081C62E86C006EB837 /* ChooseProjectTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseProjectTableCell.m; sourceTree = "<group>"; };
 		4ABB608E1C7CE3C60040079C /* ZoomImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomImageView.h; sourceTree = "<group>"; };
 		4ABB608F1C7CE3C60040079C /* ZoomImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomImageView.m; sourceTree = "<group>"; };
+		4AD3DD171CAF409200D5FDC4 /* LogInAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInAPI.h; sourceTree = "<group>"; };
+		4AD3DD181CAF409200D5FDC4 /* LogInAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInAPI.m; sourceTree = "<group>"; };
+		4AD3DD191CAF409200D5FDC4 /* RegistAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistAPI.h; sourceTree = "<group>"; };
+		4AD3DD1A1CAF409200D5FDC4 /* RegistAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistAPI.m; sourceTree = "<group>"; };
+		4AD3DD1E1CAF411100D5FDC4 /* LoginTokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTokenModel.h; sourceTree = "<group>"; };
+		4AD3DD1F1CAF411100D5FDC4 /* LoginTokenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTokenModel.m; sourceTree = "<group>"; };
 		4AD589EC1C64DBD100E74761 /* AddNewProjectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewProjectVC.h; sourceTree = "<group>"; };
 		4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewProjectVC.m; sourceTree = "<group>"; };
 		4AD589F21C64E07E00E74761 /* ChooseTypeColorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseTypeColorVC.h; sourceTree = "<group>"; };
@@ -191,8 +199,6 @@
 		4AF086031CABDCD600138097 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		4AF086061CABF16300138097 /* ProjectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectVC.h; sourceTree = "<group>"; };
 		4AF086071CABF16300138097 /* ProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectVC.m; sourceTree = "<group>"; };
-		4AF0860A1CABFDD900138097 /* RegistAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistAPI.h; sourceTree = "<group>"; };
-		4AF0860B1CABFDD900138097 /* RegistAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistAPI.m; sourceTree = "<group>"; };
 		4AF11FF61C6B1206007DC614 /* ChooseModeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseModeCell.h; sourceTree = "<group>"; };
 		4AF11FF71C6B1206007DC614 /* ChooseModeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseModeCell.m; sourceTree = "<group>"; };
 		4AF34A1E1C74ADAC00004EC4 /* UserDefaultManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultManage.h; sourceTree = "<group>"; };
@@ -433,6 +439,27 @@
 			path = CoreManage;
 			sourceTree = "<group>";
 		};
+		4AD3DD161CAF407B00D5FDC4 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				4AD3DD171CAF409200D5FDC4 /* LogInAPI.h */,
+				4AD3DD181CAF409200D5FDC4 /* LogInAPI.m */,
+				4AD3DD191CAF409200D5FDC4 /* RegistAPI.h */,
+				4AD3DD1A1CAF409200D5FDC4 /* RegistAPI.m */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		4AD3DD1D1CAF40A100D5FDC4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4AD3DD1E1CAF411100D5FDC4 /* LoginTokenModel.h */,
+				4AD3DD1F1CAF411100D5FDC4 /* LoginTokenModel.m */,
+			);
+			name = Model;
+			path = Request/Model;
+			sourceTree = "<group>";
+		};
 		4AD589EB1C64DBD100E74761 /* CreateNewProject */ = {
 			isa = PBXGroup;
 			children = (
@@ -508,8 +535,8 @@
 		4AF086091CABFD9D00138097 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				4AF0860A1CABFDD900138097 /* RegistAPI.h */,
-				4AF0860B1CABFDD900138097 /* RegistAPI.m */,
+				4AD3DD161CAF407B00D5FDC4 /* Request */,
+				4AD3DD1D1CAF40A100D5FDC4 /* Model */,
 			);
 			name = Network;
 			path = Account/Network;
@@ -742,6 +769,7 @@
 				4AEF614E1C94EECB00236F6F /* FMTodoImage.m in Sources */,
 				4A4F9CBD1C3F3E280000F24C /* RDVCalendarDayCell.m in Sources */,
 				4A84C8741C43DF3F00F83C5B /* NSObject+NYExtends.m in Sources */,
+				4AD3DD1C1CAF409200D5FDC4 /* RegistAPI.m in Sources */,
 				4A1290901C5DD4FF006E078B /* TodoCollectionViewCell.m in Sources */,
 				4AA393511C58AC2E00DA3C16 /* MainTabBarVC.m in Sources */,
 				4A12908F1C5DD4FF006E078B /* TodoCollectionView.m in Sources */,
@@ -761,6 +789,7 @@
 				4ADA1DA61C3E496D001ECBF4 /* NSString+ZZExtends.m in Sources */,
 				4AA393541C58AC6D00DA3C16 /* DBManage.m in Sources */,
 				4AD589F41C64E07E00E74761 /* ChooseTypeColorVC.m in Sources */,
+				4AD3DD201CAF411100D5FDC4 /* LoginTokenModel.m in Sources */,
 				4AF086081CABF16300138097 /* ProjectVC.m in Sources */,
 				4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */,
 				4A9FC1BC1C699FAE00A1D888 /* TodoContentView.m in Sources */,
@@ -771,6 +800,7 @@
 				4A0441D31C89AAA3005E23D9 /* RepeatModeChooseCell.m in Sources */,
 				4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */,
 				4A95AA111C71702F00DFB118 /* DeleteTodoCell.m in Sources */,
+				4AD3DD1B1CAF409200D5FDC4 /* LogInAPI.m in Sources */,
 				4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */,
 				4AF918FE1CA74197002BFF12 /* RemindModeCell.m in Sources */,
 				4A0441D01C89A82F005E23D9 /* RepeateModeChooseVC.m in Sources */,
@@ -779,7 +809,6 @@
 				4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */,
 				4AF919041CA74456002BFF12 /* RemindModeChooseCell.m in Sources */,
 				4AF086041CABDCD600138097 /* LoginView.m in Sources */,
-				4AF0860C1CABFDD900138097 /* RegistAPI.m in Sources */,
 				4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */,
 				4ADA1DA71C3E496D001ECBF4 /* UILabelZoomable.m in Sources */,
 				4A9FC1BD1C699FAE00A1D888 /* TodoDetailVC.m in Sources */,

@@ -18,6 +18,8 @@
 //todo的tableId，标示唯一性，需自增处理
 @property (nonatomic, assign) NSInteger todoMaxId;
 
+@property (nonatomic, copy) NSString *token;
+
 + (id)sharedInstance;
 
 @end

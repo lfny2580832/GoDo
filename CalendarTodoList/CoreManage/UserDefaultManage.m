@@ -34,4 +34,16 @@
     return  [UserDefault integerForKey:@"todoMaxId"];
 }
 
+#pragma mark 存取token
+- (void)setToken:(NSString *)token
+{
+    [UserDefault setObject:token forKey:@"token"];
+
+}
+
+- (NSString *)token
+{
+    return  [UserDefault objectForKey:@"token"];
+}
+
 @end

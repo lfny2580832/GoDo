@@ -15,17 +15,21 @@
 @end
 
 @implementation ProjectVC
+{
+    LoginVC *_loginVC;
+}
 
+#pragma mark 登录界面
 - (void)login
 {
-    LoginVC *vc = [[LoginVC alloc]init];
-    [self presentViewController:vc animated:YES completion:nil];
+    _loginVC = [[LoginVC alloc]init];
+    [self presentViewController:_loginVC animated:YES completion:nil];
 }
 
 
 - (void)regist
 {
-    RegistAPI *api = [[RegistAPI alloc]initWithName:@"牛严" password:@"123456" phone:@"18035735959" email:@"" type:@"sms" verifyCode:@"232323"];
+    RegistAPI *api = [[RegistAPI alloc]initWithName:@"牛严" password:@"111111" phone:@"" email:@"test@samaritan.tech" type:@"mail" verifyCode:@"123456"];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         
         
@@ -43,7 +47,7 @@
 {
     UIButton *button = [[UIButton alloc]init];
     button.backgroundColor = [UIColor blueColor];
-    [button addTarget:self action:@selector(regist) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);

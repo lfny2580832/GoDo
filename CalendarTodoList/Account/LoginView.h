@@ -10,4 +10,9 @@
 
 @interface LoginView : UIView
 
+@property (nonatomic, strong) UITextField *mailTextField;
+@property (nonatomic, strong) UITextField *passwordTextField;
+
+- (instancetype)initWithVC:(id)vc;
+
 @end
