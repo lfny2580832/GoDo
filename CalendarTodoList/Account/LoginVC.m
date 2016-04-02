@@ -29,7 +29,8 @@
     LogInAPI *api = [[LogInAPI alloc]initWithmail:mail password:password];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         LoginTokenModel *loginTokenModel = [[LoginTokenModel alloc]initWithString:request.responseString error:nil];
-        [UserDefaultManager setToken:loginTokenModel.token];
+        NSString *token = loginTokenModel.token;
+        [UserDefaultManager setToken:token];
     } failure:^(__kindof YTKBaseRequest *request) {
         
     }];

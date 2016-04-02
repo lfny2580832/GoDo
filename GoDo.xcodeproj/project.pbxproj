@@ -42,6 +42,7 @@
 		4AD3DD1B1CAF409200D5FDC4 /* LogInAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD181CAF409200D5FDC4 /* LogInAPI.m */; };
 		4AD3DD1C1CAF409200D5FDC4 /* RegistAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD1A1CAF409200D5FDC4 /* RegistAPI.m */; };
 		4AD3DD201CAF411100D5FDC4 /* LoginTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD1F1CAF411100D5FDC4 /* LoginTokenModel.m */; };
+		4AD3DD2C1CAFF1AB00D5FDC4 /* NYProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD2B1CAFF1AB00D5FDC4 /* NYProgressHUD.m */; };
 		4AD589EE1C64DBD100E74761 /* AddNewProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */; };
 		4AD589F41C64E07E00E74761 /* ChooseTypeColorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589F31C64E07E00E74761 /* ChooseTypeColorVC.m */; };
 		4AD589F71C64EBCE00E74761 /* TypeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589F61C64EBCE00E74761 /* TypeColor.m */; };
@@ -163,6 +164,8 @@
 		4AD3DD1A1CAF409200D5FDC4 /* RegistAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistAPI.m; sourceTree = "<group>"; };
 		4AD3DD1E1CAF411100D5FDC4 /* LoginTokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTokenModel.h; sourceTree = "<group>"; };
 		4AD3DD1F1CAF411100D5FDC4 /* LoginTokenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTokenModel.m; sourceTree = "<group>"; };
+		4AD3DD2A1CAFF1AB00D5FDC4 /* NYProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYProgressHUD.h; sourceTree = "<group>"; };
+		4AD3DD2B1CAFF1AB00D5FDC4 /* NYProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYProgressHUD.m; sourceTree = "<group>"; };
 		4AD589EC1C64DBD100E74761 /* AddNewProjectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewProjectVC.h; sourceTree = "<group>"; };
 		4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewProjectVC.m; sourceTree = "<group>"; };
 		4AD589F21C64E07E00E74761 /* ChooseTypeColorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseTypeColorVC.h; sourceTree = "<group>"; };
@@ -433,6 +436,8 @@
 				4AF34A1F1C74ADAC00004EC4 /* UserDefaultManage.m */,
 				4AA3934C1C58AC2E00DA3C16 /* BaseNavigationController.h */,
 				4AA3934D1C58AC2E00DA3C16 /* BaseNavigationController.m */,
+				4AD3DD2A1CAFF1AB00D5FDC4 /* NYProgressHUD.h */,
+				4AD3DD2B1CAFF1AB00D5FDC4 /* NYProgressHUD.m */,
 				4AA3934E1C58AC2E00DA3C16 /* MainTabBarVC.h */,
 				4AA3934F1C58AC2E00DA3C16 /* MainTabBarVC.m */,
 			);
@@ -808,6 +813,7 @@
 				4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */,
 				4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */,
 				4AF919041CA74456002BFF12 /* RemindModeChooseCell.m in Sources */,
+				4AD3DD2C1CAFF1AB00D5FDC4 /* NYProgressHUD.m in Sources */,
 				4AF086041CABDCD600138097 /* LoginView.m in Sources */,
 				4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */,
 				4ADA1DA71C3E496D001ECBF4 /* UILabelZoomable.m in Sources */,
