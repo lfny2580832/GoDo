@@ -33,6 +33,20 @@
     }];
 }
 
++ (void)showToastText:(NSString *)text completion:(void(^)())completionBlock
+{
+    [self showToastText:text];
+    int sec = text.length > 6? 2:1;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(sec * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        completionBlock();
+    });
+}
+
+
+
+
+
+
 - (void)showAnimationWithText:(NSString *)text
 {
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;

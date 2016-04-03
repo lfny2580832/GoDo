@@ -8,17 +8,21 @@
 
 #import "LoginVC.h"
 #import "LoginView.h"
+#import "SignupView.h"
+#import "ResetView.h"
 
 #import "LogInAPI.h"
 #import "LoginTokenModel.h"
 
-@interface LoginVC ()
-
+@interface LoginVC ()<UIScrollViewDelegate>
+@property (nonatomic, strong) UIScrollView *scrollView;
 @end
 
 @implementation LoginVC
 {
+    ResetView *_resetView;
     LoginView *_loginView;
+    SignupView *_signupView;
 }
 
 #pragma mark 登录
@@ -27,12 +31,19 @@
     NSString *mail = _loginView.mailTextField.text;
     NSString *password = _loginView.passwordTextField.text;
     LogInAPI *api = [[LogInAPI alloc]initWithmail:mail password:password];
+    NYProgressHUD *hud = [NYProgressHUD new];
+    [hud showAnimationWithText:@"登录中"];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         LoginTokenModel *loginTokenModel = [[LoginTokenModel alloc]initWithString:request.responseString error:nil];
+        [hud hide];
         NSString *token = loginTokenModel.token;
         [UserDefaultManager setToken:token];
+        [NYProgressHUD showToastText:@"登录成功" completion:^{
+            [self dismissLoginView];
+        }];
     } failure:^(__kindof YTKBaseRequest *request) {
-        
+        [hud hide];
+        [NYProgressHUD showToastText:@"登录失败"];
     }];
 }
 
@@ -41,6 +52,24 @@
 - (void)dismissLoginView
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark 跳转至登录页面
+- (void)jumpToLogIn
+{
+    [_scrollView setContentOffset:CGPointMake(SCREEN_WIDTH, 0) animated:YES];
+}
+
+#pragma mark 跳转至重置密码页面
+- (void)jumpToReset
+{
+    [_scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
+
+#pragma mark 跳转至注册页面
+- (void)jumpToSignUp
+{
+    [_scrollView setContentOffset:CGPointMake(SCREEN_WIDTH * 2, 0) animated:YES];
 }
 
 #pragma mark 初始化
@@ -55,11 +84,29 @@
 
 - (void)initView
 {
-    _loginView =  [[LoginView alloc]initWithVC:self];
-    [self.view addSubview:_loginView];
-    [_loginView mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIImageView *backView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"login_background.png"]];
+    [self.view addSubview:backView];
+    [backView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.left.right.equalTo(self.view);
     }];
     
+    _scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+    [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH * 3, SCREEN_HEIGHT)];
+    _scrollView.scrollEnabled = YES;
+    _scrollView.pagingEnabled = YES;
+    _scrollView.delegate = self;
+    [self.view addSubview:_scrollView];
+
+    _resetView = [[ResetView alloc]initWithVC:self frame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [_scrollView addSubview:_resetView];
+    
+    _loginView =  [[LoginView alloc]initWithVC:self frame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [_scrollView addSubview:_loginView];
+    
+    _signupView = [[SignupView alloc]initWithVC:self frame:CGRectMake(SCREEN_WIDTH * 2, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [_scrollView addSubview:_signupView];
+    
+    [_scrollView setContentOffset:CGPointMake(SCREEN_WIDTH, 0)];
 }
+
 @end

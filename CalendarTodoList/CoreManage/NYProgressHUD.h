@@ -13,6 +13,8 @@
 
 + (void)showToastText:(NSString *)text;
 
++ (void)showToastText:(NSString *)text completion:(void(^)())completionBlock;
+
 - (void)showAnimationWithText:(NSString *)text;
 
 - (void)hide;

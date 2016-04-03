@@ -358,7 +358,7 @@
         [dayCell prepareForReuse];
     
         dayCell.textLabel.text = [NSString stringWithFormat:@"%ld", index + 1];
-        NSInteger dayId = [[NSString stringWithFormat:@"%ld%02ld%02ld",self.month.year,self.month.month,index + 1] integerValue];
+        NSInteger dayId = [[NSString stringWithFormat:@"%ld%02ld%02ld",(long)self.month.year,self.month.month,index + 1] integerValue];
         [dayCell setDayInfoWithDayId:dayId];
         
         if (index + 1 == self.currentDay.day &&

@@ -43,6 +43,10 @@
 		4AD3DD1C1CAF409200D5FDC4 /* RegistAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD1A1CAF409200D5FDC4 /* RegistAPI.m */; };
 		4AD3DD201CAF411100D5FDC4 /* LoginTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD1F1CAF411100D5FDC4 /* LoginTokenModel.m */; };
 		4AD3DD2C1CAFF1AB00D5FDC4 /* NYProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD2B1CAFF1AB00D5FDC4 /* NYProgressHUD.m */; };
+		4AD3DD2F1CB03DF900D5FDC4 /* SendVerifyCodeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD2E1CB03DF900D5FDC4 /* SendVerifyCodeAPI.m */; };
+		4AD3DD321CB11E6A00D5FDC4 /* SignupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD311CB11E6A00D5FDC4 /* SignupView.m */; };
+		4AD3DD351CB15B5200D5FDC4 /* VerifyCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD341CB15B5200D5FDC4 /* VerifyCodeButton.m */; };
+		4AD3DD381CB15F0C00D5FDC4 /* ResetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD371CB15F0C00D5FDC4 /* ResetView.m */; };
 		4AD589EE1C64DBD100E74761 /* AddNewProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */; };
 		4AD589F41C64E07E00E74761 /* ChooseTypeColorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589F31C64E07E00E74761 /* ChooseTypeColorVC.m */; };
 		4AD589F71C64EBCE00E74761 /* TypeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589F61C64EBCE00E74761 /* TypeColor.m */; };
@@ -71,7 +75,6 @@
 		4AF919011CA7435E002BFF12 /* RemindModeChooseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF919001CA7435E002BFF12 /* RemindModeChooseVC.m */; };
 		4AF919041CA74456002BFF12 /* RemindModeChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF919031CA74456002BFF12 /* RemindModeChooseCell.m */; };
 		4AF919081CA8809F002BFF12 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF919071CA8809F002BFF12 /* LoginVC.m */; };
-		4AF9190B1CA880B7002BFF12 /* SignupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9190A1CA880B7002BFF12 /* SignupVC.m */; };
 		988604FC5CF4599DBC5A9AA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 640C26EC2089C43C666A53BB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -166,6 +169,14 @@
 		4AD3DD1F1CAF411100D5FDC4 /* LoginTokenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTokenModel.m; sourceTree = "<group>"; };
 		4AD3DD2A1CAFF1AB00D5FDC4 /* NYProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYProgressHUD.h; sourceTree = "<group>"; };
 		4AD3DD2B1CAFF1AB00D5FDC4 /* NYProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYProgressHUD.m; sourceTree = "<group>"; };
+		4AD3DD2D1CB03DF900D5FDC4 /* SendVerifyCodeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendVerifyCodeAPI.h; sourceTree = "<group>"; };
+		4AD3DD2E1CB03DF900D5FDC4 /* SendVerifyCodeAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendVerifyCodeAPI.m; sourceTree = "<group>"; };
+		4AD3DD301CB11E6A00D5FDC4 /* SignupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupView.h; sourceTree = "<group>"; };
+		4AD3DD311CB11E6A00D5FDC4 /* SignupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupView.m; sourceTree = "<group>"; };
+		4AD3DD331CB15B5200D5FDC4 /* VerifyCodeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyCodeButton.h; sourceTree = "<group>"; };
+		4AD3DD341CB15B5200D5FDC4 /* VerifyCodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyCodeButton.m; sourceTree = "<group>"; };
+		4AD3DD361CB15F0C00D5FDC4 /* ResetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetView.h; sourceTree = "<group>"; };
+		4AD3DD371CB15F0C00D5FDC4 /* ResetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetView.m; sourceTree = "<group>"; };
 		4AD589EC1C64DBD100E74761 /* AddNewProjectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewProjectVC.h; sourceTree = "<group>"; };
 		4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewProjectVC.m; sourceTree = "<group>"; };
 		4AD589F21C64E07E00E74761 /* ChooseTypeColorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseTypeColorVC.h; sourceTree = "<group>"; };
@@ -216,8 +227,6 @@
 		4AF919031CA74456002BFF12 /* RemindModeChooseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindModeChooseCell.m; sourceTree = "<group>"; };
 		4AF919061CA8809F002BFF12 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		4AF919071CA8809F002BFF12 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
-		4AF919091CA880B7002BFF12 /* SignupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupVC.h; sourceTree = "<group>"; };
-		4AF9190A1CA880B7002BFF12 /* SignupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupVC.m; sourceTree = "<group>"; };
 		640C26EC2089C43C666A53BB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2673CA96F7B03EE1014712 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E72E51CDFFC69871C1738A6E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -434,12 +443,12 @@
 				4AA393531C58AC6D00DA3C16 /* DBManage.m */,
 				4AF34A1E1C74ADAC00004EC4 /* UserDefaultManage.h */,
 				4AF34A1F1C74ADAC00004EC4 /* UserDefaultManage.m */,
-				4AA3934C1C58AC2E00DA3C16 /* BaseNavigationController.h */,
-				4AA3934D1C58AC2E00DA3C16 /* BaseNavigationController.m */,
 				4AD3DD2A1CAFF1AB00D5FDC4 /* NYProgressHUD.h */,
 				4AD3DD2B1CAFF1AB00D5FDC4 /* NYProgressHUD.m */,
 				4AA3934E1C58AC2E00DA3C16 /* MainTabBarVC.h */,
 				4AA3934F1C58AC2E00DA3C16 /* MainTabBarVC.m */,
+				4AA3934C1C58AC2E00DA3C16 /* BaseNavigationController.h */,
+				4AA3934D1C58AC2E00DA3C16 /* BaseNavigationController.m */,
 			);
 			path = CoreManage;
 			sourceTree = "<group>";
@@ -451,6 +460,8 @@
 				4AD3DD181CAF409200D5FDC4 /* LogInAPI.m */,
 				4AD3DD191CAF409200D5FDC4 /* RegistAPI.h */,
 				4AD3DD1A1CAF409200D5FDC4 /* RegistAPI.m */,
+				4AD3DD2D1CB03DF900D5FDC4 /* SendVerifyCodeAPI.h */,
+				4AD3DD2E1CB03DF900D5FDC4 /* SendVerifyCodeAPI.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -550,12 +561,16 @@
 		4AF919051CA8803C002BFF12 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				4AD3DD361CB15F0C00D5FDC4 /* ResetView.h */,
+				4AD3DD371CB15F0C00D5FDC4 /* ResetView.m */,
 				4AF086021CABDCD600138097 /* LoginView.h */,
 				4AF086031CABDCD600138097 /* LoginView.m */,
+				4AD3DD301CB11E6A00D5FDC4 /* SignupView.h */,
+				4AD3DD311CB11E6A00D5FDC4 /* SignupView.m */,
+				4AD3DD331CB15B5200D5FDC4 /* VerifyCodeButton.h */,
+				4AD3DD341CB15B5200D5FDC4 /* VerifyCodeButton.m */,
 				4AF919061CA8809F002BFF12 /* LoginVC.h */,
 				4AF919071CA8809F002BFF12 /* LoginVC.m */,
-				4AF919091CA880B7002BFF12 /* SignupVC.h */,
-				4AF9190A1CA880B7002BFF12 /* SignupVC.m */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -769,6 +784,7 @@
 			files = (
 				4AF11FF81C6B1206007DC614 /* ChooseModeCell.m in Sources */,
 				4ADA1DA51C3E496D001ECBF4 /* GradientView.m in Sources */,
+				4AD3DD2F1CB03DF900D5FDC4 /* SendVerifyCodeAPI.m in Sources */,
 				4AF919081CA8809F002BFF12 /* LoginVC.m in Sources */,
 				4AF34A201C74ADAC00004EC4 /* UserDefaultManage.m in Sources */,
 				4AEF614E1C94EECB00236F6F /* FMTodoImage.m in Sources */,
@@ -801,15 +817,16 @@
 				4AD589EE1C64DBD100E74761 /* AddNewProjectVC.m in Sources */,
 				4AF919011CA7435E002BFF12 /* RemindModeChooseVC.m in Sources */,
 				4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */,
-				4AF9190B1CA880B7002BFF12 /* SignupVC.m in Sources */,
 				4A0441D31C89AAA3005E23D9 /* RepeatModeChooseCell.m in Sources */,
 				4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */,
 				4A95AA111C71702F00DFB118 /* DeleteTodoCell.m in Sources */,
+				4AD3DD351CB15B5200D5FDC4 /* VerifyCodeButton.m in Sources */,
 				4AD3DD1B1CAF409200D5FDC4 /* LogInAPI.m in Sources */,
 				4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */,
 				4AF918FE1CA74197002BFF12 /* RemindModeCell.m in Sources */,
 				4A0441D01C89A82F005E23D9 /* RepeateModeChooseVC.m in Sources */,
 				4A0441CD1C89A397005E23D9 /* RepeatModeCell.m in Sources */,
+				4AD3DD381CB15F0C00D5FDC4 /* ResetView.m in Sources */,
 				4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */,
 				4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */,
 				4AF919041CA74456002BFF12 /* RemindModeChooseCell.m in Sources */,
@@ -818,6 +835,7 @@
 				4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */,
 				4ADA1DA71C3E496D001ECBF4 /* UILabelZoomable.m in Sources */,
 				4A9FC1BD1C699FAE00A1D888 /* TodoDetailVC.m in Sources */,
+				4AD3DD321CB11E6A00D5FDC4 /* SignupView.m in Sources */,
 				4AEF61481C94EDAC00236F6F /* FMDayList.m in Sources */,
 				4A1290861C5DD4E6006E078B /* WeekCollectionView.m in Sources */,
 			);

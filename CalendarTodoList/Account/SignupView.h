@@ -1,17 +1,20 @@
 //
-//  LoginView.h
+//  SignupView.h
 //  GoDo
 //
-//  Created by 牛严 on 16/3/30.
+//  Created by 牛严 on 16/4/3.
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface LoginView : UIView
+@interface SignupView : UIView
 
+@property (nonatomic, strong) UITextField *schoolNumTextField;
+@property (nonatomic, strong) UITextField *nameTextField;
 @property (nonatomic, strong) UITextField *mailTextField;
 @property (nonatomic, strong) UITextField *passwordTextField;
+@property (nonatomic, strong) UITextField *verifyCodeTextField;
 
 - (instancetype)initWithVC:(id)vc frame:(CGRect)frame;
 
