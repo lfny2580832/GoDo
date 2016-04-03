@@ -46,4 +46,26 @@
     return  [UserDefault objectForKey:@"token"];
 }
 
+#pragma mark 存取用户名
+-(void)setUserName:(NSString *)userName
+{
+    [UserDefault setObject:userName forKey:@"userName"];
+}
+
+- (NSString *)userName
+{
+    return  [UserDefault objectForKey:@"userName"];
+}
+
+#pragma mark 存取密码
+- (void)setUserPassword:(NSString *)password
+{
+    [UserDefault setObject:password forKey:@"userPassword"];
+}
+
+- (NSString *)userPassword
+{
+    return  [UserDefault objectForKey:@"userPassword"];
+}
+
 @end

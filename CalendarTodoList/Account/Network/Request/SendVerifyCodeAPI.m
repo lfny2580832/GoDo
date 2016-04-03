@@ -13,16 +13,14 @@
 {
     NSString *_source;  //mail/sms
     NSString *_to;      //发送对象（手机号/邮箱地址）
-    NSString *_use;     //用途 （"register"/"forgetPasswd"/"resetPasswd"）
 }
 
-- (id)initWithSource:(NSString *)source to:(NSString *)to use:(NSString *)use
+- (id)initWithTo:(NSString *)to
 {
     self = [super init];
     if (self) {
-        _source = source;
+        _source = @"mail";
         _to = to;
-        _use = use;
     }
     return self;
 }
@@ -39,7 +37,6 @@
 - (id)requestArgument {
     return @{
              @"to": _to,
-             @"use": _use
              };
 }
 

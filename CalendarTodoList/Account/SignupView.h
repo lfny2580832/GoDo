@@ -16,6 +16,6 @@
 @property (nonatomic, strong) UITextField *passwordTextField;
 @property (nonatomic, strong) UITextField *verifyCodeTextField;
 
-- (instancetype)initWithVC:(id)vc frame:(CGRect)frame;
+- (instancetype)initWithTarget:(id)target frame:(CGRect)frame;
 
 @end

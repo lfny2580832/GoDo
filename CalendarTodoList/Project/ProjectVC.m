@@ -29,13 +29,7 @@
 
 - (void)regist
 {
-    RegistAPI *api = [[RegistAPI alloc]initWithName:@"牛严" password:@"111111" phone:@"" email:@"test@samaritan.tech" type:@"mail" verifyCode:@"123456"];
-    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
-        
-        
-    } failure:^(__kindof YTKBaseRequest *request) {
-        
-    }];
+ 
 }
 
 - (void)viewDidLoad {

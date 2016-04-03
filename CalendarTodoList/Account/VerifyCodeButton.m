@@ -7,15 +7,59 @@
 //
 
 #import "VerifyCodeButton.h"
+#import "SendVerifyCodeAPI.h"
 
 @implementation VerifyCodeButton
-
-- (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
+    NSInteger _resendSecond;
+    NSTimer *_resendTimer;
+}
+
+- (void)resendTimerChange
+{
+    _resendSecond--;
+    [self setTitle:[NSString stringWithFormat:@"%ld",(long)_resendSecond] forState:UIControlStateDisabled];
+    if(_resendSecond <= 0)
+    {
+        self.enabled = YES;
+        [self setTitle:@"重新获取" forState:UIControlStateNormal];
+        [self setTitle:@"重新获取" forState:UIControlStateDisabled];
+        [_resendTimer invalidate];
+    }
+}
+
+#pragma mark 发送验证码
+- (void)sendVerifyCodeWithMail:(NSString *)mail
+{
+    _resendSecond = 5;
+    self.enabled = NO;
+
+    SendVerifyCodeAPI *api = [[SendVerifyCodeAPI alloc]initWithTo:mail];
+    NYProgressHUD *hud = [NYProgressHUD new];
+    [hud showAnimationWithText:@"验证码发送中"];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        [hud hide];
+        [NYProgressHUD showToastText:@"验证码发送成功"];
+        _resendTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(resendTimerChange) userInfo:nil repeats:YES];
+
+    } failure:^(__kindof YTKBaseRequest *request) {
+        [hud hide];
+        [NYProgressHUD showToastText:@"验证码发送失败"];
+        self.enabled = YES;
+    }];
+}
+
+
+#pragma makr 初始化
+- (instancetype)init {
+    self = [super init];
     if (self) {
-        
+        self.backgroundColor = KNaviColor;
+        self.titleLabel.font = [UIFont systemFontOfSize:13];
+        [self setTitle:@"发送验证码" forState:UIControlStateNormal];
     }
     return self;
 }
+
+
 @end

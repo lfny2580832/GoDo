@@ -10,15 +10,15 @@
 
 @implementation SignupView
 {
-    id _vc;
+    id _target;
 }
 
 #pragma mark 初始化
-- (instancetype)initWithVC:(id)vc frame:(CGRect)frame
+- (instancetype)initWithTarget:(id)target frame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _vc = vc;
+        _target = target;
         [self loadSubViews];
     }
     return self;
@@ -118,8 +118,8 @@
     registButton.layer.cornerRadius = 1;
     [registButton setTitle:@"注 册" forState:UIControlStateNormal];
     registButton.titleLabel.textColor = [UIColor whiteColor];
-    SEL login = NSSelectorFromString(@"regist");
-    [registButton addTarget:_vc action:login forControlEvents:UIControlEventTouchUpInside];
+    SEL regist = NSSelectorFromString(@"regist");
+    [registButton addTarget:_target action:regist forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:registButton];
     [registButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_passwordTextField.mas_bottom).offset(40);
@@ -137,7 +137,7 @@
     [loginStr addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:strRange];
     loginLabel.attributedText = loginStr;
     SEL jumpToLogIn = NSSelectorFromString(@"jumpToLogIn");
-    UITapGestureRecognizer *registRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:_vc action:jumpToLogIn];
+    UITapGestureRecognizer *registRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:_target action:jumpToLogIn];
     [loginLabel addGestureRecognizer:registRecognizer];
     [self addSubview:loginLabel];
     [loginLabel mas_makeConstraints:^(MASConstraintMaker *make) {

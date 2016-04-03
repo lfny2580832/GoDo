@@ -10,15 +10,15 @@
 
 @implementation LoginView
 {    
-    id _vc;
+    id _target;
 }
 
 #pragma mark 初始化
-- (instancetype)initWithVC:(id)vc frame:(CGRect)frame
+- (instancetype)initWithTarget:(id)target frame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _vc = vc;
+        _target = target;
         [self loadSubViews];
     }
     return self;
@@ -79,7 +79,7 @@
     [loginButton setTitle:@"登 录" forState:UIControlStateNormal];
     loginButton.titleLabel.textColor = [UIColor whiteColor];
     SEL login = NSSelectorFromString(@"login");
-    [loginButton addTarget:_vc action:login forControlEvents:UIControlEventTouchUpInside];
+    [loginButton addTarget:_target action:login forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:loginButton];
     [loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_passwordTextField.mas_bottom).offset(40);
@@ -99,7 +99,7 @@
     registLabel.font = [UIFont systemFontOfSize:15];
     registLabel.attributedText = registStr;
     SEL jumpToSignUp = NSSelectorFromString(@"jumpToSignUp");
-    UITapGestureRecognizer *registRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:_vc action:jumpToSignUp];
+    UITapGestureRecognizer *registRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:_target action:jumpToSignUp];
     [registLabel addGestureRecognizer:registRecognizer];
     [self addSubview:registLabel];
     [registLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -116,7 +116,7 @@
     [resetStr addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:strRange2];
     resetLabel.attributedText = resetStr;
     SEL jumpToReset = NSSelectorFromString(@"jumpToReset");
-    UITapGestureRecognizer *resetRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:_vc action:jumpToReset];
+    UITapGestureRecognizer *resetRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:_target action:jumpToReset];
     [resetLabel addGestureRecognizer:resetRecognizer];
     [self addSubview:resetLabel];
     [resetLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -128,7 +128,7 @@
     UIButton *dismissButton = [[UIButton alloc]init];
     dismissButton.backgroundColor = [UIColor whiteColor];
     SEL dismissLoginView = NSSelectorFromString(@"dismissLoginView");
-    [dismissButton addTarget:_vc action:dismissLoginView forControlEvents:UIControlEventTouchUpInside];
+    [dismissButton addTarget:_target action:dismissLoginView forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:dismissButton];
     [dismissButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(loginButton.mas_bottom).offset(60);

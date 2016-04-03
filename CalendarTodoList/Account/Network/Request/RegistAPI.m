@@ -11,22 +11,20 @@
 @implementation RegistAPI
 {
     NSString *_name;
-    NSString *_phone;
-    NSString *_email;
+    NSString *_mail;
     NSString *_password;
     NSString *_type;
     NSString *_verifyCode;
 }
 
-- (id)initWithName:(NSString *)name password:(NSString *)password phone:(NSString *)phone email:(NSString *)email type:(NSString *)type verifyCode:(NSString *)verifyCode
+- (id)initWithName:(NSString *)name password:(NSString *)password mail:(NSString *)mail verifyCode:(NSString *)verifyCode
 {
     self = [super init];
     if (self) {
         _name = name;
         _password = password;
-        _phone = phone;
-        _email = email;
-        _type = type;
+        _mail = mail;
+        _type = @"mail";
         _verifyCode = verifyCode;
     }
     return self;
@@ -44,8 +42,7 @@
     return @{
              @"name": _name,
              @"password": _password,
-             @"phone": _phone,
-             @"mail": _email,
+             @"mail": _mail,
              @"type": _type,
              @"verifyCode": _verifyCode
              };

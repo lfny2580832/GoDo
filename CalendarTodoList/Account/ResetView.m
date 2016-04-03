@@ -7,18 +7,26 @@
 //
 
 #import "ResetView.h"
+#import "VerifyCodeButton.h"
 
 @implementation ResetView
 {
-    id _vc;
+    id _target;
+    VerifyCodeButton *_verifyBtn;
+}
+
+#pragma mark 发送验证码
+- (void)sendVerifyCode
+{
+    [_verifyBtn sendVerifyCodeWithMail:_mailTextField.text];
 }
 
 #pragma mark 初始化
-- (instancetype)initWithVC:(id)vc frame:(CGRect)frame
+- (instancetype)initWithTarget:(id)target frame:(CGRect)frame;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _vc = vc;
+        _target = target;
         [self loadSubViews];
     }
     return self;
@@ -45,6 +53,16 @@
         make.height.mas_equalTo(@44);
     }];
 
+    _verifyBtn = [[VerifyCodeButton alloc]init];
+    [_verifyBtn addTarget:self action:@selector(sendVerifyCode) forControlEvents:UIControlEventTouchUpInside];
+    [_verifyCodeTextField addSubview:_verifyBtn];
+    [_verifyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(_verifyCodeTextField);
+        make.right.equalTo(_verifyCodeTextField).offset(-10);
+        make.height.mas_equalTo(@30);
+        make.width.mas_equalTo(@100);
+    }];
+    
     _mailTextField = [[UITextField alloc]init];
     _mailTextField.placeholder = @"请输入邮箱";
     _mailTextField.backgroundColor = [UIColor whiteColor];
@@ -84,8 +102,8 @@
     doneButton.layer.cornerRadius = 1;
     [doneButton setTitle:@"重 置" forState:UIControlStateNormal];
     doneButton.titleLabel.textColor = [UIColor whiteColor];
-    SEL login = NSSelectorFromString(@"login");
-    [doneButton addTarget:_vc action:login forControlEvents:UIControlEventTouchUpInside];
+    SEL reset = NSSelectorFromString(@"reset");
+    [doneButton addTarget:_target action:reset forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:doneButton];
     [doneButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_passwordTextField.mas_bottom).offset(40);
@@ -104,7 +122,7 @@
     loginLabel.attributedText = loginStr;
     SEL jumpToLogIn = NSSelectorFromString(@"jumpToLogIn");
     UITapGestureRecognizer *registRecognizer = [[UITapGestureRecognizer alloc]init];
-    [registRecognizer addTarget:_vc action:jumpToLogIn];
+    [registRecognizer addTarget:_target action:jumpToLogIn];
     [loginLabel addGestureRecognizer:registRecognizer];
     [self addSubview:loginLabel];
     [loginLabel mas_makeConstraints:^(MASConstraintMaker *make) {

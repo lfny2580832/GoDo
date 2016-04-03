@@ -10,4 +10,8 @@
 
 @interface VerifyCodeButton : UIButton
 
+@property (nonatomic, copy) NSString *mail;
+
+- (void)sendVerifyCodeWithMail:(NSString *)mail;
+
 @end

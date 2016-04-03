@@ -47,6 +47,7 @@
 		4AD3DD321CB11E6A00D5FDC4 /* SignupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD311CB11E6A00D5FDC4 /* SignupView.m */; };
 		4AD3DD351CB15B5200D5FDC4 /* VerifyCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD341CB15B5200D5FDC4 /* VerifyCodeButton.m */; };
 		4AD3DD381CB15F0C00D5FDC4 /* ResetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD371CB15F0C00D5FDC4 /* ResetView.m */; };
+		4AD3DD3B1CB1A88A00D5FDC4 /* ResetAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD3A1CB1A88A00D5FDC4 /* ResetAPI.m */; };
 		4AD589EE1C64DBD100E74761 /* AddNewProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */; };
 		4AD589F41C64E07E00E74761 /* ChooseTypeColorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589F31C64E07E00E74761 /* ChooseTypeColorVC.m */; };
 		4AD589F71C64EBCE00E74761 /* TypeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD589F61C64EBCE00E74761 /* TypeColor.m */; };
@@ -177,6 +178,8 @@
 		4AD3DD341CB15B5200D5FDC4 /* VerifyCodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyCodeButton.m; sourceTree = "<group>"; };
 		4AD3DD361CB15F0C00D5FDC4 /* ResetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetView.h; sourceTree = "<group>"; };
 		4AD3DD371CB15F0C00D5FDC4 /* ResetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetView.m; sourceTree = "<group>"; };
+		4AD3DD391CB1A88A00D5FDC4 /* ResetAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetAPI.h; sourceTree = "<group>"; };
+		4AD3DD3A1CB1A88A00D5FDC4 /* ResetAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetAPI.m; sourceTree = "<group>"; };
 		4AD589EC1C64DBD100E74761 /* AddNewProjectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewProjectVC.h; sourceTree = "<group>"; };
 		4AD589ED1C64DBD100E74761 /* AddNewProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewProjectVC.m; sourceTree = "<group>"; };
 		4AD589F21C64E07E00E74761 /* ChooseTypeColorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseTypeColorVC.h; sourceTree = "<group>"; };
@@ -460,6 +463,8 @@
 				4AD3DD181CAF409200D5FDC4 /* LogInAPI.m */,
 				4AD3DD191CAF409200D5FDC4 /* RegistAPI.h */,
 				4AD3DD1A1CAF409200D5FDC4 /* RegistAPI.m */,
+				4AD3DD391CB1A88A00D5FDC4 /* ResetAPI.h */,
+				4AD3DD3A1CB1A88A00D5FDC4 /* ResetAPI.m */,
 				4AD3DD2D1CB03DF900D5FDC4 /* SendVerifyCodeAPI.h */,
 				4AD3DD2E1CB03DF900D5FDC4 /* SendVerifyCodeAPI.m */,
 			);
@@ -831,6 +836,7 @@
 				4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */,
 				4AF919041CA74456002BFF12 /* RemindModeChooseCell.m in Sources */,
 				4AD3DD2C1CAFF1AB00D5FDC4 /* NYProgressHUD.m in Sources */,
+				4AD3DD3B1CB1A88A00D5FDC4 /* ResetAPI.m in Sources */,
 				4AF086041CABDCD600138097 /* LoginView.m in Sources */,
 				4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */,
 				4ADA1DA71C3E496D001ECBF4 /* UILabelZoomable.m in Sources */,

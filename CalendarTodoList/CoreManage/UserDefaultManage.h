@@ -17,8 +17,12 @@
 
 //todo的tableId，标示唯一性，需自增处理
 @property (nonatomic, assign) NSInteger todoMaxId;
-
+//登录后返回的token，放在请求的header中标识身份
 @property (nonatomic, copy) NSString *token;
+
+@property (nonatomic, copy) NSString *userName;
+
+@property (nonatomic, copy) NSString *userPassword;
 
 + (id)sharedInstance;
 

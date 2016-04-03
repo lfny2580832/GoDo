@@ -13,6 +13,8 @@
 
 #import "LogInAPI.h"
 #import "LoginTokenModel.h"
+#import "RegistAPI.h"
+#import "ResetAPI.h"
 
 @interface LoginVC ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -38,6 +40,8 @@
         [hud hide];
         NSString *token = loginTokenModel.token;
         [UserDefaultManager setToken:token];
+        [UserDefaultManager setUserName:mail];
+        [UserDefaultManager setUserPassword:password];
         [NYProgressHUD showToastText:@"登录成功" completion:^{
             [self dismissLoginView];
         }];
@@ -47,6 +51,52 @@
     }];
 }
 
+#pragma mark 注册
+- (void)regist
+{
+    NSString *name = _signupView.nameTextField.text;
+    NSString *password = _signupView.passwordTextField.text;
+    NSString *mail = _signupView.mailTextField.text;
+    NSString *verifyCode = _signupView.verifyCodeTextField.text;
+    RegistAPI *api = [[RegistAPI alloc]initWithName:name password:password mail:mail verifyCode:verifyCode];
+    NYProgressHUD *hud = [NYProgressHUD new];
+    [hud showAnimationWithText:@"注册中"];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        [hud hide];
+        LoginTokenModel *loginTokenModel = [[LoginTokenModel alloc]initWithString:request.responseString error:nil];
+        [hud hide];
+        NSString *token = loginTokenModel.token;
+        [UserDefaultManager setToken:token];
+        [UserDefaultManager setUserName:mail];
+        [UserDefaultManager setUserPassword:password];
+        [NYProgressHUD showToastText:@"注册成功" completion:^{
+            [self dismissLoginView];
+        }];
+    } failure:^(__kindof YTKBaseRequest *request) {
+        [hud hide];
+        [NYProgressHUD showToastText:@"注册失败"];
+    }];
+}
+
+#pragma mark 重置密码
+- (void)reset
+{
+    NSString *mail = _resetView.mailTextField.text;
+    NSString *password = _resetView.passwordTextField.text;
+    NSString *verifyCode = _resetView.verifyCodeTextField.text;
+    ResetAPI *api = [[ResetAPI alloc]initWithMail:mail password:password verifyCode:verifyCode];
+    NYProgressHUD *hud = [NYProgressHUD new];
+    [hud showAnimationWithText:@"重置中"];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        [hud hide];
+        [NYProgressHUD showToastText:@"重置成功，请重新登录" completion:^{
+            [self jumpToLogIn];
+        }];
+    } failure:^(__kindof YTKBaseRequest *request) {
+        [hud hide];
+        [NYProgressHUD showToastText:@"重置失败"];
+    }];
+}
 
 #pragma mark 取消登录
 - (void)dismissLoginView
@@ -97,13 +147,13 @@
     _scrollView.delegate = self;
     [self.view addSubview:_scrollView];
 
-    _resetView = [[ResetView alloc]initWithVC:self frame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _resetView = [[ResetView alloc]initWithTarget:self frame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [_scrollView addSubview:_resetView];
     
-    _loginView =  [[LoginView alloc]initWithVC:self frame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _loginView =  [[LoginView alloc]initWithTarget:self frame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [_scrollView addSubview:_loginView];
     
-    _signupView = [[SignupView alloc]initWithVC:self frame:CGRectMake(SCREEN_WIDTH * 2, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _signupView = [[SignupView alloc]initWithTarget:self frame:CGRectMake(SCREEN_WIDTH * 2, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [_scrollView addSubview:_signupView];
     
     [_scrollView setContentOffset:CGPointMake(SCREEN_WIDTH, 0)];
