@@ -49,13 +49,14 @@
     }];
 }
 
-
 #pragma makr 初始化
 - (instancetype)init {
     self = [super init];
     if (self) {
         self.backgroundColor = KNaviColor;
         self.titleLabel.font = [UIFont systemFontOfSize:13];
+        self.layer.masksToBounds = YES;
+        self.layer.cornerRadius = 2;
         [self setTitle:@"发送验证码" forState:UIControlStateNormal];
     }
     return self;

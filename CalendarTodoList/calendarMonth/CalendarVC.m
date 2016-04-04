@@ -69,9 +69,10 @@
 #pragma mark 双击手势
 - (void)doubleTap:(UIGestureRecognizer *)sender
 {
-    CGFloat outScale = 2.8;
+    CGFloat outScale = 2.0;
     CGPoint tapPoint = [sender locationInView:self.bigScrollView];
     if (self.bigScrollView.zoomScale > 1) {
+        [_calendarView changeCellTransparentWithAlpha: 0];
         [self.bigScrollView setZoomScale:1.0 animated:YES];
     }
     else
@@ -83,8 +84,10 @@
         CGFloat x = tapPoint.x-(width/2.0);
         CGFloat y = tapPoint.y-(height/2.0);
         CGRect zoomRect = CGRectMake(x, y, width, height);
-
+        
         [self.bigScrollView zoomToRect:zoomRect animated:YES];
+        [self.bigScrollView setZoomScale:3.0 animated:YES];
+        
     }
 }
 
@@ -248,17 +251,23 @@
 #pragma mark 实时获取zoomscale的值
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
-    //减少方法执行频率
-    CGFloat scale = ceil(scrollView.zoomScale * 100) / 100;
-    if (fabs(scale - scrollView.zoomScale) < 0.001)
-    {
-        if (self.bigScrollView.zoomScale <= 3.0f && self.bigScrollView.zoomScale > 1.5f) {
-            [_calendarView changeCellTransparentWithAlpha: self.bigScrollView.zoomScale / 1.5 - 1];
+        if (self.bigScrollView.zoomScale <= 4.5f && self.bigScrollView.zoomScale > 2.0f) {
+            [_calendarView changeCellTransparentWithAlpha: self.bigScrollView.zoomScale / 2 - 1];
         }
-        else if (self.bigScrollView.zoomScale <= 1.5f) {
+        else if (self.bigScrollView.zoomScale < 2.0f) {
             [_calendarView changeCellTransparentWithAlpha:0];
         }
-    }
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
+{
+//    if (scale <= 4.5f && scale > 3.0f) {
+//        [_calendarView changeCellTransparentWithAlpha: scale / 1.5 - 2];
+//    }else if (scale < 3.0f) {
+//        [_calendarView changeCellTransparentWithAlpha:0];
+//    }else if (scale > 1){
+////        [_calendarView changeCellTransparentWithAlpha:1];
+//    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

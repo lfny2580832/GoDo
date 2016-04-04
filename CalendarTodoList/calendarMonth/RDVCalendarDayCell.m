@@ -21,6 +21,8 @@
 @implementation RDVCalendarDayCell
 {
     NSArray *_todoArray;
+    
+    UIImageView *_tagView;
 }
 
 #pragma mark 初始化
@@ -42,11 +44,26 @@
         _textLabel.textColor = [UIColor blackColor];
         _textLabel.highlightedTextColor = [UIColor whiteColor];
         _textLabel.backgroundColor = [UIColor clearColor];
-        _textLabel.font = [UIFont systemFontOfSize:20];
+        _textLabel.font = [UIFont systemFontOfSize:16];
         CATiledLayer *listLabelLayer = (CATiledLayer *)_textLabel.layer;
         listLabelLayer.levelsOfDetail = 2;
         listLabelLayer.levelsOfDetailBias = 2;
         [_contentView addSubview:_textLabel];
+        [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self);
+            make.centerY.equalTo(self).offset(-15);
+        }];
+        
+        _tagView = [[UIImageView alloc]init];
+        _tagView.backgroundColor = [UIColor clearColor];
+        _tagView.layer.masksToBounds = YES;
+        _tagView.layer.cornerRadius = 4;
+        [_contentView addSubview:_tagView];
+        [_tagView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_textLabel.mas_bottom).offset(10);
+            make.centerX.equalTo(_textLabel);
+            make.size.mas_equalTo(CGSizeMake(8, 8));
+        }];
     }
     return self;
 }
@@ -151,7 +168,7 @@
     dispatch_async(kBgQueue, ^{
         _todoArray = [DBManager getDayInfoFromDateList:dayId];
         dispatch_async(kMainQueue, ^{
-            if (_todoArray) {
+            if (_todoArray.count) {
                 [self addCellTodoListWithTodoListCount:_todoArray.count];
             }
         });
@@ -162,7 +179,7 @@
 - (void)addCellTodoListWithTodoListCount:(NSInteger)count
 {
     CGFloat x = 2;
-    CGFloat y = 2;
+    CGFloat y = 5;
     CGFloat width = self.frame.size.width - 4;
     CGFloat height = 6;
     _labels = [NSMutableArray arrayWithCapacity:0];
@@ -188,12 +205,20 @@
         
         [_labels addObject:todoLabel];
     }
+    FMTodoModel *first = _todoArray[0];
+    _tagView.backgroundColor = RGBA(first.project.red, first.project.green, first.project.blue, 1.0);
+    
 }
 
 #pragma mark 设置透明度
 -(void)setScaleAlpha:(CGFloat)scaleAlpha
 {
     self.textLabel.alpha = 1 - scaleAlpha;
+    if (scaleAlpha == 0) {
+        _tagView.alpha = 1;
+    }else{
+        _tagView.alpha = 0;
+    }
     for (UILabelZoomable *todoListLabel in _labels) {
         todoListLabel.alpha = scaleAlpha;
     }

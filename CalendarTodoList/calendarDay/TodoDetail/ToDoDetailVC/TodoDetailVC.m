@@ -400,6 +400,15 @@ static CGFloat datePickerCellHeight = 240.f;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.view endEditing:YES];
+    if (_todo.doneType == Done) {
+        if (indexPath.section == 1 && indexPath.row == 0) {
+            
+        }else
+        {
+            [NYProgressHUD showToastText:@"已完成任务不能进行修改"];
+            return;
+        }
+    }
     if (indexPath.section == 0 && indexPath.row == 1)
     {
         //处理datepickercell高度逻辑
