@@ -16,8 +16,41 @@
 #import "NSObject+NYExtends.h"
 #import "WeekDayLabelView.h"
 
+
+@interface NYScrollView : UIScrollView
+
+@end
+
+@implementation NYScrollView
+
+#pragma mark 模拟zoomToRect动画，并获得中间点
+- (void)zoomToRect:(CGRect)rect point:(CGPoint)point duration:(NSTimeInterval)duration
+{
+    CGFloat finalScale = 3.0;
+    CGSize scrollViewSize=self.bounds.size;
+    //宽高是小的，以放大，point是zoomscale为1时的point
+    CGFloat width = scrollViewSize.width/finalScale;
+    CGFloat height = scrollViewSize.height /finalScale;
+    CGFloat x = point.x-(width/2.0);
+    CGFloat y = point.y-(height/2.0);
+    CGRect zoomRect = CGRectMake(x, y, width, height);
+    
+    [UIView animateWithDuration:duration
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         [self zoomToRect:rect animated:NO];
+                     }
+                     completion:^(BOOL finished){
+                         [self zoomToRect:zoomRect animated:YES];
+                     }];
+}
+
+@end
+
+
 @interface CalendarVC ()<UIScrollViewDelegate,RDVCalendarViewDelegate>
-@property (nonatomic, strong) UIScrollView *bigScrollView;
+@property (nonatomic, strong) NYScrollView *bigScrollView;
 @property (nonatomic, strong) CalendarTodoDetailVC *calendarTodoDetailVC;
 
 @end
@@ -84,9 +117,7 @@
         CGFloat x = tapPoint.x-(width/2.0);
         CGFloat y = tapPoint.y-(height/2.0);
         CGRect zoomRect = CGRectMake(x, y, width, height);
-        
-        [self.bigScrollView zoomToRect:zoomRect animated:YES];
-        [self.bigScrollView setZoomScale:3.0 animated:YES];
+        [self.bigScrollView zoomToRect:zoomRect point:tapPoint duration:0.3];
         
     }
 }
@@ -187,7 +218,7 @@
 
 - (void)initScrollView
 {
-    self.bigScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 )];
+    self.bigScrollView = [[NYScrollView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 )];
     self.bigScrollView.delegate = self;
     self.bigScrollView.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
