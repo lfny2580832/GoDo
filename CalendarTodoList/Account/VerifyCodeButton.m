@@ -29,12 +29,12 @@
 }
 
 #pragma mark 发送验证码
-- (void)sendVerifyCodeWithMail:(NSString *)mail
+- (void)sendVerifyCodeWithMail:(NSString *)mail use:(NSString *)use
 {
     _resendSecond = 5;
     self.enabled = NO;
 
-    SendVerifyCodeAPI *api = [[SendVerifyCodeAPI alloc]initWithTo:mail];
+    SendVerifyCodeAPI *api = [[SendVerifyCodeAPI alloc]initWithTo:mail use:use];
     NYProgressHUD *hud = [NYProgressHUD new];
     [hud showAnimationWithText:@"验证码发送中"];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {

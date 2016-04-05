@@ -25,6 +25,7 @@ PODS:
   - FMDB (2.6):
     - FMDB/standard (= 2.6)
   - FMDB/standard (2.6)
+  - IQKeyboardManager (4.0.1)
   - JSONModel (1.2.0)
   - LKDBHelper (HEAD based on 2.1.9):
     - FMDB
@@ -36,6 +37,7 @@ PODS:
     - AFNetworking (~> 2.0)
 
 DEPENDENCIES:
+  - IQKeyboardManager
   - JSONModel
   - LKDBHelper (HEAD)
   - Masonry
@@ -47,6 +49,7 @@ SPEC CHECKSUMS:
   AFDownloadRequestOperation: 748a1643423e1ddb23f2178f778087d4f0ae8ac7
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
+  IQKeyboardManager: 0c11a0cb402a621f7aa1aff506f60ab6d2388969
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   LKDBHelper: 78e6c0de99f45375892223a334535d745a123dbd
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2

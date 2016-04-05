@@ -11,6 +11,6 @@
 
 @interface SendVerifyCodeAPI : YTKRequest
 
-- (id)initWithTo:(NSString *)to;
+- (id)initWithTo:(NSString *)to use:(NSString *)use;
 
 @end

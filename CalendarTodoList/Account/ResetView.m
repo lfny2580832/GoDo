@@ -18,7 +18,8 @@
 #pragma mark 发送验证码
 - (void)sendVerifyCode
 {
-    [_verifyBtn sendVerifyCodeWithMail:_mailTextField.text];
+    [self endEditing:YES];
+    [_verifyBtn sendVerifyCodeWithMail:_mailTextField.text use:@"resetPasswd"];
 }
 
 #pragma mark 初始化

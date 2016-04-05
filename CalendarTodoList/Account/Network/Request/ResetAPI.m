@@ -29,7 +29,7 @@
 }
 
 - (NSString *)requestUrl {
-    NSString *url = [NSString stringWithFormat:@"/password/:%@",_mail];
+    NSString *url = [NSString stringWithFormat:@"/users/password/%@",_mail];
     return url;
 }
 

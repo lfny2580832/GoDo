@@ -71,11 +71,6 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
@@ -288,17 +283,6 @@
         else if (self.bigScrollView.zoomScale < 2.0f) {
             [_calendarView changeCellTransparentWithAlpha:0];
         }
-}
-
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
-{
-//    if (scale <= 4.5f && scale > 3.0f) {
-//        [_calendarView changeCellTransparentWithAlpha: scale / 1.5 - 2];
-//    }else if (scale < 3.0f) {
-//        [_calendarView changeCellTransparentWithAlpha:0];
-//    }else if (scale > 1){
-////        [_calendarView changeCellTransparentWithAlpha:1];
-//    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

@@ -58,6 +58,7 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle"
   install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/MMVideoPreviewPlay@2x.png"
   install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/MMVideoPreviewPlayHL@2x.png"
   install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/navi_back@2x.png"
@@ -76,6 +77,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/VideoSendIcon@2x.png"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle"
   install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/MMVideoPreviewPlay@2x.png"
   install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/MMVideoPreviewPlayHL@2x.png"
   install_resource "TZImagePickerController/TZImagePickerController/TZImagePickerController/Resource/navi_back@2x.png"

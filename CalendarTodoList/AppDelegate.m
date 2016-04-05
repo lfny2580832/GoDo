@@ -10,6 +10,9 @@
 #import "MainTabBarVC.h"
 #import "BaseNavigationController.h"
 #import "CalendarVC.h"
+
+#import <IQKeyboardManager/IQKeyboardManager.h>
+
 #import <YTKNetwork/YTKNetworkConfig.h>
 
 @interface AppDelegate ()
@@ -26,6 +29,8 @@
 
     [self registLocalNotification];
     [self setNetworkConfig];
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     

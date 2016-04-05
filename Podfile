@@ -5,3 +5,4 @@ pod 'LKDBHelper', :head
 pod 'MBProgressHUD', '~> 0.9.2'
 pod 'YTKNetwork'
 pod 'JSONModel'
+pod 'IQKeyboardManager'

@@ -7,10 +7,19 @@
 //
 
 #import "SignupView.h"
+#import "VerifyCodeButton.h"
 
 @implementation SignupView
 {
     id _target;
+    VerifyCodeButton *_verifyBtn;
+}
+
+#pragma mark 发送验证码
+- (void)sendVerifyCode
+{
+    [self endEditing:YES];
+    [_verifyBtn sendVerifyCodeWithMail:_mailTextField.text use:@"register"];
 }
 
 #pragma mark 初始化
@@ -78,6 +87,16 @@
         make.centerX.equalTo(self);
         make.left.right.equalTo(_mailTextField);
         make.height.mas_equalTo(@44);
+    }];
+    
+    _verifyBtn = [[VerifyCodeButton alloc]init];
+    [_verifyBtn addTarget:self action:@selector(sendVerifyCode) forControlEvents:UIControlEventTouchUpInside];
+    [_verifyCodeTextField addSubview:_verifyBtn];
+    [_verifyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(_verifyCodeTextField);
+        make.right.equalTo(_verifyCodeTextField).offset(-10);
+        make.height.mas_equalTo(@30);
+        make.width.mas_equalTo(@100);
     }];
     
     _passwordTextField = [[UITextField alloc]init];

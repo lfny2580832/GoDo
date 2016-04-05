@@ -22,7 +22,6 @@
 {
     if ([keyPath isEqualToString:@"isSelected"] && object == self) {
         if ([[change objectForKey:@"new"]boolValue] == 1) {
-//            self.backgroundColor = [UIColor blackColor];
             _circleView.hidden = NO;
         }else if ([[change objectForKey:@"new"]boolValue] == 0){
             _circleView.hidden = YES;
@@ -73,8 +72,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = KNaviColor;
-
+        self.backgroundColor = [UIColor clearColor];
         _monthDayFormatter = [[NSDateFormatter alloc]init];
         [_monthDayFormatter setDateFormat:@"M-d"];
         [self initView];
@@ -100,7 +98,7 @@
     }];
     
     _indexLabel = [[UILabel alloc]init];
-    _indexLabel.textColor = [UIColor whiteColor];
+    _indexLabel.textColor = [UIColor blackColor];
     _indexLabel.font = [UIFont systemFontOfSize:10];
     [self addSubview:_indexLabel];
     [_indexLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -109,15 +107,13 @@
     }];
     
     _dateLabel = [[UILabel alloc]init];
-    _dateLabel.textColor = [UIColor whiteColor];
+    _dateLabel.textColor = [UIColor blackColor];
     _dateLabel.font = [UIFont systemFontOfSize:13];
     [self addSubview:_dateLabel];
     [_dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self).offset(5);
         make.centerX.equalTo(self);
     }];
- 
-
 }
 
 @end

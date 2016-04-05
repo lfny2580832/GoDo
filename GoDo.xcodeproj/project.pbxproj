@@ -1000,7 +1000,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tech.niuyan.GoToDo;
 				PRODUCT_NAME = GoDo;
-				PROVISIONING_PROFILE = "d8f6921a-9287-463d-a102-a8725f959ea7";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
@@ -1042,7 +1042,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tech.niuyan.GoToDo;
 				PRODUCT_NAME = GoDo;
-				PROVISIONING_PROFILE = "d8f6921a-9287-463d-a102-a8725f959ea7";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
