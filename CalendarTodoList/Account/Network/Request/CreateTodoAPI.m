@@ -1,0 +1,45 @@
+//
+//  CreateTodo.m
+//  GoDo
+//
+//  Created by 牛严 on 16/4/7.
+//  Copyright © 2016年 牛严. All rights reserved.
+//
+
+#import "CreateTodoAPI.h"
+#import "TodoModel.h"
+
+@implementation CreateTodoAPI
+{
+    TodoModel *_todo;
+}
+
+- (id)initWithTodo:(TodoModel *)todo
+{
+    self = [super init];
+    if (self) {
+        _todo = todo;
+    }
+    return self;
+}
+
+- (NSString *)requestUrl {
+    return @"/todos";
+}
+
+- (YTKRequestMethod)requestMethod {
+    return YTKRequestMethodPost;
+}
+
+- (id)requestArgument {
+    return @{
+             @"startTime": @(_todo.startTime),
+             @"repeat": @(_todo.repeat),
+             @"repeatMode":@(_todo.repeatMode),
+             @"allDay":@(_todo.allDay),
+             @"desc":_todo.desc,
+             @"missionId":_todo.missionId
+             };
+}
+
+@end

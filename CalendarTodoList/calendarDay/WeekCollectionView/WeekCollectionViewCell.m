@@ -11,7 +11,7 @@
 @implementation WeekCollectionViewCell
 {
     NSDateFormatter *_monthDayFormatter;
-    UILabel *_indexLabel;
+    UILabel *_weekLabel;
     UILabel *_dateLabel;
     UIImageView *_circleView;
 }
@@ -34,7 +34,7 @@
 - (void)setIndex:(NSString *)index
 {
     _index = index;
-//    _indexLabel.text = index;
+//    _weekLabel.text = index;
 }
 
 - (void)setDate:(NSDate *)date
@@ -57,7 +57,7 @@
     }else if (comps.weekday == 7){
         weekDay = @"周六";
     }
-    _indexLabel.text = weekDay;
+    _weekLabel.text = weekDay;
     NSString *dateStr = [_monthDayFormatter stringFromDate:date];
     _dateLabel.text = dateStr;
 }
@@ -72,7 +72,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = KNaviColor;
         _monthDayFormatter = [[NSDateFormatter alloc]init];
         [_monthDayFormatter setDateFormat:@"M-d"];
         [self initView];
@@ -89,27 +89,26 @@
     _circleView.layer.masksToBounds = YES;
     _circleView.hidden = YES;
     _circleView.layer.cornerRadius = self.frame.size.height/4+1;
-
-    [self addSubview:_circleView];
+    [self.contentView addSubview:_circleView];
     [_circleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self).offset(5);
         make.centerX.equalTo(self);
         make.size.mas_equalTo(CGSizeMake(self.frame.size.height/2+4, self.frame.size.height/2+4));
     }];
     
-    _indexLabel = [[UILabel alloc]init];
-    _indexLabel.textColor = [UIColor blackColor];
-    _indexLabel.font = [UIFont systemFontOfSize:10];
-    [self addSubview:_indexLabel];
-    [_indexLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    _weekLabel = [[UILabel alloc]init];
+    _weekLabel.textColor = [UIColor whiteColor];
+    _weekLabel.font = [UIFont systemFontOfSize:12];
+    [self.contentView addSubview:_weekLabel];
+    [_weekLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self);
         make.centerX.equalTo(self);
     }];
     
     _dateLabel = [[UILabel alloc]init];
-    _dateLabel.textColor = [UIColor blackColor];
-    _dateLabel.font = [UIFont systemFontOfSize:13];
-    [self addSubview:_dateLabel];
+    _dateLabel.textColor = [UIColor whiteColor];
+    _dateLabel.font = [UIFont systemFontOfSize:14];
+    [self.contentView addSubview:_dateLabel];
     [_dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self).offset(5);
         make.centerX.equalTo(self);

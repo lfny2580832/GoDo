@@ -81,7 +81,7 @@
     if (self) {
         self.view.backgroundColor = KNaviColor;
         [self setCustomTitle:@"时间轴"];
-
+        [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
         [self initView];
     }
     return self;
@@ -90,6 +90,7 @@
 - (void)initView
 {
     _weekCollectionView = [[WeekCollectionView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/7)];
+    _weekCollectionView.backgroundColor = KNaviColor;
     _weekCollectionView.mdelegate = self;
     [self.view addSubview:_weekCollectionView];
     

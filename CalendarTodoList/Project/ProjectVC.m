@@ -26,12 +26,6 @@
     [self presentViewController:_loginVC animated:YES completion:nil];
 }
 
-
-- (void)regist
-{
- 
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initView];

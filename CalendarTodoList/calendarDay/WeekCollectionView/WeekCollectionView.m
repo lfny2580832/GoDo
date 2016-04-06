@@ -74,7 +74,6 @@ static NSString * const reuseIdentifier = @"Cell";
     [flowLayout setMinimumInteritemSpacing:0];
     self = [super initWithFrame:frame collectionViewLayout:flowLayout];
     if (self) {
-        self.backgroundColor = KNaviColor;
         [self initDateParameters];
         [self initView];
     }
