@@ -109,7 +109,7 @@
     if (!dateFormatter) {
         dateFormatter = [[NSDateFormatter alloc] init];
     }
-    NSDate *lastDate = [NSDate dateWithTimeIntervalSinceReferenceDate:dateTime];
+    NSDate *lastDate = [NSDate dateWithTimeIntervalSince1970:dateTime];
     [dateFormatter setDateFormat:@"HH:mm"];
     newTime = [dateFormatter stringFromDate:lastDate];
     
@@ -149,12 +149,41 @@
     switch (doneType) {
         case NotDone:
         {
-            long long now = [[NSDate date] timeIntervalSinceReferenceDate];
+            long long now = [[NSDate date] timeIntervalSince1970];
             str = (now > startTime)? @"未完成":@"未开始";
         }
             break;
         case Done:
             str = @"已完成";
+            break;
+        default:
+            break;
+    }
+    return str;
+}
+
+#pragma mark 根据RemindMode返回字符串
++ (NSString *)getRemindStrWithMode:(RemindMode)remindMode
+{
+    NSString *str;
+    switch (remindMode) {
+        case 0:
+            str = @"不提醒";
+            break;
+        case 1:
+            str = @"准时提醒";
+            break;
+        case 2:
+            str = @"提前5分钟";
+            break;
+        case 3:
+            str = @"提前10分钟";
+            break;
+        case 4:
+            str = @"提前15分钟";
+            break;
+        case 5:
+            str = @"提前半小时";
             break;
         default:
             break;

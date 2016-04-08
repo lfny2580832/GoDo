@@ -34,4 +34,6 @@
 #pragma mark 根据DoneType返回字符串
 + (NSString *)getDoneStrWithType:(DoneType)doneType startTime:(long long)startTime;
 
+#pragma mark 根据RemindMode返回字符串
++ (NSString *)getRemindStrWithMode:(RemindMode)remindMode;
 @end

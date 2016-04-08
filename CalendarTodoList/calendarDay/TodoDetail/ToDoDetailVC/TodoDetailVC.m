@@ -213,43 +213,19 @@ static CGFloat datePickerCellHeight = 240.f;
     _repeatCell.modeLabel.text = [NSString getRepeatStrWithMode:todo.repeatMode];
     
     _remindMode = todo.remindMode;
-    if (todo.remindMode == Never)
-    {
-        _remindCell.modeLabel.text = @"不提醒";
-    }
-    else if (todo.remindMode == OnTime)
-    {
-        _remindCell.modeLabel.text = @"准时提醒";
-    }
-    else if (todo.remindMode == FiveMinutesEarlier)
-    {
-        _remindCell.modeLabel.text = @"提前5分钟";
-    }
-    else if (todo.remindMode == TenMinutesEarlier)
-    {
-        _remindCell.modeLabel.text = @"提前10分钟";
-    }
-    else if (todo.remindMode == FifteenMinutesEarlier)
-    {
-        _remindCell.modeLabel.text = @"提前15分钟";
-    }
-    else if (todo.remindMode == ThirtyMinutesEarlier)
-    {
-        _remindCell.modeLabel.text = @"提前半小时";
-    }
+    _remindCell.modeLabel.text = [NSString getRemindStrWithMode:todo.remindMode];
     
     _tableId = _todo.tableId;
     _todoContentStr = _todo.thingStr;
     _todoContentView.todoContentField.text = _todoContentStr;
     _project = [DBManager getProjectWithId:_todo.project.projectId];
     _todoProjectView.project = _project;
-    _startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.startTime];
+    _startDate = [NSDate dateWithTimeIntervalSince1970:_todo.startTime];
     _isAllDay = todo.isAllDay;
     _datePickerMode = (_isAllDay)? UIDatePickerModeDate:UIDatePickerModeDateAndTime;
     [_startCell setDatePickerMode:_datePickerMode date:_startDate];
 
     _OldStartDate = _startDate;
-    //    _endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:_todo.endTime];
     _chosenImages = [NSMutableArray arrayWithArray:todo.images];
     if (_chosenImages.count) {
         [_todoContentView updateContentViewWithImageArray:_chosenImages];
@@ -468,7 +444,9 @@ static CGFloat datePickerCellHeight = 240.f;
         _remindCell = [[RemindModeCell alloc]init];
         _repeatCell = [[RepeatModeCell alloc]init];
 
+        [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
         [self setRightBackButtontile:@"保存"];
+        [self setCustomTitle:@"任务详情"];
         [self initViews];
         
     }

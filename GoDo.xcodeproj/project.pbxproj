@@ -20,6 +20,7 @@
 		4A2199531CB572B700E37719 /* CreateTodoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2199521CB572B700E37719 /* CreateTodoAPI.m */; };
 		4A2199561CB577DF00E37719 /* UpdateTodoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2199551CB577DF00E37719 /* UpdateTodoAPI.m */; };
 		4A2199591CB579E700E37719 /* deleteTodoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2199581CB579E700E37719 /* deleteTodoAPI.m */; };
+		4A24F3361CB84B1800234374 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F3351CB84B1800234374 /* PopoverView.m */; };
 		4A3EE6CE1CB51A3100AFC8A4 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3EE6CD1CB51A3100AFC8A4 /* UserModel.m */; };
 		4A3EE6D11CB51BF600AFC8A4 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3EE6D01CB51BF600AFC8A4 /* ProjectModel.m */; };
 		4A3EE6D41CB51DB300AFC8A4 /* MissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3EE6D31CB51DB300AFC8A4 /* MissionModel.m */; };
@@ -131,6 +132,8 @@
 		4A2199551CB577DF00E37719 /* UpdateTodoAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateTodoAPI.m; sourceTree = "<group>"; };
 		4A2199571CB579E700E37719 /* deleteTodoAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deleteTodoAPI.h; sourceTree = "<group>"; };
 		4A2199581CB579E700E37719 /* deleteTodoAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deleteTodoAPI.m; sourceTree = "<group>"; };
+		4A24F3341CB84B1800234374 /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
+		4A24F3351CB84B1800234374 /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
 		4A3EE6CC1CB51A3100AFC8A4 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		4A3EE6CD1CB51A3100AFC8A4 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		4A3EE6CF1CB51BF600AFC8A4 /* ProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectModel.h; sourceTree = "<group>"; };
@@ -301,6 +304,8 @@
 		4A1290881C5DD4FF006E078B /* TodoCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				4A24F3341CB84B1800234374 /* PopoverView.h */,
+				4A24F3351CB84B1800234374 /* PopoverView.m */,
 				4A1290891C5DD4FF006E078B /* TodoCollectionView.h */,
 				4A12908A1C5DD4FF006E078B /* TodoCollectionView.m */,
 				4A12908B1C5DD4FF006E078B /* TodoCollectionViewCell.h */,
@@ -867,6 +872,7 @@
 				4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */,
 				4A0441D31C89AAA3005E23D9 /* RepeatModeChooseCell.m in Sources */,
 				4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */,
+				4A24F3361CB84B1800234374 /* PopoverView.m in Sources */,
 				4A95AA111C71702F00DFB118 /* DeleteTodoCell.m in Sources */,
 				4AD3DD351CB15B5200D5FDC4 /* VerifyCodeButton.m in Sources */,
 				4AD3DD1B1CAF409200D5FDC4 /* LogInAPI.m in Sources */,

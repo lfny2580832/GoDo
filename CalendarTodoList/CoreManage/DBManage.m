@@ -59,12 +59,12 @@
 #pragma mark 根据全天的开始时间设置当天0点
 - (long long)changeStartDateWith:(long long)startDate
 {
-    NSDate * oriDate = [NSDate dateWithTimeIntervalSinceReferenceDate:startDate];
+    NSDate * oriDate = [NSDate dateWithTimeIntervalSince1970:startDate];
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitMinute |NSCalendarUnitHour |NSCalendarUnitDay | NSCalendarUnitMonth |NSCalendarUnitYear fromDate:oriDate];
     comps.hour = 0;
     comps.minute = 0;
     NSDate * date = [[NSCalendar currentCalendar] dateFromComponents:comps];
-    long long timeStamp = [date timeIntervalSinceReferenceDate];
+    long long timeStamp = [date timeIntervalSince1970];
     return timeStamp;
 }
 
@@ -91,7 +91,7 @@
 - (void)createTodoWithProject:(FMProject *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate oldStartDate:(NSDate *)oldStartDate isAllDay:(BOOL)isAllDay tableId:(NSInteger)tableId repeatMode:(RepeatMode)repeatMode remindMode:(RemindMode)remindMode
 {
     FMTodoModel *todoModel = [[FMTodoModel alloc]init];
-    todoModel.startTime = [startDate timeIntervalSinceReferenceDate];
+    todoModel.startTime = [startDate timeIntervalSince1970];
     todoModel.isAllDay = isAllDay;
     FMProject *fmProject = [[FMProject alloc]init];
     fmProject.projectId = project.projectId;
@@ -286,7 +286,7 @@
 {
     NSMutableArray *dayIDs = [[NSMutableArray alloc]initWithCapacity:0];
     NSInteger repeatTimes = [NSObject numberOfDaysInThisYear];
-    long long  currentDayTimeStamp = [startDate timeIntervalSinceReferenceDate];
+    long long  currentDayTimeStamp = [startDate timeIntervalSince1970];
     for (int i = 0; i < repeatTimes; i ++) {
         long long timeStamp = currentDayTimeStamp + 60 * 60 * 24 * i ;
         NSInteger dayID = [NSObject getDayIdWithDateStamp:timeStamp];
@@ -317,7 +317,7 @@
 - (NSArray *)dayIDsForEveryWeekRepeatWithStartDate:(NSDate *)startDate
 {
     NSMutableArray *dayIDs = [[NSMutableArray alloc]initWithCapacity:0];
-    long long  currentDayTimeStamp = [startDate timeIntervalSinceReferenceDate];
+    long long  currentDayTimeStamp = [startDate timeIntervalSince1970];
 
     for(int i = 0; i < 52; i ++)
     {
@@ -333,7 +333,7 @@
 {
     NSMutableArray *dayIDs = [[NSMutableArray alloc]initWithCapacity:0];
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekOfYear|NSCalendarUnitWeekday|NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear |NSCalendarUnitHour |NSCalendarUnitMinute fromDate:startDate];
-    long long  currentDayTimeStamp = [startDate timeIntervalSinceReferenceDate];
+    long long  currentDayTimeStamp = [startDate timeIntervalSince1970];
     //第一周的dayIDs
     long long timeStamp = 0;
     NSInteger firstWeekNum = comps.weekday > 1 ? 9-comps.weekday:1;

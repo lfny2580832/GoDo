@@ -62,7 +62,7 @@
         dateFormatter = [[NSDateFormatter alloc] init];
     }
     [dateFormatter setDateFormat:@"yyyyMMdd"];
-    NSDate *startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:startDateStamp];
+    NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:startDateStamp];
     NSString *dateStr = [dateFormatter stringFromDate:startDate];
     return [dateStr integerValue];
 }

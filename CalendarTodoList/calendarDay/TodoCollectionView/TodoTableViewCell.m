@@ -7,6 +7,7 @@
 //
 
 #import "TodoTableViewCell.h"
+#import "PopoverView.h"
 
 #import "DBManage.h"
 
@@ -23,7 +24,7 @@
     UILabel *_statusLabel;
     UIView *_sideColorView;
     UIView *_backView;
-    
+    UIView *_shadowView;
     FMTodoModel *_todo;
 }
 
@@ -48,12 +49,11 @@
     _statusLabel.text = [NSString getDoneStrWithType:todo.doneType startTime:todo.startTime];
     
 //    todo.doneType == Done?  _cicleView.highlighted = YES:NO;
-//    todo.repeatMode != Never? _repeatTagView.highlighted = YES:NO;
     if (todo.images.count) {
         NSInteger imageCount = todo.images.count;
         NSInteger imageEdge = 10;
         [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.contentView).offset(-70);
+            make.bottom.equalTo(self.contentView).offset(-110);
         }];
         //创建imageView
         for (int i = 0; i < 4; i ++) {
@@ -113,6 +113,28 @@
     [zoomImageView showBigImageView];
 }
 
+
+#pragma mark 选择完成状态
+- (void)showPopoverViewOfDoneType:(id)sender
+{
+    UIButton *btn = sender;
+    PopoverView *popoverView = [[PopoverView alloc]init];
+    popoverView.menuTitles   = @[@"未完成",@"已完成",@"cao",@"cao",@"cao",@"cao"];
+
+    [popoverView showFromView:btn selected:^(NSInteger index) {
+        _statusLabel.text = popoverView.menuTitles[index];
+    }];
+}
+
+- (void)layoutSubviews
+{
+    _shadowView.layer.shadowPath = [UIBezierPath bezierPathWithRect:_shadowView.bounds].CGPath;
+    _shadowView.layer.shadowOffset = CGSizeMake(2, 2);
+    _shadowView.layer.shadowRadius = 1;
+    _shadowView.layer.shadowOpacity = 0.2;
+    _shadowView.layer.cornerRadius = 5;
+}
+
 #pragma mark 初始化
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier                                                                             
 {
@@ -128,33 +150,31 @@
             [_imageViews addObject:imageView];
         }
         [self initView];
+        
     }
     return self;
 }
 
 - (void)initView
 {
-    UIView *shadowView = [[UIView alloc]init];
-    shadowView.backgroundColor = RGBA(232, 232, 232, 1.0);
-    shadowView.layer.shadowOffset = CGSizeMake(2, 2);
-    shadowView.layer.shadowRadius = 1;
-    shadowView.layer.shadowOpacity = 0.2;
-    shadowView.layer.cornerRadius = 5;
-    [self.contentView addSubview:shadowView];
-    [shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+    _shadowView = [[UIView alloc]init];
+    _shadowView.backgroundColor = RGBA(232, 232, 232, 1.0);
+    _shadowView.layer.cornerRadius = 5;
+    [self.contentView addSubview:_shadowView];
+    [_shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(5);
         make.bottom.equalTo(self.contentView).offset(-5);
         make.left.equalTo(self.contentView).offset(10);
         make.right.equalTo(self.contentView).offset(-10);
     }];
-    
+
     _backView = [[UIView alloc]init];
     _backView.backgroundColor = [UIColor whiteColor];
     _backView.layer.cornerRadius = 5;
     _backView.layer.masksToBounds = YES;
     [self.contentView addSubview:_backView];
     [_backView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.left.right.equalTo(shadowView);
+        make.top.bottom.left.right.equalTo(_shadowView);
     }];
     
     _sideColorView = [[UIView alloc]init];
@@ -192,7 +212,7 @@
     _textLabel.numberOfLines = 0;
     [_backView addSubview:_textLabel];
     [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_backView).offset(15);
+        make.top.equalTo(_backView).offset(12);
         make.bottom.equalTo(_backView).offset(-55);
         make.left.equalTo(seperateLine.mas_right).offset(10);
         make.right.equalTo(_backView).offset(-10);
@@ -249,7 +269,7 @@
     }];
     
     UILabel *statusNameLabel = [[UILabel alloc]init];
-    statusNameLabel.text = @"完成状态";
+    statusNameLabel.text = @"完成状态▼";
     statusNameLabel.textColor = [UIColor grayColor];
     statusNameLabel.font = [UIFont systemFontOfSize:12];
     [_backView addSubview:statusNameLabel];
@@ -266,6 +286,18 @@
         make.top.equalTo(_projectLabel);
         make.centerX.equalTo(statusNameLabel);
     }];
+    
+    UIButton *switchDoneButton = [[UIButton alloc]init];
+    switchDoneButton.backgroundColor = [UIColor clearColor];
+    [switchDoneButton addTarget:self action:@selector(showPopoverViewOfDoneType:) forControlEvents:UIControlEventTouchUpInside];
+    [_backView addSubview:switchDoneButton];
+    [switchDoneButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(statusNameLabel).offset(-5);
+        make.left.equalTo(statusNameLabel).offset(-10);
+        make.right.equalTo(_backView).offset(3);
+        make.bottom.equalTo(_backView).offset(1);
+    }];
+
 }
 
 @end

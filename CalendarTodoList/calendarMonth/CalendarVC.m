@@ -147,7 +147,7 @@
     todoModel.tableId = 1;
     todoModel.thingStr = @"开始创建你的任务吧！";
     NSDate *startDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];
-    todoModel.startTime = [startDate timeIntervalSinceReferenceDate];
+    todoModel.startTime = [startDate timeIntervalSince1970];
     todoModel.isAllDay = NO;
     todoModel.doneType = NotDone;
     todoModel.repeatMode = Never;
@@ -158,7 +158,7 @@
     [DBHelper insertToDB:todoModel];
     
     FMDayList *dayList = [[FMDayList alloc]init];
-    dayList.dayID = [NSObject getDayIdWithDateStamp:[startDate timeIntervalSinceReferenceDate]];
+    dayList.dayID = [NSObject getDayIdWithDateStamp:[startDate timeIntervalSince1970]];
     dayList.tableIDs = [[NSMutableArray alloc]init];
     [dayList.tableIDs addObject:[NSNumber numberWithInteger:todoModel.tableId]];
     
