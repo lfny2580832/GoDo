@@ -13,23 +13,19 @@
 #import "NSObject+NYExtends.h"
 #import "NSString+ZZExtends.h"
 #import "ZoomImageView.h"
-#import "FMTodoModel.h"
 
 @implementation TodoTableViewCell
 {
     UILabel *_textLabel;
     UILabel *_timeLabel;
-    
-    UIView *_topLine;
-    UIImageView *_cicleView;
-    UIView *_bottomLine;
-    UIImageView *_repeatTagView;
+    UILabel *_projectLabel;
+    UILabel *_repeatLabel;
+    UILabel *_statusLabel;
+    UIView *_sideColorView;
+    UIView *_backView;
     
     FMTodoModel *_todo;
 }
-
-static NSInteger CircleRadius = 13;
-static NSInteger LineWidth = 2;
 
 - (void)loadTodo:(FMTodoModel *)todo
 {
@@ -46,13 +42,13 @@ static NSInteger LineWidth = 2;
     NSInteger R = todo.project.red;
     NSInteger G = todo.project.green;
     NSInteger B = todo.project.blue;
-    _cicleView.backgroundColor = RGBA(R, G, B, 1.0);
-    _cicleView.layer.borderWidth = 2;
-    _cicleView.layer.borderColor = [RGBA(R, G, B, 1.0) CGColor];
+    _sideColorView.backgroundColor = RGBA(R, G, B, 1.0);
+    _projectLabel.text = todo.project.projectStr;
+    _repeatLabel.text = [NSString getRepeatStrWithMode:todo.repeatMode];
+    _statusLabel.text = [NSString getDoneStrWithType:todo.doneType startTime:todo.startTime];
     
-    
-    todo.doneType == Done?  _cicleView.highlighted = YES:NO;
-    todo.repeatMode != Never? _repeatTagView.highlighted = YES:NO;
+//    todo.doneType == Done?  _cicleView.highlighted = YES:NO;
+//    todo.repeatMode != Never? _repeatTagView.highlighted = YES:NO;
     if (todo.images.count) {
         NSInteger imageCount = todo.images.count;
         NSInteger imageEdge = 10;
@@ -84,7 +80,7 @@ static NSInteger LineWidth = 2;
         }
     }else{
         [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.contentView).offset(-15);
+            make.bottom.equalTo(_backView).offset(-55);
         }];
     }
     
@@ -99,10 +95,10 @@ static NSInteger LineWidth = 2;
         [hud hide:YES afterDelay:2];
         return;
     }
-    _cicleView.highlighted = !_cicleView.highlighted;
+//    _cicleView.highlighted = !_cicleView.highlighted;
     DoneType doneType;
-    if (_cicleView.highlighted)   doneType = Done;
-    else doneType = NotDone;
+//    if (_cicleView.highlighted)   doneType = Done;
+//    else doneType = NotDone;
     
     dispatch_async(kBgQueue, ^{
         [DBManager changeTodoDoneTypeWithTableId:_todo.tableId doneType:doneType];
@@ -138,76 +134,137 @@ static NSInteger LineWidth = 2;
 
 - (void)initView
 {
+    UIView *shadowView = [[UIView alloc]init];
+    shadowView.backgroundColor = RGBA(232, 232, 232, 1.0);
+    shadowView.layer.shadowOffset = CGSizeMake(2, 2);
+    shadowView.layer.shadowRadius = 1;
+    shadowView.layer.shadowOpacity = 0.2;
+    shadowView.layer.cornerRadius = 5;
+    [self.contentView addSubview:shadowView];
+    [shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.contentView).offset(5);
+        make.bottom.equalTo(self.contentView).offset(-5);
+        make.left.equalTo(self.contentView).offset(10);
+        make.right.equalTo(self.contentView).offset(-10);
+    }];
+    
+    _backView = [[UIView alloc]init];
+    _backView.backgroundColor = [UIColor whiteColor];
+    _backView.layer.cornerRadius = 5;
+    _backView.layer.masksToBounds = YES;
+    [self.contentView addSubview:_backView];
+    [_backView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.left.right.equalTo(shadowView);
+    }];
+    
+    _sideColorView = [[UIView alloc]init];
+    [_backView addSubview:_sideColorView];
+    [_sideColorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.equalTo(_backView);
+        make.left.equalTo(_backView);
+        make.width.mas_equalTo(@4);
+    }];
+    
     _timeLabel = [[UILabel alloc]init];
     _timeLabel.textColor = [UIColor blackColor];
-    [self.contentView addSubview:_timeLabel];
+    _timeLabel.font = [UIFont systemFontOfSize:18];
+    [_backView addSubview:_timeLabel];
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(10);
-        make.top.equalTo(self.contentView).offset(15);
+        make.left.equalTo(_backView).offset(15);
+        make.centerY.equalTo(_backView);
         make.width.mas_equalTo(@50);
     }];
     
-    _topLine = [[UIView alloc]init];
-    _topLine.backgroundColor = [UIColor blackColor];
-    [self.contentView addSubview:_topLine];
-    [_topLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView);
-        make.left.equalTo(_timeLabel.mas_right).offset(16);
-        make.size.mas_equalTo(CGSizeMake(LineWidth, 22));
-    }];
-    
-    _bottomLine = [[UIView alloc]init];
-    _bottomLine.backgroundColor = [UIColor blackColor];
-    [self.contentView addSubview:_bottomLine];
-    [_bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(25);
-        make.centerX.equalTo(_topLine);
-        make.width.mas_equalTo(LineWidth);
-        make.bottom.equalTo(self.contentView);
-    }];
-    
-    _cicleView = [[UIImageView alloc]init];
-    _cicleView.userInteractionEnabled = YES;
-    _cicleView.highlightedImage = [UIImage imageNamed:@"check.png"];
-    _cicleView.layer.masksToBounds = YES;
-    _cicleView.layer.cornerRadius = CircleRadius;
-    _cicleView.backgroundColor = [UIColor whiteColor];
-    [self.contentView addSubview:_cicleView];
-    [_cicleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(_timeLabel);
-        make.centerX.equalTo(_topLine);
-        make.size.mas_equalTo(CGSizeMake(CircleRadius*2, CircleRadius*2));
-    }];
-    
-    UIView *circleButtonView = [[UIView alloc]init];
-    circleButtonView.backgroundColor =[UIColor clearColor];
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(circleViewClicked)];
-    [circleButtonView addGestureRecognizer:recognizer];
-    [self.contentView addSubview:circleButtonView];
-    [circleButtonView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(_cicleView);
-        make.size.mas_equalTo(CGSizeMake(CircleRadius*2 + 8, CircleRadius*2 + 8));
-    }];
-    
-    _repeatTagView = [[UIImageView alloc]init];
-    _repeatTagView.highlightedImage = [UIImage imageNamed:@"check.png"];
-    [self.contentView addSubview:_repeatTagView];
-    [_repeatTagView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(20, 20));
-        make.centerY.equalTo(_timeLabel);
-        make.right.mas_equalTo(self.contentView).offset(-15);
+    UIView *seperateLine = [[UIView alloc]init];
+    seperateLine.backgroundColor = [UIColor grayColor];
+    [_backView addSubview:seperateLine];
+    [seperateLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_backView).offset(8);
+        make.bottom.equalTo(_backView).offset(-8);
+        make.width.mas_equalTo(@1);
+        make.left.equalTo(_timeLabel.mas_right).offset(10);
     }];
     
     _textLabel = [[UILabel alloc]init];
     _textLabel.textColor = [UIColor blackColor];
-    _textLabel.textAlignment = NSTextAlignmentLeft;
+    _textLabel.font = [UIFont systemFontOfSize:18];
+    _textLabel.textAlignment = NSTextAlignmentCenter;
     _textLabel.numberOfLines = 0;
-    [self.contentView addSubview:_textLabel];
+    [_backView addSubview:_textLabel];
     [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(15);
-        make.bottom.equalTo(self.contentView).offset(-15);
-        make.left.equalTo(_topLine.mas_right).offset(18);
-        make.right.equalTo(_repeatTagView.mas_left).offset(-15);
+        make.top.equalTo(_backView).offset(15);
+        make.bottom.equalTo(_backView).offset(-55);
+        make.left.equalTo(seperateLine.mas_right).offset(10);
+        make.right.equalTo(_backView).offset(-10);
+    }];
+    
+    UIView *textLine = [[UIView alloc]init];
+    textLine.backgroundColor = RGBA(232, 232, 232, 1.0);
+    [_backView addSubview:textLine];
+    [textLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_textLabel.mas_bottom).offset(8);
+        make.width.equalTo(_textLabel);
+        make.left.equalTo(_textLabel);
+        make.height.mas_equalTo(@1);
+    }];
+    
+    UILabel *projectNameLabel = [[UILabel alloc]init];
+    projectNameLabel.text = @"所属项目";
+    projectNameLabel.textColor = [UIColor grayColor];
+    projectNameLabel.font = [UIFont systemFontOfSize:12];
+    [_backView addSubview:projectNameLabel];
+    [projectNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(_backView).offset(-20);
+        make.left.equalTo(seperateLine).offset(10);
+    }];
+    
+    _projectLabel = [[UILabel alloc]init];
+    _projectLabel.text = @"学生会";
+    _projectLabel.textAlignment = NSTextAlignmentCenter;
+    _projectLabel.font = [UIFont systemFontOfSize:12];
+    [_backView addSubview:_projectLabel];
+    [_projectLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(projectNameLabel.mas_bottom).offset(3);
+        make.centerX.equalTo(projectNameLabel);
+        make.width.mas_equalTo(@50);
+    }];
+    
+    UILabel *repeatNameLabel = [[UILabel alloc]init];
+    repeatNameLabel.text = @"重复模式";
+    repeatNameLabel.textColor = [UIColor grayColor];
+    repeatNameLabel.font = [UIFont systemFontOfSize:12];
+    [_backView addSubview:repeatNameLabel];
+    [repeatNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(_textLabel);
+        make.top.equalTo(projectNameLabel);
+    }];
+    
+    _repeatLabel = [[UILabel alloc]init];
+    _repeatLabel.text = @"每周";
+    _repeatLabel.font = [UIFont systemFontOfSize:12];
+    [_backView addSubview:_repeatLabel];
+    [_repeatLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(repeatNameLabel);
+        make.top.equalTo(_projectLabel);
+    }];
+    
+    UILabel *statusNameLabel = [[UILabel alloc]init];
+    statusNameLabel.text = @"完成状态";
+    statusNameLabel.textColor = [UIColor grayColor];
+    statusNameLabel.font = [UIFont systemFontOfSize:12];
+    [_backView addSubview:statusNameLabel];
+    [statusNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(projectNameLabel);
+        make.right.equalTo(_backView.mas_right).offset(-10);
+    }];
+    
+    _statusLabel = [[UILabel alloc]init];
+    _statusLabel.text = @"未开始";
+    _statusLabel.font = [UIFont systemFontOfSize:12];
+    [_backView addSubview:_statusLabel];
+    [_statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_projectLabel);
+        make.centerX.equalTo(statusNameLabel);
     }];
 }
 

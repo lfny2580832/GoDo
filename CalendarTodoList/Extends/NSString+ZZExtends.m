@@ -8,6 +8,8 @@
 
 #import "NSString+ZZExtends.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "FMTodoModel.h"
+
 
 @implementation NSString (ZZExtends)
 
@@ -112,6 +114,52 @@
     newTime = [dateFormatter stringFromDate:lastDate];
     
     return newTime;
+}
+
+#pragma mark 根据RepeatMode返回字符串
++ (NSString *)getRepeatStrWithMode:(RepeatMode)repeatMode
+{
+    NSString *str;
+    switch (repeatMode) {
+        case 0:
+            str = @"不重复";
+            break;
+        case 1:
+            str = @"每天";
+            break;
+        case 2:
+            str = @"每周";
+            break;
+        case 3:
+            str = @"每月";
+            break;
+        case 4:
+            str = @"工作日";
+            break;
+        default:
+            break;
+    }
+    return str;
+}
+
+#pragma mark 根据DoneType返回字符串
++ (NSString *)getDoneStrWithType:(DoneType)doneType startTime:(long long)startTime
+{
+    NSString *str;
+    switch (doneType) {
+        case NotDone:
+        {
+            long long now = [[NSDate date] timeIntervalSinceReferenceDate];
+            str = (now > startTime)? @"未完成":@"未开始";
+        }
+            break;
+        case Done:
+            str = @"已完成";
+            break;
+        default:
+            break;
+    }
+    return str;
 }
 
 @end

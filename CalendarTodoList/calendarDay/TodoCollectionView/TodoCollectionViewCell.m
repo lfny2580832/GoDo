@@ -81,7 +81,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = RGBA(232, 232, 232, 1.0);
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshTableViewAfterCreateOrDelete) name:@"ReloadTodoTableView" object:nil];
         [self initView];
     }
@@ -89,8 +89,7 @@
 }
 
 - (void)initView
-{
-    
+{    
     _tableView = [[UITableView alloc]init];
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.showsVerticalScrollIndicator = NO;
@@ -103,6 +102,7 @@
     [footerView addGestureRecognizer:footerTap];
     
     _tableView.tableFooterView = footerView;
+    _tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.scrollEnabled = NO;

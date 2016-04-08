@@ -96,6 +96,7 @@
     
     CGFloat timeLineHeight = self.view.frame.size.height - SCREEN_WIDTH/7;
     _todoCollectionView = [[TodoCollectionView alloc]initWithFrame:CGRectMake(0, SCREEN_WIDTH/7, SCREEN_WIDTH, timeLineHeight) cellHeight:timeLineHeight];
+    _todoCollectionView.backgroundColor = RGBA(222, 222, 222, 1.0);
     _todoCollectionView.mdelegate = self;
     [self.view addSubview:_todoCollectionView];
 

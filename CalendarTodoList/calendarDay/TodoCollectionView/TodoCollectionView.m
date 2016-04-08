@@ -75,6 +75,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [flowLayout setMinimumLineSpacing:0];
     self = [super initWithFrame:frame collectionViewLayout:flowLayout];
     if (self) {
+        self.backgroundColor = RGBA(222, 222, 222, 1.0);
         [self initDateParameters];
         [self initView];
     }

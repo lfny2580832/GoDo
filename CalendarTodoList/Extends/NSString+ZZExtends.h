@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FMTodoModel.h"
 
 @interface NSString (ZZExtends)
 
@@ -27,5 +28,10 @@
 
 //pragma mark 判断是否包含非法字符
 + (BOOL)checkContainsEmoji:(NSString *)string;
+
++ (NSString *)getRepeatStrWithMode:(RepeatMode)repeatMode;
+
+#pragma mark 根据DoneType返回字符串
++ (NSString *)getDoneStrWithType:(DoneType)doneType startTime:(long long)startTime;
 
 @end

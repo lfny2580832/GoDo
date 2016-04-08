@@ -210,15 +210,7 @@ static CGFloat datePickerCellHeight = 240.f;
     if (todo.repeatMode != Never) {
         _canChange = NO;
     }
-    if (todo.repeatMode == EveryDay){
-        _repeatCell.modeLabel.text = @"每天";
-    }else if (todo.repeatMode == EveryMonth){
-        _repeatCell.modeLabel.text = @"每月";
-    }else if (todo.repeatMode == EveryWeek){
-        _repeatCell.modeLabel.text = @"每周";
-    }else if (todo.repeatMode == EveryWorkDay){
-        _repeatCell.modeLabel.text = @"工作日";
-    }
+    _repeatCell.modeLabel.text = [NSString getRepeatStrWithMode:todo.repeatMode];
     
     _remindMode = todo.remindMode;
     if (todo.remindMode == Never)
