@@ -422,9 +422,9 @@
         NSMutableArray *tableIDs = [NSMutableArray arrayWithArray:dayList.tableIDs];
         if ([tableIDs containsObject:idNumber]) {
             [tableIDs removeObject:idNumber];
+            dayList.tableIDs = [NSMutableArray arrayWithArray:tableIDs];
+            [[FMDayList getUsingLKDBHelper] updateToDB:dayList where:nil];
         }
-        dayList.tableIDs = [NSMutableArray arrayWithArray:tableIDs];
-        [[FMDayList getUsingLKDBHelper] updateToDB:dayList where:nil];
     }
     
     [self cancelLocalNotificationWithTableID:tableId];
