@@ -53,20 +53,13 @@
             [UIView animateWithDuration:0.2 animations:^{
                 _tableView.alpha = 1;
             } completion:^(BOOL finished) {
-                [_tableView setContentSize:CGSizeMake(_tableView.contentSize.width, _tableView.contentSize.height + 100)];
+                [_tableView setContentSize:CGSizeMake(_tableView.contentSize.width, _tableView.contentSize.height + 200)];
                 if (_tableView.contentSize.height > _tableView.frame.size.height - 60) {
                     _tableView.scrollEnabled = YES;
                 }
             }];
         });
     });
-
-}
-
-#pragma mark 添加项目
-- (void)addTodo
-{
-    [self.delegate didSelectedTodoTableCellWithTodo:nil];
 
 }
 
@@ -97,12 +90,9 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.estimatedRowHeight = 50.0;
     _tableView.rowHeight = UITableViewAutomaticDimension;
-    AddTodoFooterView *footerView = [[AddTodoFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-    UITapGestureRecognizer *footerTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addTodo)];
-    [footerView addGestureRecognizer:footerTap];
-    
-    _tableView.tableFooterView = footerView;
-    _tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
+
+    _tableView.scrollEnabled = NO;
+    _tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 8)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.scrollEnabled = NO;

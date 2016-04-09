@@ -23,6 +23,7 @@
     if ([keyPath isEqualToString:@"isSelected"] && object == self) {
         if ([[change objectForKey:@"new"]boolValue] == 1) {
             _circleView.hidden = NO;
+//            [[NSNotificationCenter defaultCenter]postNotificationName:@"ChosenDateNow" object:self.date];
         }else if ([[change objectForKey:@"new"]boolValue] == 0){
             _circleView.hidden = YES;
 

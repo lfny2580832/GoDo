@@ -29,6 +29,15 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+
+#pragma mark 添加新项目
+- (void)addTodo
+{
+    TodoDetailVC *vc = [[TodoDetailVC alloc]initWithDate:_chosenDate];
+    vc.todo = nil;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark 根据当前日期设置
 - (void)setSelectedDayWithChosenDate:(NSDate *)chosenDate
 {
@@ -83,6 +92,7 @@
         [self setCustomTitle:@"时间轴"];
         [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
         [self initView];
+//        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(<#selector#>) name:@"ChosenDateNow" object:nil];
     }
     return self;
 }
@@ -99,6 +109,17 @@
     _todoCollectionView.backgroundColor = RGBA(222, 222, 222, 1.0);
     _todoCollectionView.mdelegate = self;
     [self.view addSubview:_todoCollectionView];
+
+    UIButton *addTodoBtn = [[UIButton alloc]init];
+    addTodoBtn.backgroundColor = KNaviColor;
+    [addTodoBtn addTarget:self action:@selector(addTodo) forControlEvents:UIControlEventTouchUpInside];
+    addTodoBtn.layer.cornerRadius = 25;
+    [self.view addSubview:addTodoBtn];
+    [addTodoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view).offset(-20);
+        make.centerX.equalTo(self.view);
+        make.size.mas_equalTo(CGSizeMake(50, 50));
+    }];
 
 }
 

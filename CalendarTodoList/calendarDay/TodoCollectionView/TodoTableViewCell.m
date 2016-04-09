@@ -119,7 +119,7 @@
 {
     UIButton *btn = sender;
     PopoverView *popoverView = [[PopoverView alloc]init];
-    popoverView.menuTitles   = @[@"未完成",@"已完成",@"cao",@"cao",@"cao",@"cao"];
+    popoverView.menuTitles   = @[@"未完成",@"已完成"];
 
     [popoverView showFromView:btn selected:^(NSInteger index) {
         _statusLabel.text = popoverView.menuTitles[index];
@@ -128,7 +128,7 @@
 
 - (void)layoutSubviews
 {
-    _shadowView.layer.shadowPath = [UIBezierPath bezierPathWithRect:_shadowView.bounds].CGPath;
+    _shadowView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:_shadowView.bounds cornerRadius:5].CGPath;
     _shadowView.layer.shadowOffset = CGSizeMake(2, 2);
     _shadowView.layer.shadowRadius = 1;
     _shadowView.layer.shadowOpacity = 0.2;
@@ -163,7 +163,7 @@
     [self.contentView addSubview:_shadowView];
     [_shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(5);
-        make.bottom.equalTo(self.contentView).offset(-5);
+        make.bottom.equalTo(self.contentView).offset(-6);
         make.left.equalTo(self.contentView).offset(10);
         make.right.equalTo(self.contentView).offset(-10);
     }];
@@ -284,7 +284,7 @@
     [_backView addSubview:_statusLabel];
     [_statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_projectLabel);
-        make.centerX.equalTo(statusNameLabel);
+        make.centerX.equalTo(statusNameLabel).offset(-2);
     }];
     
     UIButton *switchDoneButton = [[UIButton alloc]init];

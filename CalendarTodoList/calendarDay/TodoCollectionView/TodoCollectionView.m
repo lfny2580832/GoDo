@@ -17,6 +17,9 @@
     NSDate *_firstDayInLastMonth;
     NSDateFormatter *_YMDformatter;
     
+    
+    NSDate *_chosenDate;
+    
 }
 
 static NSString * const reuseIdentifier = @"Cell";

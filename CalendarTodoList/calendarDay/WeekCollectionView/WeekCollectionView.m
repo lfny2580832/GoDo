@@ -35,7 +35,6 @@ static NSString * const reuseIdentifier = @"Cell";
     
     WeekCollectionViewCell *selectedCell = (WeekCollectionViewCell *)[self cellForItemAtIndexPath:_selectedIndexPath];
     selectedCell.isSelected = NO;
-    
     _selectedIndexPath = indexPath;
 }
 
