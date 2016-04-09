@@ -114,10 +114,17 @@
     addTodoBtn.backgroundColor = KNaviColor;
     [addTodoBtn addTarget:self action:@selector(addTodo) forControlEvents:UIControlEventTouchUpInside];
     addTodoBtn.layer.cornerRadius = 25;
+    [addTodoBtn setTitle:@"+" forState:UIControlStateNormal];
+    addTodoBtn.titleLabel.font = [UIFont systemFontOfSize:30];
+    addTodoBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    addTodoBtn.titleLabel.textColor = [UIColor whiteColor];
+    addTodoBtn.layer.shadowOffset = CGSizeMake(5, 5);
+    addTodoBtn.layer.shadowOpacity = 0.3;
+    addTodoBtn.layer.shadowRadius = 3;
     [self.view addSubview:addTodoBtn];
     [addTodoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view).offset(-20);
-        make.centerX.equalTo(self.view);
+        make.right.equalTo(self.view).offset(-20);
         make.size.mas_equalTo(CGSizeMake(50, 50));
     }];
 

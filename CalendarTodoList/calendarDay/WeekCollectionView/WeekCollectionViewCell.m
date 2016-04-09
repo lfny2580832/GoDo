@@ -86,7 +86,7 @@
 - (void)initView
 {
     _circleView = [[UIImageView alloc]init];
-    _circleView.backgroundColor = RGBA(255, 204, 153, 0.5);
+    _circleView.backgroundColor = RGBA(188, 188 , 188, 1.0);
     _circleView.layer.masksToBounds = YES;
     _circleView.hidden = YES;
     _circleView.layer.cornerRadius = self.frame.size.height/4+1;
