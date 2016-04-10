@@ -31,5 +31,11 @@
     return YTKRequestMethodDelete;
 }
 
+- (NSDictionary *)requestHeaderFieldValueDictionary
+{
+    return @{
+             @"Authorization": [UserDefaultManager token],
+             };
+}
 
 @end

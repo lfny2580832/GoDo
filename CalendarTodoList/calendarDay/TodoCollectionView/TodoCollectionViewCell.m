@@ -9,7 +9,6 @@
 #import "TodoCollectionViewCell.h"
 
 #import "TodoTableViewCell.h"
-#import "AddTodoFooterView.h"
 
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"

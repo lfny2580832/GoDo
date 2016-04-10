@@ -38,7 +38,10 @@
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         LoginTokenModel *loginTokenModel = [[LoginTokenModel alloc]initWithString:request.responseString error:nil];
         [hud hide];
+        
         NSString *token = loginTokenModel.token;
+        NSLog(@"token:%@",token);
+
         [UserDefaultManager setToken:token];
         [UserDefaultManager setUserName:mail];
         [UserDefaultManager setUserPassword:password];

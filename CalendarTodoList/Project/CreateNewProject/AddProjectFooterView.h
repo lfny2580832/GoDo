@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddTodoFooterView : UIView
+@interface AddProjectFooterView : UIView
 
 @end

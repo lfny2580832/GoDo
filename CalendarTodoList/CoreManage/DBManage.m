@@ -426,7 +426,6 @@
             [[FMDayList getUsingLKDBHelper] updateToDB:dayList where:nil];
         }
     }
-    
     [self cancelLocalNotificationWithTableID:tableId];
 }
 

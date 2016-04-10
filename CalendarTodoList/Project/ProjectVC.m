@@ -8,15 +8,65 @@
 
 #import "ProjectVC.h"
 #import "LoginVC.h"
-#import "RegistAPI.h"
+#import "SearchUserAPI.h"
+#import "SearchUserModel.h"
+#import "GetProjectAPI.h"
+#import "GetProjectModel.h"
+#import "AddNewProjectVC.h"
+#import "AddProjectFooterView.h"
 
-@interface ProjectVC ()
+#import "ProjectCell.h"
+
+@interface ProjectVC ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @end
 
 @implementation ProjectVC
 {
     LoginVC *_loginVC;
+    UITableView *_tableView;
+    NSArray *_projects;
+}
+
+#pragma mark 获取用户项目
+- (void)getUserProjects
+{
+    GetProjectAPI *api = [[GetProjectAPI alloc]initWithType:nil];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        NSLog(@"---%@",request.responseString);
+        GetProjectModel *model = [[GetProjectModel alloc]initWithString:request.responseString error:nil];
+        _projects = model.projects;
+        [_tableView reloadData];
+        
+    } failure:^(__kindof YTKBaseRequest *request) {
+        
+        [NYProgressHUD showToastText:@"获取项目失败"];
+
+    }];
+}
+
+#pragma mark 创建新项目
+- (void)creatNewProject
+{
+    AddNewProjectVC *vc = [[AddNewProjectVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark 点击搜索
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSString *searchContent = @"632176758@qq.com";
+    NYProgressHUD *hud = [[NYProgressHUD alloc]init];
+    [hud showAnimationWithText:@"搜索中"];
+    SearchUserAPI *api = [[SearchUserAPI alloc]initWithMail:searchContent];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        [hud hide];
+        SearchUserModel *model = [[SearchUserModel alloc]initWithString:request.responseString error:nil];
+        NSLog(@"---%@",model.name);
+    } failure:^(__kindof YTKBaseRequest *request) {
+        [hud hide];
+        [NYProgressHUD showToastText:@"查找失败"];
+    }];
 }
 
 #pragma mark 登录界面
@@ -26,21 +76,94 @@
     [self presentViewController:_loginVC animated:YES completion:nil];
 }
 
+#pragma mark TableViewDelegate DataSource
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *reuseIdentifier = @"projectCell";
+    
+    ProjectCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if(!cell){
+        cell = [[ProjectCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    }
+    [cell loadDataWithProjectModel:_projects[indexPath.row]];
+    return cell;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _projects.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44.f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+#pragma mark 初始化
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setCustomTitle:@"我的项目"];
     [self initView];
+    [self getUserProjects];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (![UserDefaultManager token]) {
+        [self login];
+    }
 }
 
 - (void)initView
 {
-    UIButton *button = [[UIButton alloc]init];
-    button.backgroundColor = [UIColor blueColor];
-    [button addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.view);
-        make.size.mas_equalTo(CGSizeMake(100, 40));
+//    UISearchBar *searchBar = [[UISearchBar alloc]init];
+//    searchBar.placeholder = @"请输入所查找用户的邮箱";
+//    searchBar.showsCancelButton = NO;
+//    searchBar.delegate = self;
+//    [self.view addSubview:searchBar];
+//    [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.view);
+//        make.left.right.equalTo(self.view);
+//    }];
+//    
+//    UIButton *button = [[UIButton alloc]init];
+//    button.backgroundColor = [UIColor blueColor];
+//    [button addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:button];
+//    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.center.equalTo(self.view);
+//        make.size.mas_equalTo(CGSizeMake(100, 40));
+//    }];
+    _tableView = [[UITableView alloc]init];
+    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.tableFooterView = [UIView new];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableView.estimatedRowHeight = 50.0;
+    _tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    _tableView.scrollEnabled = NO;
+    _tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 8)];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.scrollEnabled = NO;
+    [self.view addSubview:_tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.left.right.equalTo(self.view);
     }];
+    
+    AddProjectFooterView *footerView = [[AddProjectFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44.0f)];
+    _tableView.tableFooterView = footerView;
+    UITapGestureRecognizer *addProjectGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(creatNewProject)];
+    [footerView addGestureRecognizer:addProjectGes];
 }
 
 @end

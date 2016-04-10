@@ -6,10 +6,9 @@
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "UserModel.h"
 
-@interface MissionModel : NSObject
+@interface MissionModel : BaseModel
 
 @property (nonatomic, copy) NSString *id;
 

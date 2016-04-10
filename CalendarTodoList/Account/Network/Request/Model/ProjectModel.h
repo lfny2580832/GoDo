@@ -5,11 +5,10 @@
 //  Created by 牛严 on 16/4/6.
 //  Copyright © 2016年 牛严. All rights reserved.
 //
-
-#import <Foundation/Foundation.h>
+#import "BaseModel.h"
 #import "UserModel.h"
 
-@interface ProjectModel : NSObject
+@interface ProjectModel : BaseModel
 
 @property (nonatomic, copy) NSString *id;
 
@@ -17,7 +16,7 @@
 ///创立时间
 @property (nonatomic, assign) long long createTime;
 ///项目描述
-@property (nonatomic, copy) NSString *desc;
+@property (nonatomic, copy) NSString<Optional> *desc;
 ///是否私有
 @property (nonatomic, assign) BOOL private;
 ///创建者

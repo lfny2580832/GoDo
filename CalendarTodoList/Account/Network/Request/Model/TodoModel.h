@@ -6,9 +6,9 @@
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BaseModel.h"
 
-@interface TodoModel : NSObject
+@interface TodoModel : BaseModel
 
 @property (nonatomic, copy) NSString *id;
 

@@ -7,6 +7,7 @@
 //
 
 #import <YTKNetwork/YTKRequest.h>
+#import "BaseModel.h"
 
 @interface LogInAPI : YTKRequest
 

@@ -7,6 +7,7 @@
 //
 
 #import <YTKNetwork/YTKRequest.h>
+#import "ProjectModel.h"
 
 @interface GetProjectAPI : YTKRequest
 

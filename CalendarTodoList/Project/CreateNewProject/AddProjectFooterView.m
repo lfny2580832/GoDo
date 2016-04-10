@@ -6,9 +6,9 @@
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import "AddTodoFooterView.h"
+#import "AddProjectFooterView.h"
 
-@implementation AddTodoFooterView
+@implementation AddProjectFooterView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

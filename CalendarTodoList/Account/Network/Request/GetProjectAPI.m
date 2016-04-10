@@ -7,6 +7,7 @@
 //
 
 #import "GetProjectAPI.h"
+#import "UserDefaultManage.h"
 
 @implementation GetProjectAPI
 {
@@ -32,6 +33,13 @@
 
 - (YTKRequestMethod)requestMethod {
     return YTKRequestMethodGet;
+}
+
+- (NSDictionary *)requestHeaderFieldValueDictionary
+{
+    return @{
+             @"Authorization": [UserDefaultManager token],
+             };
 }
 
 @end

@@ -2,13 +2,14 @@
 //  LoginTokenModel.h
 //  GoDo
 //
-//  Created by 牛严 on 16/4/2.
+//  Created by 牛严 on 16/4/11.
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import <JSONModel/JSONModel.h>
+#import "BaseModel.h"
 
-@interface LoginTokenModel : JSONModel
+
+@interface LoginTokenModel : BaseModel
 
 @property (nonatomic, copy) NSString *token;
 
