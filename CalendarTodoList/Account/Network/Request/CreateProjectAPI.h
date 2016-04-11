@@ -13,9 +13,3 @@
 - (id)initWithName:(NSString *)name private:(BOOL)pri;
 
 @end
-
-@interface CreateProjectModel :BaseModel
-
-@property (nonatomic, copy) NSString *id;
-
-@end

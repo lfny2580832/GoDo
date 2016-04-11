@@ -20,7 +20,7 @@
     self = [super init];
     if (self) {
         _name = name;
-        _desc = @"";
+        _desc = @"森森森";
         _private = pri;
     }
     return self;
@@ -43,6 +43,11 @@
 }
 
 - (id)requestArgument {
+    NSLog(@"---%@",@{
+                     @"name": _name,
+                     @"desc": _desc,
+                     @"private":@(_private),
+                     });
     return @{
              @"name": _name,
              @"desc": _desc,

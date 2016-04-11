@@ -17,6 +17,7 @@
 
 #import "ProjectCell.h"
 
+
 @interface ProjectVC ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -34,7 +35,7 @@
     GetProjectAPI *api = [[GetProjectAPI alloc]initWithType:nil];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         NSLog(@"---%@",request.responseString);
-        GetProjectModel *model = [[GetProjectModel alloc]initWithString:request.responseString error:nil];
+        GetProjectModel *model = [GetProjectModel yy_modelWithJSON:request.responseString];
         _projects = model.projects;
         [_tableView reloadData];
         
@@ -61,7 +62,7 @@
     SearchUserAPI *api = [[SearchUserAPI alloc]initWithMail:searchContent];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         [hud hide];
-        SearchUserModel *model = [[SearchUserModel alloc]initWithString:request.responseString error:nil];
+        SearchUserModel *model = [SearchUserModel yy_modelWithJSON:request.responseString];
         NSLog(@"---%@",model.name);
     } failure:^(__kindof YTKBaseRequest *request) {
         [hud hide];
@@ -110,7 +111,7 @@
     [super viewDidLoad];
     [self setCustomTitle:@"我的项目"];
     [self initView];
-    [self getUserProjects];
+//    [self getUserProjects];
 
 }
 
@@ -119,6 +120,8 @@
     [super viewWillAppear:animated];
     if (![UserDefaultManager token]) {
         [self login];
+    }else{
+        [self getUserProjects];
     }
 }
 

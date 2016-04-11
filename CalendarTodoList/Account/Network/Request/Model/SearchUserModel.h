@@ -12,6 +12,6 @@
 
 @property (nonatomic, copy) NSString *name;
 
-@property (nonatomic, copy) NSString<Optional> *avatar; //头像url
+@property (nonatomic, copy) NSString *avatar; //头像url
 
 @end

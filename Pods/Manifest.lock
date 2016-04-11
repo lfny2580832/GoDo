@@ -26,7 +26,6 @@ PODS:
     - FMDB/standard (= 2.6)
   - FMDB/standard (2.6)
   - IQKeyboardManager (4.0.1)
-  - JSONModel (1.2.0)
   - LKDBHelper (HEAD based on 2.1.9):
     - FMDB
   - Masonry (0.6.4)
@@ -35,26 +34,27 @@ PODS:
   - YTKNetwork (0.6.0):
     - AFDownloadRequestOperation (~> 2.0)
     - AFNetworking (~> 2.0)
+  - YYModel (1.0.2)
 
 DEPENDENCIES:
   - IQKeyboardManager
-  - JSONModel
   - LKDBHelper (HEAD)
   - Masonry
   - MBProgressHUD (~> 0.9.2)
   - TZImagePickerController (~> 1.0.9)
   - YTKNetwork
+  - YYModel
 
 SPEC CHECKSUMS:
   AFDownloadRequestOperation: 748a1643423e1ddb23f2178f778087d4f0ae8ac7
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
   IQKeyboardManager: 0c11a0cb402a621f7aa1aff506f60ab6d2388969
-  JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   LKDBHelper: 78e6c0de99f45375892223a334535d745a123dbd
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   TZImagePickerController: 56080f944f0ca5a719b91e4540927e1736cff18f
   YTKNetwork: 988660d5fab310a55895239751ecfa74c3224a77
+  YYModel: 7a467eff45ae3641c33efb136c262d33b6f48c1a
 
 COCOAPODS: 0.39.0

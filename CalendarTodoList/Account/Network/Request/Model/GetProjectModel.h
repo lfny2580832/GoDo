@@ -7,10 +7,9 @@
 //
 
 #import "BaseModel.h"
-#import "ProjectModel.h"
 
 @interface GetProjectModel : BaseModel
 
-@property (nonatomic, strong) NSArray<ProjectModel *> *projects;
+@property (nonatomic, strong) NSArray *projects;
 
 @end

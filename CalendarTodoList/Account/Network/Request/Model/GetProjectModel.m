@@ -7,7 +7,13 @@
 //
 
 #import "GetProjectModel.h"
+#import "ProjectModel.h"
 
 @implementation GetProjectModel
 
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{
+             @"projects" : [ProjectModel class],
+             };
+}
 @end

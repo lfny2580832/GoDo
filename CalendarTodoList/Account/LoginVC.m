@@ -36,7 +36,7 @@
     NYProgressHUD *hud = [NYProgressHUD new];
     [hud showAnimationWithText:@"登录中"];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
-        LoginTokenModel *loginTokenModel = [[LoginTokenModel alloc]initWithString:request.responseString error:nil];
+        LoginTokenModel *loginTokenModel = [LoginTokenModel yy_modelWithJSON:request.responseString];
         [hud hide];
         
         NSString *token = loginTokenModel.token;
@@ -66,7 +66,7 @@
     [hud showAnimationWithText:@"注册中"];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         [hud hide];
-        LoginTokenModel *loginTokenModel = [[LoginTokenModel alloc]initWithString:request.responseString error:nil];
+        LoginTokenModel *loginTokenModel = [LoginTokenModel yy_modelWithJSON:request.responseString];
         [hud hide];
         NSString *token = loginTokenModel.token;
         [UserDefaultManager setToken:token];

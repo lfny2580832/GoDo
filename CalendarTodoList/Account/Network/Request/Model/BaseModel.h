@@ -6,12 +6,12 @@
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import <JSONModel/JSONModel.h>
+#import <YYModel.h>
 
-@interface BaseModel : JSONModel
+@interface BaseModel : NSObject
 
 @property (nonatomic, assign) NSInteger code;
 
-@property (nonatomic, copy) NSString<Optional> *msg;
+@property (nonatomic, copy) NSString *msg;
 
 @end

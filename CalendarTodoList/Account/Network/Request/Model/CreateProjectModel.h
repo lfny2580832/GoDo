@@ -1,5 +1,5 @@
 //
-//  LoginTokenModel.h
+//  CreateProjectModel.h
 //  GoDo
 //
 //  Created by 牛严 on 16/4/11.
@@ -8,8 +8,8 @@
 
 #import "BaseModel.h"
 
-@interface LoginTokenModel : BaseModel
+@interface CreateProjectModel : BaseModel
 
-@property (nonatomic, copy) NSString *token;
+@property (nonatomic, copy) NSString *id;
 
 @end
