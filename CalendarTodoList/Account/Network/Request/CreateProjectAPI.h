@@ -7,7 +7,7 @@
 //
 
 #import <YTKNetwork/YTKRequest.h>
-#import "BaseModel.h"
+
 @interface CreateProjectAPI : YTKRequest
 
 - (id)initWithName:(NSString *)name private:(BOOL)pri;

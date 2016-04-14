@@ -1,33 +1,30 @@
 //
-//  CreateProjectAPI.m
+//  PostDeviceToken.m
 //  GoDo
 //
-//  Created by 牛严 on 16/4/11.
+//  Created by 牛严 on 16/4/15.
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import "CreateProjectAPI.h"
+#import "PostDeviceTokenAPI.h"
 
-@implementation CreateProjectAPI
+@implementation PostDeviceTokenAPI
 {
-    NSString *_name;
-    NSString *_desc;
-    BOOL _private;
+    NSString *_deviceToken;
+
 }
 
-- (id)initWithName:(NSString *)name private:(BOOL)pri
+- (id)initWithDeviceToken:(NSString *)deviceToken
 {
     self = [super init];
     if (self) {
-        _name = name;
-        _desc = @"森森森";
-        _private = pri;
+        _deviceToken = deviceToken;
     }
     return self;
 }
 
 - (NSString *)requestUrl {
-    return @"/projects";
+    return @"/deviceTokens";
 }
 
 - (YTKRequestMethod)requestMethod {
@@ -44,10 +41,7 @@
 
 - (id)requestArgument {
     return @{
-             @"name": _name,
-             @"desc": _desc,
-             @"private":@(_private),
+             @"deviceToken": _deviceToken,
              };
 }
-
 @end

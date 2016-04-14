@@ -92,7 +92,6 @@
         [self setCustomTitle:@"时间轴"];
         [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
         [self initView];
-//        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(<#selector#>) name:@"ChosenDateNow" object:nil];
     }
     return self;
 }

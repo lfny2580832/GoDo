@@ -23,6 +23,17 @@
     return sharedInstance;
 }
 
+#pragma mark 存取deviceToken
+- (void)setDeviceToken:(NSString *)deviceToken
+{
+    [UserDefault setObject:deviceToken forKey:@"deviceToken"];
+}
+
+- (NSString *)deviceToken
+{
+    return  [UserDefault objectForKey:@"deviceToken"];
+}
+
 #pragma mark 存取 todoMaxId
 - (void)setTodoMaxId:(NSInteger)todoMaxId
 {
@@ -44,6 +55,17 @@
 - (NSString *)token
 {
     return  [UserDefault objectForKey:@"token"];
+}
+
+#pragma mark 存取Id
+- (void)setId:(NSString *)id
+{
+    [UserDefault setObject:id forKey:@"id"];
+}
+
+- (NSString *)id
+{
+    return [UserDefault objectForKey:@"id"];
 }
 
 #pragma mark 存取用户名

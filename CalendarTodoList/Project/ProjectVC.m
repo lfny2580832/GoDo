@@ -16,6 +16,7 @@
 #import "AddProjectFooterView.h"
 
 #import "ProjectCell.h"
+#import "ProjectDetailVC.h"
 
 
 @interface ProjectVC ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -34,7 +35,6 @@
 {
     GetProjectAPI *api = [[GetProjectAPI alloc]initWithType:nil];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
-        NSLog(@"---%@",request.responseString);
         GetProjectModel *model = [GetProjectModel yy_modelWithJSON:request.responseString];
         _projects = model.projects;
         [_tableView reloadData];
@@ -98,19 +98,34 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44.f;
+    return 60.f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    ProjectModel *project = _projects[indexPath.row];
+    ProjectDetailVC *vc = [[ProjectDetailVC alloc]initWithProject:project];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark 初始化
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self setCustomTitle:@"我的项目"];
+        [self initView];
+        if ([UserDefaultManager token]) {
+            [self getUserProjects];
+        }
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setCustomTitle:@"我的项目"];
-    [self initView];
+
 //    [self getUserProjects];
 
 }
@@ -118,6 +133,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     if (![UserDefaultManager token]) {
         [self login];
     }else{
@@ -149,7 +165,6 @@
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.tableFooterView = [UIView new];
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.estimatedRowHeight = 50.0;
     _tableView.rowHeight = UITableViewAutomaticDimension;
     

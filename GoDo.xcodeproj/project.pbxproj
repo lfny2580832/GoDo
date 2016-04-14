@@ -40,6 +40,8 @@
 		4A3EE6D71CB5207100AFC8A4 /* TodoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3EE6D61CB5207100AFC8A4 /* TodoModel.m */; };
 		4A3FB5B01C7B78CD00C0E6B7 /* AlbumAddBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A3FB5AF1C7B78CD00C0E6B7 /* AlbumAddBtn@2x.png */; };
 		4A43AC351C3631A900347E3C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A43AC341C3631A900347E3C /* libc++.tbd */; };
+		4A4B4ECF1CBEE686009E2114 /* GetMissionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4B4ECE1CBEE686009E2114 /* GetMissionAPI.m */; };
+		4A4B4ED21CBEE686009E2114 /* CreateMissionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4B4ED11CBEE686009E2114 /* CreateMissionAPI.m */; };
 		4A4F9CBD1C3F3E280000F24C /* RDVCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CB61C3F3E280000F24C /* RDVCalendarDayCell.m */; };
 		4A4F9CBE1C3F3E280000F24C /* RDVCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CB81C3F3E280000F24C /* RDVCalendarView.m */; };
 		4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CC31C3F3ECE0000F24C /* CalendarTodoDetailVC.m */; };
@@ -58,7 +60,12 @@
 		4AA393541C58AC6D00DA3C16 /* DBManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA393531C58AC6D00DA3C16 /* DBManage.m */; };
 		4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F051C62E396006EB837 /* ChooseProjectVC.m */; };
 		4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB09F081C62E86C006EB837 /* ChooseProjectTableCell.m */; };
+		4AB76F111CBD01800054AA76 /* ProjectDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB76F101CBD01800054AA76 /* ProjectDetailView.m */; };
 		4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB608F1C7CE3C60040079C /* ZoomImageView.m */; };
+		4AC212381CBC542A00D0DD12 /* ProjectDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC212371CBC542A00D0DD12 /* ProjectDetailVC.m */; };
+		4ACD49981CC042C0002E5B48 /* PostDeviceTokenAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD49971CC042C0002E5B48 /* PostDeviceTokenAPI.m */; };
+		4ACD499B1CC042C0002E5B48 /* GetMissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD499A1CC042C0002E5B48 /* GetMissionModel.m */; };
+		4ACDD6291CC0089D0027288F /* CreateMissionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACDD6281CC0089D0027288F /* CreateMissionVC.m */; };
 		4AD3DD1B1CAF409200D5FDC4 /* LogInAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD181CAF409200D5FDC4 /* LogInAPI.m */; };
 		4AD3DD1C1CAF409200D5FDC4 /* RegistAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD1A1CAF409200D5FDC4 /* RegistAPI.m */; };
 		4AD3DD2C1CAFF1AB00D5FDC4 /* NYProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD2B1CAFF1AB00D5FDC4 /* NYProgressHUD.m */; };
@@ -77,6 +84,7 @@
 		4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1DA41C3E496D001ECBF4 /* UIViewController+ZZExtends.m */; };
 		4ADA1DAD1C3E4992001ECBF4 /* UIImage+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1DAA1C3E4992001ECBF4 /* UIImage+ZZExtends.m */; };
 		4ADA1DAE1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1DAC1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m */; };
+		4AE154EE1CBD896A00B0C8BC /* MissionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE154ED1CBD896A00B0C8BC /* MissionCell.m */; };
 		4AE23F5D1CAA9A4C00ABECAF /* WeekDayLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE23F5C1CAA9A4C00ABECAF /* WeekDayLabelView.m */; };
 		4AEAE9A21C84A804009F814E /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AEAE9A11C84A804009F814E /* check.png */; };
 		4AEF61481C94EDAC00236F6F /* FMDayList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEF61471C94EDAC00236F6F /* FMDayList.m */; };
@@ -161,6 +169,10 @@
 		4A3EE6D61CB5207100AFC8A4 /* TodoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoModel.m; sourceTree = "<group>"; };
 		4A3FB5AF1C7B78CD00C0E6B7 /* AlbumAddBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumAddBtn@2x.png"; sourceTree = "<group>"; };
 		4A43AC341C3631A900347E3C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		4A4B4ECD1CBEE686009E2114 /* GetMissionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetMissionAPI.h; sourceTree = "<group>"; };
+		4A4B4ECE1CBEE686009E2114 /* GetMissionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetMissionAPI.m; sourceTree = "<group>"; };
+		4A4B4ED01CBEE686009E2114 /* CreateMissionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMissionAPI.h; sourceTree = "<group>"; };
+		4A4B4ED11CBEE686009E2114 /* CreateMissionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMissionAPI.m; sourceTree = "<group>"; };
 		4A4F9CB51C3F3E280000F24C /* RDVCalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarDayCell.h; sourceTree = "<group>"; };
 		4A4F9CB61C3F3E280000F24C /* RDVCalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVCalendarDayCell.m; sourceTree = "<group>"; };
 		4A4F9CB71C3F3E280000F24C /* RDVCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarView.h; sourceTree = "<group>"; };
@@ -198,8 +210,18 @@
 		4AB09F051C62E396006EB837 /* ChooseProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseProjectVC.m; sourceTree = "<group>"; };
 		4AB09F071C62E86C006EB837 /* ChooseProjectTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseProjectTableCell.h; sourceTree = "<group>"; };
 		4AB09F081C62E86C006EB837 /* ChooseProjectTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseProjectTableCell.m; sourceTree = "<group>"; };
+		4AB76F0F1CBD01800054AA76 /* ProjectDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailView.h; sourceTree = "<group>"; };
+		4AB76F101CBD01800054AA76 /* ProjectDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailView.m; sourceTree = "<group>"; };
 		4ABB608E1C7CE3C60040079C /* ZoomImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomImageView.h; sourceTree = "<group>"; };
 		4ABB608F1C7CE3C60040079C /* ZoomImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomImageView.m; sourceTree = "<group>"; };
+		4AC212361CBC542A00D0DD12 /* ProjectDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailVC.h; sourceTree = "<group>"; };
+		4AC212371CBC542A00D0DD12 /* ProjectDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailVC.m; sourceTree = "<group>"; };
+		4ACD49961CC042C0002E5B48 /* PostDeviceTokenAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDeviceTokenAPI.h; sourceTree = "<group>"; };
+		4ACD49971CC042C0002E5B48 /* PostDeviceTokenAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDeviceTokenAPI.m; sourceTree = "<group>"; };
+		4ACD49991CC042C0002E5B48 /* GetMissionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetMissionModel.h; sourceTree = "<group>"; };
+		4ACD499A1CC042C0002E5B48 /* GetMissionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetMissionModel.m; sourceTree = "<group>"; };
+		4ACDD6271CC0089D0027288F /* CreateMissionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMissionVC.h; sourceTree = "<group>"; };
+		4ACDD6281CC0089D0027288F /* CreateMissionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMissionVC.m; sourceTree = "<group>"; };
 		4AD3DD171CAF409200D5FDC4 /* LogInAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInAPI.h; sourceTree = "<group>"; };
 		4AD3DD181CAF409200D5FDC4 /* LogInAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInAPI.m; sourceTree = "<group>"; };
 		4AD3DD191CAF409200D5FDC4 /* RegistAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistAPI.h; sourceTree = "<group>"; };
@@ -232,6 +254,8 @@
 		4ADA1DAA1C3E4992001ECBF4 /* UIImage+ZZExtends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZZExtends.m"; sourceTree = "<group>"; };
 		4ADA1DAB1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+ZZExtends.h"; sourceTree = "<group>"; };
 		4ADA1DAC1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+ZZExtends.m"; sourceTree = "<group>"; };
+		4AE154EC1CBD896A00B0C8BC /* MissionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionCell.h; sourceTree = "<group>"; };
+		4AE154ED1CBD896A00B0C8BC /* MissionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionCell.m; sourceTree = "<group>"; };
 		4AE23F5B1CAA9A4C00ABECAF /* WeekDayLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekDayLabelView.h; sourceTree = "<group>"; };
 		4AE23F5C1CAA9A4C00ABECAF /* WeekDayLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekDayLabelView.m; sourceTree = "<group>"; };
 		4AEAE9A11C84A804009F814E /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
@@ -488,6 +512,12 @@
 				4A24F3381CB9CB4E00234374 /* SearchUserAPI.m */,
 				4A24F36F1CBAE56600234374 /* CreateProjectAPI.h */,
 				4A24F3701CBAE56600234374 /* CreateProjectAPI.m */,
+				4A4B4ECD1CBEE686009E2114 /* GetMissionAPI.h */,
+				4A4B4ECE1CBEE686009E2114 /* GetMissionAPI.m */,
+				4A4B4ED01CBEE686009E2114 /* CreateMissionAPI.h */,
+				4A4B4ED11CBEE686009E2114 /* CreateMissionAPI.m */,
+				4ACD49961CC042C0002E5B48 /* PostDeviceTokenAPI.h */,
+				4ACD49971CC042C0002E5B48 /* PostDeviceTokenAPI.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -513,6 +543,8 @@
 				4A24F37C1CBAFA6700234374 /* LoginTokenModel.m */,
 				4A24F3811CBBBAEF00234374 /* CreateProjectModel.h */,
 				4A24F3821CBBBAEF00234374 /* CreateProjectModel.m */,
+				4ACD49991CC042C0002E5B48 /* GetMissionModel.h */,
+				4ACD499A1CC042C0002E5B48 /* GetMissionModel.m */,
 			);
 			name = Model;
 			path = Request/Model;
@@ -572,6 +604,14 @@
 			isa = PBXGroup;
 			children = (
 				4A24F3651CBAE47200234374 /* CreateNewProject */,
+				4ACDD6271CC0089D0027288F /* CreateMissionVC.h */,
+				4ACDD6281CC0089D0027288F /* CreateMissionVC.m */,
+				4AE154EC1CBD896A00B0C8BC /* MissionCell.h */,
+				4AE154ED1CBD896A00B0C8BC /* MissionCell.m */,
+				4AB76F0F1CBD01800054AA76 /* ProjectDetailView.h */,
+				4AB76F101CBD01800054AA76 /* ProjectDetailView.m */,
+				4AC212361CBC542A00D0DD12 /* ProjectDetailVC.h */,
+				4AC212371CBC542A00D0DD12 /* ProjectDetailVC.m */,
 				4A24F3591CBAC0B600234374 /* ProjectCell.h */,
 				4A24F35A1CBAC0B600234374 /* ProjectCell.m */,
 				4AF086061CABF16300138097 /* ProjectVC.h */,
@@ -761,6 +801,7 @@
 				4ADA1DA51C3E496D001ECBF4 /* GradientView.m in Sources */,
 				4A24F33C1CB9CBF800234374 /* BaseModel.m in Sources */,
 				4A24F3801CBB047C00234374 /* ChoosePrivateTypeVC.m in Sources */,
+				4ACD499B1CC042C0002E5B48 /* GetMissionModel.m in Sources */,
 				4AD3DD2F1CB03DF900D5FDC4 /* SendVerifyCodeAPI.m in Sources */,
 				4AF919081CA8809F002BFF12 /* LoginVC.m in Sources */,
 				4AF34A201C74ADAC00004EC4 /* UserDefaultManage.m in Sources */,
@@ -775,10 +816,13 @@
 				4AE23F5D1CAA9A4C00ABECAF /* WeekDayLabelView.m in Sources */,
 				4A24F36B1CBAE47200234374 /* TypeColor.m in Sources */,
 				4A3EE6CE1CB51A3100AFC8A4 /* UserModel.m in Sources */,
+				4ACDD6291CC0089D0027288F /* CreateMissionVC.m in Sources */,
 				4A1290911C5DD4FF006E078B /* TodoTableViewCell.m in Sources */,
+				4ACD49981CC042C0002E5B48 /* PostDeviceTokenAPI.m in Sources */,
 				4A3EE6D11CB51BF600AFC8A4 /* ProjectModel.m in Sources */,
 				4ADA1DAE1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m in Sources */,
 				4ADA1DAD1C3E4992001ECBF4 /* UIImage+ZZExtends.m in Sources */,
+				4AC212381CBC542A00D0DD12 /* ProjectDetailVC.m in Sources */,
 				4A9FC1C11C69A30E00A1D888 /* DatePickerCell.m in Sources */,
 				4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */,
 				4A4F9CC71C3F3EEA0000F24C /* CalendarVC.m in Sources */,
@@ -798,10 +842,13 @@
 				4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */,
 				4A24F3831CBBBAEF00234374 /* CreateProjectModel.m in Sources */,
 				4A24F3361CB84B1800234374 /* PopoverView.m in Sources */,
+				4A4B4ECF1CBEE686009E2114 /* GetMissionAPI.m in Sources */,
 				4A95AA111C71702F00DFB118 /* DeleteTodoCell.m in Sources */,
 				4AD3DD351CB15B5200D5FDC4 /* VerifyCodeButton.m in Sources */,
+				4A4B4ED21CBEE686009E2114 /* CreateMissionAPI.m in Sources */,
 				4AD3DD1B1CAF409200D5FDC4 /* LogInAPI.m in Sources */,
 				4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */,
+				4AE154EE1CBD896A00B0C8BC /* MissionCell.m in Sources */,
 				4AF918FE1CA74197002BFF12 /* RemindModeCell.m in Sources */,
 				4A24F35B1CBAC0B600234374 /* ProjectCell.m in Sources */,
 				4A0441D01C89A82F005E23D9 /* RepeateModeChooseVC.m in Sources */,
@@ -811,6 +858,7 @@
 				4A2199591CB579E700E37719 /* deleteTodoAPI.m in Sources */,
 				4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */,
 				4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */,
+				4AB76F111CBD01800054AA76 /* ProjectDetailView.m in Sources */,
 				4AF919041CA74456002BFF12 /* RemindModeChooseCell.m in Sources */,
 				4AD3DD2C1CAFF1AB00D5FDC4 /* NYProgressHUD.m in Sources */,
 				4A24F37A1CBAFA4200234374 /* GetProjectModel.m in Sources */,

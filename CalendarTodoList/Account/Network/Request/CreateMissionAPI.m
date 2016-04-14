@@ -1,33 +1,37 @@
 //
-//  CreateProjectAPI.m
+//  CreateMissionAPI.m
 //  GoDo
 //
-//  Created by 牛严 on 16/4/11.
+//  Created by 牛严 on 16/4/14.
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import "CreateProjectAPI.h"
+#import "CreateMissionAPI.h"
 
-@implementation CreateProjectAPI
+@implementation CreateMissionAPI
+
 {
     NSString *_name;
     NSString *_desc;
-    BOOL _private;
+    NSString *_projectId;
+    NSArray *_receiversId;
+    
 }
 
-- (id)initWithName:(NSString *)name private:(BOOL)pri
+- (id)initWithName:(NSString *)name desc:(NSString *)desc projectId:(NSString *)projectId receiversId:(NSArray *)receiversId
 {
     self = [super init];
     if (self) {
         _name = name;
         _desc = @"森森森";
-        _private = pri;
+        _projectId = projectId;
+        _receiversId = @[[UserDefaultManager id]];
     }
     return self;
 }
 
 - (NSString *)requestUrl {
-    return @"/projects";
+    return @"/missions";
 }
 
 - (YTKRequestMethod)requestMethod {
@@ -46,7 +50,8 @@
     return @{
              @"name": _name,
              @"desc": _desc,
-             @"private":@(_private),
+             @"projectId":_projectId,
+             @"receiversId":_receiversId
              };
 }
 

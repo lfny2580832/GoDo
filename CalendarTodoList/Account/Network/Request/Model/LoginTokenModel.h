@@ -10,6 +10,8 @@
 
 @interface LoginTokenModel : BaseModel
 
+@property (nonatomic, copy) NSString *id;
+
 @property (nonatomic, copy) NSString *token;
 
 @end

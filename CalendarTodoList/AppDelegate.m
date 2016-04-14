@@ -27,6 +27,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    [self registRemoteNotification];
     [self registLocalNotification];
     [self setNetworkConfig];
     [[IQKeyboardManager sharedManager] setEnable:YES];
@@ -46,9 +47,11 @@
 {
     YTKNetworkConfig *config = [YTKNetworkConfig sharedInstance];
     config.baseUrl = @"https://api.samaritan.tech";
+//    config.baseUrl = @"http://127.0.0.1:8080";
+
 }
 
-//注册通知
+//注册本地通知
 - (void)registLocalNotification
 {
     if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
@@ -58,6 +61,16 @@
                                                                                  categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     }
+}
+
+//注册远程通知
+- (void)registRemoteNotification
+{
+    UIUserNotificationSettings *notiSettings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound) categories:nil];
+    
+    [[UIApplication sharedApplication] registerUserNotificationSettings:notiSettings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
@@ -70,6 +83,27 @@
     
     [_mainTabbarVC presentViewController:alertVC animated:YES completion:nil];
     
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    [UserDefaultManager setDeviceToken:token];
+    NSLog(@"content---%@", token);
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    
+    NSLog(@"userInfo == %@",userInfo);
+    NSString *message = [[userInfo objectForKey:@"aps"]objectForKey:@"alert"];
+    NSLog(@"message:%@",message);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    
+    NSLog(@"Regist fail%@",error);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

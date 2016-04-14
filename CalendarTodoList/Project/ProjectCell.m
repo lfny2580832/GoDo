@@ -38,7 +38,7 @@
     _nameLabel = [[UILabel alloc]init];
     [self.contentView addSubview:_nameLabel];
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.contentView);
+        make.centerY.equalTo(self.contentView);
         make.left.equalTo(self.contentView).offset(18);
     }];
 }

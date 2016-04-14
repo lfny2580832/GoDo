@@ -18,13 +18,9 @@
 
 @property (nonatomic, copy) NSString *desc;
 
-@property (nonatomic, strong) UserModel *publisher;
+@property (nonatomic, copy) NSString *creatorId;
 
-@property (nonatomic, strong) NSArray<UserModel *> *receivers;
-///任务已完成人数
-@property (nonatomic, assign) NSInteger completionNum;
-///任务完成时间
-@property (nonatomic, assign) long long completedTime;
+@property (nonatomic, copy) NSString *creatorName;
 
 
 @end

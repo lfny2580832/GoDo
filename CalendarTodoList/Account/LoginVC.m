@@ -15,6 +15,7 @@
 #import "LoginTokenModel.h"
 #import "RegistAPI.h"
 #import "ResetAPI.h"
+#import "PostDeviceTokenAPI.h"
 
 @interface LoginVC ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -25,6 +26,19 @@
     ResetView *_resetView;
     LoginView *_loginView;
     SignupView *_signupView;
+}
+
+#pragma mark postDeviceToken
+- (void)postDeviceToken
+{
+//    NSLog(@"deviceToken:%@",[UserDefaultManager deviceToken]);
+//    return;
+    PostDeviceTokenAPI *api = [[PostDeviceTokenAPI alloc]initWithDeviceToken:[UserDefaultManager deviceToken]];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        NSLog(@"--%@",request.responseString);
+    } failure:^(__kindof YTKBaseRequest *request) {
+        
+    }];
 }
 
 #pragma mark 登录
@@ -40,11 +54,12 @@
         [hud hide];
         
         NSString *token = loginTokenModel.token;
-        NSLog(@"token:%@",token);
-
+        NSString *id = loginTokenModel.id;
+        [UserDefaultManager setId:id];
         [UserDefaultManager setToken:token];
         [UserDefaultManager setUserName:mail];
         [UserDefaultManager setUserPassword:password];
+        [self postDeviceToken];
         [NYProgressHUD showToastText:@"登录成功" completion:^{
             [self dismissLoginView];
         }];
@@ -69,9 +84,12 @@
         LoginTokenModel *loginTokenModel = [LoginTokenModel yy_modelWithJSON:request.responseString];
         [hud hide];
         NSString *token = loginTokenModel.token;
+        NSString *id = loginTokenModel.id;
+        [UserDefaultManager setId:id];
         [UserDefaultManager setToken:token];
         [UserDefaultManager setUserName:mail];
         [UserDefaultManager setUserPassword:password];
+        [self postDeviceToken];
         [NYProgressHUD showToastText:@"注册成功" completion:^{
             [self dismissLoginView];
         }];
