@@ -25,7 +25,6 @@
 
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"
-#import "NYProgressHUD.h"
 
 @interface TodoDetailVC ()<UITableViewDataSource,UITableViewDelegate,TodoContentViewDelegate,TodoProjectViewDelegate,ChooseProjectVCDelegate,ChooseModeCellDelegate,DatePickerCellDelegate,TZImagePickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,RepeatModeChooseVCDelegate,RemindModeChooseVCDelegate>
 

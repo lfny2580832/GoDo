@@ -15,6 +15,12 @@
 #import "CreateMissionAPI.h"
 #import "GetMissionModel.h"
 
+#import "CreateMissionVC.h"
+
+@interface ProjectDetailVC ()<ProjectDetailViewDelegate>
+
+@end
+
 @implementation ProjectDetailVC
 {
     ProjectDetailView *_projectDetailView;
@@ -38,25 +44,20 @@
     }];
 }
 
-#pragma mark 发布任务
-- (void)createMission
+#pragma mark 进入mission详情页面
+- (void)didSelectCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    NYProgressHUD *hud = [[NYProgressHUD alloc]init];
-    [hud showAnimationWithText:@"发布任务中"];
-    CreateMissionAPI *api = [[CreateMissionAPI alloc]initWithName:@"shit" desc:@"fuck" projectId:_project.id receiversId:nil];
-    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
-        [hud hide];
-        [NYProgressHUD showToastText:@"发布任务成功"];
-        NSLog(@"----%@",request.responseString);
-    } failure:^(__kindof YTKBaseRequest *request) {
-        [hud hide];
-        [NYProgressHUD showToastText:@"发布任务失败"];
-    }];
+    CreateMissionVC *vc = [[CreateMissionVC alloc]initWithProjectId:_project.id];
+    vc.mission = _missions[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark 邮件添加mission
 - (void)rightbarButtonItemOnclick:(id)sender
 {
-    [self createMission];
+    CreateMissionVC *vc = [[CreateMissionVC alloc]initWithProjectId:_project.id];
+    vc.mission = nil;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark 初始化
@@ -79,6 +80,7 @@
 {
     _projectDetailView = [[ProjectDetailView alloc]init];
     _projectDetailView.project = _project;
+    _projectDetailView.delegate = self;
     _projectDetailView.backgroundColor = RGBA(232, 232, 232, 1.0);
     [self.view addSubview:_projectDetailView];
     [_projectDetailView mas_makeConstraints:^(MASConstraintMaker *make) {

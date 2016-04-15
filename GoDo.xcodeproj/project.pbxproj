@@ -65,7 +65,7 @@
 		4AC212381CBC542A00D0DD12 /* ProjectDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC212371CBC542A00D0DD12 /* ProjectDetailVC.m */; };
 		4ACD49981CC042C0002E5B48 /* PostDeviceTokenAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD49971CC042C0002E5B48 /* PostDeviceTokenAPI.m */; };
 		4ACD499B1CC042C0002E5B48 /* GetMissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD499A1CC042C0002E5B48 /* GetMissionModel.m */; };
-		4ACDD6291CC0089D0027288F /* CreateMissionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACDD6281CC0089D0027288F /* CreateMissionVC.m */; };
+		4ACDD62D1CC08A260027288F /* CreateMissionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACDD62C1CC08A260027288F /* CreateMissionVC.m */; };
 		4AD3DD1B1CAF409200D5FDC4 /* LogInAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD181CAF409200D5FDC4 /* LogInAPI.m */; };
 		4AD3DD1C1CAF409200D5FDC4 /* RegistAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD1A1CAF409200D5FDC4 /* RegistAPI.m */; };
 		4AD3DD2C1CAFF1AB00D5FDC4 /* NYProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD2B1CAFF1AB00D5FDC4 /* NYProgressHUD.m */; };
@@ -220,8 +220,8 @@
 		4ACD49971CC042C0002E5B48 /* PostDeviceTokenAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDeviceTokenAPI.m; sourceTree = "<group>"; };
 		4ACD49991CC042C0002E5B48 /* GetMissionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetMissionModel.h; sourceTree = "<group>"; };
 		4ACD499A1CC042C0002E5B48 /* GetMissionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetMissionModel.m; sourceTree = "<group>"; };
-		4ACDD6271CC0089D0027288F /* CreateMissionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMissionVC.h; sourceTree = "<group>"; };
-		4ACDD6281CC0089D0027288F /* CreateMissionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMissionVC.m; sourceTree = "<group>"; };
+		4ACDD62B1CC08A260027288F /* CreateMissionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMissionVC.h; sourceTree = "<group>"; };
+		4ACDD62C1CC08A260027288F /* CreateMissionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMissionVC.m; sourceTree = "<group>"; };
 		4AD3DD171CAF409200D5FDC4 /* LogInAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInAPI.h; sourceTree = "<group>"; };
 		4AD3DD181CAF409200D5FDC4 /* LogInAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInAPI.m; sourceTree = "<group>"; };
 		4AD3DD191CAF409200D5FDC4 /* RegistAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistAPI.h; sourceTree = "<group>"; };
@@ -489,6 +489,15 @@
 			path = CoreManage;
 			sourceTree = "<group>";
 		};
+		4ACDD62A1CC08A260027288F /* CreateNewMission */ = {
+			isa = PBXGroup;
+			children = (
+				4ACDD62B1CC08A260027288F /* CreateMissionVC.h */,
+				4ACDD62C1CC08A260027288F /* CreateMissionVC.m */,
+			);
+			path = CreateNewMission;
+			sourceTree = "<group>";
+		};
 		4AD3DD161CAF407B00D5FDC4 /* Request */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,9 +612,8 @@
 		4AF086051CABF15100138097 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				4ACDD62A1CC08A260027288F /* CreateNewMission */,
 				4A24F3651CBAE47200234374 /* CreateNewProject */,
-				4ACDD6271CC0089D0027288F /* CreateMissionVC.h */,
-				4ACDD6281CC0089D0027288F /* CreateMissionVC.m */,
 				4AE154EC1CBD896A00B0C8BC /* MissionCell.h */,
 				4AE154ED1CBD896A00B0C8BC /* MissionCell.m */,
 				4AB76F0F1CBD01800054AA76 /* ProjectDetailView.h */,
@@ -816,7 +824,7 @@
 				4AE23F5D1CAA9A4C00ABECAF /* WeekDayLabelView.m in Sources */,
 				4A24F36B1CBAE47200234374 /* TypeColor.m in Sources */,
 				4A3EE6CE1CB51A3100AFC8A4 /* UserModel.m in Sources */,
-				4ACDD6291CC0089D0027288F /* CreateMissionVC.m in Sources */,
+				4ACDD62D1CC08A260027288F /* CreateMissionVC.m in Sources */,
 				4A1290911C5DD4FF006E078B /* TodoTableViewCell.m in Sources */,
 				4ACD49981CC042C0002E5B48 /* PostDeviceTokenAPI.m in Sources */,
 				4A3EE6D11CB51BF600AFC8A4 /* ProjectModel.m in Sources */,
