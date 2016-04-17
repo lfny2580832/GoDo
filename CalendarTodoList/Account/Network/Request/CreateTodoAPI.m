@@ -40,14 +40,28 @@
 }
 
 - (id)requestArgument {
-    return @{
-             @"startTime": @(_todo.startTime),
-             @"repeat": @(_todo.repeat),
-             @"repeatMode":@(_todo.repeatMode),
-             @"allDay":@(_todo.allDay),
-             @"desc":_todo.desc,
-             @"missionId":_todo.missionId
-             };
+    NSDictionary *dic;
+    if (_todo.missionId.length > 0) {
+        dic =  @{
+                 @"startTime": @(_todo.startTime),
+                 @"repeat": @(_todo.repeat),
+                 @"repeatMode":@(_todo.repeatMode),
+                 @"allDay":@(_todo.allDay),
+                 @"desc":_todo.desc,
+                 @"missionId":_todo.missionId
+                 };
+    }else
+    {
+        dic = @{
+                @"startTime": @(_todo.startTime),
+                @"repeat": @(_todo.repeat),
+                @"repeatMode":@(_todo.repeatMode),
+                @"allDay":@(_todo.allDay),
+                @"desc":_todo.desc,
+                };
+    }
+    NSLog(@"--%@",dic);
+    return dic;
 }
 
 @end

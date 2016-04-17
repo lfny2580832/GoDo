@@ -8,3 +8,4 @@ pod 'MBProgressHUD', '~> 0.9.2'
 pod 'YTKNetwork'
 pod 'IQKeyboardManager'
 pod 'YYModel'
+pod "Qiniu", "~> 7.0"

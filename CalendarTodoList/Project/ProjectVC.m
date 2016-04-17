@@ -28,6 +28,8 @@
     LoginVC *_loginVC;
     UITableView *_tableView;
     NSArray *_projects;
+    
+    BOOL _isFirst;
 }
 
 #pragma mark 获取用户项目
@@ -49,6 +51,10 @@
 #pragma mark 创建新项目
 - (void)creatNewProject
 {
+    if ( ![UserDefaultManager token]) {
+        [self login];
+        return;
+    }
     AddNewProjectVC *vc = [[AddNewProjectVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -73,6 +79,7 @@
 #pragma mark 登录界面
 - (void)login
 {
+    _isFirst = YES;
     _loginVC = [[LoginVC alloc]init];
     [self presentViewController:_loginVC animated:YES completion:nil];
 }
@@ -125,7 +132,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    _isFirst = NO;
 //    [self getUserProjects];
 
 }
@@ -134,9 +141,10 @@
 {
     [super viewWillAppear:animated];
 
-    if (![UserDefaultManager token]) {
+    
+    if (![UserDefaultManager token] && _isFirst == NO) {
         [self login];
-    }else{
+    }else if([UserDefaultManager token]){
         [self getUserProjects];
     }
 }

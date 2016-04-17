@@ -15,6 +15,7 @@
 
 #import <YTKNetwork/YTKNetworkConfig.h>
 
+
 @interface AppDelegate ()
 
 @end
@@ -27,6 +28,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     [self registRemoteNotification];
     [self registLocalNotification];
     [self setNetworkConfig];
@@ -42,6 +44,7 @@
     
     return YES;
 }
+
 
 - (void)setNetworkConfig
 {
@@ -90,7 +93,6 @@
     NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     [UserDefaultManager setDeviceToken:token];
-    NSLog(@"content---%@", token);
     
 }
 

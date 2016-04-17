@@ -22,15 +22,9 @@
 
 @property (nonatomic, copy) NSString *place;
 
-@property (nonatomic, strong) NSArray<NSString *> *pictures;
-
 @property (nonatomic, copy) NSString *desc;
 ///备注
 @property (nonatomic, copy) NSString *remark;
-
-@property (nonatomic, copy) NSString *ownerId;
-
-@property (nonatomic, assign) long long finishTime;
 
 @property (nonatomic, copy) NSString *missionId;
 

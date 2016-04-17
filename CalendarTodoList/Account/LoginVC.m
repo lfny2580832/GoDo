@@ -65,7 +65,7 @@
         }];
     } failure:^(__kindof YTKBaseRequest *request) {
         [hud hide];
-        [NYProgressHUD showToastText:@"登录失败"];
+        [NYProgressHUD showToastText:@"登录失败，请检查网络环境"];
     }];
 }
 

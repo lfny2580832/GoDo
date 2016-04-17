@@ -26,6 +26,10 @@
 @property (nonatomic, copy) NSString *userName;
 
 @property (nonatomic, copy) NSString *userPassword;
+///七牛token
+@property (nonatomic, copy) NSString *qiNiuToken;
+///第一次启动
+@property (nonatomic, assign) BOOL firstStart;
 
 + (id)sharedInstance;
 

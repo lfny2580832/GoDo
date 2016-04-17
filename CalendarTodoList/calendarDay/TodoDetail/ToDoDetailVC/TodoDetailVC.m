@@ -23,6 +23,11 @@
 #import "FMTodoModel.h"
 #import "DBManage.h"
 
+#import "CreateTodoAPI.h"
+#import "CreateTodoModel.h"
+
+#import "QiNiuUploadImageTool.h"
+
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"
 
@@ -180,6 +185,49 @@ static CGFloat datePickerCellHeight = 240.f;
 
 }
 
+#pragma mark 返回全天或时段
+- (void)datePickerModeValueChanged:(BOOL)value
+{
+    if (value)
+    {
+        _datePickerMode = UIDatePickerModeDate;
+        _isAllDay = YES;
+    }
+    else
+    {
+        _datePickerMode = UIDatePickerModeDateAndTime;
+        _isAllDay = NO;
+    }
+    [_startCell setDatePickerMode:_datePickerMode date:_startDate];
+    //    [_endCell setDatePickerMode:_datePickerMode date:_endDate];
+}
+
+#pragma mark 返回开始日期
+- (void)returnStartDate:(NSDate *)startDate
+{
+    if (startDate)  _startDate = startDate;
+    //    else _endDate = endDate;
+    
+    //    if ([_startDate timeIntervalSinceDate:_endDate] >= 0.0)
+    //        _endCell.dateLabel.textColor = [UIColor redColor];
+    //    else
+    //        _endCell.dateLabel.textColor = [UIColor blackColor];
+}
+
+#pragma mark ChooseProjectVC Delegate 获取返回的project
+- (void)returnProject:(FMProject *)project
+{
+    _project = project;
+    _todoProjectView.project = _project;
+}
+
+#pragma mark 获取TodoContent
+- (void)getTodoContentWith:(NSString *)todoContentStr
+{
+    _todoContentStr = todoContentStr;
+}
+
+
 #pragma mark Set Methods
 - (void)setTodo:(FMTodoModel *)todo
 {
@@ -231,46 +279,38 @@ static CGFloat datePickerCellHeight = 240.f;
     }
 }
 
-#pragma mark 返回全天或时段
-- (void)datePickerModeValueChanged:(BOOL)value
+#pragma mark 创建ToDo网络请求
+- (void)requestToCreateTodo
 {
-    if (value)
-    {
-        _datePickerMode = UIDatePickerModeDate;
-        _isAllDay = YES;
-    }
-    else
-    {
-        _datePickerMode = UIDatePickerModeDateAndTime;
-        _isAllDay = NO;
-    }
-    [_startCell setDatePickerMode:_datePickerMode date:_startDate];
-//    [_endCell setDatePickerMode:_datePickerMode date:_endDate];
-}
-
-#pragma mark 返回开始日期
-- (void)returnStartDate:(NSDate *)startDate
-{
-    if (startDate)  _startDate = startDate;
-//    else _endDate = endDate;
+    TodoModel *todo = [[TodoModel alloc]init];
+    todo.desc = _todoContentStr;
+    todo.startTime = [_startDate timeIntervalSince1970];
+    todo.repeatMode = _repeatMode;
+    todo.repeat = (_repeatMode == 0)? NO:YES;
+    todo.allDay = _isAllDay;
     
-//    if ([_startDate timeIntervalSinceDate:_endDate] >= 0.0)
-//        _endCell.dateLabel.textColor = [UIColor redColor];
-//    else
-//        _endCell.dateLabel.textColor = [UIColor blackColor];
-}
-
-#pragma mark ChooseProjectVC Delegate 获取返回的project
-- (void)returnProject:(FMProject *)project
-{
-    _project = project;
-    _todoProjectView.project = _project;
-}
-
-#pragma mark 获取TodoContent
-- (void)getTodoContentWith:(NSString *)todoContentStr
-{
-    _todoContentStr = todoContentStr;
+    NYProgressHUD *hud = [NYProgressHUD new];
+    [hud showAnimationWithText:@"创建任务中"];
+    CreateTodoAPI *api = [[CreateTodoAPI alloc]initWithTodo:todo];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        [hud hide];
+        CreateTodoModel *model = [CreateTodoModel yy_modelWithJSON:request.responseString];
+        NSString *todoId = model.id;
+        if (model.code == 0) {
+            _chosenImages = _todoContentView.modifyImages;
+            NSLog(@"创建任务网络请求完成（不包含图片）");
+            QiNiuUploadImageTool *tool = [[QiNiuUploadImageTool alloc]init];
+            [tool uploadImages:_chosenImages todoId:todoId];
+            
+            [self saveTodoToDataBase];
+            
+            
+        }else{
+            [NYProgressHUD showToastText:model.msg];
+        }
+    } failure:^(__kindof YTKBaseRequest *request) {
+        [NYProgressHUD showToastText:@"创建任务失败，请检查网络环境"];
+    }];
 }
 
 #pragma mark 点击保存
@@ -281,18 +321,20 @@ static CGFloat datePickerCellHeight = 240.f;
         return;
     }
     
-    _chosenImages = _todoContentView.modifyImages;
-    NYProgressHUD *hud = [NYProgressHUD new];
-    [hud showAnimationWithText:@"创建任务中"];
+    [self requestToCreateTodo];
+
+}
+
+- (void)saveTodoToDataBase
+{
     dispatch_async(kBgQueue, ^{
         [DBManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate oldStartDate:_OldStartDate isAllDay:_isAllDay tableId:_tableId repeatMode:_repeatMode remindMode:_remindMode];
         dispatch_async(kMainQueue, ^{
-            [hud hide];
+            NSLog(@"任务已保存到本地数据库");
             [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
             [self.navigationController popViewControllerAnimated:YES];
         });
     });
-
 }
 
 #pragma mark 选择todo所属项目

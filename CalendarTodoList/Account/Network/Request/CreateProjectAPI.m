@@ -11,7 +11,6 @@
 @implementation CreateProjectAPI
 {
     NSString *_name;
-    NSString *_desc;
     BOOL _private;
 }
 
@@ -20,7 +19,6 @@
     self = [super init];
     if (self) {
         _name = name;
-        _desc = @"森森森";
         _private = pri;
     }
     return self;
@@ -45,7 +43,6 @@
 - (id)requestArgument {
     return @{
              @"name": _name,
-             @"desc": _desc,
              @"private":@(_private),
              };
 }

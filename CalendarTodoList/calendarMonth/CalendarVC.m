@@ -16,6 +16,7 @@
 #import "NSObject+NYExtends.h"
 #import "WeekDayLabelView.h"
 
+#import "QiNiuUploadImageTool.h"
 
 @interface NYScrollView : UIScrollView
 
@@ -117,14 +118,18 @@
     }
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+
 #pragma mark 初始化方法
 - (instancetype)init
 {
     self = [super init];
     if (self)
-    {        
-//        [self simulateProject];
-//        [self simulateTodoList];
+    {
+        [self simulateData];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"yyyy年M月";
         NSString *dateStr = [formatter stringFromDate:[NSDate date]];
@@ -134,6 +139,15 @@
         [self initView];
     }
     return self;
+}
+
+- (void)simulateData
+{
+    if(![UserDefaultManager firstStart]){
+        [UserDefaultManager setFirstStart:NO];
+        [self simulateProject];
+        [self simulateTodoList];
+    }
 }
 
 - (void)simulateTodoList

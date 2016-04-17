@@ -7,8 +7,7 @@
 //
 
 #import <YTKNetwork/YTKRequest.h>
-
-@class TodoModel;
+#import "TodoModel.h"
 
 @interface CreateTodoAPI : YTKRequest
 

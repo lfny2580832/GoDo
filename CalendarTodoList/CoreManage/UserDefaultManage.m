@@ -90,4 +90,27 @@
     return  [UserDefault objectForKey:@"userPassword"];
 }
 
+#pragma mark 存取七牛token
+- (void)setQiNiuToken:(NSString *)qiNiuToken
+{
+    [UserDefault setObject:qiNiuToken forKey:@"qiNiuToken"];
+
+}
+
+- (NSString *)qiNiuToken
+{
+    return  [UserDefault objectForKey:@"qiNiuToken"];
+}
+
+#pragma mark 存取是否第一次启动
+- (void)setFirstStart:(BOOL)firstStart
+{
+    [UserDefault setBool:firstStart forKey:@"firstStart"];
+}
+
+- (BOOL)firstStart
+{
+    return  [UserDefault boolForKey:@"firstStart"];
+}
+
 @end
