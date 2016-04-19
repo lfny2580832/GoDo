@@ -143,11 +143,11 @@
 
 - (void)simulateData
 {
-    if(![UserDefaultManager firstStart]){
-        [UserDefaultManager setFirstStart:NO];
-        [self simulateProject];
-        [self simulateTodoList];
-    }
+//    if(![UserDefaultManager firstStart]){
+//        [UserDefaultManager setFirstStart:NO];
+//        [self simulateProject];
+//        [self simulateTodoList];
+//    }
 }
 
 - (void)simulateTodoList
@@ -158,7 +158,7 @@
     [LKDBHelper clearTableData:[FMTodoModel class]];
     
     FMTodoModel *todoModel = [[FMTodoModel alloc]init];
-    todoModel.tableId = 1;
+    todoModel.tableId = @"1";
     todoModel.thingStr = @"开始创建你的任务吧！";
     NSDate *startDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];
     todoModel.startTime = [startDate timeIntervalSince1970];
@@ -174,7 +174,7 @@
     FMDayList *dayList = [[FMDayList alloc]init];
     dayList.dayID = [NSObject getDayIdWithDateStamp:[startDate timeIntervalSince1970]];
     dayList.tableIDs = [[NSMutableArray alloc]init];
-    [dayList.tableIDs addObject:[NSNumber numberWithInteger:todoModel.tableId]];
+    [dayList.tableIDs addObject:todoModel.tableId];
     
     [[FMDayList getUsingLKDBHelper] insertToDB:dayList];
 }

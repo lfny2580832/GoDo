@@ -8,7 +8,7 @@
 
 #import <YTKNetwork/YTKRequest.h>
 
-@interface deleteTodoAPI : YTKRequest
+@interface DeleteTodoAPI : YTKRequest
 
 - (id)initWithTodoId:(NSString *)todoId;
 

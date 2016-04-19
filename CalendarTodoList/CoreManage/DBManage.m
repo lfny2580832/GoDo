@@ -34,15 +34,14 @@
     NSMutableArray *resultArray = [NSMutableArray arrayWithCapacity:0];
     
     FMDayList *dayList = [[[FMDayList getUsingLKDBHelper] searchWithSQL:[NSString stringWithFormat:@"select * from @t where dayID = '%ld'",(long)dayId] toClass:[FMDayList class]] firstObject];
-    for (NSNumber *idNumber in dayList.tableIDs)
+    for (NSString *tableId in dayList.tableIDs)
     {
-        NSInteger tableID = [idNumber integerValue];
-        FMTodoModel *todoModel = [[[FMTodoModel getUsingLKDBHelper] searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableId = '%ld'",(long)tableID] toClass:[FMTodoModel class]] firstObject];
+        FMTodoModel *todoModel = [[[FMTodoModel getUsingLKDBHelper] searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableId = '%@'",tableId] toClass:[FMTodoModel class]] firstObject];
         if (todoModel) {
             if (todoModel.isAllDay) {
                 todoModel.startTime = [self changeStartDateWith:todoModel.startTime];
             }
-            NSMutableArray *fmTodoimageArray = [FMTodoImage searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableId = '%ld'",(long)tableID]];
+            NSMutableArray *fmTodoimageArray = [FMTodoImage searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableId = '%@'",tableId]];
             NSMutableArray *imageArray = [[NSMutableArray alloc]init];
             for(FMTodoImage *todoImage in fmTodoimageArray)
             {
@@ -88,7 +87,7 @@
 
 
 #pragma mark 创建RLMTodo
-- (void)createTodoWithProject:(FMProject *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate oldStartDate:(NSDate *)oldStartDate isAllDay:(BOOL)isAllDay tableId:(NSInteger)tableId repeatMode:(RepeatMode)repeatMode remindMode:(RemindMode)remindMode
+- (void)createTodoWithProject:(FMProject *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate oldStartDate:(NSDate *)oldStartDate isAllDay:(BOOL)isAllDay tableId:(NSString *)tableId repeatMode:(RepeatMode)repeatMode remindMode:(RemindMode)remindMode
 {
     FMTodoModel *todoModel = [[FMTodoModel alloc]init];
     todoModel.startTime = [startDate timeIntervalSince1970];
@@ -103,21 +102,17 @@
     todoModel.projectId = project.projectId;
     todoModel.thingStr = contentStr;
     todoModel.remindMode = remindMode;
-    
-    if (!tableId) {
-        todoModel.tableId = [UserDefaultManager todoMaxId] + 1;
-        [UserDefaultManager setTodoMaxId:todoModel.tableId];
-    }else{
-        todoModel.tableId = tableId;
-    }
+    todoModel.tableId = tableId;
     todoModel.repeatMode = repeatMode;
+    
     [self saveImageWith:todoModel images:images];
     
     [self CreateOrUpdateDateListWithStartDate:startDate oldStartDate:oldStartDate repeatMode:repeatMode FMTodo:todoModel];
+    //更新或创建
     [[FMTodoModel getUsingLKDBHelper] insertToDB:todoModel];
 
     
-    NSNumber *todoID = [NSNumber numberWithInteger:todoModel.tableId];
+    NSString *todoID = todoModel.tableId;
     NSDictionary *notiDic = [NSDictionary dictionaryWithObjectsAndKeys:todoID,@"todoID",todoModel.thingStr,@"todoStr", nil];
     NSDate *fireDate = [self fireDateWithRemindMode:remindMode startDate:startDate];
     [self saveClockWithInfoDic:notiDic fireDate:fireDate remindMode:remindMode];
@@ -145,7 +140,7 @@
 - (void)saveClockWithInfoDic:(NSDictionary *)infoDic fireDate:(NSDate *)fireDate remindMode:(RemindMode)remindMode
 {
     //先删除
-    [self cancelLocalNotificationWithTableID:[[infoDic objectForKey:@"todoID"] integerValue]];
+    [self cancelLocalNotificationWithTableID:[infoDic objectForKey:@"todoID"]];
     //再创建
     if (remindMode == NoRemind) {
         return;
@@ -167,13 +162,13 @@
 }
 
 #pragma makr 删除通知
-- (void)cancelLocalNotificationWithTableID:(NSInteger)tableID
+- (void)cancelLocalNotificationWithTableID:(NSString *)tableID
 {
     NSArray *localNotifications = [UIApplication sharedApplication].scheduledLocalNotifications;
     for (UILocalNotification *notification in localNotifications) {
         NSDictionary *userInfo = notification.userInfo;
         if (userInfo) {
-            if (tableID == [[userInfo objectForKey:@"todoID"] integerValue]) {
+            if (tableID == [userInfo objectForKey:@"todoID"]) {
                 [[UIApplication sharedApplication] cancelLocalNotification:notification];
             }
         }
@@ -183,9 +178,9 @@
 #pragma mark 保存图片及对应ID
 - (void)saveImageWith:(FMTodoModel *)todoModel images:(NSArray *)images
 {
-    NSInteger tableID = todoModel.tableId;
+    NSString *tableID = todoModel.tableId;
     
-    NSMutableArray *lastImages = [FMTodoImage searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableID = '%ld'",(long)tableID]];
+    NSMutableArray *lastImages = [FMTodoImage searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableID = '%@'",tableID]];
     for(FMTodoImage *todoImage in lastImages)
     {
         [[FMTodoImage getUsingLKDBHelper] deleteToDB:todoImage];
@@ -261,14 +256,14 @@
 }
 
 #pragma mark 根据dayID和tableID维护日期-任务关系表
-- (void)updateDayListWithDayID:(NSInteger)dayID tableID:(NSInteger)tableID
+- (void)updateDayListWithDayID:(NSInteger)dayID tableID:(NSString *)tableID
 {
     FMDayList *dayList = [[FMDayList searchWithSQL:[NSString stringWithFormat:@"select * from @t where dayID = '%ld'",(long)dayID]] firstObject];
     NSMutableArray *tableIDs = [NSMutableArray arrayWithArray:dayList.tableIDs];
     if (dayList.dayID > 0) {
         dayList.dayID = dayID;
-        if (![tableIDs containsObject:[NSNumber numberWithInteger:tableID]]) {
-            [tableIDs addObject:[NSNumber numberWithInteger:tableID]];
+        if (![tableIDs containsObject:tableID]) {
+            [tableIDs addObject:tableID];
         }
         dayList.tableIDs = [NSMutableArray arrayWithArray:tableIDs];
         [[FMDayList getUsingLKDBHelper] updateToDB:dayList where:nil];
@@ -276,7 +271,7 @@
         dayList = [[FMDayList alloc]init];
         dayList.dayID = dayID;
         dayList.tableIDs = [[NSMutableArray alloc]init];
-        [dayList.tableIDs addObject:[NSNumber numberWithInteger:tableID]];
+        [dayList.tableIDs addObject:tableID];
         [[FMDayList getUsingLKDBHelper] insertToDB:dayList];
     }
 }
@@ -372,23 +367,23 @@
 }
 
 #pragma mark 根据老时间和todo.tableID 删除那天对应的任务
-- (void)deleteOldTodoWithOldStartDate:(NSDate *)oldStartDate tableID:(NSInteger)tableID
+- (void)deleteOldTodoWithOldStartDate:(NSDate *)oldStartDate tableID:(NSString *)tableID
 {
     NSInteger dayID = [NSObject getDayIdWithDate:oldStartDate];
     LKDBHelper *helper = [FMDayList getUsingLKDBHelper];
     FMDayList *dayList = [[FMDayList searchWithSQL:[NSString stringWithFormat:@"select * from @t where dayID = '%ld'",(long)dayID]] firstObject];
     NSMutableArray *tableIDs = [NSMutableArray arrayWithArray:dayList.tableIDs];
-    if ([tableIDs containsObject:[NSNumber numberWithInteger:tableID]]) {
-        [tableIDs removeObject:[NSNumber numberWithInteger:tableID]];
+    if ([tableIDs containsObject:tableID]) {
+        [tableIDs removeObject:tableID];
     }
     dayList.tableIDs = [NSMutableArray arrayWithArray:tableIDs];
     [helper updateToDB:dayList where:nil];
 }
 
 #pragma mark 根据todo tableID 修改todo 的doneType完成情况
-- (void)changeTodoDoneTypeWithTableId:(NSInteger)tableId doneType:(DoneType)doneType
+- (void)changeTodoDoneTypeWithTableId:(NSString *)tableId doneType:(DoneType)doneType
 {
-    FMTodoModel *todoModel = [[FMTodoModel searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableId = '%ld'",(long)tableId]] firstObject];
+    FMTodoModel *todoModel = [[FMTodoModel searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableId = '%@'",tableId]] firstObject];
     todoModel.doneType = doneType;
     [[FMTodoModel getUsingLKDBHelper] updateToDB:todoModel where:nil];
 }
@@ -410,18 +405,17 @@
 }
 
 #pragma mark 删除todo
-- (void)deleteTodoWithTableId:(NSInteger)tableId
+- (void)deleteTodoWithTableId:(NSString *)tableId
 {
-    FMTodoModel *todoModel = [[FMTodoModel searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableId = '%ld'",(long)tableId]] firstObject];
+    FMTodoModel *todoModel = [[FMTodoModel searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableId = '%@'",tableId]] firstObject];
     [[FMTodoModel getUsingLKDBHelper] deleteToDB:todoModel];
     
-    NSNumber *idNumber = [NSNumber numberWithInteger:tableId];
     NSMutableArray *dayListArray = [FMDayList searchWithSQL:@"select * from @t"];
     for(FMDayList *dayList in dayListArray)
     {
         NSMutableArray *tableIDs = [NSMutableArray arrayWithArray:dayList.tableIDs];
-        if ([tableIDs containsObject:idNumber]) {
-            [tableIDs removeObject:idNumber];
+        if ([tableIDs containsObject:tableId]) {
+            [tableIDs removeObject:tableId];
             dayList.tableIDs = [NSMutableArray arrayWithArray:tableIDs];
             [[FMDayList getUsingLKDBHelper] updateToDB:dayList where:nil];
         }

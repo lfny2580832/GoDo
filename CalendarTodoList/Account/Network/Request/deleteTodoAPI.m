@@ -6,9 +6,9 @@
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import "deleteTodoAPI.h"
+#import "DeleteTodoAPI.h"
 
-@implementation deleteTodoAPI
+@implementation DeleteTodoAPI
 {
     NSString *_todoId;
 }

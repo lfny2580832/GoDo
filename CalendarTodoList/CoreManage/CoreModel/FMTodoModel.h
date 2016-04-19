@@ -49,7 +49,7 @@ typedef NS_ENUM(NSInteger, RemindMode)
 
 @interface FMTodoModel : NSObject
 
-@property (nonatomic, assign) NSInteger tableId;
+@property (nonatomic, copy) NSString *tableId;
 ///开始时间戳 精确到秒
 @property (nonatomic, assign) long long startTime;
 ///是否全天

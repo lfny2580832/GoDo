@@ -25,6 +25,8 @@
 
 #import "CreateTodoAPI.h"
 #import "CreateTodoModel.h"
+#import "UpdateTodoAPI.h"
+#import "deleteTodoAPI.h"
 
 #import "QiNiuUploadImageTool.h"
 
@@ -56,7 +58,7 @@
     
     NSString *_todoContentStr;
     FMProject *_project;
-    NSInteger _tableId;
+    NSString *_tableId;
     NSDate *_startDate;
     NSDate *_OldStartDate;
 //    NSDate *_endDate;
@@ -165,15 +167,33 @@ static CGFloat datePickerCellHeight = 240.f;
     [deleteSheet addAction:[UIAlertAction actionWithTitle:@"删除任务"
                                                     style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action) {
-                                                    [self deleteTodoFromDateBase];
+                                                    [self requestToDeleteTodo];
                                                 }]];
     [self presentViewController:deleteSheet animated:YES completion:nil];
 }
 
-- (void)deleteTodoFromDateBase
+- (void)requestToDeleteTodo
 {
     NYProgressHUD *hud = [NYProgressHUD new];
     [hud showAnimationWithText:@"删除任务中"];
+    DeleteTodoAPI *api = [[DeleteTodoAPI alloc]initWithTodoId:_tableId];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        BaseModel *model = [BaseModel yy_modelWithJSON:request.responseString];
+        if (model.code == 0) {
+            [self deleteTodoFromDateBaseWithHud:hud];
+        }else{
+            [hud hide];
+            [NYProgressHUD showToastText:model.msg];
+        }
+        
+    } failure:^(__kindof YTKBaseRequest *request) {
+        [hud hide];
+        [NYProgressHUD showToastText:@"删除失败，请检查网络环境"];
+    }];
+}
+
+- (void)deleteTodoFromDateBaseWithHud:(NYProgressHUD *)hud
+{
     dispatch_async(kBgQueue, ^{
         [DBManager deleteTodoWithTableId:_tableId];
         dispatch_async(kMainQueue, ^{
@@ -227,7 +247,6 @@ static CGFloat datePickerCellHeight = 240.f;
     _todoContentStr = todoContentStr;
 }
 
-
 #pragma mark Set Methods
 - (void)setTodo:(FMTodoModel *)todo
 {
@@ -280,7 +299,7 @@ static CGFloat datePickerCellHeight = 240.f;
 }
 
 #pragma mark 创建ToDo网络请求
-- (void)requestToCreateTodo
+- (void)requestToCreateOrUpdateTodo
 {
     TodoModel *todo = [[TodoModel alloc]init];
     todo.desc = _todoContentStr;
@@ -293,48 +312,76 @@ static CGFloat datePickerCellHeight = 240.f;
     [hud showAnimationWithText:@"创建任务中"];
     CreateTodoAPI *api = [[CreateTodoAPI alloc]initWithTodo:todo];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
-        [hud hide];
         CreateTodoModel *model = [CreateTodoModel yy_modelWithJSON:request.responseString];
-        NSString *todoId = model.id;
+        todo.id = model.id;
+        _tableId = todo.id;
+        NSLog(@"int----%ld",(long)_tableId);
         if (model.code == 0) {
-            _chosenImages = _todoContentView.modifyImages;
             NSLog(@"创建任务网络请求完成（不包含图片）");
-            QiNiuUploadImageTool *tool = [[QiNiuUploadImageTool alloc]init];
-            [tool uploadImages:_chosenImages todoId:todoId];
-            
-            [self saveTodoToDataBase];
-            
-            
+
+            _chosenImages = _todoContentView.modifyImages;
+            if(_chosenImages.count)
+            {
+                QiNiuUploadImageTool *tool = [[QiNiuUploadImageTool alloc]init];
+                [tool uploadImages:_chosenImages todoId:todo.id completed:^(NSArray *keys) {
+                    
+                    [self requestToSaveTodoImageWith:keys todoModel:todo completion:^{
+                        
+                        [self saveTodoToDataBaseWithHud:hud];
+                        
+                    }];
+                }];
+            }
+            else
+            {
+                [self saveTodoToDataBaseWithHud:hud];
+            }
         }else{
+            [hud hide];
             [NYProgressHUD showToastText:model.msg];
         }
     } failure:^(__kindof YTKBaseRequest *request) {
+        [hud hide];
         [NYProgressHUD showToastText:@"创建任务失败，请检查网络环境"];
     }];
 }
 
-#pragma mark 点击保存
-- (void)rightbarButtonItemOnclick:(id)sender
+- (void)requestToSaveTodoImageWith:(NSArray *)pictures todoModel:(TodoModel *)todo completion:(void(^)())finishiBlock
 {
-    if (_todoContentStr.length <= 0) {
-        [NYProgressHUD showToastText:@"请输入任务内容"];
-        return;
-    }
-    
-    [self requestToCreateTodo];
-
+    UpdateTodoAPI *api = [[UpdateTodoAPI alloc]initWithTodo:todo pictures:pictures];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        
+        finishiBlock();
+        
+    } failure:^(__kindof YTKBaseRequest *request) {
+        
+    }];
 }
 
-- (void)saveTodoToDataBase
+- (void)saveTodoToDataBaseWithHud:(NYProgressHUD *)hud
 {
     dispatch_async(kBgQueue, ^{
         [DBManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate oldStartDate:_OldStartDate isAllDay:_isAllDay tableId:_tableId repeatMode:_repeatMode remindMode:_remindMode];
         dispatch_async(kMainQueue, ^{
             NSLog(@"任务已保存到本地数据库");
+            [hud hide];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"ReloadTodoTableView" object:nil];
             [self.navigationController popViewControllerAnimated:YES];
         });
     });
+}
+
+#pragma mark 点击保存
+- (void)rightbarButtonItemOnclick:(id)sender
+{
+    [self.view endEditing:YES];
+    if (_todoContentStr.length <= 0) {
+        [NYProgressHUD showToastText:@"请输入任务内容"];
+        return;
+    }
+    
+    [self requestToCreateOrUpdateTodo];
+    
 }
 
 #pragma mark 选择todo所属项目

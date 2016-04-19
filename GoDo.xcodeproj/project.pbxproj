@@ -19,7 +19,7 @@
 		4A2199501CB56DD900E37719 /* GetProjectAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A21994F1CB56DD900E37719 /* GetProjectAPI.m */; };
 		4A2199531CB572B700E37719 /* CreateTodoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2199521CB572B700E37719 /* CreateTodoAPI.m */; };
 		4A2199561CB577DF00E37719 /* UpdateTodoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2199551CB577DF00E37719 /* UpdateTodoAPI.m */; };
-		4A2199591CB579E700E37719 /* deleteTodoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2199581CB579E700E37719 /* deleteTodoAPI.m */; };
+		4A2199591CB579E700E37719 /* DeleteTodoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2199581CB579E700E37719 /* DeleteTodoAPI.m */; };
 		4A24F3361CB84B1800234374 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F3351CB84B1800234374 /* PopoverView.m */; };
 		4A24F3391CB9CB4E00234374 /* SearchUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F3381CB9CB4E00234374 /* SearchUserAPI.m */; };
 		4A24F33C1CB9CBF800234374 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F33B1CB9CBF800234374 /* BaseModel.m */; };
@@ -133,8 +133,8 @@
 		4A2199521CB572B700E37719 /* CreateTodoAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTodoAPI.m; sourceTree = "<group>"; };
 		4A2199541CB577DF00E37719 /* UpdateTodoAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateTodoAPI.h; sourceTree = "<group>"; };
 		4A2199551CB577DF00E37719 /* UpdateTodoAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateTodoAPI.m; sourceTree = "<group>"; };
-		4A2199571CB579E700E37719 /* deleteTodoAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deleteTodoAPI.h; sourceTree = "<group>"; };
-		4A2199581CB579E700E37719 /* deleteTodoAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deleteTodoAPI.m; sourceTree = "<group>"; };
+		4A2199571CB579E700E37719 /* DeleteTodoAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteTodoAPI.h; sourceTree = "<group>"; };
+		4A2199581CB579E700E37719 /* DeleteTodoAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteTodoAPI.m; sourceTree = "<group>"; };
 		4A24F3341CB84B1800234374 /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
 		4A24F3351CB84B1800234374 /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
 		4A24F3371CB9CB4E00234374 /* SearchUserAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUserAPI.h; sourceTree = "<group>"; };
@@ -537,8 +537,8 @@
 				4A2199521CB572B700E37719 /* CreateTodoAPI.m */,
 				4A2199541CB577DF00E37719 /* UpdateTodoAPI.h */,
 				4A2199551CB577DF00E37719 /* UpdateTodoAPI.m */,
-				4A2199571CB579E700E37719 /* deleteTodoAPI.h */,
-				4A2199581CB579E700E37719 /* deleteTodoAPI.m */,
+				4A2199571CB579E700E37719 /* DeleteTodoAPI.h */,
+				4A2199581CB579E700E37719 /* DeleteTodoAPI.m */,
 				4A24F3371CB9CB4E00234374 /* SearchUserAPI.h */,
 				4A24F3381CB9CB4E00234374 /* SearchUserAPI.m */,
 				4A24F36F1CBAE56600234374 /* CreateProjectAPI.h */,
@@ -894,7 +894,7 @@
 				4A0441CD1C89A397005E23D9 /* RepeatModeCell.m in Sources */,
 				4AD3DD381CB15F0C00D5FDC4 /* ResetView.m in Sources */,
 				4A24F36A1CBAE47200234374 /* ChooseTypeColorVC.m in Sources */,
-				4A2199591CB579E700E37719 /* deleteTodoAPI.m in Sources */,
+				4A2199591CB579E700E37719 /* DeleteTodoAPI.m in Sources */,
 				4ADA1DA81C3E496D001ECBF4 /* UIViewController+ZZExtends.m in Sources */,
 				4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */,
 				4AB76F111CBD01800054AA76 /* ProjectDetailView.m in Sources */,

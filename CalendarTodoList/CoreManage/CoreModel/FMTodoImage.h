@@ -10,7 +10,7 @@
 
 @interface FMTodoImage : NSObject
 
-@property (nonatomic, assign) NSInteger tableID;
+@property (nonatomic, assign) NSString *tableID;
 
 @property (nonatomic, strong) UIImage *image;
 

@@ -13,7 +13,7 @@
 @implementation QiNiuUploadImageTool
 
 #pragma mark 根据任务id对图片进行命名
-- (void)uploadImages:(NSArray *)images todoId:(NSString *)todoId
+- (void)uploadImages:(NSArray *)images todoId:(NSString *)todoId completed:(completedBlock)completed
 {
     GetQiNiuTokenAPI *api = [[GetQiNiuTokenAPI alloc]init];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
@@ -21,11 +21,11 @@
         [UserDefaultManager setQiNiuToken:model.uploadToken];
         QNUploadManager *uploadManager = [QNUploadManager sharedInstanceWithConfiguration:nil];
         NSMutableArray *keys = [[NSMutableArray alloc]initWithCapacity:images.count];
-        [self uploadImages:images atIndex:0 uploadManager:uploadManager keys:keys todoId:todoId];
+        [self uploadImages:images atIndex:0 uploadManager:uploadManager keys:keys todoId:todoId completed:completed];
     } failure:nil];
 }
 
--(void)uploadImages:(NSArray *)images atIndex:(NSInteger)index uploadManager:(QNUploadManager *)uploadManager keys:(NSMutableArray *)keys todoId:(NSString *)todoId
+-(void)uploadImages:(NSArray *)images atIndex:(NSInteger)index uploadManager:(QNUploadManager *)uploadManager keys:(NSMutableArray *)keys todoId:(NSString *)todoId completed:(completedBlock)completed
 {
     UIImage *image = images[index];
     __block NSInteger imageIndex = index;
@@ -42,13 +42,10 @@
             if (imageIndex >= images.count)
             {
                 NSLog(@"图片全部上传完成");
-                for (NSString *imgKey in keys)
-                {
-                    NSLog(@"%@",imgKey);
-                }
+                completed(keys);
                 return ;
             }
-            [self uploadImages:images atIndex:imageIndex uploadManager:uploadManager keys:keys todoId:todoId];
+            [self uploadImages:images atIndex:imageIndex uploadManager:uploadManager keys:keys todoId:todoId completed:completed];
         }
         else
         {

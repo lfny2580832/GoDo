@@ -12,6 +12,6 @@
 
 @interface UpdateTodoAPI : YTKRequest
 
-- (id)initWithTodo:(TodoModel *)todo;
+- (id)initWithTodo:(TodoModel *)todo pictures:(NSArray *)pictures;
 
 @end

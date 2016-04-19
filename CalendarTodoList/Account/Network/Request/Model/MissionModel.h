@@ -22,5 +22,6 @@
 
 @property (nonatomic, copy) NSString *creatorName;
 
+@property (nonatomic, strong) NSArray *pictures;
 
 @end

@@ -48,7 +48,7 @@
     _repeatLabel.text = [NSString getRepeatStrWithMode:todo.repeatMode];
     _statusLabel.text = [NSString getDoneStrWithType:todo.doneType startTime:todo.startTime];
     
-//    todo.doneType == Done?  _cicleView.highlighted = YES:NO;
+    todo.doneType == Done?          _statusLabel.text = @"已完成":@"未完成";
     if (todo.images.count) {
         NSInteger imageCount = todo.images.count;
         NSInteger imageEdge = 10;
@@ -62,7 +62,7 @@
                 todoImageView.userInteractionEnabled = YES;
                 todoImageView.contentMode= UIViewContentModeScaleAspectFill;
                 todoImageView.clipsToBounds = YES;
-                todoImageView.tag = todo.tableId *4 + i;
+//                todoImageView.tag = todo.tableId *4 + i;
                 todoImageView.image = todo.images[i];
                 UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
                 [todoImageView addGestureRecognizer:recognizer];
@@ -79,30 +79,18 @@
             [_imageViews addObject:todoImageView];
         }
     }else{
+//        for(UIImageView *imageView in _imageViews)
+//        {
+//            imageView.image = nil;
+//            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.height.mas_equalTo(@0);
+//            }];
+//        }
         [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(_backView).offset(-55);
         }];
     }
     
-}
-
-- (void)circleViewClicked
-{
-    if (_todo.repeatMode != Never) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"重复任务不能标记已完成";
-        [hud hide:YES afterDelay:2];
-        return;
-    }
-//    _cicleView.highlighted = !_cicleView.highlighted;
-    DoneType doneType;
-//    if (_cicleView.highlighted)   doneType = Done;
-//    else doneType = NotDone;
-    
-    dispatch_async(kBgQueue, ^{
-        [DBManager changeTodoDoneTypeWithTableId:_todo.tableId doneType:doneType];
-    });
 }
 
 #pragma mark 放大ImageView中的图片
@@ -123,6 +111,20 @@
 
     [popoverView showFromView:btn selected:^(NSInteger index) {
         _statusLabel.text = popoverView.menuTitles[index];
+        //选择完成未完成状态
+        DoneType doneType;
+        if (index == 1) {
+            if (_todo.repeatMode != Never) {
+                [NYProgressHUD showToastText:@"重复任务不能标记已完成"];
+                [popoverView hide];
+                return;
+            }
+            doneType = Done;
+        }else
+            doneType = NotDone;
+        dispatch_async(kBgQueue, ^{
+            [DBManager changeTodoDoneTypeWithTableId:_todo.tableId doneType:doneType];
+        });
     }];
 }
 

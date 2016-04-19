@@ -12,13 +12,15 @@
 @implementation UpdateTodoAPI
 {
     TodoModel *_todo;
+    NSArray *_pictures;
 }
 
-- (id)initWithTodo:(TodoModel *)todo
+- (id)initWithTodo:(TodoModel *)todo pictures:(NSArray *)pictures
 {
     self = [super init];
     if (self) {
         _todo = todo;
+        _pictures = pictures;
     }
     return self;
 }
@@ -41,15 +43,29 @@
 }
 
 - (id)requestArgument {
-    return @{
-             @"startTime": @(_todo.startTime),
-             @"repeat": @(_todo.repeat),
-             @"repeatMode":@(_todo.repeatMode),
-             @"allDay":@(_todo.allDay),
-             @"desc":_todo.desc,
-             @"missionId":_todo.missionId
-
-             };
+    NSDictionary *dic;
+    if (_todo.missionId.length > 0 ) {
+        dic = @{
+                @"startTime": @(_todo.startTime),
+                @"repeat": @(_todo.repeat),
+                @"repeatMode":@(_todo.repeatMode),
+                @"allDay":@(_todo.allDay),
+                @"desc":_todo.desc,
+                @"missionId":_todo.missionId,
+                @"pictures":_pictures,
+                };
+    }else{
+        dic = @{
+                @"startTime": @(_todo.startTime),
+                @"repeat": @(_todo.repeat),
+                @"repeatMode":@(_todo.repeatMode),
+                @"allDay":@(_todo.allDay),
+                @"desc":_todo.desc,
+                @"pictures":_pictures,
+                };
+    }
+    NSLog(@"fuck %@",dic);
+    return dic;
 }
 
 @end

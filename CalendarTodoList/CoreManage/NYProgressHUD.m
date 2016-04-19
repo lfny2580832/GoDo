@@ -42,11 +42,6 @@
     });
 }
 
-
-
-
-
-
 - (void)showAnimationWithText:(NSString *)text
 {
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
@@ -72,4 +67,5 @@
         _HUD = nil;
     }
 }
+
 @end

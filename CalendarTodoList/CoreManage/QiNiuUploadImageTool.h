@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^completedBlock)(NSArray *keys);
+
 @interface QiNiuUploadImageTool : NSObject
 
-- (void)uploadImages:(NSArray *)images todoId:(NSString *)todoId;
+- (void)uploadImages:(NSArray *)images todoId:(NSString *)todoId completed:(completedBlock)completed;
 
 @end
