@@ -348,14 +348,42 @@ static CGFloat datePickerCellHeight = 240.f;
 
 - (void)requestToSaveTodoImageWith:(NSArray *)pictures todoModel:(TodoModel *)todo completion:(void(^)())finishiBlock
 {
-    UpdateTodoAPI *api = [[UpdateTodoAPI alloc]initWithTodo:todo pictures:pictures];
-    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer=[AFJSONRequestSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    [manager.requestSerializer setValue:[UserDefaultManager token] forHTTPHeaderField:@"Authorization"];
+    NSString *url = [NSString stringWithFormat:@"%@/todos/%@",baseAPIURL,todo.id];
+    NSDictionary *dict = [NSDictionary new];
+    
+    if (todo.missionId.length > 0 ) {
+        dict = @{
+                @"startTime": @(todo.startTime),
+                @"repeat": @(todo.repeat),
+                @"repeatMode":@(todo.repeatMode),
+                @"allDay":@(todo.allDay),
+                @"desc":todo.desc,
+                @"missionId":todo.missionId,
+                @"pictures":pictures,
+                };
+    }else{
+        dict = @{
+                @"startTime": @(todo.startTime),
+                @"repeat": @(todo.repeat),
+                @"repeatMode":@(todo.repeatMode),
+                @"allDay":@(todo.allDay),
+                @"desc":todo.desc,
+                @"pictures":pictures,
+                };
+    }
+    
+    [manager PUT:url parameters:dict success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
         finishiBlock();
-        
-    } failure:^(__kindof YTKBaseRequest *request) {
-        
+
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        [NYProgressHUD showToastText:@"上传图片失败"];
     }];
+    
 }
 
 - (void)saveTodoToDataBaseWithHud:(NYProgressHUD *)hud

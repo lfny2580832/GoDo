@@ -39,6 +39,7 @@
 {
     return @{
              @"Authorization": [UserDefaultManager token],
+//             @"Content-Type":@"application/json;charset=UTF-8",
              };
 }
 
@@ -64,7 +65,7 @@
                 @"pictures":_pictures,
                 };
     }
-    NSLog(@"fuck %@",dic);
+//    NSLog(@"fuck %@",dic);
     return dic;
 }
 

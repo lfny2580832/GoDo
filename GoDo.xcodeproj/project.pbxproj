@@ -34,6 +34,7 @@
 		4A24F37D1CBAFA6700234374 /* LoginTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F37C1CBAFA6700234374 /* LoginTokenModel.m */; };
 		4A24F3801CBB047C00234374 /* ChoosePrivateTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F37F1CBB047C00234374 /* ChoosePrivateTypeVC.m */; };
 		4A24F3831CBBBAEF00234374 /* CreateProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F3821CBBBAEF00234374 /* CreateProjectModel.m */; };
+		4A31ABDA1CC82C2100D34F9F /* DeleteMissionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31ABD91CC82C2100D34F9F /* DeleteMissionAPI.m */; };
 		4A3EE6CE1CB51A3100AFC8A4 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3EE6CD1CB51A3100AFC8A4 /* UserModel.m */; };
 		4A3EE6D11CB51BF600AFC8A4 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3EE6D01CB51BF600AFC8A4 /* ProjectModel.m */; };
 		4A3EE6D41CB51DB300AFC8A4 /* MissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3EE6D31CB51DB300AFC8A4 /* MissionModel.m */; };
@@ -86,6 +87,8 @@
 		4ADA1DAE1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADA1DAC1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m */; };
 		4AE154EE1CBD896A00B0C8BC /* MissionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE154ED1CBD896A00B0C8BC /* MissionCell.m */; };
 		4AE23F5D1CAA9A4C00ABECAF /* WeekDayLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE23F5C1CAA9A4C00ABECAF /* WeekDayLabelView.m */; };
+		4AE869E91CC695EB007FC0DB /* UpdateMissionImageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE869E81CC695EB007FC0DB /* UpdateMissionImageAPI.m */; };
+		4AE869EC1CC6A24B007FC0DB /* CreateMissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE869EB1CC6A24B007FC0DB /* CreateMissionModel.m */; };
 		4AE9D5DE1CC39D5D00C93FFC /* GetQiNiuTokenAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9D5DD1CC39D5D00C93FFC /* GetQiNiuTokenAPI.m */; };
 		4AE9D5E11CC3B58100C93FFC /* GetQiNiuTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9D5E01CC3B58100C93FFC /* GetQiNiuTokenModel.m */; };
 		4AE9D5E41CC3C13100C93FFC /* QiNiuUploadImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9D5E31CC3C13100C93FFC /* QiNiuUploadImageTool.m */; };
@@ -163,6 +166,8 @@
 		4A24F37F1CBB047C00234374 /* ChoosePrivateTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePrivateTypeVC.m; sourceTree = "<group>"; };
 		4A24F3811CBBBAEF00234374 /* CreateProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateProjectModel.h; sourceTree = "<group>"; };
 		4A24F3821CBBBAEF00234374 /* CreateProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateProjectModel.m; sourceTree = "<group>"; };
+		4A31ABD81CC82C2100D34F9F /* DeleteMissionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteMissionAPI.h; sourceTree = "<group>"; };
+		4A31ABD91CC82C2100D34F9F /* DeleteMissionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteMissionAPI.m; sourceTree = "<group>"; };
 		4A3EE6CC1CB51A3100AFC8A4 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		4A3EE6CD1CB51A3100AFC8A4 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		4A3EE6CF1CB51BF600AFC8A4 /* ProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectModel.h; sourceTree = "<group>"; };
@@ -262,6 +267,10 @@
 		4AE154ED1CBD896A00B0C8BC /* MissionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionCell.m; sourceTree = "<group>"; };
 		4AE23F5B1CAA9A4C00ABECAF /* WeekDayLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekDayLabelView.h; sourceTree = "<group>"; };
 		4AE23F5C1CAA9A4C00ABECAF /* WeekDayLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekDayLabelView.m; sourceTree = "<group>"; };
+		4AE869E71CC695EB007FC0DB /* UpdateMissionImageAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateMissionImageAPI.h; sourceTree = "<group>"; };
+		4AE869E81CC695EB007FC0DB /* UpdateMissionImageAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateMissionImageAPI.m; sourceTree = "<group>"; };
+		4AE869EA1CC6A24B007FC0DB /* CreateMissionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMissionModel.h; sourceTree = "<group>"; };
+		4AE869EB1CC6A24B007FC0DB /* CreateMissionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMissionModel.m; sourceTree = "<group>"; };
 		4AE9D5DC1CC39D5D00C93FFC /* GetQiNiuTokenAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetQiNiuTokenAPI.h; sourceTree = "<group>"; };
 		4AE9D5DD1CC39D5D00C93FFC /* GetQiNiuTokenAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetQiNiuTokenAPI.m; sourceTree = "<group>"; };
 		4AE9D5DF1CC3B58100C93FFC /* GetQiNiuTokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetQiNiuTokenModel.h; sourceTree = "<group>"; };
@@ -551,6 +560,10 @@
 				4ACD49971CC042C0002E5B48 /* PostDeviceTokenAPI.m */,
 				4AE9D5DC1CC39D5D00C93FFC /* GetQiNiuTokenAPI.h */,
 				4AE9D5DD1CC39D5D00C93FFC /* GetQiNiuTokenAPI.m */,
+				4AE869E71CC695EB007FC0DB /* UpdateMissionImageAPI.h */,
+				4AE869E81CC695EB007FC0DB /* UpdateMissionImageAPI.m */,
+				4A31ABD81CC82C2100D34F9F /* DeleteMissionAPI.h */,
+				4A31ABD91CC82C2100D34F9F /* DeleteMissionAPI.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -582,6 +595,8 @@
 				4AE9D5E01CC3B58100C93FFC /* GetQiNiuTokenModel.m */,
 				4AE9D5E51CC3CA6100C93FFC /* CreateTodoModel.h */,
 				4AE9D5E61CC3CA6100C93FFC /* CreateTodoModel.m */,
+				4AE869EA1CC6A24B007FC0DB /* CreateMissionModel.h */,
+				4AE869EB1CC6A24B007FC0DB /* CreateMissionModel.m */,
 			);
 			name = Model;
 			path = Request/Model;
@@ -848,6 +863,7 @@
 				4AD3DD1C1CAF409200D5FDC4 /* RegistAPI.m in Sources */,
 				4A1290901C5DD4FF006E078B /* TodoCollectionViewCell.m in Sources */,
 				4AA393511C58AC2E00DA3C16 /* MainTabBarVC.m in Sources */,
+				4AE869E91CC695EB007FC0DB /* UpdateMissionImageAPI.m in Sources */,
 				4AE9D5E71CC3CA6100C93FFC /* CreateTodoModel.m in Sources */,
 				4A12908F1C5DD4FF006E078B /* TodoCollectionView.m in Sources */,
 				4A4F9CBE1C3F3E280000F24C /* RDVCalendarView.m in Sources */,
@@ -870,6 +886,7 @@
 				4A88CB211C2B925F001C13D8 /* main.m in Sources */,
 				4ADA1DA61C3E496D001ECBF4 /* NSString+ZZExtends.m in Sources */,
 				4AA393541C58AC6D00DA3C16 /* DBManage.m in Sources */,
+				4AE869EC1CC6A24B007FC0DB /* CreateMissionModel.m in Sources */,
 				4AF086081CABF16300138097 /* ProjectVC.m in Sources */,
 				4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */,
 				4A24F3771CBAFA1000234374 /* SearchUserModel.m in Sources */,
@@ -880,6 +897,7 @@
 				4AB09F061C62E396006EB837 /* ChooseProjectVC.m in Sources */,
 				4A24F3831CBBBAEF00234374 /* CreateProjectModel.m in Sources */,
 				4A24F3361CB84B1800234374 /* PopoverView.m in Sources */,
+				4A31ABDA1CC82C2100D34F9F /* DeleteMissionAPI.m in Sources */,
 				4A4B4ECF1CBEE686009E2114 /* GetMissionAPI.m in Sources */,
 				4A95AA111C71702F00DFB118 /* DeleteTodoCell.m in Sources */,
 				4AD3DD351CB15B5200D5FDC4 /* VerifyCodeButton.m in Sources */,

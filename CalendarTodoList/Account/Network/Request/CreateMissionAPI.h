@@ -8,8 +8,10 @@
 
 #import <YTKNetwork/YTKRequest.h>
 
+@class MissionModel;
+
 @interface CreateMissionAPI : YTKRequest
 
-- (id)initWithName:(NSString *)name desc:(NSString *)desc projectId:(NSString *)projectId receiversId:(NSArray *)receiversId;
+- (id)initWithMissionName:(NSString *)name deadline:(NSDate *)deadline projectId:(NSString *)projectId receiversId:(NSArray *)receiversId;
 
 @end

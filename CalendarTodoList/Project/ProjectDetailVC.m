@@ -60,6 +60,12 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getProjectMission];
+}
+
 #pragma mark 初始化
 - (instancetype)initWithProject:(ProjectModel *)project
 {
@@ -71,7 +77,6 @@
         [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
         [self setRightBackButtontile:@"添加任务"];
         [self initView];
-        [self getProjectMission];
     }
     return self;
 }

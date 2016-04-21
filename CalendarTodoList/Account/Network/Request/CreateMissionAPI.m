@@ -7,6 +7,7 @@
 //
 
 #import "CreateMissionAPI.h"
+#import "MissionModel.h"
 
 @implementation CreateMissionAPI
 
@@ -15,16 +16,18 @@
     NSString *_desc;
     NSString *_projectId;
     NSArray *_receiversId;
+    long long _deadline;
     
 }
 
-- (id)initWithName:(NSString *)name desc:(NSString *)desc projectId:(NSString *)projectId receiversId:(NSArray *)receiversId
+- (id)initWithMissionName:(NSString *)name deadline:(NSDate *)deadline projectId:(NSString *)projectId receiversId:(NSArray *)receiversId
 {
     self = [super init];
     if (self) {
         _name = name;
-        _desc = @"森森森";
+        _desc = @"无";
         _projectId = projectId;
+        _deadline = [deadline timeIntervalSince1970];
         _receiversId = @[[UserDefaultManager id]];
     }
     return self;
@@ -51,7 +54,8 @@
              @"name": _name,
              @"desc": _desc,
              @"projectId":_projectId,
-             @"receiversId":_receiversId
+             @"receiversId":_receiversId,
+             @"deadline":@(_deadline)
              };
 }
 

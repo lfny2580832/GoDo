@@ -17,6 +17,7 @@
 #define kMainQueue dispatch_get_main_queue()
 #define RGBA(Red,Green,Blue,Alpha) [UIColor colorWithRed:Red/255.0f green:Green/255.0f blue:Blue/255.0f alpha:Alpha]
 #define KNaviColor RGBA(51, 108, 241, 1.0f)
+#define baseAPIURL @"https://api.samaritan.tech"
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>

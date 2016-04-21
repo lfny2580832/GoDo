@@ -24,4 +24,8 @@
 
 @property (nonatomic, strong) NSArray *pictures;
 
+@property (nonatomic ,assign) long long deadline;
+
+@property (nonatomic ,strong) NSArray *receiversName;
+
 @end

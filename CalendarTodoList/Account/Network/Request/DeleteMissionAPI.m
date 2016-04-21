@@ -1,35 +1,35 @@
 //
-//  GetMissionAPI.m
+//  DeleteMissionAPI.m
 //  GoDo
 //
-//  Created by 牛严 on 16/4/14.
+//  Created by 牛严 on 16/4/21.
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import "GetMissionAPI.h"
+#import "DeleteMissionAPI.h"
 
+@implementation DeleteMissionAPI
 
-@implementation GetMissionAPI
 {
-    NSString *_type; //joined 、created
+    NSString *_missionId;
 }
 
 - (id)initWithMissionId:(NSString *)missionId
 {
     self = [super init];
     if (self) {
-        _type = missionId;
-        }
+        _missionId = missionId;
+    }
     return self;
 }
 
 - (NSString *)requestUrl {
-    NSString *url = [NSString stringWithFormat:@"/projects/missions/%@",_type];
+    NSString *url = [NSString stringWithFormat:@"/missions/%@",_missionId];
     return url;
 }
 
 - (YTKRequestMethod)requestMethod {
-    return YTKRequestMethodGet;
+    return YTKRequestMethodDelete;
 }
 
 - (NSDictionary *)requestHeaderFieldValueDictionary
