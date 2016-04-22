@@ -36,4 +36,8 @@
 
 #pragma mark 根据RemindMode返回字符串
 + (NSString *)getRemindStrWithMode:(RemindMode)remindMode;
+
+#pragma mark 时间戳转换为 x月x日、x时x分
++ (NSDictionary *)dateStringsWithTimeStamp:(long long)timeStamp;
+
 @end

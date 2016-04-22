@@ -60,7 +60,6 @@
                 @"desc":_todo.desc,
                 };
     }
-    NSLog(@"--%@",dic);
     return dic;
 }
 

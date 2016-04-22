@@ -34,11 +34,15 @@
 {
     GetMissionAPI *api = [[GetMissionAPI alloc]initWithMissionId:_project.id];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
-        NSLog(@"--%@",request.responseString);
         GetMissionModel *model = [GetMissionModel yy_modelWithJSON:request.responseString];
-        _missions = model.missions;
-        _projectDetailView.missions = _missions;
-        [_projectDetailView.tableView reloadData];
+        if (model.code == 0) {
+            _missions = model.missions;
+            _projectDetailView.missions = _missions;
+            [_projectDetailView.tableView reloadData];
+        }else{
+            [NYProgressHUD showToastText:model.msg];
+        }
+
     } failure:^(__kindof YTKBaseRequest *request) {
         [NYProgressHUD showToastText:@"获取任务失败"];
     }];

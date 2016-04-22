@@ -35,6 +35,7 @@
 		4A24F3801CBB047C00234374 /* ChoosePrivateTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F37F1CBB047C00234374 /* ChoosePrivateTypeVC.m */; };
 		4A24F3831CBBBAEF00234374 /* CreateProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F3821CBBBAEF00234374 /* CreateProjectModel.m */; };
 		4A31ABDA1CC82C2100D34F9F /* DeleteMissionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31ABD91CC82C2100D34F9F /* DeleteMissionAPI.m */; };
+		4A31ABDD1CC9277A00D34F9F /* AcceptMissionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31ABDC1CC9277A00D34F9F /* AcceptMissionAPI.m */; };
 		4A3EE6CE1CB51A3100AFC8A4 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3EE6CD1CB51A3100AFC8A4 /* UserModel.m */; };
 		4A3EE6D11CB51BF600AFC8A4 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3EE6D01CB51BF600AFC8A4 /* ProjectModel.m */; };
 		4A3EE6D41CB51DB300AFC8A4 /* MissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3EE6D31CB51DB300AFC8A4 /* MissionModel.m */; };
@@ -168,6 +169,8 @@
 		4A24F3821CBBBAEF00234374 /* CreateProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateProjectModel.m; sourceTree = "<group>"; };
 		4A31ABD81CC82C2100D34F9F /* DeleteMissionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteMissionAPI.h; sourceTree = "<group>"; };
 		4A31ABD91CC82C2100D34F9F /* DeleteMissionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteMissionAPI.m; sourceTree = "<group>"; };
+		4A31ABDB1CC9277A00D34F9F /* AcceptMissionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptMissionAPI.h; sourceTree = "<group>"; };
+		4A31ABDC1CC9277A00D34F9F /* AcceptMissionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptMissionAPI.m; sourceTree = "<group>"; };
 		4A3EE6CC1CB51A3100AFC8A4 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		4A3EE6CD1CB51A3100AFC8A4 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		4A3EE6CF1CB51BF600AFC8A4 /* ProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectModel.h; sourceTree = "<group>"; };
@@ -564,6 +567,8 @@
 				4AE869E81CC695EB007FC0DB /* UpdateMissionImageAPI.m */,
 				4A31ABD81CC82C2100D34F9F /* DeleteMissionAPI.h */,
 				4A31ABD91CC82C2100D34F9F /* DeleteMissionAPI.m */,
+				4A31ABDB1CC9277A00D34F9F /* AcceptMissionAPI.h */,
+				4A31ABDC1CC9277A00D34F9F /* AcceptMissionAPI.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -889,6 +894,7 @@
 				4AE869EC1CC6A24B007FC0DB /* CreateMissionModel.m in Sources */,
 				4AF086081CABF16300138097 /* ProjectVC.m in Sources */,
 				4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */,
+				4A31ABDD1CC9277A00D34F9F /* AcceptMissionAPI.m in Sources */,
 				4A24F3771CBAFA1000234374 /* SearchUserModel.m in Sources */,
 				4A9FC1BC1C699FAE00A1D888 /* TodoContentView.m in Sources */,
 				4AF919011CA7435E002BFF12 /* RemindModeChooseVC.m in Sources */,

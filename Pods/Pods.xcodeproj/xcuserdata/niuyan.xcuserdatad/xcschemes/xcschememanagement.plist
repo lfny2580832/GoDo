@@ -54,6 +54,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>TZImagePickerController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,7 +77,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>06CB676FA3BE8215A6C950B2D169F6F0</key>
+		<key>02E3363B25842089D7A7F478A339D6A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +87,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3528FA1DBE3E5C6AB799FC7BEA473755</key>
+		<key>2BAD01D9AC88E27D7C594924279AE9E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4568C74257E60553C95249A8EC9F246E</key>
+		<key>34CC18F7060589DF905A4867FC69E0D5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3528FA1DBE3E5C6AB799FC7BEA473755</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +107,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>5746F3961AFFED7ACB94DBA175DBF7B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6627E2CE58504A680DE862D5526B302C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9DD3C25D52ACAB57493549AD012A35D5</key>
+		<key>8CD7C005B15F9F8FCEE78A1B99375EE0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9CAD5F0797DE54C8597DF599E0BF8161</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,17 +137,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BDC4FA14D3F79AEBB5C3C97F4205DD5A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>C743C42395D3C33F9883CB4690B475A0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DF93F609E495E20B007B8BAEF67EE877</key>
 		<dict>
 			<key>primary</key>
 			<true/>

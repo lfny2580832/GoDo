@@ -9,3 +9,4 @@ pod 'YTKNetwork'
 pod 'IQKeyboardManager'
 pod 'YYModel'
 pod "Qiniu", "~> 7.0"
+pod 'SDWebImage', '~>3.7'

@@ -315,7 +315,6 @@ static CGFloat datePickerCellHeight = 240.f;
         CreateTodoModel *model = [CreateTodoModel yy_modelWithJSON:request.responseString];
         todo.id = model.id;
         _tableId = todo.id;
-        NSLog(@"int----%ld",(long)_tableId);
         if (model.code == 0) {
             NSLog(@"创建任务网络请求完成（不包含图片）");
 
