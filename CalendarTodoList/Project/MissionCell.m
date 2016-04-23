@@ -22,6 +22,8 @@
     UILabel *_dateLabel;        //几月几号
     UILabel *_createInfoLabel;  //xxx创建了任务
     UIView *_misInfoView;
+    UILabel *_acceptLabel;
+    
     NSMutableArray *_imageViews;
 
 }
@@ -34,6 +36,11 @@
 //    _backView.layer.shadowOpacity = 0.2;
 //    _backView.layer.cornerRadius = 5;
 //}
+
+- (void)acceptMission
+{
+    NSLog(@"领取任务");
+}
 
 - (void)loadDataWithMission:(MissionModel *)mission
 {
@@ -55,13 +62,12 @@
                 missionImageView.userInteractionEnabled = YES;
                 missionImageView.contentMode= UIViewContentModeScaleAspectFill;
                 missionImageView.clipsToBounds = YES;
-                [missionImageView sd_setImageWithURL:mission.pictures[i] placeholderImage:nil];
+                [missionImageView sd_setImageWithURL:mission.pictures[i] placeholderImage:[UIImage imageNamed:@"default.png"]];
                 UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
                 [missionImageView addGestureRecognizer:recognizer];
             }else{
                 missionImageView.image = nil;
             }
-            
             [self.contentView addSubview:missionImageView];
             [missionImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(_textLabel).offset(10 + i*(50+imageEdge));
@@ -135,7 +141,7 @@
     [_misInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_backView).offset(20);
         make.left.right.equalTo(_backView);
-        make.bottom.equalTo(_backView).offset(-20);
+        make.bottom.equalTo(_backView).offset(-30);
     }];
     
     _textLabel = [[UILabel alloc]init];
@@ -181,7 +187,19 @@
         make.left.equalTo(_dateLabel.mas_right).offset(10);
     }];
     
-
+    _acceptLabel = [[UILabel alloc]init];
+    _acceptLabel.text = @"领取任务";
+    _acceptLabel.textColor = KNaviColor;
+    _acceptLabel.userInteractionEnabled = YES;
+    _acceptLabel.textAlignment = NSTextAlignmentCenter;
+    UITapGestureRecognizer *acceptGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(acceptMission)];
+    [_acceptLabel addGestureRecognizer:acceptGes];
+    [_backView addSubview:_acceptLabel];
+    [_acceptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_misInfoView.mas_bottom).offset(5);
+        make.centerX.equalTo(_backView);
+        make.left.right.equalTo(_backView);
+    }];
 }
 
 @end

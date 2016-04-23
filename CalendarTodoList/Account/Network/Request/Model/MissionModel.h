@@ -28,4 +28,6 @@
 
 @property (nonatomic ,strong) NSArray *receiversName;
 
+@property (nonatomic, assign) BOOL *accepted;
+
 @end
