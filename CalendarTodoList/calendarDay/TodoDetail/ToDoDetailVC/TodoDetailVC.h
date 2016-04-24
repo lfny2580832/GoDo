@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class FMTodoModel;
+@class MissionModel;
 
 @interface TodoDetailVC : UIViewController
 
 @property (nonatomic, strong) FMTodoModel *todo;
 
 - (instancetype)initWithDate:(NSDate *)date;
+
+- (void)loadMissionModel:(MissionModel *)mission images:(NSArray *)images;
 
 @end

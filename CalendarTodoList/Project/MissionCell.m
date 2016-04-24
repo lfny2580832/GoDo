@@ -9,6 +9,8 @@
 #import "MissionCell.h"
 #import "MissionModel.h"
 
+#import "TodoDetailVC.h"
+
 #import <SDWebImage/UIImageView+WebCache.h>
 
 #import "ZoomImageView.h"
@@ -23,6 +25,8 @@
     UILabel *_createInfoLabel;  //xxx创建了任务
     UIView *_misInfoView;
     UILabel *_acceptLabel;
+    
+    NSMutableArray *_images;
     
     NSMutableArray *_imageViews;
 
@@ -39,17 +43,23 @@
 
 - (void)acceptMission
 {
-    NSLog(@"领取任务");
+    TodoDetailVC *vc = [[TodoDetailVC alloc]initWithDate:[NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]]];
+    [vc loadMissionModel:_mission images:_images];
+    [vc setCustomTitle:@"领取任务"];
+    [vc setRightBackButtontile:@"确认"];
+    [self.delegate acceptMissionWithVC:vc];
 }
 
-- (void)loadDataWithMission:(MissionModel *)mission
+- (void)setMission:(MissionModel *)mission
 {
+    _mission = mission;
     _textLabel.text = mission.name;
     _createInfoLabel.text = [NSString stringWithFormat:@"%@ 创建了任务",mission.creatorName];
     NSDictionary *dateStrDic = [NSString dateStringsWithTimeStamp:mission.createTime];
     _dateLabel.text = dateStrDic[@"date"];
     _timeLabel.text = dateStrDic[@"time"];
     if (mission.pictures.count) {
+        _images = [NSMutableArray new];
         NSInteger imageCount = mission.pictures.count;
         NSInteger imageEdge = 10;
         [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -62,7 +72,9 @@
                 missionImageView.userInteractionEnabled = YES;
                 missionImageView.contentMode= UIViewContentModeScaleAspectFill;
                 missionImageView.clipsToBounds = YES;
-                [missionImageView sd_setImageWithURL:mission.pictures[i] placeholderImage:[UIImage imageNamed:@"default.png"]];
+                [missionImageView sd_setImageWithURL:mission.pictures[i] placeholderImage:[UIImage imageNamed:@"default.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    [_images addObject:image];
+                }];
                 UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(enlargeImageWithImageView:)];
                 [missionImageView addGestureRecognizer:recognizer];
             }else{

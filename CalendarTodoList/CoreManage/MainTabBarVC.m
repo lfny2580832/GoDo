@@ -9,6 +9,7 @@
 #import "MainTabBarVC.h"
 #import "CalendarVC.h"
 #import "ProjectVC.h"
+#import "MineVC.h"
 
 #import "BaseNavigationController.h"
 #import "UserDefaultManage.h"
@@ -43,10 +44,13 @@
     
     ProjectVC *projectVC = [[ProjectVC alloc]init];
     BaseNavigationController *projectNavVC = [[BaseNavigationController alloc]initWithRootViewController:projectVC];
-
     [projectNavVC setTitle:@"项目"];
+
+    MineVC *mineVC = [[MineVC alloc]init];
+    BaseNavigationController *mineNavVC = [[BaseNavigationController alloc]initWithRootViewController:mineVC];
+    [mineNavVC setTitle:@"我的"];
     
-    [self setViewControllers:@[calendarNavVC,projectNavVC]];
+    [self setViewControllers:@[calendarNavVC,projectNavVC,mineNavVC]];
 }
 
 @end

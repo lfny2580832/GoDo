@@ -25,7 +25,10 @@
 
 @property (nonatomic, copy) NSString *userName;
 
-@property (nonatomic, copy) NSString *userPassword;
+@property (nonatomic, copy) NSString *nickName;
+
+@property (nonatomic, strong) UIImage *headImage;
+//@property (nonatomic, copy) NSString *userPassword;
 ///七牛token
 @property (nonatomic, copy) NSString *qiNiuToken;
 ///第一次启动

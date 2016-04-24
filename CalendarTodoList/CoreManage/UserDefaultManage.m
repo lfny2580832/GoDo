@@ -90,6 +90,30 @@
     return  [UserDefault objectForKey:@"userPassword"];
 }
 
+#pragma mark 存取头像
+- (void)setHeadImage:(UIImage *)headImage
+{
+    NSData *imageData = UIImageJPEGRepresentation(headImage, 1.0);
+    [UserDefault setObject:imageData forKey:@"headImage"];
+}
+
+- (UIImage *)headImage
+{
+    NSData *imageData = [UserDefault objectForKey:@"headImage"];
+    return  [UIImage imageWithData:imageData];
+}
+
+#pragma mark 存取用户名称
+- (void)setNickName:(NSString *)nickName
+{
+    [UserDefault setObject:nickName forKey:@"nickName"];
+}
+
+- (NSString *)nickName
+{
+    return  [UserDefault objectForKey:@"nickName"];
+}
+
 #pragma mark 存取七牛token
 - (void)setQiNiuToken:(NSString *)qiNiuToken
 {

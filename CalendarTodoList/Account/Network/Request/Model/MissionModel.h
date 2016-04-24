@@ -22,12 +22,13 @@
 
 @property (nonatomic, copy) NSString *creatorName;
 
-@property (nonatomic, strong) NSArray *pictures;
+@property (nonatomic, strong) NSArray *pictures;   //pic urls
 
 @property (nonatomic ,assign) long long deadline;
 
 @property (nonatomic ,strong) NSArray *receiversName;
 
 @property (nonatomic, assign) BOOL *accepted;
+
 
 @end

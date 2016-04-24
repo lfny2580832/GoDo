@@ -8,6 +8,8 @@
 
 #import "ProjectDetailVC.h"
 #import "ProjectDetailView.h"
+#import "MissionCell.h"
+#import "TodoDetailVC.h"
 
 #import "GetMissionAPI.h"
 #import "ProjectModel.h"
@@ -17,7 +19,7 @@
 
 #import "CreateMissionVC.h"
 
-@interface ProjectDetailVC ()<ProjectDetailViewDelegate>
+@interface ProjectDetailVC ()<ProjectDetailViewDelegate,MissionCellDelegate>
 
 @end
 
@@ -27,6 +29,11 @@
     NSArray *_missions;
     
     ProjectModel *_project;
+}
+
+- (void)acceptMissionWithVC:(TodoDetailVC *)vc
+{
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark 获取项目mission
@@ -64,10 +71,26 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark 发布任务成功后返回刷新
+- (void)refreshMissions
+{
+    [self getProjectMission];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getProjectMission];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMissions) name:@"refreshMission" object:nil];
 }
 
 #pragma mark 初始化
@@ -81,13 +104,15 @@
         [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
         [self setRightBackButtontile:@"添加任务"];
         [self initView];
+        [self getProjectMission];
+        
     }
     return self;
 }
 
 - (void)initView
 {
-    _projectDetailView = [[ProjectDetailView alloc]init];
+    _projectDetailView = [[ProjectDetailView alloc]initWithTarget:self];
     _projectDetailView.project = _project;
     _projectDetailView.delegate = self;
     _projectDetailView.backgroundColor = RGBA(232, 232, 232, 1.0);

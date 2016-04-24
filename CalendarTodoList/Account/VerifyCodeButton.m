@@ -9,6 +9,8 @@
 #import "VerifyCodeButton.h"
 #import "SendVerifyCodeAPI.h"
 
+#import "BaseModel.h"
+
 @implementation VerifyCodeButton
 {
     NSInteger _resendSecond;
@@ -39,8 +41,15 @@
     [hud showAnimationWithText:@"验证码发送中"];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         [hud hide];
-        [NYProgressHUD showToastText:@"验证码发送成功"];
-        _resendTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(resendTimerChange) userInfo:nil repeats:YES];
+        BaseModel *model = [BaseModel yy_modelWithJSON:request.responseString];
+        if (model.code == 0) {
+            [NYProgressHUD showToastText:@"验证码发送成功"];
+            _resendTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(resendTimerChange) userInfo:nil repeats:YES];
+        }else
+        {
+            [NYProgressHUD showToastText:model.msg];
+        }
+
 
     } failure:^(__kindof YTKBaseRequest *request) {
         [hud hide];

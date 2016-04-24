@@ -124,7 +124,7 @@ void ZZLog(NSString *format, ...) {
 
 - (void)leftbarButtonItemOnclick:(id)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)rightbarButtonItemOnclick:(id)sender

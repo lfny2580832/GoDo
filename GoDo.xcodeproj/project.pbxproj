@@ -11,6 +11,8 @@
 		4A0441D01C89A82F005E23D9 /* RepeateModeChooseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0441CF1C89A82F005E23D9 /* RepeateModeChooseVC.m */; };
 		4A0441D31C89AAA3005E23D9 /* RepeatModeChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0441D21C89AAA3005E23D9 /* RepeatModeChooseCell.m */; };
 		4A077ED71CCA2BA4009DDADD /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A077ED61CCA2BA4009DDADD /* default.png */; };
+		4A077EDB1CCBA79A009DDADD /* MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A077EDA1CCBA79A009DDADD /* MineVC.m */; };
+		4A077EDE1CCBD1ED009DDADD /* MineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A077EDD1CCBD1ED009DDADD /* MineCell.m */; };
 		4A1290861C5DD4E6006E078B /* WeekCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1290831C5DD4E6006E078B /* WeekCollectionView.m */; };
 		4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1290851C5DD4E6006E078B /* WeekCollectionViewCell.m */; };
 		4A12908F1C5DD4FF006E078B /* TodoCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A12908A1C5DD4FF006E078B /* TodoCollectionView.m */; };
@@ -45,6 +47,7 @@
 		4A43AC351C3631A900347E3C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A43AC341C3631A900347E3C /* libc++.tbd */; };
 		4A4B4ECF1CBEE686009E2114 /* GetMissionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4B4ECE1CBEE686009E2114 /* GetMissionAPI.m */; };
 		4A4B4ED21CBEE686009E2114 /* CreateMissionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4B4ED11CBEE686009E2114 /* CreateMissionAPI.m */; };
+		4A4CA2EE1CCD5EC800F6DD05 /* MineInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4CA2ED1CCD5EC800F6DD05 /* MineInfoCell.m */; };
 		4A4F9CBD1C3F3E280000F24C /* RDVCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CB61C3F3E280000F24C /* RDVCalendarDayCell.m */; };
 		4A4F9CBE1C3F3E280000F24C /* RDVCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CB81C3F3E280000F24C /* RDVCalendarView.m */; };
 		4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CC31C3F3ECE0000F24C /* CalendarTodoDetailVC.m */; };
@@ -121,6 +124,10 @@
 		4A0441D11C89AAA3005E23D9 /* RepeatModeChooseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatModeChooseCell.h; sourceTree = "<group>"; };
 		4A0441D21C89AAA3005E23D9 /* RepeatModeChooseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatModeChooseCell.m; sourceTree = "<group>"; };
 		4A077ED61CCA2BA4009DDADD /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		4A077ED91CCBA79A009DDADD /* MineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineVC.h; sourceTree = "<group>"; };
+		4A077EDA1CCBA79A009DDADD /* MineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineVC.m; sourceTree = "<group>"; };
+		4A077EDC1CCBD1ED009DDADD /* MineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineCell.h; sourceTree = "<group>"; };
+		4A077EDD1CCBD1ED009DDADD /* MineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineCell.m; sourceTree = "<group>"; };
 		4A1290821C5DD4E6006E078B /* WeekCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCollectionView.h; sourceTree = "<group>"; };
 		4A1290831C5DD4E6006E078B /* WeekCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekCollectionView.m; sourceTree = "<group>"; };
 		4A1290841C5DD4E6006E078B /* WeekCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCollectionViewCell.h; sourceTree = "<group>"; };
@@ -187,6 +194,8 @@
 		4A4B4ECE1CBEE686009E2114 /* GetMissionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetMissionAPI.m; sourceTree = "<group>"; };
 		4A4B4ED01CBEE686009E2114 /* CreateMissionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMissionAPI.h; sourceTree = "<group>"; };
 		4A4B4ED11CBEE686009E2114 /* CreateMissionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMissionAPI.m; sourceTree = "<group>"; };
+		4A4CA2EC1CCD5EC800F6DD05 /* MineInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineInfoCell.h; sourceTree = "<group>"; };
+		4A4CA2ED1CCD5EC800F6DD05 /* MineInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineInfoCell.m; sourceTree = "<group>"; };
 		4A4F9CB51C3F3E280000F24C /* RDVCalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarDayCell.h; sourceTree = "<group>"; };
 		4A4F9CB61C3F3E280000F24C /* RDVCalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVCalendarDayCell.m; sourceTree = "<group>"; };
 		4A4F9CB71C3F3E280000F24C /* RDVCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVCalendarView.h; sourceTree = "<group>"; };
@@ -328,6 +337,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A077ED81CCBA789009DDADD /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				4A077ED91CCBA79A009DDADD /* MineVC.h */,
+				4A077EDA1CCBA79A009DDADD /* MineVC.m */,
+				4A077EDC1CCBD1ED009DDADD /* MineCell.h */,
+				4A077EDD1CCBD1ED009DDADD /* MineCell.m */,
+				4A4CA2EC1CCD5EC800F6DD05 /* MineInfoCell.h */,
+				4A4CA2ED1CCD5EC800F6DD05 /* MineInfoCell.m */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
 		4A1290811C5DD4E6006E078B /* WeekCollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +466,7 @@
 				4A4F9CB41C3F3E280000F24C /* calendarMonth */,
 				4A4F9CC11C3F3E330000F24C /* calendarDay */,
 				4AF086051CABF15100138097 /* Project */,
+				4A077ED81CCBA789009DDADD /* Mine */,
 				4ADA1D9C1C3E496D001ECBF4 /* Extends */,
 				4ADA1D901C3E478C001ECBF4 /* images */,
 				4A88CB1F1C2B925F001C13D8 /* Supporting Files */,
@@ -876,8 +899,10 @@
 				4AE9D5E71CC3CA6100C93FFC /* CreateTodoModel.m in Sources */,
 				4A12908F1C5DD4FF006E078B /* TodoCollectionView.m in Sources */,
 				4A4F9CBE1C3F3E280000F24C /* RDVCalendarView.m in Sources */,
+				4A077EDB1CCBA79A009DDADD /* MineVC.m in Sources */,
 				4AE23F5D1CAA9A4C00ABECAF /* WeekDayLabelView.m in Sources */,
 				4A24F36B1CBAE47200234374 /* TypeColor.m in Sources */,
+				4A077EDE1CCBD1ED009DDADD /* MineCell.m in Sources */,
 				4A3EE6CE1CB51A3100AFC8A4 /* UserModel.m in Sources */,
 				4ACDD62D1CC08A260027288F /* CreateMissionVC.m in Sources */,
 				4A1290911C5DD4FF006E078B /* TodoTableViewCell.m in Sources */,
@@ -911,6 +936,7 @@
 				4A4B4ECF1CBEE686009E2114 /* GetMissionAPI.m in Sources */,
 				4A95AA111C71702F00DFB118 /* DeleteTodoCell.m in Sources */,
 				4AD3DD351CB15B5200D5FDC4 /* VerifyCodeButton.m in Sources */,
+				4A4CA2EE1CCD5EC800F6DD05 /* MineInfoCell.m in Sources */,
 				4A4B4ED21CBEE686009E2114 /* CreateMissionAPI.m in Sources */,
 				4AD3DD1B1CAF409200D5FDC4 /* LogInAPI.m in Sources */,
 				4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */,

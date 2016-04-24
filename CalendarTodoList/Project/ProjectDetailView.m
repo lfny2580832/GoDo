@@ -19,6 +19,8 @@
     UILabel *_projectNameLabel;
     UILabel *_projectDesLabel;
     UILabel *_memberNamesLabel;
+    
+    id _target;
 }
 
 
@@ -38,8 +40,8 @@
     if(!cell){
         cell = [[MissionCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
-
-    [cell loadDataWithMission:_missions[indexPath.row]];
+    cell.delegate = _target;
+    cell.mission = _missions[indexPath.row];
     return cell;
 }
 
@@ -55,10 +57,11 @@
 }
 
 #pragma mark 初始化
-- (instancetype)init
+- (instancetype)initWithTarget:(id)target
 {
     self = [super init];
     if (self) {
+        _target = target;
         self.backgroundColor = [UIColor whiteColor];
         [self initView];
     }

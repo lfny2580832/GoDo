@@ -27,6 +27,7 @@
 #import "CreateTodoModel.h"
 #import "UpdateTodoAPI.h"
 #import "deleteTodoAPI.h"
+#import "MissionModel.h"
 
 #import "QiNiuUploadImageTool.h"
 
@@ -61,7 +62,9 @@
     NSString *_tableId;
     NSDate *_startDate;
     NSDate *_OldStartDate;
-//    NSDate *_endDate;
+
+    NSString *_missionId;
+    
     RepeatMode _repeatMode;
     RemindMode _remindMode;
     NSMutableArray *_chosenImages;
@@ -298,6 +301,26 @@ static CGFloat datePickerCellHeight = 240.f;
     }
 }
 
+#pragma mark 加载mission model
+- (void)loadMissionModel:(MissionModel *)mission images:(NSArray *)images
+{
+    _missionId = mission.id;
+    _repeatMode = Never;
+    _remindMode = NoRemind;
+    _todoContentStr = mission.name;
+    _todoContentView.todoContentField.text = _todoContentStr;
+    NSDate *tempDate = [NSDate dateWithTimeInterval:0 sinceDate:_initialDate];
+    if ([[NSDate date] timeIntervalSinceDate:tempDate] > 0)
+        _startDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];
+    else
+        _startDate = tempDate;
+    _isAllDay = NO;
+    _chosenImages = [NSMutableArray arrayWithArray:images];
+    if (_chosenImages.count) {
+        [_todoContentView updateContentViewWithImageArray:_chosenImages];
+    }
+}
+
 #pragma mark 创建ToDo网络请求
 - (void)requestToCreateOrUpdateTodo
 {
@@ -307,6 +330,7 @@ static CGFloat datePickerCellHeight = 240.f;
     todo.repeatMode = _repeatMode;
     todo.repeat = (_repeatMode == 0)? NO:YES;
     todo.allDay = _isAllDay;
+    todo.missionId = _missionId;
     
     NYProgressHUD *hud = [NYProgressHUD new];
     [hud showAnimationWithText:@"创建任务中"];

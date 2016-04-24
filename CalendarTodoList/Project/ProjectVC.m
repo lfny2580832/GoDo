@@ -160,15 +160,7 @@
 //        make.top.equalTo(self.view);
 //        make.left.right.equalTo(self.view);
 //    }];
-//    
-//    UIButton *button = [[UIButton alloc]init];
-//    button.backgroundColor = [UIColor blueColor];
-//    [button addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:button];
-//    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.center.equalTo(self.view);
-//        make.size.mas_equalTo(CGSizeMake(100, 40));
-//    }];
+
     _tableView = [[UITableView alloc]init];
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.showsVerticalScrollIndicator = NO;

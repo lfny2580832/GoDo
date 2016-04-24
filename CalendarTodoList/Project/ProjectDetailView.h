@@ -26,4 +26,6 @@
 
 @property (nonatomic, weak) id <ProjectDetailViewDelegate> delegate;
 
+- (instancetype)initWithTarget:(id)target;
+
 @end

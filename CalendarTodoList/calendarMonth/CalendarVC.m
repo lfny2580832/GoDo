@@ -145,8 +145,8 @@
 {
 //    if(![UserDefaultManager firstStart]){
 //        [UserDefaultManager setFirstStart:NO];
-//        [self simulateProject];
-//        [self simulateTodoList];
+        [self simulateProject];
+        [self simulateTodoList];
 //    }
 }
 

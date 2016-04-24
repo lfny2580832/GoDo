@@ -9,9 +9,18 @@
 #import <UIKit/UIKit.h>
 
 @class MissionModel;
+@class TodoDetailVC;
+
+@protocol MissionCellDelegate <NSObject>
+
+- (void)acceptMissionWithVC:(TodoDetailVC *)vc;
+
+@end
 
 @interface MissionCell : UITableViewCell
 
-- (void)loadDataWithMission:(MissionModel *)mission;
+@property (nonatomic, strong) MissionModel *mission;
+
+@property (nonatomic, weak) id<MissionCellDelegate> delegate;
 
 @end

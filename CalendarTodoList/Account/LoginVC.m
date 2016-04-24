@@ -51,15 +51,8 @@
     [hud showAnimationWithText:@"登录中"];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         LoginTokenModel *loginTokenModel = [LoginTokenModel yy_modelWithJSON:request.responseString];
+        [self saveInfoAfterLoginWithModel:loginTokenModel];
         [hud hide];
-        
-        NSString *token = loginTokenModel.token;
-        NSString *id = loginTokenModel.id;
-        [UserDefaultManager setId:id];
-        [UserDefaultManager setToken:token];
-        [UserDefaultManager setUserName:mail];
-        [UserDefaultManager setUserPassword:password];
-        [self postDeviceToken];
         [NYProgressHUD showToastText:@"登录成功" completion:^{
             [self dismissLoginView];
         }];
@@ -82,14 +75,8 @@
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         [hud hide];
         LoginTokenModel *loginTokenModel = [LoginTokenModel yy_modelWithJSON:request.responseString];
+        [self saveInfoAfterLoginWithModel:loginTokenModel];
         [hud hide];
-        NSString *token = loginTokenModel.token;
-        NSString *id = loginTokenModel.id;
-        [UserDefaultManager setId:id];
-        [UserDefaultManager setToken:token];
-        [UserDefaultManager setUserName:mail];
-        [UserDefaultManager setUserPassword:password];
-        [self postDeviceToken];
         [NYProgressHUD showToastText:@"注册成功" completion:^{
             [self dismissLoginView];
         }];
@@ -97,6 +84,16 @@
         [hud hide];
         [NYProgressHUD showToastText:@"注册失败"];
     }];
+}
+
+- (void)saveInfoAfterLoginWithModel:(LoginTokenModel *)model
+{
+    [UserDefaultManager setId:model.id];
+    [UserDefaultManager setToken:model.token];
+    [UserDefaultManager setUserName:model.mail];
+    [UserDefaultManager setNickName:model.name];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"loadHeadImage" object:model.avatar];
+    [self postDeviceToken];
 }
 
 #pragma mark 重置密码
