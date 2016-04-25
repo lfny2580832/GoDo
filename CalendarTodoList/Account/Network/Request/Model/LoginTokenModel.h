@@ -14,10 +14,4 @@
 
 @property (nonatomic, copy) NSString *token;
 
-@property (nonatomic ,copy) NSString *avatar;
-
-@property (nonatomic ,copy) NSString *mail;
-
-@property (nonatomic ,copy) NSString *name;
-
 @end

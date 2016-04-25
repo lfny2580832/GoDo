@@ -1,14 +1,15 @@
+
 //
-//  GetQiNiuToken.m
+//  GetUserInfoAPI.m
 //  GoDo
 //
-//  Created by 牛严 on 16/4/17.
+//  Created by 牛严 on 16/4/26.
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import "GetQiNiuTokenAPI.h"
+#import "GetUserInfoAPI.h"
 
-@implementation GetQiNiuTokenAPI
+@implementation GetUserInfoAPI
 
 - (id)init
 {
@@ -17,7 +18,7 @@
 }
 
 - (NSString *)requestUrl {
-    return @"/qiniu/uploadTokens";
+    return @"/users/personalInfo";
 }
 
 - (YTKRequestMethod)requestMethod {

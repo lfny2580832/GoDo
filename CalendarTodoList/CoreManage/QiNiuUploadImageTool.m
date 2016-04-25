@@ -29,7 +29,8 @@
 {
     UIImage *image = images[index];
     __block NSInteger imageIndex = index;
-    NSData *data = UIImageJPEGRepresentation(image, 1);
+    NSData *data = UIImageJPEGRepresentation(image, 0.5);
+    NSInteger length = [data length]/1024;
     NSString *filename = [NSString stringWithFormat:@"%@_%ld.%@",todoId,index,@"jpg"];
     [uploadManager putData:data key:filename token:[UserDefaultManager qiNiuToken]
                   complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp)
@@ -37,7 +38,7 @@
         if (info.isOK)
         {
             [keys addObject:key];
-            NSLog(@"第 %ld 张上传完成",index + 1);
+            NSLog(@"第 %ld 张上传完成，大小%ld",index + 1,(long)length);
             imageIndex++;
             if (imageIndex >= images.count)
             {
@@ -53,5 +54,40 @@
         }
     } option:nil];
 }
+
+#pragma mark 上传单张图片
+
+- (void)uploadHeadImage:(UIImage *)image completed:(completedBlock)completed
+{
+    GetQiNiuTokenAPI *api = [[GetQiNiuTokenAPI alloc]init];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        GetQiNiuTokenModel *model = [GetQiNiuTokenModel yy_modelWithJSON:request.responseString];
+        [UserDefaultManager setQiNiuToken:model.uploadToken];
+        QNUploadManager *uploadManager = [QNUploadManager sharedInstanceWithConfiguration:nil];
+        [self uploadImage:image uploadManager:uploadManager id:[UserDefaultManager id] completed:completed];
+    } failure:nil];
+}
+
+-(void)uploadImage:(UIImage *)image uploadManager:(QNUploadManager *)uploadManager id:(NSString *)nameId completed:(completedBlock)completed
+{
+    NSData *data = UIImageJPEGRepresentation(image, 0.5);
+//    NSInteger length = [data length]/1024;
+//    NSLog(@"图片大小 %ldkb",(long)length);
+//    NSString *filename = [NSString stringWithFormat:@"%@.%@",nameId,@"jpg"];
+    [uploadManager putData:data key:nil token:[UserDefaultManager qiNiuToken]
+                  complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp)
+     {
+         if (info.isOK)
+         {
+             NSString *hash = resp[@"hash"];
+             completed(@[hash]);
+         }
+         else
+         {
+             NSLog(@"error:%@",info.error);
+         }
+     } option:nil];
+}
+
 
 @end

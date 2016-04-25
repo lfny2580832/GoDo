@@ -18,6 +18,8 @@
 {
     UIImage *headImage = [UserDefaultManager headImage];
     _imageView.image = headImage;
+    _titleLabel.text = [UserDefaultManager nickName];
+
 }
 
 
@@ -28,6 +30,7 @@
         
         [UserDefaultManager setHeadImage:image];
     }];
+    _titleLabel.text = [UserDefaultManager nickName];
 }
 
 #pragma mark 初始化
@@ -37,6 +40,7 @@
     if (self) {
         [self initView];
         [self loadHeadImage];
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return self;
 }

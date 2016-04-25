@@ -9,6 +9,7 @@
 #import "MineVC.h"
 #import "MineCell.h"
 #import "MineInfoCell.h"
+#import "MineInfoVC.h"
 
 #import "LoginVC.h"
 
@@ -62,7 +63,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        MineInfoVC *vc = [[MineInfoVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)dealloc
@@ -92,6 +97,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [_mineInfoCell loadHeadImage];
+    
     if (![UserDefaultManager token] && _isFirst == NO) {
         [self login];
     }
@@ -106,7 +114,7 @@
         _mineInfoCell = [[MineInfoCell alloc]init];
         [self setCustomTitle:@"我的"];
         [self initViews];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadHeadImageWithNotification:) name:@"loadHeadImage" object:nil];        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadHeadImageWithNotification:) name:@"loadHeadImage" object:nil];
     }
     return self;
 }

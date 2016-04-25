@@ -10,6 +10,6 @@
 
 @interface RegistAPI : YTKRequest
 
-- (id)initWithName:(NSString *)name password:(NSString *)password mail:(NSString *)mail verifyCode:(NSString *)verifyCode;
+- (id)initWithName:(NSString *)name password:(NSString *)password mail:(NSString *)mail verifyCode:(NSString *)verifyCode stuNum:(NSString *)stuNum;
 
 @end

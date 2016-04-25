@@ -22,10 +22,12 @@
 @property (nonatomic, copy) NSString *token;
 ///登录后返回的Id
 @property (nonatomic, copy) NSString *id;
-
+///用户名，暂时是邮箱
 @property (nonatomic, copy) NSString *userName;
 
 @property (nonatomic, copy) NSString *nickName;
+
+@property (nonatomic, copy) NSString *stuNumber;
 
 @property (nonatomic, strong) UIImage *headImage;
 //@property (nonatomic, copy) NSString *userPassword;

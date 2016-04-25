@@ -14,4 +14,6 @@
 
 - (void)loadHeadImageWithUrl:(NSString *)imageUrl;
 
+- (void)loadHeadImage;
+
 @end

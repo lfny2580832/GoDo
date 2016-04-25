@@ -15,9 +15,10 @@
     NSString *_password;
     NSString *_type;
     NSString *_verifyCode;
+    NSString *_stuNum;
 }
 
-- (id)initWithName:(NSString *)name password:(NSString *)password mail:(NSString *)mail verifyCode:(NSString *)verifyCode
+- (id)initWithName:(NSString *)name password:(NSString *)password mail:(NSString *)mail verifyCode:(NSString *)verifyCode stuNum:(NSString *)stuNum
 {
     self = [super init];
     if (self) {
@@ -26,6 +27,7 @@
         _mail = mail;
         _type = @"mail";
         _verifyCode = verifyCode;
+        _stuNum = stuNum ? stuNum:@"";
     }
     return self;
 }
@@ -44,7 +46,8 @@
              @"password": _password,
              @"mail": _mail,
              @"type": _type,
-             @"verifyCode": _verifyCode
+             @"verifyCode": _verifyCode,
+             @"stuNum":_stuNum
              };
 }
 

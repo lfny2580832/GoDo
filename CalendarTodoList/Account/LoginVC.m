@@ -16,6 +16,8 @@
 #import "RegistAPI.h"
 #import "ResetAPI.h"
 #import "PostDeviceTokenAPI.h"
+#import "GetUserInfoAPI.h"
+#import "UserInfoModel.h"
 
 @interface LoginVC ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -51,11 +53,19 @@
     [hud showAnimationWithText:@"登录中"];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         LoginTokenModel *loginTokenModel = [LoginTokenModel yy_modelWithJSON:request.responseString];
-        [self saveInfoAfterLoginWithModel:loginTokenModel];
-        [hud hide];
-        [NYProgressHUD showToastText:@"登录成功" completion:^{
-            [self dismissLoginView];
-        }];
+        if (loginTokenModel.code == 0) {
+            [UserDefaultManager setToken:loginTokenModel.token];
+
+            [self requestForUserInfo];
+            [hud hide];
+            [NYProgressHUD showToastText:@"登录成功" completion:^{
+                [self dismissLoginView];
+            }];
+        }else{
+            [hud hide];
+            [NYProgressHUD showToastText:loginTokenModel.msg];
+        }
+
     } failure:^(__kindof YTKBaseRequest *request) {
         [hud hide];
         [NYProgressHUD showToastText:@"登录失败，请检查网络环境"];
@@ -69,31 +79,49 @@
     NSString *password = _signupView.passwordTextField.text;
     NSString *mail = _signupView.mailTextField.text;
     NSString *verifyCode = _signupView.verifyCodeTextField.text;
-    RegistAPI *api = [[RegistAPI alloc]initWithName:name password:password mail:mail verifyCode:verifyCode];
+    NSString *stuNum = _signupView.schoolNumTextField.text;
+    RegistAPI *api = [[RegistAPI alloc]initWithName:name password:password mail:mail verifyCode:verifyCode stuNum:stuNum];
     NYProgressHUD *hud = [NYProgressHUD new];
     [hud showAnimationWithText:@"注册中"];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         [hud hide];
         LoginTokenModel *loginTokenModel = [LoginTokenModel yy_modelWithJSON:request.responseString];
-        [self saveInfoAfterLoginWithModel:loginTokenModel];
-        [hud hide];
-        [NYProgressHUD showToastText:@"注册成功" completion:^{
-            [self dismissLoginView];
-        }];
+        if (loginTokenModel.code == 0){
+            [UserDefaultManager setToken:loginTokenModel.token];
+
+            [self requestForUserInfo];
+            [hud hide];
+            [NYProgressHUD showToastText:@"注册成功" completion:^{
+                [self dismissLoginView];
+            }];
+        }else{
+            [hud hide];
+            [NYProgressHUD showToastText:loginTokenModel.msg];
+        }
     } failure:^(__kindof YTKBaseRequest *request) {
         [hud hide];
         [NYProgressHUD showToastText:@"注册失败"];
     }];
 }
 
-- (void)saveInfoAfterLoginWithModel:(LoginTokenModel *)model
+- (void)requestForUserInfo
 {
-    [UserDefaultManager setId:model.id];
-    [UserDefaultManager setToken:model.token];
-    [UserDefaultManager setUserName:model.mail];
-    [UserDefaultManager setNickName:model.name];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"loadHeadImage" object:model.avatar];
-    [self postDeviceToken];
+    GetUserInfoAPI *api = [[GetUserInfoAPI alloc]init];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        UserInfoModel *model = [UserInfoModel yy_modelWithJSON:request.responseString];
+        [UserDefaultManager setId:model.id];
+        [UserDefaultManager setUserName:model.mail];
+        [UserDefaultManager setNickName:model.name];
+        [UserDefaultManager setStuNumber:model.stuNum];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadHeadImage" object:model.avatar];
+        [self postDeviceToken];
+    } failure:^(__kindof YTKBaseRequest *request) {
+        NSLog(@"--%@",request.responseString);
+    }];
+    
+    
+    
+
 }
 
 #pragma mark 重置密码

@@ -114,6 +114,18 @@
     return  [UserDefault objectForKey:@"nickName"];
 }
 
+
+#pragma mark 存取学号
+- (void)setStuNumber:(NSString *)stuNumber
+{
+    [UserDefault setObject:stuNumber forKey:@"stuNumber"];
+}
+
+- (NSString *)stuNumber
+{
+    return [UserDefault objectForKey:@"stuNumber"];
+}
+
 #pragma mark 存取七牛token
 - (void)setQiNiuToken:(NSString *)qiNiuToken
 {
