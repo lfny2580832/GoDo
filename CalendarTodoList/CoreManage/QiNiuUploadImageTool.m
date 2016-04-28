@@ -31,13 +31,13 @@
     __block NSInteger imageIndex = index;
     NSData *data = UIImageJPEGRepresentation(image, 0.5);
     NSInteger length = [data length]/1024;
-    NSString *filename = [NSString stringWithFormat:@"%@_%ld.%@",todoId,index,@"jpg"];
-    [uploadManager putData:data key:filename token:[UserDefaultManager qiNiuToken]
+//    NSString *filename = [NSString stringWithFormat:@"%@_%ld.%@",todoId,index,@"jpg"];
+    [uploadManager putData:data key:nil token:[UserDefaultManager qiNiuToken]
                   complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp)
     {
         if (info.isOK)
         {
-            [keys addObject:key];
+            [keys addObject:resp[@"hash"]];
             NSLog(@"第 %ld 张上传完成，大小%ld",index + 1,(long)length);
             imageIndex++;
             if (imageIndex >= images.count)

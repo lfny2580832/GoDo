@@ -26,4 +26,6 @@
 
 @property (nonatomic, copy) NSString *type;
 
+@property (nonatomic, strong) NSArray *members;
+
 @end

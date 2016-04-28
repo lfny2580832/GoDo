@@ -109,6 +109,7 @@
         _proPrivate = YES;
         self.view.backgroundColor = RGBA(235, 235, 241, 1.0);
         [self setCustomTitle:@"创建新项目"];
+        [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
         [self setRightBackButtontile:@"保存"];
         [self initView];
         FMProject *defaultProject = [[FMProject searchWithWhere:nil] firstObject];

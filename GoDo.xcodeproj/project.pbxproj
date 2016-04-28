@@ -37,6 +37,9 @@
 		4A24F37D1CBAFA6700234374 /* LoginTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F37C1CBAFA6700234374 /* LoginTokenModel.m */; };
 		4A24F3801CBB047C00234374 /* ChoosePrivateTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F37F1CBB047C00234374 /* ChoosePrivateTypeVC.m */; };
 		4A24F3831CBBBAEF00234374 /* CreateProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F3821CBBBAEF00234374 /* CreateProjectModel.m */; };
+		4A273D451CD02328007ADA85 /* GetUserMessageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A273D441CD02328007ADA85 /* GetUserMessageAPI.m */; };
+		4A273D481CD023C4007ADA85 /* UserMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A273D471CD023C4007ADA85 /* UserMessageModel.m */; };
+		4A273D4B1CD0244B007ADA85 /* GetUserMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A273D4A1CD0244B007ADA85 /* GetUserMessageModel.m */; };
 		4A31ABDA1CC82C2100D34F9F /* DeleteMissionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31ABD91CC82C2100D34F9F /* DeleteMissionAPI.m */; };
 		4A31ABDD1CC9277A00D34F9F /* AcceptMissionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31ABDC1CC9277A00D34F9F /* AcceptMissionAPI.m */; };
 		4A3EE6CE1CB51A3100AFC8A4 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3EE6CD1CB51A3100AFC8A4 /* UserModel.m */; };
@@ -77,6 +80,7 @@
 		4AB76F111CBD01800054AA76 /* ProjectDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB76F101CBD01800054AA76 /* ProjectDetailView.m */; };
 		4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB608F1C7CE3C60040079C /* ZoomImageView.m */; };
 		4AC212381CBC542A00D0DD12 /* ProjectDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC212371CBC542A00D0DD12 /* ProjectDetailVC.m */; };
+		4AC957231CD17D3B0013552B /* AcceptInvitationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC957221CD17D3B0013552B /* AcceptInvitationCell.m */; };
 		4ACD49981CC042C0002E5B48 /* PostDeviceTokenAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD49971CC042C0002E5B48 /* PostDeviceTokenAPI.m */; };
 		4ACD499B1CC042C0002E5B48 /* GetMissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD499A1CC042C0002E5B48 /* GetMissionModel.m */; };
 		4ACDD62D1CC08A260027288F /* CreateMissionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACDD62C1CC08A260027288F /* CreateMissionVC.m */; };
@@ -184,6 +188,12 @@
 		4A24F37F1CBB047C00234374 /* ChoosePrivateTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePrivateTypeVC.m; sourceTree = "<group>"; };
 		4A24F3811CBBBAEF00234374 /* CreateProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateProjectModel.h; sourceTree = "<group>"; };
 		4A24F3821CBBBAEF00234374 /* CreateProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateProjectModel.m; sourceTree = "<group>"; };
+		4A273D431CD02328007ADA85 /* GetUserMessageAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetUserMessageAPI.h; sourceTree = "<group>"; };
+		4A273D441CD02328007ADA85 /* GetUserMessageAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetUserMessageAPI.m; sourceTree = "<group>"; };
+		4A273D461CD023C4007ADA85 /* UserMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMessageModel.h; sourceTree = "<group>"; };
+		4A273D471CD023C4007ADA85 /* UserMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMessageModel.m; sourceTree = "<group>"; };
+		4A273D491CD0244B007ADA85 /* GetUserMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetUserMessageModel.h; sourceTree = "<group>"; };
+		4A273D4A1CD0244B007ADA85 /* GetUserMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetUserMessageModel.m; sourceTree = "<group>"; };
 		4A31ABD81CC82C2100D34F9F /* DeleteMissionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteMissionAPI.h; sourceTree = "<group>"; };
 		4A31ABD91CC82C2100D34F9F /* DeleteMissionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteMissionAPI.m; sourceTree = "<group>"; };
 		4A31ABDB1CC9277A00D34F9F /* AcceptMissionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptMissionAPI.h; sourceTree = "<group>"; };
@@ -263,6 +273,8 @@
 		4ABB608F1C7CE3C60040079C /* ZoomImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomImageView.m; sourceTree = "<group>"; };
 		4AC212361CBC542A00D0DD12 /* ProjectDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailVC.h; sourceTree = "<group>"; };
 		4AC212371CBC542A00D0DD12 /* ProjectDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailVC.m; sourceTree = "<group>"; };
+		4AC957211CD17D3B0013552B /* AcceptInvitationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptInvitationCell.h; sourceTree = "<group>"; };
+		4AC957221CD17D3B0013552B /* AcceptInvitationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptInvitationCell.m; sourceTree = "<group>"; };
 		4ACD49961CC042C0002E5B48 /* PostDeviceTokenAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDeviceTokenAPI.h; sourceTree = "<group>"; };
 		4ACD49971CC042C0002E5B48 /* PostDeviceTokenAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDeviceTokenAPI.m; sourceTree = "<group>"; };
 		4ACD49991CC042C0002E5B48 /* GetMissionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetMissionModel.h; sourceTree = "<group>"; };
@@ -455,6 +467,8 @@
 			children = (
 				4A4CA30C1CCE9E2000F6DD05 /* MyMessageVC.h */,
 				4A4CA30D1CCE9E2000F6DD05 /* MyMessageVC.m */,
+				4AC957211CD17D3B0013552B /* AcceptInvitationCell.h */,
+				4AC957221CD17D3B0013552B /* AcceptInvitationCell.m */,
 			);
 			path = MyMessage;
 			sourceTree = "<group>";
@@ -648,6 +662,8 @@
 				4A4CA2F91CCE4FEF00F6DD05 /* UpdatePersonalInfoAPI.m */,
 				4A4CA3121CCEAF9D00F6DD05 /* GetUserInfoAPI.h */,
 				4A4CA3131CCEAF9D00F6DD05 /* GetUserInfoAPI.m */,
+				4A273D431CD02328007ADA85 /* GetUserMessageAPI.h */,
+				4A273D441CD02328007ADA85 /* GetUserMessageAPI.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -683,6 +699,10 @@
 				4AE869EB1CC6A24B007FC0DB /* CreateMissionModel.m */,
 				4A4CA30F1CCEA14E00F6DD05 /* UserInfoModel.h */,
 				4A4CA3101CCEA14E00F6DD05 /* UserInfoModel.m */,
+				4A273D461CD023C4007ADA85 /* UserMessageModel.h */,
+				4A273D471CD023C4007ADA85 /* UserMessageModel.m */,
+				4A273D491CD0244B007ADA85 /* GetUserMessageModel.h */,
+				4A273D4A1CD0244B007ADA85 /* GetUserMessageModel.m */,
 			);
 			name = Model;
 			path = Request/Model;
@@ -938,6 +958,7 @@
 			files = (
 				4AF11FF81C6B1206007DC614 /* ChooseModeCell.m in Sources */,
 				4ADA1DA51C3E496D001ECBF4 /* GradientView.m in Sources */,
+				4AC957231CD17D3B0013552B /* AcceptInvitationCell.m in Sources */,
 				4A24F33C1CB9CBF800234374 /* BaseModel.m in Sources */,
 				4A24F3801CBB047C00234374 /* ChoosePrivateTypeVC.m in Sources */,
 				4ACD499B1CC042C0002E5B48 /* GetMissionModel.m in Sources */,
@@ -1025,14 +1046,17 @@
 				4A3EE6D41CB51DB300AFC8A4 /* MissionModel.m in Sources */,
 				4AF086041CABDCD600138097 /* LoginView.m in Sources */,
 				4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */,
+				4A273D481CD023C4007ADA85 /* UserMessageModel.m in Sources */,
 				4A24F36E1CBAE48900234374 /* AddProjectFooterView.m in Sources */,
 				4ADA1DA71C3E496D001ECBF4 /* UILabelZoomable.m in Sources */,
 				4A9FC1BD1C699FAE00A1D888 /* TodoDetailVC.m in Sources */,
+				4A273D4B1CD0244B007ADA85 /* GetUserMessageModel.m in Sources */,
 				4A4CA3081CCE9BB300F6DD05 /* MineInfoDetailCell.m in Sources */,
 				4AD3DD321CB11E6A00D5FDC4 /* SignupView.m in Sources */,
 				4A24F3391CB9CB4E00234374 /* SearchUserAPI.m in Sources */,
 				4AEF61481C94EDAC00236F6F /* FMDayList.m in Sources */,
 				4A2199561CB577DF00E37719 /* UpdateTodoAPI.m in Sources */,
+				4A273D451CD02328007ADA85 /* GetUserMessageAPI.m in Sources */,
 				4A2199531CB572B700E37719 /* CreateTodoAPI.m in Sources */,
 				4A1290861C5DD4E6006E078B /* WeekCollectionView.m in Sources */,
 				4AE9D5DE1CC39D5D00C93FFC /* GetQiNiuTokenAPI.m in Sources */,

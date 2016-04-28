@@ -10,7 +10,7 @@
 #import "MineCell.h"
 #import "MineInfoCell.h"
 #import "MineInfoVC.h"
-
+#import "MyMessageVC.h"
 #import "LoginVC.h"
 
 @interface MineVC ()<UITableViewDataSource,UITableViewDelegate>
@@ -66,6 +66,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.section == 0 && indexPath.row == 0) {
         MineInfoVC *vc = [[MineInfoVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.section == 1 && indexPath.row == 0){
+        MyMessageVC *vc = [[MyMessageVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

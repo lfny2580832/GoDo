@@ -12,11 +12,16 @@
 @implementation ProjectCell
 {
     UILabel *_nameLabel;
+    UILabel *_creatorLabel;
+    UILabel *_membersLabel;
 }
 
 - (void)loadDataWithProjectModel:(ProjectModel *)project
 {
     _nameLabel.text = project.name;
+    _creatorLabel.text = [NSString stringWithFormat:@"创建者：%@",project.creatorName];
+    _membersLabel.text = [NSString stringWithFormat:@"参与人数：%lu",(unsigned long)project.members.count];
+    
 }
 
 #pragma mark 初始化
@@ -38,8 +43,24 @@
     _nameLabel = [[UILabel alloc]init];
     [self.contentView addSubview:_nameLabel];
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.contentView);
+        make.top.equalTo(self.contentView).offset(10);
         make.left.equalTo(self.contentView).offset(18);
+    }];
+    
+    _creatorLabel = [[UILabel alloc]init];
+    _creatorLabel.font = [UIFont systemFontOfSize:12];
+    [self.contentView addSubview:_creatorLabel];
+    [_creatorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_nameLabel.mas_bottom).offset(5);
+        make.left.equalTo(_nameLabel);
+    }];
+    
+    _membersLabel = [[UILabel alloc]init];
+    _membersLabel.font = [UIFont systemFontOfSize:12];
+    [self.contentView addSubview:_membersLabel];
+    [_membersLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_creatorLabel);
+        make.left.equalTo(_creatorLabel.mas_right).offset(10);
     }];
 }
 

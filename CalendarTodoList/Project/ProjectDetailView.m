@@ -28,7 +28,12 @@
 {
     _projectNameLabel.text = project.name;
     _projectDesLabel.text = project.desc;
-    _memberNamesLabel.text = @"xxx 等2人";
+    NSString *membersStr;
+//    for(NSString *name in project.members)
+//    {
+//        membersStr = [NSString stringWithFormat:@"%@ 等"]
+//    }
+    _memberNamesLabel.text = [NSString stringWithFormat:@""];
 }
 
 #pragma mark TableViewDelegate DataSource
