@@ -20,7 +20,7 @@
     self = [super init];
     if (self) {
         _todo = todo;
-        _pictures = pictures;
+        _pictures = pictures? pictures:[NSArray new];
     }
     return self;
 }
