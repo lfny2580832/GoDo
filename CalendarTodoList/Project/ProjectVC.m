@@ -52,8 +52,8 @@
 #pragma mark 创建新项目
 - (void)creatNewProject
 {
-    if ( ![UserDefaultManager token]) {
-        [self login];
+    if (![UserDefaultManager userName]) {
+        [UserDefaultManager showLoginVCWith:self];
         return;
     }
     AddNewProjectVC *vc = [[AddNewProjectVC alloc]init];
@@ -81,8 +81,10 @@
 - (void)login
 {
     _isFirst = YES;
-    _loginVC = [[LoginVC alloc]init];
-    [self presentViewController:_loginVC animated:YES completion:nil];
+    if (![UserDefaultManager userName]) {
+        [UserDefaultManager showLoginVCWith:self];
+        return;
+    }
 }
 
 #pragma mark TableViewDelegate DataSource

@@ -11,9 +11,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class LoginVC;
+
 #define UserDefaultManager [UserDefaultManage sharedInstance]
 
 @interface UserDefaultManage : NSObject
+
+@property (nonatomic, strong) LoginVC *loginVC;
+
+- (void)showLoginVCWith:(id)target;
 
 @property (nonatomic, copy) NSString *deviceToken;
 ///todo的tableId，标示唯一性，需自增处理

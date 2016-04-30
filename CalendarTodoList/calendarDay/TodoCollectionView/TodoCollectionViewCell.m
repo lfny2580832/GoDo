@@ -87,7 +87,7 @@
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.tableFooterView = [UIView new];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.estimatedRowHeight = 50.0;
+    _tableView.estimatedRowHeight = 80.0;
     _tableView.rowHeight = UITableViewAutomaticDimension;
 
     _tableView.scrollEnabled = NO;

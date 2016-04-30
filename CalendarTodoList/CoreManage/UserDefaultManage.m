@@ -7,6 +7,7 @@
 //
 
 #import "UserDefaultManage.h"
+#import "LoginVC.h"
 
 #define UserDefault [NSUserDefaults standardUserDefaults]
 
@@ -21,6 +22,19 @@
     });
     
     return sharedInstance;
+}
+
+- (LoginVC *)loginVC
+{
+    if (!_loginVC) {
+        _loginVC = [[LoginVC alloc]init];
+    }
+    return _loginVC;
+}
+
+- (void)showLoginVCWith:(id)target
+{
+    [target presentViewController:self.loginVC animated:YES completion:nil];
 }
 
 #pragma mark 存取deviceToken

@@ -64,6 +64,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (![UserDefaultManager userName]) {
+        [UserDefaultManager showLoginVCWith:self];
+        return;
+    }
     if (indexPath.section == 0 && indexPath.row == 0) {
         MineInfoVC *vc = [[MineInfoVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
@@ -82,8 +86,10 @@
 - (void)login
 {
     _isFirst = YES;
-    LoginVC *loginVC = [[LoginVC alloc]init];
-    [self presentViewController:loginVC animated:YES completion:nil];
+    if (![UserDefaultManager userName]) {
+        [UserDefaultManager showLoginVCWith:self];
+        return;
+    }
 }
 
 

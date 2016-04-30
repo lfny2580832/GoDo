@@ -113,6 +113,7 @@
     popoverView.menuTitles   = @[@"未完成",@"已完成"];
 
     [popoverView showFromView:btn selected:^(NSInteger index) {
+
         _statusLabel.text = popoverView.menuTitles[index];
         //选择完成未完成状态
         DoneType doneType;
@@ -142,7 +143,6 @@
         } failure:^{
             [NYProgressHUD showToastText:@"修改状态失败，请检查网络连接"];
         }];
-
     }];
 }
 

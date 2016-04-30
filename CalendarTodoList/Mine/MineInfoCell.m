@@ -22,11 +22,10 @@
 
 }
 
-
 - (void)loadHeadImageWithUrl:(NSString *)imageUrl
 {
     NSLog(@"-----%@",imageUrl);
-    [_imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"default.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [_imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
         [UserDefaultManager setHeadImage:image];
     }];
@@ -47,7 +46,8 @@
 
 - (void)initView
 {
-    _imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"default.png"]];
+    _imageView = [[UIImageView alloc]init];
+    _imageView.backgroundColor = RGBA(146, 146, 146, 1.0);
     [self.contentView addSubview:_imageView];
     [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(5);

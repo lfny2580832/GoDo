@@ -422,11 +422,15 @@ static CGFloat datePickerCellHeight = 240.f;
 - (void)rightbarButtonItemOnclick:(id)sender
 {
     [self.view endEditing:YES];
+    
     if (_todoContentStr.length <= 0) {
         [NYProgressHUD showToastText:@"请输入任务内容"];
         return;
     }
-    
+    if (![UserDefaultManager userName]) {
+        [UserDefaultManager showLoginVCWith:self];
+        return;
+    }
     [self requestToCreateOrUpdateTodo];
     
 }

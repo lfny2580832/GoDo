@@ -11,6 +11,7 @@
 #import "WeekCollectionView.h"
 #import "TodoDetailVC.h"
 #import "FMTodoModel.h"
+#import "LoginVC.h"
 
 @interface CalendarTodoDetailVC ()<WeekCellDelegate,TodoCollectionViewDelegate>
 @property (nonatomic,strong) TodoCollectionView *todoCollectionView;
@@ -33,6 +34,10 @@
 #pragma mark 添加新项目
 - (void)addTodo
 {
+    if (![UserDefaultManager userName]) {
+        [UserDefaultManager showLoginVCWith:self];
+        return;
+    }
     TodoDetailVC *vc = [[TodoDetailVC alloc]initWithDate:_chosenDate];
     vc.todo = nil;
     [self.navigationController pushViewController:vc animated:YES];
