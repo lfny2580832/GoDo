@@ -1,21 +1,21 @@
 //
-//  UpdateTodoAPI.h
+//  JoinProjectAPI.h
 //  GoDo
 //
-//  Created by 牛严 on 16/4/7.
+//  Created by 牛严 on 16/4/29.
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import <YTKNetwork/YTKRequest.h>
 
-@class TodoModel;
+#import <YTKNetwork/YTKRequest.h>
 
 typedef void (^successBlock)();
 typedef void (^failureBlock)();
 
-@interface UpdateTodoAPI : YTKRequest
 
-- (id)initWithTodo:(TodoModel *)todo pictures:(NSArray *)pictures;
+@interface JoinProjectAPI : YTKRequest
+
+- (id)initWithProjectId:(NSString *)projectId;
 
 - (void)startWithSuccessBlock:(successBlock)success failure:(failureBlock)failure;
 

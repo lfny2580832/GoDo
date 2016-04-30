@@ -72,7 +72,7 @@
         return;
     }
     
-    CreateProjectAPI *api = [[CreateProjectAPI alloc]initWithName:name private:_proPrivate];
+    CreateProjectAPI *api = [[CreateProjectAPI alloc]initWithName:name private:_proPrivate desc:_descTextField.text];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         CreateProjectModel *model = [CreateProjectModel yy_modelWithJSON:request.responseString];
         if (model.code == 0) {

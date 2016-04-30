@@ -25,48 +25,88 @@
     return self;
 }
 
-- (NSString *)requestUrl {
-    NSString *url = [NSString stringWithFormat:@"/todos/%@",_todo.id];
-    return url;
-}
-
-- (YTKRequestMethod)requestMethod {
-    return YTKRequestMethodPut;
-}
-
-
-- (NSDictionary *)requestHeaderFieldValueDictionary
+- (void)startWithSuccessBlock:(successBlock)success failure:(failureBlock)failure
 {
-    return @{
-             @"Authorization": [UserDefaultManager token],
-//             @"Content-Type":@"application/json;charset=UTF-8",
-             };
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer=[AFJSONRequestSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    [manager.requestSerializer setValue:[UserDefaultManager token] forHTTPHeaderField:@"Authorization"];
+    NSString *url = [NSString stringWithFormat:@"%@/todos/%@",baseAPIURL,_todo.id];
+    NSDictionary *dict = [NSDictionary new];
+    
+    if (_todo.missionId.length > 0 ) {
+        dict = @{
+                 @"startTime": @(_todo.startTime),
+                 @"repeat": @(_todo.repeat),
+                 @"repeatMode":@(_todo.repeatMode),
+                 @"allDay":@(_todo.allDay),
+                 @"desc":_todo.desc,
+                 @"missionId":_todo.missionId,
+                 @"pictures":_pictures,
+                 };
+    }else{
+        dict = @{
+                 @"startTime": @(_todo.startTime),
+                 @"repeat": @(_todo.repeat),
+                 @"repeatMode":@(_todo.repeatMode),
+                 @"allDay":@(_todo.allDay),
+                 @"desc":_todo.desc,
+                 @"pictures":_pictures,
+                 };
+    }
+    
+    [manager PUT:url parameters:dict success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        success();
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"fuck%@",error);
+        failure();
+    }];
 }
 
-- (id)requestArgument {
-    NSDictionary *dic;
-    if (_todo.missionId.length > 0 ) {
-        dic = @{
-                @"startTime": @(_todo.startTime),
-                @"repeat": @(_todo.repeat),
-                @"repeatMode":@(_todo.repeatMode),
-                @"allDay":@(_todo.allDay),
-                @"desc":_todo.desc,
-                @"missionId":_todo.missionId,
-                @"pictures":_pictures,
-                };
-    }else{
-        dic = @{
-                @"startTime": @(_todo.startTime),
-                @"repeat": @(_todo.repeat),
-                @"repeatMode":@(_todo.repeatMode),
-                @"allDay":@(_todo.allDay),
-                @"desc":_todo.desc,
-                @"pictures":_pictures,
-                };
-    }
-//    NSLog(@"fuck %@",dic);
-    return dic;
-}
+//- (NSString *)requestUrl {
+//    NSString *url = [NSString stringWithFormat:@"/todos/%@",_todo.id];
+//    return url;
+//}
+//
+//- (YTKRequestMethod)requestMethod {
+//    return YTKRequestMethodPut;
+//}
+//
+//
+//- (NSDictionary *)requestHeaderFieldValueDictionary
+//{
+//    return @{
+//             @"Authorization": [UserDefaultManager token],
+////             @"Content-Type":@"application/json;charset=UTF-8",
+//             };
+//}
+//
+//- (id)requestArgument {
+//    NSDictionary *dic;
+//    if (_todo.missionId.length > 0 ) {
+//        dic = @{
+//                @"startTime": @(_todo.startTime),
+//                @"repeat": @(_todo.repeat),
+//                @"repeatMode":@(_todo.repeatMode),
+//                @"allDay":@(_todo.allDay),
+//                @"desc":_todo.desc,
+//                @"missionId":_todo.missionId,
+//                @"pictures":_pictures,
+//                };
+//    }else{
+//        dic = @{
+//                @"startTime": @(_todo.startTime),
+//                @"repeat": @(_todo.repeat),
+//                @"repeatMode":@(_todo.repeatMode),
+//                @"allDay":@(_todo.allDay),
+//                @"desc":_todo.desc,
+//                @"pictures":_pictures,
+//                };
+//    }
+////    NSLog(@"fuck %@",dic);
+//    return dic;
+//}
 
 @end

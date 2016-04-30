@@ -17,6 +17,7 @@
 #import "WeekDayLabelView.h"
 
 #import "QiNiuUploadImageTool.h"
+#import "DBManage.h"
 
 @interface NYScrollView : UIScrollView
 
@@ -143,11 +144,11 @@
 
 - (void)simulateData
 {
-//    if(![UserDefaultManager firstStart]){
-//        [UserDefaultManager setFirstStart:NO];
-//        [self simulateProject];
-//        [self simulateTodoList];
-//    }
+    if(![UserDefaultManager firstStart]){
+        [UserDefaultManager setFirstStart:YES];
+        [self simulateProject];
+        [self simulateTodoList];
+    }
 }
 
 - (void)simulateTodoList
@@ -169,14 +170,7 @@
     FMProject *project = [[DBHelper searchWithSQL:@"select * from @t where projectId = '3'" toClass:[FMProject class]] firstObject];
     todoModel.project = project;
     
-    [DBHelper insertToDB:todoModel];
-    
-    FMDayList *dayList = [[FMDayList alloc]init];
-    dayList.dayID = [NSObject getDayIdWithDateStamp:[startDate timeIntervalSince1970]];
-    dayList.tableIDs = [[NSMutableArray alloc]init];
-    [dayList.tableIDs addObject:todoModel.tableId];
-    
-    [[FMDayList getUsingLKDBHelper] insertToDB:dayList];
+    [DBManager createTodoWithProject:project contentStr:todoModel.thingStr contentImages:nil startDate:startDate oldStartDate:nil isAllDay:todoModel.isAllDay tableId:todoModel.tableId repeatMode:todoModel.repeatMode remindMode:todoModel.remindMode missionId:nil];
 }
 
 - (void)simulateProject

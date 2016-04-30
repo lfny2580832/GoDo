@@ -11,15 +11,17 @@
 @implementation CreateProjectAPI
 {
     NSString *_name;
+    NSString *_desc;
     BOOL _private;
 }
 
-- (id)initWithName:(NSString *)name private:(BOOL)pri
+- (id)initWithName:(NSString *)name private:(BOOL)pri desc:(NSString *)desc
 {
     self = [super init];
     if (self) {
         _name = name;
         _private = pri;
+        _desc = desc? desc:@"";
     }
     return self;
 }
@@ -44,6 +46,7 @@
     return @{
              @"name": _name,
              @"private":@(_private),
+             @"desc":_desc,
              };
 }
 

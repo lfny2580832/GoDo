@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MessageExtraInfoModel.h"
 
 @interface UserMessageModel : NSObject
 
@@ -14,6 +15,7 @@
 
 @property (nonatomic, copy) NSString *msg;
 
+@property (nonatomic, assign) long long time;
 //0	私信
 //1	群聊
 //2	其他用户加入项目
@@ -26,7 +28,6 @@
 
 @property (nonatomic, assign) BOOL dealt;
 
-@property (nonatomic, strong) NSDictionary *extraInfo;
-
+@property (nonatomic, strong) MessageExtraInfoModel *extraInfo;
 
 @end

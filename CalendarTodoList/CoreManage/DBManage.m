@@ -37,6 +37,8 @@
     for (NSString *tableId in dayList.tableIDs)
     {
         FMTodoModel *todoModel = [[[FMTodoModel getUsingLKDBHelper] searchWithSQL:[NSString stringWithFormat:@"select * from @t where tableId = '%@'",tableId] toClass:[FMTodoModel class]] firstObject];
+//            FMTodoModel *todoModel = [[[FMTodoModel getUsingLKDBHelper] searchWithSQL:[NSString stringWithFormat:@"select * from @t "] toClass:[FMTodoModel class]] firstObject];
+        
         if (todoModel) {
             if (todoModel.isAllDay) {
                 todoModel.startTime = [self changeStartDateWith:todoModel.startTime];
@@ -86,8 +88,8 @@
 }
 
 
-#pragma mark 创建RLMTodo
-- (void)createTodoWithProject:(FMProject *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate oldStartDate:(NSDate *)oldStartDate isAllDay:(BOOL)isAllDay tableId:(NSString *)tableId repeatMode:(RepeatMode)repeatMode remindMode:(RemindMode)remindMode
+#pragma mark 创建FMTodo
+- (void)createTodoWithProject:(FMProject *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate oldStartDate:(NSDate *)oldStartDate isAllDay:(BOOL)isAllDay tableId:(NSString *)tableId repeatMode:(RepeatMode)repeatMode remindMode:(RemindMode)remindMode missionId:(NSString *)missionId
 {
     FMTodoModel *todoModel = [[FMTodoModel alloc]init];
     todoModel.startTime = [startDate timeIntervalSince1970];
@@ -104,13 +106,13 @@
     todoModel.remindMode = remindMode;
     todoModel.tableId = tableId;
     todoModel.repeatMode = repeatMode;
+    todoModel.missionId = missionId;
     
     [self saveImageWith:todoModel images:images];
     
     [self CreateOrUpdateDateListWithStartDate:startDate oldStartDate:oldStartDate repeatMode:repeatMode FMTodo:todoModel];
     //更新或创建
     [[FMTodoModel getUsingLKDBHelper] insertToDB:todoModel];
-
     
     NSString *todoID = todoModel.tableId;
     NSDictionary *notiDic = [NSDictionary dictionaryWithObjectsAndKeys:todoID,@"todoID",todoModel.thingStr,@"todoStr", nil];

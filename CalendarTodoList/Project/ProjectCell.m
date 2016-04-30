@@ -60,7 +60,7 @@
     [self.contentView addSubview:_membersLabel];
     [_membersLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_creatorLabel);
-        make.left.equalTo(_creatorLabel.mas_right).offset(10);
+        make.left.equalTo(_creatorLabel.mas_right).offset(15);
     }];
 }
 

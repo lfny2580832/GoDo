@@ -71,5 +71,7 @@ typedef NS_ENUM(NSInteger, RemindMode)
 //提醒模式(重复任务不能设置提醒)
 @property (nonatomic, assign) RemindMode remindMode;
 
+@property (nonatomic, copy) NSString *missionId;
+
 @end
 

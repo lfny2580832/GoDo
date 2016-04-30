@@ -26,7 +26,7 @@
 - (NSMutableArray *)getProjectArray;
 
 #pragma mark 创建RLMTodo
-- (void)createTodoWithProject:(FMProject *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate oldStartDate:(NSDate *)oldStartDate isAllDay:(BOOL)isAllDay tableId:(NSString *)tableId repeatMode:(RepeatMode)repeatMode remindMode:(RemindMode)remindMode;
+- (void)createTodoWithProject:(FMProject *)project contentStr:(NSString *)contentStr contentImages:(NSArray *)images startDate:(NSDate *)startDate oldStartDate:(NSDate *)oldStartDate isAllDay:(BOOL)isAllDay tableId:(NSString *)tableId repeatMode:(RepeatMode)repeatMode remindMode:(RemindMode)remindMode missionId:(NSString *)missionId;
 
 #pragma mark 根据todo tableID 修改todo 的doneType完成情况
 - (void)changeTodoDoneTypeWithTableId:(NSString *)tableId doneType:(DoneType)doneType;

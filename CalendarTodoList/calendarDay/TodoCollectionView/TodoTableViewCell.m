@@ -14,6 +14,9 @@
 #import "NSObject+NYExtends.h"
 #import "NSString+ZZExtends.h"
 #import "ZoomImageView.h"
+#import "UpdateTodoAPI.h"
+#import "TodoModel.h"
+
 
 @implementation TodoTableViewCell
 {
@@ -25,12 +28,12 @@
     UIView *_sideColorView;
     UIView *_backView;
     UIView *_shadowView;
-    FMTodoModel *_todo;
+    FMTodoModel *_FMtodo;
 }
 
 - (void)loadTodo:(FMTodoModel *)todo
 {
-    _todo = todo;
+    _FMtodo = todo;
     _textLabel.text = todo.thingStr;
     NSString *timeStr;
     if (todo.isAllDay) {
@@ -114,7 +117,7 @@
         //选择完成未完成状态
         DoneType doneType;
         if (index == 1) {
-            if (_todo.repeatMode != Never) {
+            if (_FMtodo.repeatMode != Never) {
                 [NYProgressHUD showToastText:@"重复任务不能标记已完成"];
                 [popoverView hide];
                 return;
@@ -122,9 +125,24 @@
             doneType = Done;
         }else
             doneType = NotDone;
-        dispatch_async(kBgQueue, ^{
-            [DBManager changeTodoDoneTypeWithTableId:_todo.tableId doneType:doneType];
-        });
+        
+        TodoModel *todo = [[TodoModel alloc]init];
+        todo.id = _FMtodo.tableId;
+        todo.startTime = _FMtodo.startTime;
+        todo.repeat = (_FMtodo.repeatMode == 0)? NO:YES;
+        todo.allDay = _FMtodo.isAllDay;
+        todo.repeatMode = _FMtodo.repeatMode;
+        todo.desc = _FMtodo.thingStr;
+        
+        UpdateTodoAPI *api = [[UpdateTodoAPI alloc]initWithTodo:todo pictures:nil];
+        [api startWithSuccessBlock:^{
+            dispatch_async(kBgQueue, ^{
+                [DBManager changeTodoDoneTypeWithTableId:_FMtodo.tableId doneType:doneType];
+            });
+        } failure:^{
+            [NYProgressHUD showToastText:@"修改状态失败，请检查网络连接"];
+        }];
+
     }];
 }
 

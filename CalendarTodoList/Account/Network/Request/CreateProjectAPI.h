@@ -10,6 +10,6 @@
 
 @interface CreateProjectAPI : YTKRequest
 
-- (id)initWithName:(NSString *)name private:(BOOL)pri;
+- (id)initWithName:(NSString *)name private:(BOOL)pri desc:(NSString *)desc;
 
 @end

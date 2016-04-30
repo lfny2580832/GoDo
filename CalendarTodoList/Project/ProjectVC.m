@@ -38,7 +38,7 @@
     GetProjectAPI *api = [[GetProjectAPI alloc]initWithType:nil];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         GetProjectModel *model = [GetProjectModel yy_modelWithJSON:request.responseString];
-//        NSLog(@"---%@",request.responseString);
+        NSLog(@"---%@",request.responseString);
         _projects = model.projects;
         [_tableView reloadData];
         

@@ -1,21 +1,19 @@
 //
-//  UpdateTodoAPI.h
+//  DealWithMessage.h
 //  GoDo
 //
-//  Created by 牛严 on 16/4/7.
+//  Created by 牛严 on 16/4/29.
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
 #import <YTKNetwork/YTKRequest.h>
 
-@class TodoModel;
-
 typedef void (^successBlock)();
 typedef void (^failureBlock)();
 
-@interface UpdateTodoAPI : YTKRequest
+@interface DealWithMessageAPI : YTKRequest
 
-- (id)initWithTodo:(TodoModel *)todo pictures:(NSArray *)pictures;
+- (id)initWithMessageId:(NSString *)messageId Dealt:(BOOL)dealt;
 
 - (void)startWithSuccessBlock:(successBlock)success failure:(failureBlock)failure;
 

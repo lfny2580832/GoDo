@@ -206,4 +206,14 @@
     return dic;
 }
 
+#pragma mark 时间戳转换为 x月x日
++ (NSString *)monthDayDateStringWithTimeStamp:(long long)timeStamp
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStamp];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"MM月dd日"];
+    NSString *dateStr = [dateFormatter stringFromDate:date];
+    return dateStr;
+}
+
 @end

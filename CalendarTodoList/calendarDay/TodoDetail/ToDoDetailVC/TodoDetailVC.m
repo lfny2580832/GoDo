@@ -222,19 +222,12 @@ static CGFloat datePickerCellHeight = 240.f;
         _isAllDay = NO;
     }
     [_startCell setDatePickerMode:_datePickerMode date:_startDate];
-    //    [_endCell setDatePickerMode:_datePickerMode date:_endDate];
 }
 
 #pragma mark 返回开始日期
 - (void)returnStartDate:(NSDate *)startDate
 {
     if (startDate)  _startDate = startDate;
-    //    else _endDate = endDate;
-    
-    //    if ([_startDate timeIntervalSinceDate:_endDate] >= 0.0)
-    //        _endCell.dateLabel.textColor = [UIColor redColor];
-    //    else
-    //        _endCell.dateLabel.textColor = [UIColor blackColor];
 }
 
 #pragma mark ChooseProjectVC Delegate 获取返回的project
@@ -331,9 +324,26 @@ static CGFloat datePickerCellHeight = 240.f;
     todo.repeat = (_repeatMode == 0)? NO:YES;
     todo.allDay = _isAllDay;
     todo.missionId = _missionId;
+    todo.id = _tableId;
     
     NYProgressHUD *hud = [NYProgressHUD new];
     [hud showAnimationWithText:@"创建任务中"];
+    
+    if (_tableId) {
+        if(_chosenImages.count)
+        {
+            [self requestToUploadImageWithTodo:todo completion:^(bool success) {
+                if (success) {
+                    [self saveTodoToDataBaseWithHud:hud];
+                }else{
+                    [hud hide];
+                    [NYProgressHUD showToastText:@"上传图片失败，请重试"];
+                }
+            }];
+
+            return;
+        }
+    }
     CreateTodoAPI *api = [[CreateTodoAPI alloc]initWithTodo:todo];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         CreateTodoModel *model = [CreateTodoModel yy_modelWithJSON:request.responseString];
@@ -341,19 +351,19 @@ static CGFloat datePickerCellHeight = 240.f;
         _tableId = todo.id;
         if (model.code == 0) {
             NSLog(@"创建任务网络请求完成（不包含图片）");
-
             _chosenImages = _todoContentView.modifyImages;
             if(_chosenImages.count)
             {
-                QiNiuUploadImageTool *tool = [[QiNiuUploadImageTool alloc]init];
-                [tool uploadImages:_chosenImages todoId:todo.id completed:^(NSArray *keys) {
-                    
-                    [self requestToSaveTodoImageWith:keys todoModel:todo completion:^{
-                        
+                [self requestToUploadImageWithTodo:todo completion:^(bool success) {
+                    if (success) {
                         [self saveTodoToDataBaseWithHud:hud];
-                        
-                    }];
+                    }else{
+                        [hud hide];
+                        [NYProgressHUD showToastText:@"上传图片失败，请重试"];
+                    }
                 }];
+                
+
             }
             else
             {
@@ -369,50 +379,36 @@ static CGFloat datePickerCellHeight = 240.f;
     }];
 }
 
-- (void)requestToSaveTodoImageWith:(NSArray *)pictures todoModel:(TodoModel *)todo completion:(void(^)())finishiBlock
+- (void)requestToUploadImageWithTodo:(TodoModel *)todo completion:(void(^)(bool success))finishiBlock
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer=[AFJSONRequestSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    [manager.requestSerializer setValue:[UserDefaultManager token] forHTTPHeaderField:@"Authorization"];
-    NSString *url = [NSString stringWithFormat:@"%@/todos/%@",baseAPIURL,todo.id];
-    NSDictionary *dict = [NSDictionary new];
-    
-    if (todo.missionId.length > 0 ) {
-        dict = @{
-                @"startTime": @(todo.startTime),
-                @"repeat": @(todo.repeat),
-                @"repeatMode":@(todo.repeatMode),
-                @"allDay":@(todo.allDay),
-                @"desc":todo.desc,
-                @"missionId":todo.missionId,
-                @"pictures":pictures,
-                };
-    }else{
-        dict = @{
-                @"startTime": @(todo.startTime),
-                @"repeat": @(todo.repeat),
-                @"repeatMode":@(todo.repeatMode),
-                @"allDay":@(todo.allDay),
-                @"desc":todo.desc,
-                @"pictures":pictures,
-                };
-    }
-    
-    [manager PUT:url parameters:dict success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    QiNiuUploadImageTool *tool = [[QiNiuUploadImageTool alloc]init];
+    [tool uploadImages:_chosenImages todoId:todo.id completed:^(NSArray *keys) {
         
-        finishiBlock();
-
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        [NYProgressHUD showToastText:@"上传图片失败"];
+        [self requestToSaveTodoImageWith:keys todoModel:todo completion:^(BOOL success) {
+            if (success) {
+                finishiBlock(YES);
+            }else
+                finishiBlock(NO);
+        }];
     }];
-    
+}
+
+- (void)requestToSaveTodoImageWith:(NSArray *)pictures todoModel:(TodoModel *)todo completion:(void(^)(BOOL success))finishiBlock
+{
+    UpdateTodoAPI *api  =[[UpdateTodoAPI alloc]initWithTodo:todo pictures:pictures];
+    [api startWithSuccessBlock:^{
+        
+        finishiBlock(YES);
+
+    } failure:^{
+        finishiBlock(NO);
+    }];
 }
 
 - (void)saveTodoToDataBaseWithHud:(NYProgressHUD *)hud
 {
     dispatch_async(kBgQueue, ^{
-        [DBManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate oldStartDate:_OldStartDate isAllDay:_isAllDay tableId:_tableId repeatMode:_repeatMode remindMode:_remindMode];
+        [DBManager createTodoWithProject:_project contentStr:_todoContentStr contentImages:_chosenImages startDate:_startDate oldStartDate:_OldStartDate isAllDay:_isAllDay tableId:_tableId repeatMode:_repeatMode remindMode:_remindMode missionId:_missionId];
         dispatch_async(kMainQueue, ^{
             NSLog(@"任务已保存到本地数据库");
             [hud hide];

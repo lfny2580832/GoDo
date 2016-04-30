@@ -8,13 +8,39 @@
 
 #import "AcceptInvitationCell.h"
 
+#import "UserMessageModel.h"
+
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "NSString+ZZExtends.h"
+
 @implementation AcceptInvitationCell
 {
     UIImageView *_headImageView;
     UILabel *_titleLabel;
     UILabel *_timeLabel;
     UILabel *_contentLabel;
-    
+    UILabel *_acceptLabel;
+}
+
+
+
+- (void)setMessage:(UserMessageModel *)messageModel
+{
+    _message = messageModel;
+    NSURL *headUrl = [NSURL URLWithString:messageModel.extraInfo.invitorAvatar];
+    [_headImageView sd_setImageWithURL:headUrl placeholderImage:nil];
+    _timeLabel.text = [NSString monthDayDateStringWithTimeStamp:messageModel.time];
+    _contentLabel.text = messageModel.extraInfo.targetName;
+    if (messageModel.type == 4) {
+        _titleLabel.text = [NSString stringWithFormat:@"%@ 邀请你加入项目",messageModel.extraInfo.invitorName];
+    }
+    _acceptLabel.text = (messageModel.dealt)? @"已处理":@"确认";
+}
+
+#pragma mark 加入项目
+- (void)joinProject
+{
+    [self.delegate joinProjectWithId:_message.extraInfo.targetId messageId:_message.id];
 }
 
 #pragma mark 初始化
@@ -44,7 +70,7 @@
     
     _titleLabel = [[UILabel alloc]init];
     _titleLabel.font = [UIFont systemFontOfSize:12];
-    _titleLabel.text = @"甘少聪 邀请你加入项目:";
+    _titleLabel.text = @"";
     _titleLabel.textColor = RGBA(134, 134, 134, 1.0);
     [self.contentView addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -54,7 +80,7 @@
     }];
     
     _timeLabel = [[UILabel alloc]init];
-    _timeLabel.text = @"4月30日";
+    _timeLabel.text = @"";
     _timeLabel.font = [UIFont systemFontOfSize:12];
     _timeLabel.textColor = RGBA(134, 134, 134, 1.0);
     [self.contentView addSubview:_timeLabel];
@@ -65,7 +91,7 @@
     
     _contentLabel = [[UILabel alloc]init];
     _contentLabel.font = [UIFont systemFontOfSize:16];
-    _contentLabel.text = @"2016毕设项目组";
+    _contentLabel.text = @"";
     [self.contentView addSubview:_contentLabel];
     [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_titleLabel.mas_bottom).offset(10);
@@ -75,7 +101,7 @@
     }];
     
     UIView *lineView = [[UIView alloc]init];
-    lineView.backgroundColor = RGBA(200, 200, 200, 1.0);
+    lineView.backgroundColor = RGBA(146, 146, 146, 1.0);
     [self.contentView addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@1);
@@ -84,14 +110,16 @@
         make.top.equalTo(_contentLabel.mas_bottom).offset(14);
     }];
     
-    UILabel *acceptLabel = [[UILabel alloc]init];
-    acceptLabel.font = [UIFont systemFontOfSize:14];
-    acceptLabel.textAlignment = NSTextAlignmentCenter;
-    acceptLabel.userInteractionEnabled = YES;
-    acceptLabel.text = @"领取";
-    acceptLabel.textColor = RGBA(146, 146, 146, 1.0);
-    [self.contentView addSubview:acceptLabel];
-    [acceptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    _acceptLabel = [[UILabel alloc]init];
+    _acceptLabel.font = [UIFont systemFontOfSize:14];
+    _acceptLabel.textAlignment = NSTextAlignmentCenter;
+    _acceptLabel.userInteractionEnabled = YES;
+//    _acceptLabel.text = @"确认";
+    _acceptLabel.textColor = RGBA(146, 146, 146, 1.0);
+    UITapGestureRecognizer *acceptGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(joinProject)];
+    [_acceptLabel addGestureRecognizer:acceptGes];
+    [self.contentView addSubview:_acceptLabel];
+    [_acceptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lineView);
         make.left.right.bottom.equalTo(self.contentView);
     }];

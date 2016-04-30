@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+@class UserMessageModel;
+
+@protocol AcceptInvitationCellDelegate <NSObject>
+
+- (void)joinProjectWithId:(NSString *)projectId messageId:(NSString *)messageId;
+
+@end
 
 @interface AcceptInvitationCell : UITableViewCell
+
+@property (nonatomic, strong) UserMessageModel *message;
+
+@property (nonatomic, weak) id<AcceptInvitationCellDelegate> delegate;
 
 @end
