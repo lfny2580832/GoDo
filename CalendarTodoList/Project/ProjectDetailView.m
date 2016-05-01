@@ -9,6 +9,7 @@
 #import "ProjectDetailView.h"
 #import "MissionCell.h"
 #import "ProjectModel.h"
+#import "AvatarCollectionView.h"
 
 @interface ProjectDetailView ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -26,14 +27,17 @@
 
 - (void)setProject:(ProjectModel *)project
 {
+    _project = project;
     _projectNameLabel.text = project.name;
     _projectDesLabel.text = project.desc;
-    NSString *membersStr;
-//    for(NSString *name in project.members)
-//    {
-//        membersStr = [NSString stringWithFormat:@"%@ 等"]
-//    }
-    _memberNamesLabel.text = [NSString stringWithFormat:@""];
+    NSMutableString *membersStr = [NSMutableString new];
+    for(NSString *name in project.members)
+    {
+        [membersStr appendFormat:@"%@,",name];
+    }
+    NSString *baseStr = [membersStr substringToIndex:[membersStr length] - 1];
+
+    _memberNamesLabel.text = [NSString stringWithFormat:@"%@ 等 %lu 人",baseStr,(unsigned long)project.members.count];
 }
 
 #pragma mark TableViewDelegate DataSource
@@ -58,7 +62,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.delegate didSelectCellAtIndexPath:indexPath];
+//    [self.delegate didSelectCellAtIndexPath:indexPath];
 }
 
 #pragma mark 初始化
@@ -75,11 +79,11 @@
 
 - (void)initView
 {
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
-    headerView.backgroundColor = [UIColor grayColor];
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 120)];
+    headerView.backgroundColor = [UIColor whiteColor];
     
     _projectNameLabel = [[UILabel alloc]init];
-    _projectNameLabel.font = [UIFont systemFontOfSize:15];
+    _projectNameLabel.font = [UIFont boldSystemFontOfSize:17];
     _projectNameLabel.text = @"学生会";
     _projectNameLabel.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:_projectNameLabel];
@@ -92,7 +96,7 @@
     
     _projectDesLabel = [[UILabel alloc]init];
     _projectDesLabel.font = [UIFont systemFontOfSize:12];
-    _projectDesLabel.text = @"一个组织";
+    _projectDesLabel.textColor = RGBA(146, 146, 146, 1.0);
     _projectDesLabel.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:_projectDesLabel];
     [_projectDesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -101,15 +105,9 @@
         make.width.equalTo(_projectNameLabel);
     }];
     
-    _memberNamesLabel = [[UILabel alloc]init];
-    _memberNamesLabel.text = @"xxx,yyy等人";
-    _memberNamesLabel.textAlignment = NSTextAlignmentCenter;
-    [headerView addSubview:_memberNamesLabel];
-    [_memberNamesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_projectDesLabel.mas_bottom).offset(10);
-        make.centerX.equalTo(_projectDesLabel);
-        make.width.equalTo(_projectDesLabel);
-    }];
+    AvatarCollectionView *avatarView = [[AvatarCollectionView alloc]initWithFrame:CGRectMake(50, 64, SCREEN_WIDTH - 100, 55)];
+    [headerView addSubview:avatarView];
+    
 
     _tableView = [[UITableView alloc]init];
     _tableView.backgroundColor = [UIColor clearColor];

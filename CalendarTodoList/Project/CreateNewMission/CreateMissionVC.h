@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class MissionModel;
+@class ProjectModel;
 
 @interface CreateMissionVC : UIViewController
 
 @property (nonatomic, strong) MissionModel *mission;
 
-- (instancetype)initWithProjectId:(NSString *)projectId;
+- (instancetype)initWithProject:(ProjectModel *)project;
 
 @end

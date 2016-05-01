@@ -14,6 +14,7 @@
 #import "DealWithMessageAPI.h"
 
 #import "AcceptInvitationCell.h"
+#import "ProjectDetailVC.h"
 
 @interface MyMessageVC ()<UITableViewDataSource,UITableViewDelegate,AcceptInvitationCellDelegate>
 
@@ -23,6 +24,13 @@
 {
     UITableView *_tableView;
     NSArray *_messages;
+}
+
+#pragma mark 跳转至项目信息页面
+- (void)jumpToProjectInfoVCWithId:(NSString *)projectId
+{
+    ProjectDetailVC *vc = [[ProjectDetailVC alloc]initWithProjectId:projectId];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark 加入项目
@@ -56,7 +64,7 @@
         if (model.code == 0) {
             _messages = model.messages;
             [_tableView reloadData];
-            
+            NSLog(@"---%@",request.responseString);
         }
     } failure:^(__kindof YTKBaseRequest *request) {
         [NYProgressHUD showToastText:@"获取消息失败"];
@@ -79,7 +87,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return _messages.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -119,12 +127,9 @@
     _tableView.tableFooterView = [UIView new];
     _tableView.estimatedRowHeight = 82.0;
     _tableView.rowHeight = UITableViewAutomaticDimension;
-    
-    _tableView.scrollEnabled = NO;
     _tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 8)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.scrollEnabled = NO;
     _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
     [self.view addSubview:_tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {

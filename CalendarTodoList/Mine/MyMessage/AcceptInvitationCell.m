@@ -33,8 +33,37 @@
     _contentLabel.text = messageModel.extraInfo.targetName;
     if (messageModel.type == 4) {
         _titleLabel.text = [NSString stringWithFormat:@"%@ 邀请你加入项目",messageModel.extraInfo.invitorName];
+        _acceptLabel.hidden = NO;
+        [_contentLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.contentView).offset(-67);
+        }];
+    }else if (messageModel.type == 7)
+    {
+        _titleLabel.text = [NSString stringWithFormat:@"%@ 邀请你接受任务",messageModel.extraInfo.invitorName];
+        _acceptLabel.hidden = YES;
+        [_contentLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.contentView).offset(-14);
+        }];
     }
     _acceptLabel.text = (messageModel.dealt)? @"已处理":@"确认";
+}
+
+#pragma mark 点击cell
+- (void)didSelectCell
+{
+    switch (_message.type) {
+        case 4:
+            return;
+            break;
+           
+        case 7:
+        {
+            //跳至项目页面
+            [self.delegate jumpToProjectInfoVCWithId:_message.extraInfo.projectId];
+        }
+        default:
+            break;
+    }
 }
 
 #pragma mark 加入项目
@@ -58,6 +87,9 @@
 
 - (void)initView
 {
+    UITapGestureRecognizer *selectGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didSelectCell)];
+    [self.contentView addGestureRecognizer:selectGes];
+    
     _headImageView = [[UIImageView alloc]init];
     _headImageView.layer.cornerRadius = 19;
     _headImageView.backgroundColor = [UIColor grayColor];
@@ -90,7 +122,7 @@
     }];
     
     _contentLabel = [[UILabel alloc]init];
-    _contentLabel.font = [UIFont systemFontOfSize:16];
+    _contentLabel.font = [UIFont boldSystemFontOfSize:16];
     _contentLabel.text = @"";
     [self.contentView addSubview:_contentLabel];
     [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {

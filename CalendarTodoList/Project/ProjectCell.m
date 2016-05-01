@@ -32,6 +32,7 @@
         self.clipsToBounds = YES;
         self.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         [self initView];
         
     }
@@ -41,6 +42,7 @@
 - (void)initView
 {
     _nameLabel = [[UILabel alloc]init];
+    _nameLabel.font = [UIFont boldSystemFontOfSize:16];
     [self.contentView addSubview:_nameLabel];
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(10);
@@ -49,6 +51,7 @@
     
     _creatorLabel = [[UILabel alloc]init];
     _creatorLabel.font = [UIFont systemFontOfSize:12];
+    _creatorLabel.textColor = KMainGray;
     [self.contentView addSubview:_creatorLabel];
     [_creatorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_nameLabel.mas_bottom).offset(5);
@@ -57,6 +60,7 @@
     
     _membersLabel = [[UILabel alloc]init];
     _membersLabel.font = [UIFont systemFontOfSize:12];
+    _membersLabel.textColor = KMainGray;
     [self.contentView addSubview:_membersLabel];
     [_membersLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_creatorLabel);

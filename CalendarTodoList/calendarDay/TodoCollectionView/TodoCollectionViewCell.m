@@ -89,8 +89,6 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.estimatedRowHeight = 80.0;
     _tableView.rowHeight = UITableViewAutomaticDimension;
-
-    _tableView.scrollEnabled = NO;
     _tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 8)];
     _tableView.delegate = self;
     _tableView.dataSource = self;

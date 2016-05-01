@@ -30,9 +30,11 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
     [manager.requestSerializer setValue:[UserDefaultManager token] forHTTPHeaderField:@"Authorization"];
     NSString *url = [NSString stringWithFormat:@"%@/projects/joined/%@",baseAPIURL,_projectId];
-    [manager PUT:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [manager PUT:url parameters:dic success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         success();
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"----%@",error);
         failure();
     }];
 }

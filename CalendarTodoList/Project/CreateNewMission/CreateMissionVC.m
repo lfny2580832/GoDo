@@ -11,12 +11,14 @@
 #import "TodoContentView.h"
 #import "DatePickerCell.h"
 #import "DeleteTodoCell.h"
-
+#import "ChooseMemberCell.h"
+#import "ChooseMemberVC.h"
 #import "CreateMissionAPI.h"
 #import "CreateMissionModel.h"
 #import "MissionModel.h"
 #import "UpdateMissionImageAPI.h"
 #import "DeleteMissionAPI.h"
+#import "ProjectModel.h"
 
 #import "QiNiuUploadImageTool.h"
 
@@ -46,7 +48,8 @@
     NSString *_missionContentStr;
     NSString *_missionId;
     NSDate *_deadlineDate;
-
+    NSArray *_members;
+    
     NSArray *_receiversId;
     NSMutableArray *_chosenImages;
 }
@@ -171,31 +174,23 @@ static CGFloat datePickerCellHeight = 240.f;
     //创建新项目
     if(!mission)
     {
-        
         _missionContentView.todoContentField.text = @"";
-
-        //当天八点
-        NSDate *tempDate = [NSDate dateWithTimeInterval:0 sinceDate:_initialDate];
-        if ([[NSDate date] timeIntervalSinceDate:tempDate] > 0)
-            _deadlineDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];
-        else
-            _deadlineDate = tempDate;
+        _deadlineDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];
+        [_deadlineCell setDatePickerMode:_datePickerMode date:_deadlineDate];
         return;
     }
     
 //    //修改项目
     _mission = mission;
-//
     _missionId = mission.id;
     _missionContentStr = mission.name;
     _missionContentView.todoContentField.text = _missionContentStr;
     _deadlineDate = [NSDate dateWithTimeIntervalSince1970:mission.createTime];
-//    _datePickerMode = UIDatePickerModeDateAndTime;
     [_deadlineCell setDatePickerMode:_datePickerMode date:_deadlineDate];
-    _chosenImages = [NSMutableArray arrayWithArray:mission.pictures];
-//    if (_chosenImages.count) {
-//        [_missionContentView updateContentViewWithImageArray:_chosenImages];
-//    }
+//    _chosenImages = [NSMutableArray arrayWithArray:mission.pictures];
+    if (_chosenImages.count) {
+        [_missionContentView updateContentViewWithImageArray:_chosenImages];
+    }
 }
 
 #pragma mark 返回日期
@@ -278,7 +273,7 @@ static CGFloat datePickerCellHeight = 240.f;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 1:1;
+    return section == 0 ? 2:1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -288,13 +283,17 @@ static CGFloat datePickerCellHeight = 240.f;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 && indexPath.row == 0)
+    if (indexPath.section == 0 && indexPath.row == 1)
     {
-        _deadlineCell = [[DatePickerCell alloc]init];
         _deadlineCell.delegate = self;
         [_deadlineCell setDatePickerMode:_datePickerMode date:_deadlineDate];
         _deadlineCell.titleLabel.text = @"截止时间";
         return _deadlineCell;
+    }
+    else if(indexPath.section == 0 && indexPath.row == 0)
+    {
+        ChooseMemberCell*cell = [[ChooseMemberCell alloc]init];
+        return cell;
     }
     else
     {
@@ -315,7 +314,7 @@ static CGFloat datePickerCellHeight = 240.f;
 {
     [self.view endEditing:YES];
 
-    if (indexPath.section == 0 && indexPath.row == 0)
+    if (indexPath.section == 0 && indexPath.row == 1)
     {
         //处理datepickercell高度逻辑
         if (_selectedIndexPath == indexPath) {
@@ -333,6 +332,11 @@ static CGFloat datePickerCellHeight = 240.f;
         [tableView beginUpdates];
         [tableView endUpdates];
     }
+    else if(indexPath.section == 0 && indexPath.row == 0)
+    {
+        ChooseMemberVC *vc = [[ChooseMemberVC alloc]initWithMembers:_members];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     else if (indexPath.section == 1 && indexPath.row == 0)
     {
         [self deleteTodo];
@@ -348,15 +352,15 @@ static CGFloat datePickerCellHeight = 240.f;
 }
 
 #pragma mark 初始化
-- (instancetype)initWithProjectId:(NSString *)projectId
+- (instancetype)initWithProject:(ProjectModel *)project
 {
     self = [super init];
     if (self) {
-        
-        _projectId = projectId;
+        _members = project.members;
+        _projectId = project.id;
         _datePickerMode = UIDatePickerModeDateAndTime;
         _chosenImages = [[NSMutableArray alloc]initWithCapacity:0];
-        
+        _deadlineCell = [[DatePickerCell alloc]init];
         [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
         [self setRightBackButtontile:@"保存"];
         [self setCustomTitle:@"任务详情"];

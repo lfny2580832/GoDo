@@ -26,7 +26,6 @@
     UIView *_misInfoView;
     UILabel *_acceptLabel;
     
-    NSMutableArray *_images;
     
     NSMutableArray *_imageViews;
 

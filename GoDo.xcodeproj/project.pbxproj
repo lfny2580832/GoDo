@@ -13,6 +13,7 @@
 		4A077ED71CCA2BA4009DDADD /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A077ED61CCA2BA4009DDADD /* default.png */; };
 		4A077EDB1CCBA79A009DDADD /* MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A077EDA1CCBA79A009DDADD /* MineVC.m */; };
 		4A077EDE1CCBD1ED009DDADD /* MineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A077EDD1CCBD1ED009DDADD /* MineCell.m */; };
+		4A0A371D1CD4E8B900C25E41 /* ChooseMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0A371C1CD4E8B900C25E41 /* ChooseMemberCell.m */; };
 		4A1290861C5DD4E6006E078B /* WeekCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1290831C5DD4E6006E078B /* WeekCollectionView.m */; };
 		4A1290871C5DD4E6006E078B /* WeekCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1290851C5DD4E6006E078B /* WeekCollectionViewCell.m */; };
 		4A12908F1C5DD4FF006E078B /* TodoCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A12908A1C5DD4FF006E078B /* TodoCollectionView.m */; };
@@ -67,6 +68,10 @@
 		4A88CB211C2B925F001C13D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB201C2B925F001C13D8 /* main.m */; };
 		4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB231C2B925F001C13D8 /* AppDelegate.m */; };
 		4A88CB2C1C2B925F001C13D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A88CB2B1C2B925F001C13D8 /* Assets.xcassets */; };
+		4A9183351CD5F498003036D6 /* ChooseMemberVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9183341CD5F498003036D6 /* ChooseMemberVC.m */; };
+		4A9183381CD5F5EA003036D6 /* MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9183371CD5F5EA003036D6 /* MemberCell.m */; };
+		4A91833B1CD61012003036D6 /* AvatarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A91833A1CD61012003036D6 /* AvatarCollectionView.m */; };
+		4A91833E1CD6117B003036D6 /* AvatarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A91833D1CD6117B003036D6 /* AvatarCollectionViewCell.m */; };
 		4A95AA111C71702F00DFB118 /* DeleteTodoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A95AA101C71702F00DFB118 /* DeleteTodoCell.m */; };
 		4A9FC1BC1C699FAE00A1D888 /* TodoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FC1B71C699FAE00A1D888 /* TodoContentView.m */; };
 		4A9FC1BD1C699FAE00A1D888 /* TodoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FC1B91C699FAE00A1D888 /* TodoDetailVC.m */; };
@@ -83,7 +88,6 @@
 		4ABF7EC11CD2DB5700BDDE3A /* DealWithMessageAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF7EC01CD2DB5700BDDE3A /* DealWithMessageAPI.m */; };
 		4AC212381CBC542A00D0DD12 /* ProjectDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC212371CBC542A00D0DD12 /* ProjectDetailVC.m */; };
 		4AC957231CD17D3B0013552B /* AcceptInvitationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC957221CD17D3B0013552B /* AcceptInvitationCell.m */; };
-		4AC957261CD1A1EC0013552B /* MarkTodoCompletionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC957251CD1A1EC0013552B /* MarkTodoCompletionAPI.m */; };
 		4AC957291CD22E6F0013552B /* MessageExtraInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC957281CD22E6F0013552B /* MessageExtraInfoModel.m */; };
 		4ACD49981CC042C0002E5B48 /* PostDeviceTokenAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD49971CC042C0002E5B48 /* PostDeviceTokenAPI.m */; };
 		4ACD499B1CC042C0002E5B48 /* GetMissionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD499A1CC042C0002E5B48 /* GetMissionModel.m */; };
@@ -144,6 +148,8 @@
 		4A077EDA1CCBA79A009DDADD /* MineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineVC.m; sourceTree = "<group>"; };
 		4A077EDC1CCBD1ED009DDADD /* MineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineCell.h; sourceTree = "<group>"; };
 		4A077EDD1CCBD1ED009DDADD /* MineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineCell.m; sourceTree = "<group>"; };
+		4A0A371B1CD4E8B900C25E41 /* ChooseMemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseMemberCell.h; sourceTree = "<group>"; };
+		4A0A371C1CD4E8B900C25E41 /* ChooseMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseMemberCell.m; sourceTree = "<group>"; };
 		4A1290821C5DD4E6006E078B /* WeekCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCollectionView.h; sourceTree = "<group>"; };
 		4A1290831C5DD4E6006E078B /* WeekCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekCollectionView.m; sourceTree = "<group>"; };
 		4A1290841C5DD4E6006E078B /* WeekCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCollectionViewCell.h; sourceTree = "<group>"; };
@@ -251,6 +257,14 @@
 		4A88CB2B1C2B925F001C13D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A88CB301C2B925F001C13D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A88CB691C2BBC9F001C13D8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		4A9183331CD5F498003036D6 /* ChooseMemberVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseMemberVC.h; sourceTree = "<group>"; };
+		4A9183341CD5F498003036D6 /* ChooseMemberVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseMemberVC.m; sourceTree = "<group>"; };
+		4A9183361CD5F5EA003036D6 /* MemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCell.h; sourceTree = "<group>"; };
+		4A9183371CD5F5EA003036D6 /* MemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCell.m; sourceTree = "<group>"; };
+		4A9183391CD61012003036D6 /* AvatarCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarCollectionView.h; sourceTree = "<group>"; };
+		4A91833A1CD61012003036D6 /* AvatarCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarCollectionView.m; sourceTree = "<group>"; };
+		4A91833C1CD6117B003036D6 /* AvatarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarCollectionViewCell.h; sourceTree = "<group>"; };
+		4A91833D1CD6117B003036D6 /* AvatarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarCollectionViewCell.m; sourceTree = "<group>"; };
 		4A95AA0F1C71702F00DFB118 /* DeleteTodoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteTodoCell.h; sourceTree = "<group>"; };
 		4A95AA101C71702F00DFB118 /* DeleteTodoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteTodoCell.m; sourceTree = "<group>"; };
 		4A9FC1B61C699FAE00A1D888 /* TodoContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoContentView.h; sourceTree = "<group>"; };
@@ -283,8 +297,6 @@
 		4AC212371CBC542A00D0DD12 /* ProjectDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailVC.m; sourceTree = "<group>"; };
 		4AC957211CD17D3B0013552B /* AcceptInvitationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptInvitationCell.h; sourceTree = "<group>"; };
 		4AC957221CD17D3B0013552B /* AcceptInvitationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptInvitationCell.m; sourceTree = "<group>"; };
-		4AC957241CD1A1EC0013552B /* MarkTodoCompletionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkTodoCompletionAPI.h; sourceTree = "<group>"; };
-		4AC957251CD1A1EC0013552B /* MarkTodoCompletionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkTodoCompletionAPI.m; sourceTree = "<group>"; };
 		4AC957271CD22E6F0013552B /* MessageExtraInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageExtraInfoModel.h; sourceTree = "<group>"; };
 		4AC957281CD22E6F0013552B /* MessageExtraInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageExtraInfoModel.m; sourceTree = "<group>"; };
 		4ACD49961CC042C0002E5B48 /* PostDeviceTokenAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDeviceTokenAPI.h; sourceTree = "<group>"; };
@@ -436,6 +448,12 @@
 		4A24F3651CBAE47200234374 /* CreateNewProject */ = {
 			isa = PBXGroup;
 			children = (
+				4A0A371B1CD4E8B900C25E41 /* ChooseMemberCell.h */,
+				4A0A371C1CD4E8B900C25E41 /* ChooseMemberCell.m */,
+				4A9183331CD5F498003036D6 /* ChooseMemberVC.h */,
+				4A9183341CD5F498003036D6 /* ChooseMemberVC.m */,
+				4A9183361CD5F5EA003036D6 /* MemberCell.h */,
+				4A9183371CD5F5EA003036D6 /* MemberCell.m */,
 				4A24F37E1CBB047C00234374 /* ChoosePrivateTypeVC.h */,
 				4A24F37F1CBB047C00234374 /* ChoosePrivateTypeVC.m */,
 				4A24F3721CBAF1B300234374 /* AddNewProjectVC.h */,
@@ -676,8 +694,6 @@
 				4A4CA3131CCEAF9D00F6DD05 /* GetUserInfoAPI.m */,
 				4A273D431CD02328007ADA85 /* GetUserMessageAPI.h */,
 				4A273D441CD02328007ADA85 /* GetUserMessageAPI.m */,
-				4AC957241CD1A1EC0013552B /* MarkTodoCompletionAPI.h */,
-				4AC957251CD1A1EC0013552B /* MarkTodoCompletionAPI.m */,
 				4ABF7EBC1CD2CC6F00BDDE3A /* JoinProjectAPI.h */,
 				4ABF7EBD1CD2CC6F00BDDE3A /* JoinProjectAPI.m */,
 				4ABF7EBF1CD2DB5700BDDE3A /* DealWithMessageAPI.h */,
@@ -786,6 +802,10 @@
 				4A24F3651CBAE47200234374 /* CreateNewProject */,
 				4AE154EC1CBD896A00B0C8BC /* MissionCell.h */,
 				4AE154ED1CBD896A00B0C8BC /* MissionCell.m */,
+				4A91833C1CD6117B003036D6 /* AvatarCollectionViewCell.h */,
+				4A91833D1CD6117B003036D6 /* AvatarCollectionViewCell.m */,
+				4A9183391CD61012003036D6 /* AvatarCollectionView.h */,
+				4A91833A1CD61012003036D6 /* AvatarCollectionView.m */,
 				4AB76F0F1CBD01800054AA76 /* ProjectDetailView.h */,
 				4AB76F101CBD01800054AA76 /* ProjectDetailView.m */,
 				4AC212361CBC542A00D0DD12 /* ProjectDetailVC.h */,
@@ -999,6 +1019,7 @@
 				4AE9D5E71CC3CA6100C93FFC /* CreateTodoModel.m in Sources */,
 				4A12908F1C5DD4FF006E078B /* TodoCollectionView.m in Sources */,
 				4A4F9CBE1C3F3E280000F24C /* RDVCalendarView.m in Sources */,
+				4A91833B1CD61012003036D6 /* AvatarCollectionView.m in Sources */,
 				4A077EDB1CCBA79A009DDADD /* MineVC.m in Sources */,
 				4AE23F5D1CAA9A4C00ABECAF /* WeekDayLabelView.m in Sources */,
 				4A24F36B1CBAE47200234374 /* TypeColor.m in Sources */,
@@ -1011,6 +1032,7 @@
 				4A3EE6D11CB51BF600AFC8A4 /* ProjectModel.m in Sources */,
 				4ADA1DAE1C3E4992001ECBF4 /* UINavigationBar+ZZExtends.m in Sources */,
 				4ADA1DAD1C3E4992001ECBF4 /* UIImage+ZZExtends.m in Sources */,
+				4A9183351CD5F498003036D6 /* ChooseMemberVC.m in Sources */,
 				4AC212381CBC542A00D0DD12 /* ProjectDetailVC.m in Sources */,
 				4A9FC1C11C69A30E00A1D888 /* DatePickerCell.m in Sources */,
 				4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */,
@@ -1030,7 +1052,6 @@
 				4A24F3771CBAFA1000234374 /* SearchUserModel.m in Sources */,
 				4A9FC1BC1C699FAE00A1D888 /* TodoContentView.m in Sources */,
 				4AF919011CA7435E002BFF12 /* RemindModeChooseVC.m in Sources */,
-				4AC957261CD1A1EC0013552B /* MarkTodoCompletionAPI.m in Sources */,
 				4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */,
 				4A0441D31C89AAA3005E23D9 /* RepeatModeChooseCell.m in Sources */,
 				4A4CA30E1CCE9E2000F6DD05 /* MyMessageVC.m in Sources */,
@@ -1043,6 +1064,8 @@
 				4AD3DD351CB15B5200D5FDC4 /* VerifyCodeButton.m in Sources */,
 				4A4CA2EE1CCD5EC800F6DD05 /* MineInfoCell.m in Sources */,
 				4A4B4ED21CBEE686009E2114 /* CreateMissionAPI.m in Sources */,
+				4A0A371D1CD4E8B900C25E41 /* ChooseMemberCell.m in Sources */,
+				4A91833E1CD6117B003036D6 /* AvatarCollectionViewCell.m in Sources */,
 				4AD3DD1B1CAF409200D5FDC4 /* LogInAPI.m in Sources */,
 				4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */,
 				4AC957291CD22E6F0013552B /* MessageExtraInfoModel.m in Sources */,
@@ -1072,6 +1095,7 @@
 				4ABB60901C7CE3C60040079C /* ZoomImageView.m in Sources */,
 				4A273D481CD023C4007ADA85 /* UserMessageModel.m in Sources */,
 				4A24F36E1CBAE48900234374 /* AddProjectFooterView.m in Sources */,
+				4A9183381CD5F5EA003036D6 /* MemberCell.m in Sources */,
 				4ADA1DA71C3E496D001ECBF4 /* UILabelZoomable.m in Sources */,
 				4A9FC1BD1C699FAE00A1D888 /* TodoDetailVC.m in Sources */,
 				4A273D4B1CD0244B007ADA85 /* GetUserMessageModel.m in Sources */,

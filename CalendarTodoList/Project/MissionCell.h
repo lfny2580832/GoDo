@@ -23,4 +23,6 @@
 
 @property (nonatomic, weak) id<MissionCellDelegate> delegate;
 
+@property (nonatomic, strong) NSMutableArray *images;
+
 @end

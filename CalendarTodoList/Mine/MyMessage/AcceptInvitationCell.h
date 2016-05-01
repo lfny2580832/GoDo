@@ -13,6 +13,8 @@
 
 - (void)joinProjectWithId:(NSString *)projectId messageId:(NSString *)messageId;
 
+- (void)jumpToProjectInfoVCWithId:(NSString *)projectId;
+
 @end
 
 @interface AcceptInvitationCell : UITableViewCell

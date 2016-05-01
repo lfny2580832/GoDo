@@ -14,4 +14,6 @@
 
 - (instancetype)initWithProject:(ProjectModel *)project;
 
+- (instancetype)initWithProjectId:(NSString *)projectId;
+
 @end

@@ -36,6 +36,14 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark 获取项目信息
+- (void)getProjectInfo
+{
+#warning 获取项目信息接口
+    
+    [self getProjectMission];
+}
+
 #pragma mark 获取项目mission
 - (void)getProjectMission
 {
@@ -55,18 +63,18 @@
     }];
 }
 
-#pragma mark 进入mission详情页面
-- (void)didSelectCellAtIndexPath:(NSIndexPath *)indexPath
-{
-    CreateMissionVC *vc = [[CreateMissionVC alloc]initWithProjectId:_project.id];
-    vc.mission = _missions[indexPath.row];
-    [self.navigationController pushViewController:vc animated:YES];
-}
+//#pragma mark 进入mission详情页面
+//- (void)didSelectCellAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    CreateMissionVC *vc = [[CreateMissionVC alloc]initWithProject:_project];
+//    vc.mission = _missions[indexPath.row];
+//    [self.navigationController pushViewController:vc animated:YES];
+//}
 
 #pragma mark 邮件添加mission
 - (void)rightbarButtonItemOnclick:(id)sender
 {
-    CreateMissionVC *vc = [[CreateMissionVC alloc]initWithProjectId:_project.id];
+    CreateMissionVC *vc = [[CreateMissionVC alloc]initWithProject:_project];
     vc.mission = nil;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -105,6 +113,21 @@
         [self setRightBackButtontile:@"添加任务"];
         [self initView];
         [self getProjectMission];
+        
+    }
+    return self;
+}
+
+- (instancetype)initWithProjectId:(NSString *)projectId
+{
+    self = [super init];
+    if (self) {
+        self.view.backgroundColor = RGBA(232, 232, 232, 1.0);
+        [self setCustomTitle:@"项目详情"];
+        [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
+        [self setRightBackButtontile:@"添加任务"];
+        [self initView];
+        [self getProjectInfo];
         
     }
     return self;

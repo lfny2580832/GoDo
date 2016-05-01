@@ -20,6 +20,8 @@
 
 @property (nonatomic, copy) NSString *targetName;
 
+@property (nonatomic, copy) NSString *projectId;
+
 @property (nonatomic, copy) NSString *remark;
 
 @end

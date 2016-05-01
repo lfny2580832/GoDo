@@ -38,7 +38,7 @@
     GetProjectAPI *api = [[GetProjectAPI alloc]initWithType:nil];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         GetProjectModel *model = [GetProjectModel yy_modelWithJSON:request.responseString];
-        NSLog(@"---%@",request.responseString);
+//        NSLog(@"---%@",request.responseString);
         _projects = model.projects;
         [_tableView reloadData];
         
@@ -69,8 +69,8 @@
     SearchUserAPI *api = [[SearchUserAPI alloc]initWithMail:searchContent];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         [hud hide];
-        SearchUserModel *model = [SearchUserModel yy_modelWithJSON:request.responseString];
-        NSLog(@"---%@",model.name);
+//        SearchUserModel *model = [SearchUserModel yy_modelWithJSON:request.responseString];
+//        NSLog(@"---%@",model.name);
     } failure:^(__kindof YTKBaseRequest *request) {
         [hud hide];
         [NYProgressHUD showToastText:@"查找失败"];
@@ -168,14 +168,10 @@
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.tableFooterView = [UIView new];
-    _tableView.estimatedRowHeight = 50.0;
-    _tableView.rowHeight = UITableViewAutomaticDimension;
-    
     _tableView.scrollEnabled = NO;
     _tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 8)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.scrollEnabled = NO;
     [self.view addSubview:_tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.left.right.equalTo(self.view);
