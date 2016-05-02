@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class ProjectMemberModel;
+
 @interface ProjectMembersCell : UITableViewCell
 
-@property (nonatomic , copy) NSString *memberName;
+@property (nonatomic , strong) ProjectMemberModel *member;
 
 @end

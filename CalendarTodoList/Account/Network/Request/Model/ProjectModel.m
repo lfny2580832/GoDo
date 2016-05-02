@@ -7,7 +7,15 @@
 //
 
 #import "ProjectModel.h"
+#import "ProjectMemberModel.h"
 
 @implementation ProjectModel
+
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{
+             @"members" : [ProjectMemberModel class],
+             };
+}
+
 
 @end

@@ -34,7 +34,6 @@
     [manager PUT:url parameters:dic success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         success();
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        NSLog(@"----%@",error);
         failure();
     }];
 }

@@ -12,7 +12,6 @@
 
 @interface ProjectDetailVC : UIViewController
 
-- (instancetype)initWithProject:(ProjectModel *)project;
 
 - (instancetype)initWithProjectId:(NSString *)projectId;
 

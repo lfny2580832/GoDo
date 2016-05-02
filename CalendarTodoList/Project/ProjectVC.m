@@ -49,23 +49,6 @@
     }];
 }
 
-#pragma mark 点击搜索
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    NSString *searchContent = @"632176758@qq.com";
-    NYProgressHUD *hud = [[NYProgressHUD alloc]init];
-    [hud showAnimationWithText:@"搜索中"];
-    SearchUserAPI *api = [[SearchUserAPI alloc]initWithMail:searchContent];
-    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
-        [hud hide];
-//        SearchUserModel *model = [SearchUserModel yy_modelWithJSON:request.responseString];
-//        NSLog(@"---%@",model.name);
-    } failure:^(__kindof YTKBaseRequest *request) {
-        [hud hide];
-        [NYProgressHUD showToastText:@"查找失败"];
-    }];
-}
-
 #pragma mark 登录界面
 - (void)login
 {
@@ -103,7 +86,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProjectModel *project = _projects[indexPath.row];
-    ProjectDetailVC *vc = [[ProjectDetailVC alloc]initWithProject:project];
+    ProjectDetailVC *vc = [[ProjectDetailVC alloc]initWithProjectId:project.id];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

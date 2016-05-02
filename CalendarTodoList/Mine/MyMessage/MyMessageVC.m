@@ -45,7 +45,7 @@
         [self requestToDealWithMessage:messageId];
     } failure:^{
         [hud hide];
-        [NYProgressHUD showToastText:@"加入失败，请检查网络环境"];
+        [NYProgressHUD showToastText:@"加入项目失败"];
     }];
 }
 
@@ -64,7 +64,7 @@
         if (model.code == 0) {
             _messages = model.messages;
             [_tableView reloadData];
-            NSLog(@"---%@",request.responseString);
+//            NSLog(@"---%@",request.responseString);
         }
     } failure:^(__kindof YTKBaseRequest *request) {
         [NYProgressHUD showToastText:@"获取消息失败"];

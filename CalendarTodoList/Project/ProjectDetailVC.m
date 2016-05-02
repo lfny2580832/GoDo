@@ -22,6 +22,10 @@
 #import "AvatarCollectionView.h"
 #import "ProjectAddMemberVC.h"
 
+#import "GetProjectInfoAPI.h"
+#import "ProjectModel.h"
+
+
 @interface ProjectDetailVC ()<ProjectDetailViewDelegate,MissionCellDelegate,AvatarCollectionViewDelegate>
 
 @end
@@ -31,14 +35,15 @@
     ProjectDetailView *_projectDetailView;
     NSArray *_missions;
     
+    NSString *_projectId;
     ProjectModel *_project;
 }
 
 #pragma mark 点击头像
-- (void)didSelectAvatarViewWith:(NSArray *)memberNames
+- (void)didSelectAvatarViewWith:(NSArray *)members
 {
     ProjectMembersVC *vc = [[ProjectMembersVC alloc]init];
-    vc.memberNames = memberNames;
+    vc.members = members;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -57,15 +62,25 @@
 #pragma mark 获取项目信息
 - (void)getProjectInfo
 {
-#warning 获取项目信息接口
-    
-    [self getProjectMission];
+    GetProjectInfoAPI *api = [[GetProjectInfoAPI alloc]initWithProjectId:_projectId];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        _project = [ProjectModel yy_modelWithJSON:request.responseString];
+        
+        if (_project.code == 0) {
+            
+            _projectDetailView.project = _project;
+            [self getProjectMission];
+
+        }
+    } failure:^(__kindof YTKBaseRequest *request) {
+        
+    }];
 }
 
 #pragma mark 获取项目mission
 - (void)getProjectMission
 {
-    GetMissionAPI *api = [[GetMissionAPI alloc]initWithMissionId:_project.id];
+    GetMissionAPI *api = [[GetMissionAPI alloc]initWithMissionId:_projectId];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         GetMissionModel *model = [GetMissionModel yy_modelWithJSON:request.responseString];
         if (model.code == 0) {
@@ -120,26 +135,11 @@
 }
 
 #pragma mark 初始化
-- (instancetype)initWithProject:(ProjectModel *)project
-{
-    self = [super init];
-    if (self) {
-        _project = project;
-        self.view.backgroundColor = RGBA(232, 232, 232, 1.0);
-        [self setCustomTitle:@"项目详情"];
-        [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
-        [self setRightBackButtontile:@"添加任务"];
-        [self initView];
-        [self getProjectMission];
-        
-    }
-    return self;
-}
-
 - (instancetype)initWithProjectId:(NSString *)projectId
 {
     self = [super init];
     if (self) {
+        _projectId = projectId;
         self.view.backgroundColor = RGBA(232, 232, 232, 1.0);
         [self setCustomTitle:@"项目详情"];
         [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];

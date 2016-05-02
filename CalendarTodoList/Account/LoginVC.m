@@ -35,7 +35,7 @@
 {
     PostDeviceTokenAPI *api = [[PostDeviceTokenAPI alloc]initWithDeviceToken:[UserDefaultManager deviceToken]];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
-        NSLog(@"--%@",request.responseString);
+//        NSLog(@"--%@",request.responseString);
     } failure:^(__kindof YTKBaseRequest *request) {
         
     }];
@@ -111,7 +111,7 @@
         [UserDefaultManager setUserName:model.mail];
         [UserDefaultManager setNickName:model.name];
         [UserDefaultManager setStuNumber:model.stuNum];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadHeadImage" object:model.avatar];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadHeadImage" object:model.avatar];
         [self postDeviceToken];
     } failure:^(__kindof YTKBaseRequest *request) {
         NSLog(@"--%@",request.responseString);

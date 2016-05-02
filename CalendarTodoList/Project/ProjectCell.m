@@ -20,8 +20,7 @@
 {
     _nameLabel.text = project.name;
     _creatorLabel.text = [NSString stringWithFormat:@"创建者：%@",project.creatorName];
-    _membersLabel.text = [NSString stringWithFormat:@"参与人数：%lu",(unsigned long)project.members.count];
-    
+    _membersLabel.text = [NSString stringWithFormat:@"参与人数：%ld",(long)project.membersCount];
 }
 
 #pragma mark 初始化

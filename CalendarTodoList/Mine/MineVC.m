@@ -13,6 +13,9 @@
 #import "MyMessageVC.h"
 #import "LoginVC.h"
 
+#import "GetUserInfoAPI.h"
+#import "UserModel.h"
+
 @interface MineVC ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -26,6 +29,7 @@
     
     MineInfoCell *_mineInfoCell;
 }
+
 
 #pragma mark TableViewDelegate DataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,6 +86,20 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
+#pragma mark 请求头像
+- (void)requestForAvatar
+{
+    GetUserInfoAPI *api = [[GetUserInfoAPI alloc]init];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        UserModel *model = [UserModel yy_modelWithJSON:request.responseString];
+        if (model.code == 0) {
+            [_mineInfoCell loadHeadImageWithUrl:model.avatar];
+        }
+    } failure:^(__kindof YTKBaseRequest *request) {
+        
+    }];
+}
+
 #pragma mark 登录界面
 - (void)login
 {
@@ -91,8 +109,6 @@
         return;
     }
 }
-
-
 
 #pragma mark 通知方法，加载头像
 - (void)loadHeadImageWithNotification:(NSNotification *)notification
@@ -106,12 +122,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [_mineInfoCell loadHeadImage];
-    
+
     if (![UserDefaultManager token] && _isFirst == NO) {
         [self login];
     }
+    
+    if (![UserDefaultManager headImage] && [UserDefaultManager token]) {
+        [self requestForAvatar];
+    }
+    [_mineInfoCell loadHeadImage];
+    
 }
 
 - (instancetype)init
@@ -123,7 +143,7 @@
         _mineInfoCell = [[MineInfoCell alloc]init];
         [self setCustomTitle:@"我的"];
         [self initViews];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadHeadImageWithNotification:) name:@"loadHeadImage" object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadHeadImageWithNotification:) name:@"loadHeadImage" object:nil];
     }
     return self;
 }

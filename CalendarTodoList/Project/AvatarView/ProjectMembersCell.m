@@ -7,6 +7,9 @@
 //
 
 #import "ProjectMembersCell.h"
+#import "ProjectMemberModel.h"
+
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation ProjectMembersCell
 {
@@ -14,9 +17,10 @@
     UILabel *_nameLabel;
 }
 
-- (void)setMemberName:(NSString *)memberName
+- (void)setMember:(ProjectMemberModel *)member
 {
-    _nameLabel.text = memberName;
+    _nameLabel.text = member.name;
+    [_avatarView sd_setImageWithURL:[NSURL URLWithString:member.avatar]];
 }
 
 #pragma mark 初始化

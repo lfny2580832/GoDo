@@ -24,7 +24,7 @@
 
 - (void)loadHeadImageWithUrl:(NSString *)imageUrl
 {
-    NSLog(@"-----%@",imageUrl);
+//    NSLog(@"-----%@",imageUrl);
     [_imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
         [UserDefaultManager setHeadImage:image];
@@ -47,6 +47,8 @@
 - (void)initView
 {
     _imageView = [[UIImageView alloc]init];
+    _imageView.contentMode= UIViewContentModeScaleAspectFill;
+    _imageView.clipsToBounds = YES;
     _imageView.backgroundColor = RGBA(146, 146, 146, 1.0);
     [self.contentView addSubview:_imageView];
     [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {

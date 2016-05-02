@@ -14,7 +14,7 @@
 
 @property (nonatomic, copy) NSString *name;
 ///创立时间
-//@property (nonatomic, assign) long long<Optional> createTime;
+@property (nonatomic, assign) long long createTime;
 ///项目描述
 @property (nonatomic, copy) NSString *desc;
 ///是否私有
@@ -25,6 +25,8 @@
 @property (nonatomic, copy) NSString *creatorName;
 
 @property (nonatomic, copy) NSString *type;
+
+@property (nonatomic, assign) NSInteger membersCount;
 
 @property (nonatomic, strong) NSArray *members;
 

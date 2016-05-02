@@ -34,6 +34,8 @@
     }];
     
     _imageView = [[UIImageView alloc]initWithImage:[UserDefaultManager headImage]];
+    _imageView.contentMode= UIViewContentModeScaleAspectFill;
+    _imageView.clipsToBounds = YES;
     [self.contentView addSubview:_imageView];
     [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(5);

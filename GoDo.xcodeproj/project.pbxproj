@@ -107,6 +107,8 @@
 		4AD57B041CD7A3FF00370F52 /* ico_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AD57B021CD7A3FF00370F52 /* ico_add@2x.png */; };
 		4AD57B051CD7A3FF00370F52 /* ico_add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AD57B031CD7A3FF00370F52 /* ico_add@3x.png */; };
 		4AD57B081CD7A4A100370F52 /* MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD57B071CD7A4A100370F52 /* MemberCell.m */; };
+		4AD57B0B1CD7A64600370F52 /* GetProjectInfoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD57B0A1CD7A64600370F52 /* GetProjectInfoAPI.m */; };
+		4AD57B0E1CD7A73500370F52 /* ProjectMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD57B0D1CD7A73500370F52 /* ProjectMemberModel.m */; };
 		4ADA1D951C3E478C001ECBF4 /* ico_nav_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */; };
 		4ADA1D961C3E478C001ECBF4 /* ico_nav_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */; };
 		4ADA1D971C3E478C001ECBF4 /* ico_nav_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D931C3E478C001ECBF4 /* ico_nav_back_white@2x.png */; };
@@ -338,6 +340,10 @@
 		4AD57B031CD7A3FF00370F52 /* ico_add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_add@3x.png"; sourceTree = "<group>"; };
 		4AD57B061CD7A4A100370F52 /* MemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCell.h; sourceTree = "<group>"; };
 		4AD57B071CD7A4A100370F52 /* MemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCell.m; sourceTree = "<group>"; };
+		4AD57B091CD7A64600370F52 /* GetProjectInfoAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetProjectInfoAPI.h; sourceTree = "<group>"; };
+		4AD57B0A1CD7A64600370F52 /* GetProjectInfoAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetProjectInfoAPI.m; sourceTree = "<group>"; };
+		4AD57B0C1CD7A73500370F52 /* ProjectMemberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectMemberModel.h; sourceTree = "<group>"; };
+		4AD57B0D1CD7A73500370F52 /* ProjectMemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectMemberModel.m; sourceTree = "<group>"; };
 		4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@2x.png"; sourceTree = "<group>"; };
 		4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@3x.png"; sourceTree = "<group>"; };
 		4ADA1D931C3E478C001ECBF4 /* ico_nav_back_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back_white@2x.png"; sourceTree = "<group>"; };
@@ -715,6 +721,8 @@
 				4ABF7EBD1CD2CC6F00BDDE3A /* JoinProjectAPI.m */,
 				4ABF7EBF1CD2DB5700BDDE3A /* DealWithMessageAPI.h */,
 				4ABF7EC01CD2DB5700BDDE3A /* DealWithMessageAPI.m */,
+				4AD57B091CD7A64600370F52 /* GetProjectInfoAPI.h */,
+				4AD57B0A1CD7A64600370F52 /* GetProjectInfoAPI.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -728,6 +736,8 @@
 				4A3EE6CD1CB51A3100AFC8A4 /* UserModel.m */,
 				4A3EE6CF1CB51BF600AFC8A4 /* ProjectModel.h */,
 				4A3EE6D01CB51BF600AFC8A4 /* ProjectModel.m */,
+				4AD57B0C1CD7A73500370F52 /* ProjectMemberModel.h */,
+				4AD57B0D1CD7A73500370F52 /* ProjectMemberModel.m */,
 				4A3EE6D21CB51DB300AFC8A4 /* MissionModel.h */,
 				4A3EE6D31CB51DB300AFC8A4 /* MissionModel.m */,
 				4A3EE6D51CB5207100AFC8A4 /* TodoModel.h */,
@@ -1076,6 +1086,7 @@
 				4AC212381CBC542A00D0DD12 /* ProjectDetailVC.m in Sources */,
 				4A9FC1C11C69A30E00A1D888 /* DatePickerCell.m in Sources */,
 				4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */,
+				4AD57B0B1CD7A64600370F52 /* GetProjectInfoAPI.m in Sources */,
 				4A4F9CC71C3F3EEA0000F24C /* CalendarVC.m in Sources */,
 				4A9FC1BE1C699FAE00A1D888 /* TodoProjectView.m in Sources */,
 				4AD57B001CD7A14600370F52 /* ChooseMemberCell.m in Sources */,
@@ -1141,6 +1152,7 @@
 				4A9FC1BD1C699FAE00A1D888 /* TodoDetailVC.m in Sources */,
 				4A273D4B1CD0244B007ADA85 /* GetUserMessageModel.m in Sources */,
 				4A4CA3081CCE9BB300F6DD05 /* MineInfoDetailCell.m in Sources */,
+				4AD57B0E1CD7A73500370F52 /* ProjectMemberModel.m in Sources */,
 				4AD3DD321CB11E6A00D5FDC4 /* SignupView.m in Sources */,
 				4A24F3391CB9CB4E00234374 /* SearchUserAPI.m in Sources */,
 				4AEF61481C94EDAC00236F6F /* FMDayList.m in Sources */,
@@ -1197,7 +1209,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "7b054263-2cce-415a-bd2c-9a5d5c4ee035";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1235,7 +1246,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "7b054263-2cce-415a-bd2c-9a5d5c4ee035";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1278,7 +1288,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tech.niuyan.GoToDo;
 				PRODUCT_NAME = GoDo;
-				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
@@ -1320,7 +1329,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tech.niuyan.GoToDo;
 				PRODUCT_NAME = GoDo;
-				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;

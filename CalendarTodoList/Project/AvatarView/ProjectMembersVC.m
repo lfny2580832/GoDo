@@ -18,9 +18,9 @@
     UITableView *_tableView;
 }
 
-- (void)setMemberNames:(NSArray *)memberNames
+- (void)setMembers:(NSArray *)members
 {
-    _memberNames = memberNames;
+    _members = members;
     [_tableView reloadData];
 }
 
@@ -36,13 +36,13 @@
     if(!cell){
         cell = [[ProjectMembersCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
-    cell.memberName =  _memberNames[indexPath.row];
+    cell.member =  _members[indexPath.row];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _memberNames.count;
+    return _members.count;
 }
 
 #pragma mark 初始化

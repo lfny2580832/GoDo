@@ -10,6 +10,7 @@
 #import "MissionCell.h"
 #import "ProjectModel.h"
 #import "AvatarCollectionView.h"
+#import "ProjectMemberModel.h"
 
 @interface ProjectDetailView ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -29,13 +30,13 @@
 {
     if (project) {
         _project = project;
-        _avatarView.memberNames = _project.members;
+        _avatarView.members = _project.members;
         _projectNameLabel.text = project.name;
         _projectDesLabel.text = project.desc;
         NSMutableString *membersStr = [NSMutableString new];
-        for(NSString *name in project.members)
+        for(ProjectMemberModel *member in project.members)
         {
-            [membersStr appendFormat:@"%@,",name];
+            [membersStr appendFormat:@"%@,",member.name];
         }
         NSString *baseStr = [membersStr substringToIndex:[membersStr length] - 1];
         

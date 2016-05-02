@@ -1,30 +1,29 @@
 //
-//  GetMissionAPI.m
+//  GetProjectInfoAPI.m
 //  GoDo
 //
-//  Created by 牛严 on 16/4/14.
+//  Created by 牛严 on 16/5/2.
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import "GetMissionAPI.h"
+#import "GetProjectInfoAPI.h"
 
-
-@implementation GetMissionAPI
+@implementation GetProjectInfoAPI
 {
-    NSString *_type; //joined 、created
+    NSString *_projectId;
 }
 
-- (id)initWithMissionId:(NSString *)missionId
+- (id)initWithProjectId:(NSString *)projectId
 {
     self = [super init];
     if (self) {
-        _type = missionId;
-        }
+        _projectId = projectId;
+    }
     return self;
 }
 
 - (NSString *)requestUrl {
-    NSString *url = [NSString stringWithFormat:@"/projectMissions/%@",_type];
+    NSString *url = [NSString stringWithFormat:@"/projects/%@",_projectId];
     return url;
 }
 

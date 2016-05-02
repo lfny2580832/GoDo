@@ -10,6 +10,6 @@
 
 @interface ProjectMembersVC : UIViewController
 
-@property (nonatomic, strong) NSArray *memberNames;
+@property (nonatomic, strong) NSArray *members;
 
 @end
