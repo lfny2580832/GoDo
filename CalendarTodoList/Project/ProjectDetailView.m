@@ -27,18 +27,20 @@
 
 - (void)setProject:(ProjectModel *)project
 {
-    _project = project;
-    _avatarView.memberNames = _project.members;
-    _projectNameLabel.text = project.name;
-    _projectDesLabel.text = project.desc;
-    NSMutableString *membersStr = [NSMutableString new];
-    for(NSString *name in project.members)
-    {
-        [membersStr appendFormat:@"%@,",name];
+    if (project) {
+        _project = project;
+        _avatarView.memberNames = _project.members;
+        _projectNameLabel.text = project.name;
+        _projectDesLabel.text = project.desc;
+        NSMutableString *membersStr = [NSMutableString new];
+        for(NSString *name in project.members)
+        {
+            [membersStr appendFormat:@"%@,",name];
+        }
+        NSString *baseStr = [membersStr substringToIndex:[membersStr length] - 1];
+        
+        _memberNamesLabel.text = [NSString stringWithFormat:@"%@ 等 %lu 人",baseStr,(unsigned long)project.members.count];
     }
-    NSString *baseStr = [membersStr substringToIndex:[membersStr length] - 1];
-
-    _memberNamesLabel.text = [NSString stringWithFormat:@"%@ 等 %lu 人",baseStr,(unsigned long)project.members.count];
 }
 
 #pragma mark TableViewDelegate DataSource
@@ -85,7 +87,6 @@
     
     _projectNameLabel = [[UILabel alloc]init];
     _projectNameLabel.font = [UIFont boldSystemFontOfSize:17];
-    _projectNameLabel.text = @"学生会";
     _projectNameLabel.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:_projectNameLabel];
     [_projectNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {

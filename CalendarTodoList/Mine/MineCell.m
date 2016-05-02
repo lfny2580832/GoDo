@@ -16,6 +16,7 @@
     self = [super init];
     if (self) {
         [self initView];
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return self;
 }

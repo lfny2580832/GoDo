@@ -33,8 +33,6 @@
 #pragma mark postDeviceToken
 - (void)postDeviceToken
 {
-//    NSLog(@"deviceToken:%@",[UserDefaultManager deviceToken]);
-//    return;
     PostDeviceTokenAPI *api = [[PostDeviceTokenAPI alloc]initWithDeviceToken:[UserDefaultManager deviceToken]];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         NSLog(@"--%@",request.responseString);
@@ -118,10 +116,6 @@
     } failure:^(__kindof YTKBaseRequest *request) {
         NSLog(@"--%@",request.responseString);
     }];
-    
-    
-    
-
 }
 
 #pragma mark 重置密码

@@ -24,11 +24,12 @@
 }
 
 - (NSString *)requestUrl {
-    NSString *url = [NSString stringWithFormat:@"/users/%@",_mail];
+    NSString *url = [NSString stringWithFormat:@"/users/pubInfo/%@",_mail];
     return url;
 }
 
 - (YTKRequestMethod)requestMethod {
     return YTKRequestMethodGet;
 }
+
 @end

@@ -10,6 +10,8 @@
 
 @interface SearchUserModel : BaseModel
 
+@property (nonatomic, copy) NSString *id;
+
 @property (nonatomic, copy) NSString *name;
 
 @property (nonatomic, copy) NSString *avatar; //头像url

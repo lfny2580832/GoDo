@@ -49,17 +49,6 @@
     }];
 }
 
-#pragma mark 创建新项目
-- (void)creatNewProject
-{
-    if (![UserDefaultManager userName]) {
-        [UserDefaultManager showLoginVCWith:self];
-        return;
-    }
-    AddNewProjectVC *vc = [[AddNewProjectVC alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 #pragma mark 点击搜索
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
@@ -118,6 +107,17 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark 新增项目
+- (void)rightbarButtonItemOnclick:(id)sender
+{
+    if (![UserDefaultManager userName]) {
+        [UserDefaultManager showLoginVCWith:self];
+        return;
+    }
+    AddNewProjectVC *vc = [[AddNewProjectVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark 初始化
 
 - (instancetype)init
@@ -125,6 +125,7 @@
     self = [super init];
     if (self) {
         [self setCustomTitle:@"我的项目"];
+        [self setRightBackButtonImage:[UIImage imageNamed:@"ico_add.png"]];
         [self initView];
         if ([UserDefaultManager token]) {
             [self getUserProjects];
@@ -154,16 +155,6 @@
 
 - (void)initView
 {
-//    UISearchBar *searchBar = [[UISearchBar alloc]init];
-//    searchBar.placeholder = @"请输入所查找用户的邮箱";
-//    searchBar.showsCancelButton = NO;
-//    searchBar.delegate = self;
-//    [self.view addSubview:searchBar];
-//    [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.view);
-//        make.left.right.equalTo(self.view);
-//    }];
-
     _tableView = [[UITableView alloc]init];
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.showsVerticalScrollIndicator = NO;
@@ -176,11 +167,6 @@
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.left.right.equalTo(self.view);
     }];
-    
-    AddProjectFooterView *footerView = [[AddProjectFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44.0f)];
-    _tableView.tableFooterView = footerView;
-    UITapGestureRecognizer *addProjectGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(creatNewProject)];
-    [footerView addGestureRecognizer:addProjectGes];
 }
 
 @end

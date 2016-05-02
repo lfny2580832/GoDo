@@ -144,7 +144,8 @@
     lineView.backgroundColor = RGBA(218, 221, 223, 1.0);
     [backView addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.left.equalTo(backView);
+        make.right.equalTo(backView);
+        make.left.equalTo(backView).offset(18);
         make.bottom.equalTo(backView).offset(-150);
         make.height.mas_equalTo(@1);
     }];
@@ -166,7 +167,8 @@
     lineView3.backgroundColor = RGBA(218, 221, 223, 1.0);
     [backView addSubview:lineView3];
     [lineView3 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.left.equalTo(backView);
+        make.right.equalTo(backView);
+        make.left.equalTo(backView).offset(18);
         make.bottom.equalTo(backView).offset(-100);
         make.height.mas_equalTo(@1);
     }];
@@ -201,7 +203,8 @@
     lineView2.backgroundColor = RGBA(218, 221, 223, 1.0);
     [backView addSubview:lineView2];
     [lineView2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.left.equalTo(backView);
+        make.right.equalTo(backView);
+        make.left.equalTo(backView).offset(18);
         make.bottom.equalTo(backView).offset(-50);
         make.height.mas_equalTo(@1);
     }];

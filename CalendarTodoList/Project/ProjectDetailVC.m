@@ -20,6 +20,7 @@
 #import "CreateMissionVC.h"
 #import "ProjectMembersVC.h"
 #import "AvatarCollectionView.h"
+#import "ProjectAddMemberVC.h"
 
 @interface ProjectDetailVC ()<ProjectDetailViewDelegate,MissionCellDelegate,AvatarCollectionViewDelegate>
 
@@ -38,6 +39,12 @@
 {
     ProjectMembersVC *vc = [[ProjectMembersVC alloc]init];
     vc.memberNames = memberNames;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)didSelectAvatarViewToAddMember
+{
+    ProjectAddMemberVC *vc = [[ProjectAddMemberVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

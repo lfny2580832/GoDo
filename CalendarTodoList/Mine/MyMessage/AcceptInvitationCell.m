@@ -20,6 +20,7 @@
     UILabel *_timeLabel;
     UILabel *_contentLabel;
     UILabel *_acceptLabel;
+    UIImageView *_arrowView;
 }
 
 
@@ -37,12 +38,20 @@
         [_contentLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.contentView).offset(-67);
         }];
+        _arrowView.hidden = YES;
+        [_timeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.contentView).offset(-18);
+        }];
     }else if (messageModel.type == 7)
     {
         _titleLabel.text = [NSString stringWithFormat:@"%@ 邀请你接受任务",messageModel.extraInfo.invitorName];
         _acceptLabel.hidden = YES;
         [_contentLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.contentView).offset(-14);
+        }];
+        _arrowView.hidden = NO;
+        [_timeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.contentView).offset(-39);
         }];
     }
     _acceptLabel.text = (messageModel.dealt)? @"已处理":@"确认";
@@ -154,6 +163,13 @@
     [_acceptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lineView);
         make.left.right.bottom.equalTo(self.contentView);
+    }];
+    
+    _arrowView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ico_arrow_right.png"]];
+    [self.contentView addSubview:_arrowView];
+    [_arrowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_timeLabel);
+        make.right.equalTo(self.contentView).offset(-18);
     }];
     
 }
