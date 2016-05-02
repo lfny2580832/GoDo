@@ -18,8 +18,10 @@
 #import "GetMissionModel.h"
 
 #import "CreateMissionVC.h"
+#import "ProjectMembersVC.h"
+#import "AvatarCollectionView.h"
 
-@interface ProjectDetailVC ()<ProjectDetailViewDelegate,MissionCellDelegate>
+@interface ProjectDetailVC ()<ProjectDetailViewDelegate,MissionCellDelegate,AvatarCollectionViewDelegate>
 
 @end
 
@@ -31,6 +33,15 @@
     ProjectModel *_project;
 }
 
+#pragma mark 点击头像
+- (void)didSelectAvatarViewWith:(NSArray *)memberNames
+{
+    ProjectMembersVC *vc = [[ProjectMembersVC alloc]init];
+    vc.memberNames = memberNames;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark 接受任务
 - (void)acceptMissionWithVC:(TodoDetailVC *)vc
 {
     [self.navigationController pushViewController:vc animated:YES];

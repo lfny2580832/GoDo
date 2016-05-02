@@ -70,8 +70,6 @@
 		4A88CB2C1C2B925F001C13D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A88CB2B1C2B925F001C13D8 /* Assets.xcassets */; };
 		4A9183351CD5F498003036D6 /* ChooseMemberVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9183341CD5F498003036D6 /* ChooseMemberVC.m */; };
 		4A9183381CD5F5EA003036D6 /* MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9183371CD5F5EA003036D6 /* MemberCell.m */; };
-		4A91833B1CD61012003036D6 /* AvatarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A91833A1CD61012003036D6 /* AvatarCollectionView.m */; };
-		4A91833E1CD6117B003036D6 /* AvatarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A91833D1CD6117B003036D6 /* AvatarCollectionViewCell.m */; };
 		4A95AA111C71702F00DFB118 /* DeleteTodoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A95AA101C71702F00DFB118 /* DeleteTodoCell.m */; };
 		4A9FC1BC1C699FAE00A1D888 /* TodoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FC1B71C699FAE00A1D888 /* TodoContentView.m */; };
 		4A9FC1BD1C699FAE00A1D888 /* TodoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FC1B91C699FAE00A1D888 /* TodoDetailVC.m */; };
@@ -100,6 +98,13 @@
 		4AD3DD351CB15B5200D5FDC4 /* VerifyCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD341CB15B5200D5FDC4 /* VerifyCodeButton.m */; };
 		4AD3DD381CB15F0C00D5FDC4 /* ResetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD371CB15F0C00D5FDC4 /* ResetView.m */; };
 		4AD3DD3B1CB1A88A00D5FDC4 /* ResetAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3DD3A1CB1A88A00D5FDC4 /* ResetAPI.m */; };
+		4AD57AE61CD6CD6700370F52 /* ico_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AD57AE41CD6CD6700370F52 /* ico_add@2x.png */; };
+		4AD57AE71CD6CD6700370F52 /* ico_add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AD57AE51CD6CD6700370F52 /* ico_add@3x.png */; };
+		4AD57AED1CD6D32800370F52 /* AvatarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD57AEA1CD6D32800370F52 /* AvatarCollectionView.m */; };
+		4AD57AEE1CD6D32800370F52 /* AvatarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD57AEC1CD6D32800370F52 /* AvatarCollectionViewCell.m */; };
+		4AD57AF11CD6D35400370F52 /* ProjectMembersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD57AF01CD6D35400370F52 /* ProjectMembersVC.m */; };
+		4AD57AF41CD6D43500370F52 /* ProjectMembersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD57AF31CD6D43500370F52 /* ProjectMembersCell.m */; };
+		4AD57AF71CD6DC2E00370F52 /* ProjectAddMemberVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD57AF61CD6DC2E00370F52 /* ProjectAddMemberVC.m */; };
 		4ADA1D951C3E478C001ECBF4 /* ico_nav_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */; };
 		4ADA1D961C3E478C001ECBF4 /* ico_nav_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */; };
 		4ADA1D971C3E478C001ECBF4 /* ico_nav_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D931C3E478C001ECBF4 /* ico_nav_back_white@2x.png */; };
@@ -261,10 +266,6 @@
 		4A9183341CD5F498003036D6 /* ChooseMemberVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseMemberVC.m; sourceTree = "<group>"; };
 		4A9183361CD5F5EA003036D6 /* MemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCell.h; sourceTree = "<group>"; };
 		4A9183371CD5F5EA003036D6 /* MemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCell.m; sourceTree = "<group>"; };
-		4A9183391CD61012003036D6 /* AvatarCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarCollectionView.h; sourceTree = "<group>"; };
-		4A91833A1CD61012003036D6 /* AvatarCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarCollectionView.m; sourceTree = "<group>"; };
-		4A91833C1CD6117B003036D6 /* AvatarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarCollectionViewCell.h; sourceTree = "<group>"; };
-		4A91833D1CD6117B003036D6 /* AvatarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarCollectionViewCell.m; sourceTree = "<group>"; };
 		4A95AA0F1C71702F00DFB118 /* DeleteTodoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteTodoCell.h; sourceTree = "<group>"; };
 		4A95AA101C71702F00DFB118 /* DeleteTodoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteTodoCell.m; sourceTree = "<group>"; };
 		4A9FC1B61C699FAE00A1D888 /* TodoContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoContentView.h; sourceTree = "<group>"; };
@@ -321,6 +322,18 @@
 		4AD3DD371CB15F0C00D5FDC4 /* ResetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetView.m; sourceTree = "<group>"; };
 		4AD3DD391CB1A88A00D5FDC4 /* ResetAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetAPI.h; sourceTree = "<group>"; };
 		4AD3DD3A1CB1A88A00D5FDC4 /* ResetAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetAPI.m; sourceTree = "<group>"; };
+		4AD57AE41CD6CD6700370F52 /* ico_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_add@2x.png"; sourceTree = "<group>"; };
+		4AD57AE51CD6CD6700370F52 /* ico_add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_add@3x.png"; sourceTree = "<group>"; };
+		4AD57AE91CD6D32800370F52 /* AvatarCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarCollectionView.h; sourceTree = "<group>"; };
+		4AD57AEA1CD6D32800370F52 /* AvatarCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarCollectionView.m; sourceTree = "<group>"; };
+		4AD57AEB1CD6D32800370F52 /* AvatarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarCollectionViewCell.h; sourceTree = "<group>"; };
+		4AD57AEC1CD6D32800370F52 /* AvatarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarCollectionViewCell.m; sourceTree = "<group>"; };
+		4AD57AEF1CD6D35400370F52 /* ProjectMembersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectMembersVC.h; sourceTree = "<group>"; };
+		4AD57AF01CD6D35400370F52 /* ProjectMembersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectMembersVC.m; sourceTree = "<group>"; };
+		4AD57AF21CD6D43500370F52 /* ProjectMembersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectMembersCell.h; sourceTree = "<group>"; };
+		4AD57AF31CD6D43500370F52 /* ProjectMembersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectMembersCell.m; sourceTree = "<group>"; };
+		4AD57AF51CD6DC2E00370F52 /* ProjectAddMemberVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectAddMemberVC.h; sourceTree = "<group>"; };
+		4AD57AF61CD6DC2E00370F52 /* ProjectAddMemberVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectAddMemberVC.m; sourceTree = "<group>"; };
 		4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@2x.png"; sourceTree = "<group>"; };
 		4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@3x.png"; sourceTree = "<group>"; };
 		4ADA1D931C3E478C001ECBF4 /* ico_nav_back_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back_white@2x.png"; sourceTree = "<group>"; };
@@ -744,9 +757,28 @@
 			path = Request/Model;
 			sourceTree = "<group>";
 		};
+		4AD57AE81CD6D32800370F52 /* AvatarView */ = {
+			isa = PBXGroup;
+			children = (
+				4AD57AE91CD6D32800370F52 /* AvatarCollectionView.h */,
+				4AD57AEA1CD6D32800370F52 /* AvatarCollectionView.m */,
+				4AD57AEB1CD6D32800370F52 /* AvatarCollectionViewCell.h */,
+				4AD57AEC1CD6D32800370F52 /* AvatarCollectionViewCell.m */,
+				4AD57AEF1CD6D35400370F52 /* ProjectMembersVC.h */,
+				4AD57AF01CD6D35400370F52 /* ProjectMembersVC.m */,
+				4AD57AF21CD6D43500370F52 /* ProjectMembersCell.h */,
+				4AD57AF31CD6D43500370F52 /* ProjectMembersCell.m */,
+				4AD57AF51CD6DC2E00370F52 /* ProjectAddMemberVC.h */,
+				4AD57AF61CD6DC2E00370F52 /* ProjectAddMemberVC.m */,
+			);
+			path = AvatarView;
+			sourceTree = "<group>";
+		};
 		4ADA1D901C3E478C001ECBF4 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4AD57AE41CD6CD6700370F52 /* ico_add@2x.png */,
+				4AD57AE51CD6CD6700370F52 /* ico_add@3x.png */,
 				4A077ED61CCA2BA4009DDADD /* default.png */,
 				4AF086001CABDCB200138097 /* login_background.png */,
 				4AEAE9A11C84A804009F814E /* check.png */,
@@ -800,12 +832,9 @@
 			children = (
 				4ACDD62A1CC08A260027288F /* CreateNewMission */,
 				4A24F3651CBAE47200234374 /* CreateNewProject */,
+				4AD57AE81CD6D32800370F52 /* AvatarView */,
 				4AE154EC1CBD896A00B0C8BC /* MissionCell.h */,
 				4AE154ED1CBD896A00B0C8BC /* MissionCell.m */,
-				4A91833C1CD6117B003036D6 /* AvatarCollectionViewCell.h */,
-				4A91833D1CD6117B003036D6 /* AvatarCollectionViewCell.m */,
-				4A9183391CD61012003036D6 /* AvatarCollectionView.h */,
-				4A91833A1CD61012003036D6 /* AvatarCollectionView.m */,
 				4AB76F0F1CBD01800054AA76 /* ProjectDetailView.h */,
 				4AB76F101CBD01800054AA76 /* ProjectDetailView.m */,
 				4AC212361CBC542A00D0DD12 /* ProjectDetailVC.h */,
@@ -931,6 +960,8 @@
 			files = (
 				4A88CB2C1C2B925F001C13D8 /* Assets.xcassets in Resources */,
 				4ADA1D971C3E478C001ECBF4 /* ico_nav_back_white@2x.png in Resources */,
+				4AD57AE61CD6CD6700370F52 /* ico_add@2x.png in Resources */,
+				4AD57AE71CD6CD6700370F52 /* ico_add@3x.png in Resources */,
 				4AEAE9A21C84A804009F814E /* check.png in Resources */,
 				4ADA1D951C3E478C001ECBF4 /* ico_nav_back@2x.png in Resources */,
 				4ADA1D961C3E478C001ECBF4 /* ico_nav_back@3x.png in Resources */,
@@ -1008,6 +1039,7 @@
 				4AF919081CA8809F002BFF12 /* LoginVC.m in Sources */,
 				4AF34A201C74ADAC00004EC4 /* UserDefaultManage.m in Sources */,
 				4AEF614E1C94EECB00236F6F /* FMTodoImage.m in Sources */,
+				4AD57AF71CD6DC2E00370F52 /* ProjectAddMemberVC.m in Sources */,
 				4A4F9CBD1C3F3E280000F24C /* RDVCalendarDayCell.m in Sources */,
 				4A84C8741C43DF3F00F83C5B /* NSObject+NYExtends.m in Sources */,
 				4AE9D5E41CC3C13100C93FFC /* QiNiuUploadImageTool.m in Sources */,
@@ -1019,7 +1051,7 @@
 				4AE9D5E71CC3CA6100C93FFC /* CreateTodoModel.m in Sources */,
 				4A12908F1C5DD4FF006E078B /* TodoCollectionView.m in Sources */,
 				4A4F9CBE1C3F3E280000F24C /* RDVCalendarView.m in Sources */,
-				4A91833B1CD61012003036D6 /* AvatarCollectionView.m in Sources */,
+				4AD57AED1CD6D32800370F52 /* AvatarCollectionView.m in Sources */,
 				4A077EDB1CCBA79A009DDADD /* MineVC.m in Sources */,
 				4AE23F5D1CAA9A4C00ABECAF /* WeekDayLabelView.m in Sources */,
 				4A24F36B1CBAE47200234374 /* TypeColor.m in Sources */,
@@ -1047,9 +1079,11 @@
 				4AF086081CABF16300138097 /* ProjectVC.m in Sources */,
 				4A4CA3091CCE9BB300F6DD05 /* MineInfoVC.m in Sources */,
 				4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */,
+				4AD57AEE1CD6D32800370F52 /* AvatarCollectionViewCell.m in Sources */,
 				4A31ABDD1CC9277A00D34F9F /* AcceptMissionAPI.m in Sources */,
 				4A4CA2FA1CCE4FEF00F6DD05 /* UpdatePersonalInfoAPI.m in Sources */,
 				4A24F3771CBAFA1000234374 /* SearchUserModel.m in Sources */,
+				4AD57AF41CD6D43500370F52 /* ProjectMembersCell.m in Sources */,
 				4A9FC1BC1C699FAE00A1D888 /* TodoContentView.m in Sources */,
 				4AF919011CA7435E002BFF12 /* RemindModeChooseVC.m in Sources */,
 				4AB09F091C62E86C006EB837 /* ChooseProjectTableCell.m in Sources */,
@@ -1065,9 +1099,9 @@
 				4A4CA2EE1CCD5EC800F6DD05 /* MineInfoCell.m in Sources */,
 				4A4B4ED21CBEE686009E2114 /* CreateMissionAPI.m in Sources */,
 				4A0A371D1CD4E8B900C25E41 /* ChooseMemberCell.m in Sources */,
-				4A91833E1CD6117B003036D6 /* AvatarCollectionViewCell.m in Sources */,
 				4AD3DD1B1CAF409200D5FDC4 /* LogInAPI.m in Sources */,
 				4AA393501C58AC2E00DA3C16 /* BaseNavigationController.m in Sources */,
+				4AD57AF11CD6D35400370F52 /* ProjectMembersVC.m in Sources */,
 				4AC957291CD22E6F0013552B /* MessageExtraInfoModel.m in Sources */,
 				4AE154EE1CBD896A00B0C8BC /* MissionCell.m in Sources */,
 				4AF918FE1CA74197002BFF12 /* RemindModeCell.m in Sources */,

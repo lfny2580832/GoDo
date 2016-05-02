@@ -20,7 +20,7 @@
     UILabel *_projectNameLabel;
     UILabel *_projectDesLabel;
     UILabel *_memberNamesLabel;
-    
+    AvatarCollectionView *_avatarView;
     id _target;
 }
 
@@ -28,6 +28,7 @@
 - (void)setProject:(ProjectModel *)project
 {
     _project = project;
+    _avatarView.memberNames = _project.members;
     _projectNameLabel.text = project.name;
     _projectDesLabel.text = project.desc;
     NSMutableString *membersStr = [NSMutableString new];
@@ -105,8 +106,9 @@
         make.width.equalTo(_projectNameLabel);
     }];
     
-    AvatarCollectionView *avatarView = [[AvatarCollectionView alloc]initWithFrame:CGRectMake(50, 64, SCREEN_WIDTH - 100, 55)];
-    [headerView addSubview:avatarView];
+    _avatarView = [[AvatarCollectionView alloc]initWithFrame:CGRectMake(50, 64, SCREEN_WIDTH - 100, 55)];
+    _avatarView.mdelegate = _target;
+    [headerView addSubview:_avatarView];
     
 
     _tableView = [[UITableView alloc]init];
