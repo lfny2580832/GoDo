@@ -40,16 +40,16 @@
 }
 
 #pragma mark 点击头像
-- (void)didSelectAvatarViewWith:(NSArray *)members
+- (void)didSelectAvatarViewWith:(ProjectModel *)project
 {
     ProjectMembersVC *vc = [[ProjectMembersVC alloc]init];
-    vc.members = members;
+    vc.project = project;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didSelectAvatarViewToAddMember
 {
-    ProjectAddMemberVC *vc = [[ProjectAddMemberVC alloc]init];
+    ProjectAddMemberVC *vc = [[ProjectAddMemberVC alloc]initWithProject:_project];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

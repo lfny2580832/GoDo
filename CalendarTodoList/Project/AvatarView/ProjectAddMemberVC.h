@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class ProjectModel;
+
 @interface ProjectAddMemberVC : UIViewController
+
+- (instancetype)initWithProject:(ProjectModel *)project;
 
 @end

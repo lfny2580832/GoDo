@@ -192,18 +192,18 @@
 }
 
 #pragma mark 时间戳转换为 x月x日、x时x分
-+ (NSDictionary *)dateStringsWithTimeStamp:(long long)timeStamp
++ (NSString *)dateStringsWithTimeStamp:(long long)timeStamp
 {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStamp];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"MM月dd日"];
+    [dateFormatter setDateFormat:@"M月d日"];
     NSString *dateStr = [dateFormatter stringFromDate:date];
     [dateFormatter setDateFormat:@"hh:mm"];
     NSString *timeStr = [dateFormatter stringFromDate:date];
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc]initWithCapacity:2];
-    [dic setObject:dateStr forKey:@"date"];
-    [dic setObject:timeStr forKey:@"time"];
-    return dic;
+    
+    NSString *str = [NSString stringWithFormat:@"%@ %@",dateStr,timeStr];
+    
+    return str;
 }
 
 #pragma mark 时间戳转换为 x月x日
@@ -211,7 +211,7 @@
 {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStamp];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"MM月dd日"];
+    [dateFormatter setDateFormat:@"M月d日"];
     NSString *dateStr = [dateFormatter stringFromDate:date];
     return dateStr;
 }

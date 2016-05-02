@@ -22,6 +22,8 @@
 
 @property (nonatomic, copy) NSString *creatorName;
 
+@property (nonatomic, copy) NSString *creatorAvatar;
+
 @property (nonatomic, strong) NSArray *pictures;   //pic urls
 
 @property (nonatomic ,assign) long long deadline;

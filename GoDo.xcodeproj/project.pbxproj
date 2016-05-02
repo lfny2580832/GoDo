@@ -109,6 +109,7 @@
 		4AD57B081CD7A4A100370F52 /* MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD57B071CD7A4A100370F52 /* MemberCell.m */; };
 		4AD57B0B1CD7A64600370F52 /* GetProjectInfoAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD57B0A1CD7A64600370F52 /* GetProjectInfoAPI.m */; };
 		4AD57B0E1CD7A73500370F52 /* ProjectMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD57B0D1CD7A73500370F52 /* ProjectMemberModel.m */; };
+		4AD57B111CD8025600370F52 /* InviteMemberInProjectAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD57B101CD8025600370F52 /* InviteMemberInProjectAPI.m */; };
 		4ADA1D951C3E478C001ECBF4 /* ico_nav_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */; };
 		4ADA1D961C3E478C001ECBF4 /* ico_nav_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */; };
 		4ADA1D971C3E478C001ECBF4 /* ico_nav_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D931C3E478C001ECBF4 /* ico_nav_back_white@2x.png */; };
@@ -344,6 +345,8 @@
 		4AD57B0A1CD7A64600370F52 /* GetProjectInfoAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetProjectInfoAPI.m; sourceTree = "<group>"; };
 		4AD57B0C1CD7A73500370F52 /* ProjectMemberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectMemberModel.h; sourceTree = "<group>"; };
 		4AD57B0D1CD7A73500370F52 /* ProjectMemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectMemberModel.m; sourceTree = "<group>"; };
+		4AD57B0F1CD8025600370F52 /* InviteMemberInProjectAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteMemberInProjectAPI.h; sourceTree = "<group>"; };
+		4AD57B101CD8025600370F52 /* InviteMemberInProjectAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteMemberInProjectAPI.m; sourceTree = "<group>"; };
 		4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@2x.png"; sourceTree = "<group>"; };
 		4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@3x.png"; sourceTree = "<group>"; };
 		4ADA1D931C3E478C001ECBF4 /* ico_nav_back_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back_white@2x.png"; sourceTree = "<group>"; };
@@ -723,6 +726,8 @@
 				4ABF7EC01CD2DB5700BDDE3A /* DealWithMessageAPI.m */,
 				4AD57B091CD7A64600370F52 /* GetProjectInfoAPI.h */,
 				4AD57B0A1CD7A64600370F52 /* GetProjectInfoAPI.m */,
+				4AD57B0F1CD8025600370F52 /* InviteMemberInProjectAPI.h */,
+				4AD57B101CD8025600370F52 /* InviteMemberInProjectAPI.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1059,6 +1064,7 @@
 				4AF34A201C74ADAC00004EC4 /* UserDefaultManage.m in Sources */,
 				4AEF614E1C94EECB00236F6F /* FMTodoImage.m in Sources */,
 				4AD57AF71CD6DC2E00370F52 /* ProjectAddMemberVC.m in Sources */,
+				4AD57B111CD8025600370F52 /* InviteMemberInProjectAPI.m in Sources */,
 				4A4F9CBD1C3F3E280000F24C /* RDVCalendarDayCell.m in Sources */,
 				4A84C8741C43DF3F00F83C5B /* NSObject+NYExtends.m in Sources */,
 				4AE9D5E41CC3C13100C93FFC /* QiNiuUploadImageTool.m in Sources */,

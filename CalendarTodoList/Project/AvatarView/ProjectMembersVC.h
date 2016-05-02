@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class ProjectModel;
+
 @interface ProjectMembersVC : UIViewController
 
-@property (nonatomic, strong) NSArray *members;
+@property (nonatomic, strong) ProjectModel *project;
 
 @end

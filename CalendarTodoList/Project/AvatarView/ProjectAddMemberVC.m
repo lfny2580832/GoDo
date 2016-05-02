@@ -9,6 +9,8 @@
 #import "ProjectAddMemberVC.h"
 #import "SearchUserAPI.h"
 #import "SearchUserModel.h"
+#import "InviteMemberInProjectAPI.h"
+#import "ProjectModel.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -23,11 +25,13 @@
     UIView *_resultView;
     
     SearchUserModel *_searchResult;
+    ProjectModel *_project;
 }
 
 #pragma mark 点击搜索
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    [self.view endEditing:YES];
     NSString *searchContent = searchBar.text;
     NYProgressHUD *hud = [[NYProgressHUD alloc]init];
     [hud showAnimationWithText:@"搜索中"];
@@ -45,11 +49,41 @@
     }];
 }
 
+#pragma mark 点击邀请
+- (void)requestToInviteMemberInProject
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"您将邀请%@加入项目",_searchResult.name] message:[NSString stringWithFormat:@"%@",_project.name] preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action)
+    {
+        NYProgressHUD *hud = [NYProgressHUD new];
+        [hud showAnimationWithText:@"邀请中"];
+        InviteMemberInProjectAPI *api = [[InviteMemberInProjectAPI alloc]initWithInvitee:_searchResult.id projectId:_project.id projectName:_project.name];
+        [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+            [hud hide];
+            BaseModel *model = [BaseModel yy_modelWithJSON:request.responseString];
+            if (model.code == 0) {
+                [NYProgressHUD showToastText:@"邀请成功"];
+            }else{
+                [NYProgressHUD showToastText:model.msg];
+            }
+        } failure:^(__kindof YTKBaseRequest *request) {
+            [hud hide];
+            [NYProgressHUD showToastText:@"邀请失败"];
+        }];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
+    [alertController addAction:okAction];
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 #pragma mark 初始化
-- (instancetype)init
+- (instancetype)initWithProject:(ProjectModel *)project
 {
     self = [super init];
     if (self) {
+        _project = project;
         self.view.backgroundColor = RGBA(225, 225, 225, 1.0);
         [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
         [self setCustomTitle:@"添加成员"];
@@ -72,6 +106,8 @@
     
     _resultView = [[UIView alloc]init];
     _resultView.hidden = YES;
+    UITapGestureRecognizer *inviteGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(requestToInviteMemberInProject)];
+    [_resultView addGestureRecognizer:inviteGes];
     _resultView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_resultView];
     [_resultView mas_makeConstraints:^(MASConstraintMaker *make) {

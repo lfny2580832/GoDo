@@ -8,6 +8,8 @@
 
 #import "ProjectMembersVC.h"
 #import "ProjectMembersCell.h"
+#import "ProjectAddMemberVC.h"
+#import "ProjectModel.h"
 
 @interface ProjectMembersVC ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -16,16 +18,22 @@
 @implementation ProjectMembersVC
 {
     UITableView *_tableView;
+    NSArray *_members;
 }
 
-- (void)setMembers:(NSArray *)members
+- (void)setProject:(ProjectModel *)project
 {
-    _members = members;
+    _project = project;
+    _members = project.members;
     [_tableView reloadData];
 }
 
 #pragma mark 点击添加成员
-
+- (void)rightbarButtonItemOnclick:(id)sender
+{
+    ProjectAddMemberVC *vc = [[ProjectAddMemberVC alloc]initWithProject:_project];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 #pragma mark UITableViewDelegate DataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -36,7 +44,7 @@
     if(!cell){
         cell = [[ProjectMembersCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     }
-    cell.member =  _members[indexPath.row];
+    cell.member = _members[indexPath.row];
     return cell;
 }
 

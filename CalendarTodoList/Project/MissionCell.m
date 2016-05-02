@@ -19,11 +19,11 @@
 @implementation MissionCell
 {
     UIView *_backView;
+    UIImageView *_avatarView;
+    UILabel *_createTimeLabel;
     UILabel *_textLabel;        //任务内容
-    UILabel *_timeLabel;        //几点几分
-    UILabel *_dateLabel;        //几月几号
+    UILabel *_deadLineLabel;        //几月几号
     UILabel *_createInfoLabel;  //xxx创建了任务
-    UIView *_misInfoView;
     UILabel *_acceptLabel;
     
     
@@ -54,15 +54,17 @@
     _mission = mission;
     _textLabel.text = mission.name;
     _createInfoLabel.text = [NSString stringWithFormat:@"%@ 创建了任务",mission.creatorName];
-    NSDictionary *dateStrDic = [NSString dateStringsWithTimeStamp:mission.createTime];
-    _dateLabel.text = dateStrDic[@"date"];
-    _timeLabel.text = dateStrDic[@"time"];
+    NSString *deadLineStr = [NSString dateStringsWithTimeStamp:mission.createTime];
+    _deadLineLabel.text = [NSString stringWithFormat:@"截止日期：%@",deadLineStr];
+    _createTimeLabel.text = [NSString monthDayDateStringWithTimeStamp:mission.createTime];
+    [_avatarView sd_setImageWithURL:[NSURL URLWithString:mission.creatorAvatar]];
+    
     if (mission.pictures.count) {
         _images = [NSMutableArray new];
         NSInteger imageCount = mission.pictures.count;
         NSInteger imageEdge = 10;
         [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(_misInfoView).offset(-77);
+            make.bottom.equalTo(_backView).offset(-101);
         }];
         //创建imageView
         for (int i = 0; i < 4; i ++) {
@@ -81,7 +83,7 @@
             }
             [self.contentView addSubview:missionImageView];
             [missionImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(_textLabel).offset(10 + i*(50+imageEdge));
+                make.left.equalTo(_textLabel).offset(i*(50+imageEdge));
                 make.size.mas_equalTo(CGSizeMake(50, 50));
                 make.top.equalTo(_textLabel.mas_bottom).offset(15);
             }];
@@ -89,7 +91,7 @@
         }
     }else{
         [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(_misInfoView).offset(-12);
+            make.bottom.equalTo(_backView).offset(-41);
         }];
     }
 
@@ -124,92 +126,93 @@
 
 - (void)initView
 {
-    
     _backView = [[UIView alloc]init];
     _backView.backgroundColor = [UIColor whiteColor];
     _backView.layer.cornerRadius = 5;
     _backView.layer.masksToBounds = YES;
     [self.contentView addSubview:_backView];
     [_backView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(5);
-        make.bottom.equalTo(self.contentView).offset(-6);
-        make.left.equalTo(self.contentView).offset(10);
-        make.right.equalTo(self.contentView).offset(-10);
+        make.top.equalTo(self.contentView);
+        make.bottom.equalTo(self.contentView).offset(-60);
+        make.left.right.equalTo(self.contentView);
+    }];
+
+    _avatarView = [[UIImageView alloc]init];
+    _avatarView.backgroundColor = KMainGray;
+    _avatarView.layer.cornerRadius = 19;
+    _avatarView.layer.masksToBounds = YES;
+    [_backView addSubview:_avatarView];
+    [_avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_backView).offset(13);
+        make.left.equalTo(_backView).offset(12);
+        make.size.mas_equalTo(CGSizeMake(38, 38));
     }];
 
     _createInfoLabel = [[UILabel alloc]init];
+    _createInfoLabel.font = [UIFont systemFontOfSize:12];
+    _createInfoLabel.textColor = KMainGray;
     _createInfoLabel.text = @"牛严 创建了任务";
     [_backView addSubview:_createInfoLabel];
     [_createInfoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_backView);
-        make.left.equalTo(_backView).offset(18);
+        make.top.equalTo(_avatarView);
+        make.left.equalTo(_avatarView.mas_right).offset(10);
     }];
     
-
-    
-    _misInfoView = [[UIView alloc]init];
-    [_backView addSubview:_misInfoView];
-    [_misInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_backView).offset(20);
-        make.left.right.equalTo(_backView);
-        make.bottom.equalTo(_backView).offset(-30);
+    _createTimeLabel = [[UILabel alloc]init];
+    _createTimeLabel.font = [UIFont systemFontOfSize:12];
+    _createTimeLabel.textColor = KMainGray;
+    [_backView addSubview:_createTimeLabel];
+    [_createTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_createInfoLabel);
+        make.right.equalTo(_backView).offset(-18);
     }];
     
     _textLabel = [[UILabel alloc]init];
-    _textLabel.textColor = [UIColor blackColor];
-    _textLabel.font = [UIFont systemFontOfSize:18];
-    _textLabel.textAlignment = NSTextAlignmentCenter;
+    _textLabel.font = [UIFont boldSystemFontOfSize:16];
     _textLabel.numberOfLines = 0;
     _textLabel.text = @"拿下xx项目";
-    [_misInfoView addSubview:_textLabel];
+    [_backView addSubview:_textLabel];
     [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_misInfoView).offset(12);
-        make.bottom.equalTo(_misInfoView).offset(-12);
-        make.left.equalTo(_misInfoView).offset(100);
-        make.right.equalTo(_misInfoView).offset(-10);
+        make.top.equalTo(_createInfoLabel.mas_bottom).offset(9);
+        make.bottom.equalTo(_backView).offset(-10);
+        make.left.equalTo(_createInfoLabel);
+        make.right.equalTo(_backView).offset(-18);
     }];
     
-    _dateLabel = [[UILabel alloc]init];
-    _dateLabel.text = @"11月12日";
-    _dateLabel.font = [UIFont systemFontOfSize:18];
-    [_misInfoView addSubview:_dateLabel];
-    [_dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_misInfoView).offset(15);
-        make.centerY.equalTo(_misInfoView).offset(-10);
-    }];
-
-    _timeLabel = [[UILabel alloc]init];
-    _timeLabel.textColor = [UIColor blackColor];
-    _timeLabel.text = @"15:30";
-    _timeLabel.font = [UIFont systemFontOfSize:18];
-    [_misInfoView addSubview:_timeLabel];
-    [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(_misInfoView).offset(10);
-        make.centerX.equalTo(_dateLabel);
+    _deadLineLabel = [[UILabel alloc]init];
+    _deadLineLabel.font = [UIFont systemFontOfSize:14];
+    _deadLineLabel.textColor = [UIColor blackColor];
+    [_backView addSubview:_deadLineLabel];
+    [_deadLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(_backView);
+        make.bottom.equalTo(_backView).offset(-10);
     }];
     
     UIView *seperateLine = [[UIView alloc]init];
-    seperateLine.backgroundColor = [UIColor grayColor];
-    [_misInfoView addSubview:seperateLine];
+    seperateLine.backgroundColor = KMainGray;
+    [_backView addSubview:seperateLine];
     [seperateLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_misInfoView).offset(8);
-        make.bottom.equalTo(_misInfoView).offset(-8);
-        make.width.mas_equalTo(@1);
-        make.left.equalTo(_dateLabel.mas_right).offset(10);
+        make.left.equalTo(_backView).offset(18);
+        make.bottom.equalTo(_backView);
+        make.height.mas_equalTo(@1);
+        make.right.equalTo(_backView);
     }];
     
     _acceptLabel = [[UILabel alloc]init];
     _acceptLabel.text = @"领取任务";
+    _acceptLabel.font = [UIFont systemFontOfSize:14];
     _acceptLabel.textColor = KNaviColor;
+    _acceptLabel.backgroundColor = [UIColor whiteColor];
     _acceptLabel.userInteractionEnabled = YES;
     _acceptLabel.textAlignment = NSTextAlignmentCenter;
     UITapGestureRecognizer *acceptGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(acceptMission)];
     [_acceptLabel addGestureRecognizer:acceptGes];
-    [_backView addSubview:_acceptLabel];
+    [self.contentView addSubview:_acceptLabel];
     [_acceptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_misInfoView.mas_bottom).offset(5);
+        make.top.equalTo(_backView.mas_bottom);
         make.centerX.equalTo(_backView);
         make.left.right.equalTo(_backView);
+        make.bottom.equalTo(self.contentView).offset(-20);
     }];
 }
 

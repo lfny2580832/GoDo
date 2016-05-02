@@ -30,7 +30,7 @@
 {
     if (project) {
         _project = project;
-        _avatarView.members = _project.members;
+        _avatarView.project = _project;
         _projectNameLabel.text = project.name;
         _projectDesLabel.text = project.desc;
         NSMutableString *membersStr = [NSMutableString new];
