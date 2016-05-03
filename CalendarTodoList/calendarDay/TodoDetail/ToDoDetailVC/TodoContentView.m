@@ -59,10 +59,18 @@
         [todoImageView addGestureRecognizer:recognizer];
         
         
-        UIImageView *deleteView = [[UIImageView alloc]init];
-        deleteView.userInteractionEnabled = YES;
-        deleteView.backgroundColor = [UIColor redColor];
-        deleteView.tag = i;
+        UIImageView *deleteImageView = [[UIImageView alloc]init];
+        deleteImageView.image = [UIImage imageNamed:@"ico_delete.png"];
+        deleteImageView.tag = i;
+ 
+        [todoImageView addSubview:deleteImageView];
+        [deleteImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.right.equalTo(todoImageView);
+            make.size.mas_equalTo(CGSizeMake(20, 20));
+        }];
+        
+        UIView *deleteView = [[UIView alloc]init];
+        deleteView.backgroundColor = [UIColor clearColor];
         UITapGestureRecognizer *deleteRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(deleteImageWithIndexRow:)];
         [deleteView addGestureRecognizer:deleteRecognizer];
         [todoImageView addSubview:deleteView];

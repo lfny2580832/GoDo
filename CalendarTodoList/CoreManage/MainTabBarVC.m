@@ -40,15 +40,20 @@
 {
     CalendarVC *calendarVC = [[CalendarVC alloc]init];
     BaseNavigationController *calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
-    [calendarVC setTitle:@"日历"];
+    [calendarVC setTitle:@"日程"];
+    calendarNavVC.tabBarItem.image = [UIImage imageNamed:@"ico_calendar.png"];
+
     
     ProjectVC *projectVC = [[ProjectVC alloc]init];
     BaseNavigationController *projectNavVC = [[BaseNavigationController alloc]initWithRootViewController:projectVC];
     [projectNavVC setTitle:@"项目"];
-
+    projectNavVC.tabBarItem.image = [UIImage imageNamed:@"ico_project.png"];
+    
     MineVC *mineVC = [[MineVC alloc]init];
     BaseNavigationController *mineNavVC = [[BaseNavigationController alloc]initWithRootViewController:mineVC];
     [mineNavVC setTitle:@"我的"];
+    mineNavVC.tabBarItem.image = [UIImage imageNamed:@"ico_mine.png"];
+
     
     [self setViewControllers:@[calendarNavVC,projectNavVC,mineNavVC]];
 }
