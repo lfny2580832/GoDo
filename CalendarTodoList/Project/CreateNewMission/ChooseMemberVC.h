@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ChooseMemberVCDelegate <NSObject>
+
+- (void)getSelectedMembersWith:(NSArray *)selectedMemberIds;
+
+
+@end
+
 @interface ChooseMemberVC : UIViewController
 
 @property (nonatomic, strong) NSArray *receivers;
+
+@property (nonatomic, weak) id <ChooseMemberVCDelegate> delegate;
 
 - (instancetype)initWithMembers:(NSArray *)members;
 

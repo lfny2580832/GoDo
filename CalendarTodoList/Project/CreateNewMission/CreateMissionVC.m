@@ -13,6 +13,7 @@
 #import "DeleteTodoCell.h"
 #import "ChooseMemberCell.h"
 #import "ChooseMemberVC.h"
+
 #import "CreateMissionAPI.h"
 #import "CreateMissionModel.h"
 #import "MissionModel.h"
@@ -20,12 +21,14 @@
 #import "DeleteMissionAPI.h"
 #import "ProjectModel.h"
 
+
+
 #import "QiNiuUploadImageTool.h"
 
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"
 
-@interface CreateMissionVC ()<TZImagePickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,DatePickerCellDelegate,TodoContentViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface CreateMissionVC ()<TZImagePickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,DatePickerCellDelegate,TodoContentViewDelegate,UITableViewDataSource,UITableViewDelegate,ChooseMemberVCDelegate>
 
 @end
 
@@ -57,6 +60,11 @@
 static CGFloat cellHeight = 50.f;
 static CGFloat datePickerCellHeight = 240.f;
 
+#pragma mark 指定任务执行者
+- (void)getSelectedMembersWith:(NSArray *)selectedMemberIds
+{
+    _receiversId = selectedMemberIds;
+}
 
 #pragma mark 添加图片
 - (void)pickImageWithCurrentImages:(NSArray *)images
@@ -335,6 +343,7 @@ static CGFloat datePickerCellHeight = 240.f;
     else if(indexPath.section == 0 && indexPath.row == 0)
     {
         ChooseMemberVC *vc = [[ChooseMemberVC alloc]initWithMembers:_members];
+        vc.delegate = self;
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.section == 1 && indexPath.row == 0)

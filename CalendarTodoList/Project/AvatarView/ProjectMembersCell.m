@@ -41,6 +41,8 @@
     _avatarView = [[UIImageView alloc]init];
     _avatarView.backgroundColor = KMainGray;
     _avatarView.layer.cornerRadius = 18;
+    _avatarView.contentMode= UIViewContentModeScaleAspectFill;
+    _avatarView.clipsToBounds = YES;
     [self.contentView addSubview:_avatarView];
     [_avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);

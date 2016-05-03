@@ -90,6 +90,10 @@
             [_imageViews addObject:missionImageView];
         }
     }else{
+        for(UIImageView *imageView in _imageViews)
+        {
+            imageView.image = nil;
+        }
         [_textLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(_backView).offset(-41);
         }];
@@ -139,6 +143,8 @@
 
     _avatarView = [[UIImageView alloc]init];
     _avatarView.backgroundColor = KMainGray;
+    _avatarView.contentMode= UIViewContentModeScaleAspectFill;
+    _avatarView.clipsToBounds = YES;
     _avatarView.layer.cornerRadius = 19;
     _avatarView.layer.masksToBounds = YES;
     [_backView addSubview:_avatarView];
@@ -151,7 +157,6 @@
     _createInfoLabel = [[UILabel alloc]init];
     _createInfoLabel.font = [UIFont systemFontOfSize:12];
     _createInfoLabel.textColor = KMainGray;
-    _createInfoLabel.text = @"牛严 创建了任务";
     [_backView addSubview:_createInfoLabel];
     [_createInfoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_avatarView);
@@ -170,7 +175,6 @@
     _textLabel = [[UILabel alloc]init];
     _textLabel.font = [UIFont boldSystemFontOfSize:16];
     _textLabel.numberOfLines = 0;
-    _textLabel.text = @"拿下xx项目";
     [_backView addSubview:_textLabel];
     [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_createInfoLabel.mas_bottom).offset(9);

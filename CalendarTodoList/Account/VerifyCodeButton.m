@@ -33,7 +33,7 @@
 #pragma mark 发送验证码
 - (void)sendVerifyCodeWithMail:(NSString *)mail use:(NSString *)use
 {
-    _resendSecond = 5;
+    _resendSecond = 59;
     self.enabled = NO;
 
     SendVerifyCodeAPI *api = [[SendVerifyCodeAPI alloc]initWithTo:mail use:use];

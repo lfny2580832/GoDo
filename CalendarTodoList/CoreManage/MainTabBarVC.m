@@ -54,7 +54,6 @@
     [mineNavVC setTitle:@"我的"];
     mineNavVC.tabBarItem.image = [UIImage imageNamed:@"ico_mine.png"];
 
-    
     [self setViewControllers:@[calendarNavVC,projectNavVC,mineNavVC]];
 }
 

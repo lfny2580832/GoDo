@@ -41,6 +41,8 @@
 {
     _avatarView = [[UIImageView alloc]init];
     _avatarView.backgroundColor = KMainGray;
+    _avatarView.contentMode= UIViewContentModeScaleAspectFill;
+    _avatarView.clipsToBounds = YES;
     _avatarView.layer.cornerRadius = 18;
     _avatarView.layer.masksToBounds = YES;
     [self.contentView addSubview:_avatarView];
@@ -53,9 +55,9 @@
     _contentLabel = [[UILabel alloc]init];
     [self.contentView addSubview:_contentLabel];
     [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(12);
+        make.top.equalTo(self.contentView).offset(15);
         make.left.equalTo(_avatarView.mas_right).offset(10);
-        make.bottom.equalTo(self.contentView).offset(-12);
+        make.bottom.equalTo(self.contentView).offset(-15);
     }];
 }
 @end

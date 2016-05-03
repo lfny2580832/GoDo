@@ -42,17 +42,10 @@
     [api startWithSuccessBlock:^{
         [hud hide];
         [NYProgressHUD showToastText:@"加入项目成功"];
-        [self requestToDealWithMessage:messageId];
     } failure:^{
         [hud hide];
         [NYProgressHUD showToastText:@"加入项目失败"];
     }];
-}
-
-- (void)requestToDealWithMessage:(NSString *)messageId
-{
-    DealWithMessageAPI *api = [[DealWithMessageAPI alloc]initWithMessageId:messageId Dealt:YES];
-    [api startWithSuccessBlock:nil failure:nil];
 }
 
 #pragma mark 获取用户信息

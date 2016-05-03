@@ -78,6 +78,9 @@
 #pragma mark 加入项目
 - (void)joinProject
 {
+    if (_message.dealt == YES) {
+        return;
+    }
     [self.delegate joinProjectWithId:_message.extraInfo.targetId messageId:_message.id];
 }
 

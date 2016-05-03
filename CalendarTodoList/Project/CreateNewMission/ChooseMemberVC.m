@@ -62,6 +62,18 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
 }
 
+#pragma mark 确认选择
+- (void)rightbarButtonItemOnclick:(id)sender
+{
+    NSArray *selectArr = [_tableView indexPathsForSelectedRows];
+    NSMutableArray *selectedMemberIds = [NSMutableArray new];
+    for (NSIndexPath *indexPath in selectArr) {
+        [selectedMemberIds addObject:[_members[indexPath.row] id]];
+    }
+    [self.delegate getSelectedMembersWith:selectedMemberIds];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark 初始化
 - (instancetype)initWithMembers:(NSArray *)members
 {
@@ -71,6 +83,7 @@
         self.view.backgroundColor = [UIColor whiteColor];
         [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
         [self setCustomTitle:@"选择任务执行者"];
+        [self setRightBackButtontile:@"确认"];
         [self initView];
     }
     return self;
@@ -87,6 +100,8 @@
     _tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 8)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.allowsMultipleSelection = YES;
+
     [self.view addSubview:_tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.left.right.equalTo(self.view);
