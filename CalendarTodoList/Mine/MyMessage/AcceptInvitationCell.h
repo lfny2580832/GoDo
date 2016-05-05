@@ -11,7 +11,7 @@
 
 @protocol AcceptInvitationCellDelegate <NSObject>
 
-- (void)joinProjectWithId:(NSString *)projectId messageId:(NSString *)messageId;
+- (void)joinProjectWithId:(NSString *)projectId name:(NSString *)projectName;
 
 - (void)jumpToProjectInfoVCWithId:(NSString *)projectId;
 

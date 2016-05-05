@@ -40,6 +40,7 @@
         GetProjectModel *model = [GetProjectModel yy_modelWithJSON:request.responseString];
 //        NSLog(@"---%@",request.responseString);
         _projects = model.projects;
+        [self saveProjectsInDBWith:_projects];
         [_tableView reloadData];
         
     } failure:^(__kindof YTKBaseRequest *request) {
@@ -47,6 +48,11 @@
         [NYProgressHUD showToastText:@"获取项目失败"];
 
     }];
+}
+
+- (void)saveProjectsInDBWith:(NSArray *)projects
+{
+    
 }
 
 #pragma mark 登录界面
@@ -128,8 +134,10 @@
 {
     [super viewWillAppear:animated];
 
-    
-    if (![UserDefaultManager token] && _isFirst == NO) {
+    if (![UserDefaultManager token]){
+        _projects = nil;
+        [_tableView reloadData];
+    }else if (![UserDefaultManager token] && _isFirst == NO) {
         [self login];
     }else if([UserDefaultManager token]){
         [self getUserProjects];

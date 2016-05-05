@@ -10,6 +10,7 @@
 
 @class FMTodoModel;
 @class MissionModel;
+@class FMProject;
 
 @interface TodoDetailVC : UIViewController
 
@@ -17,6 +18,6 @@
 
 - (instancetype)initWithDate:(NSDate *)date;
 
-- (void)loadMissionModel:(MissionModel *)mission images:(NSArray *)images;
+- (void)loadMissionModel:(MissionModel *)mission images:(NSArray *)images projectId:(NSString *)projectId;
 
 @end

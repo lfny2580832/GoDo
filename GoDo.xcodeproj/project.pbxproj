@@ -64,6 +64,15 @@
 		4A4F9CC41C3F3ECE0000F24C /* CalendarTodoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CC31C3F3ECE0000F24C /* CalendarTodoDetailVC.m */; };
 		4A4F9CC71C3F3EEA0000F24C /* CalendarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F9CC61C3F3EEA0000F24C /* CalendarVC.m */; };
 		4A84C8741C43DF3F00F83C5B /* NSObject+NYExtends.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A84C8731C43DF3F00F83C5B /* NSObject+NYExtends.m */; };
+		4A88BF801CDB52F8000EE342 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A88BF7E1CDB52F8000EE342 /* PgySDK.framework */; };
+		4A88BF811CDB52F8000EE342 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A88BF7F1CDB52F8000EE342 /* PgyUpdate.framework */; };
+		4A88BF831CDB5823000EE342 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A88BF821CDB5823000EE342 /* CoreTelephony.framework */; };
+		4A88BF851CDB5858000EE342 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A88BF841CDB5858000EE342 /* OpenGLES.framework */; };
+		4A88BF871CDB5861000EE342 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A88BF861CDB5861000EE342 /* CoreMotion.framework */; };
+		4A88BF891CDB5869000EE342 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A88BF881CDB5869000EE342 /* AudioToolbox.framework */; };
+		4A88BF8B1CDB586F000EE342 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A88BF8A1CDB586F000EE342 /* AVFoundation.framework */; };
+		4A88BF8D1CDB5879000EE342 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A88BF8C1CDB5879000EE342 /* SystemConfiguration.framework */; };
+		4A88BF951CDB5ADC000EE342 /* SettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88BF941CDB5ADC000EE342 /* SettingVC.m */; };
 		4A88CB211C2B925F001C13D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB201C2B925F001C13D8 /* main.m */; };
 		4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB231C2B925F001C13D8 /* AppDelegate.m */; };
 		4A88CB2C1C2B925F001C13D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A88CB2B1C2B925F001C13D8 /* Assets.xcassets */; };
@@ -118,6 +127,7 @@
 		4AD57B291CD826B400370F52 /* ico_mine@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AD57B231CD826B400370F52 /* ico_mine@3x.png */; };
 		4AD57B2A1CD826B400370F52 /* ico_project@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AD57B241CD826B400370F52 /* ico_project@2x.png */; };
 		4AD57B2B1CD826B400370F52 /* ico_project@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AD57B251CD826B400370F52 /* ico_project@3x.png */; };
+		4AD57B2E1CD93ED900370F52 /* FMProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD57B2D1CD93ED900370F52 /* FMProject.m */; };
 		4ADA1D951C3E478C001ECBF4 /* ico_nav_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */; };
 		4ADA1D961C3E478C001ECBF4 /* ico_nav_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */; };
 		4ADA1D971C3E478C001ECBF4 /* ico_nav_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ADA1D931C3E478C001ECBF4 /* ico_nav_back_white@2x.png */; };
@@ -266,6 +276,16 @@
 		4A4F9CC61C3F3EEA0000F24C /* CalendarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarVC.m; sourceTree = "<group>"; };
 		4A84C8721C43DF3F00F83C5B /* NSObject+NYExtends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NYExtends.h"; sourceTree = "<group>"; };
 		4A84C8731C43DF3F00F83C5B /* NSObject+NYExtends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NYExtends.m"; sourceTree = "<group>"; };
+		4A88BF7E1CDB52F8000EE342 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
+		4A88BF7F1CDB52F8000EE342 /* PgyUpdate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgyUpdate.framework; sourceTree = "<group>"; };
+		4A88BF821CDB5823000EE342 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		4A88BF841CDB5858000EE342 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		4A88BF861CDB5861000EE342 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		4A88BF881CDB5869000EE342 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4A88BF8A1CDB586F000EE342 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4A88BF8C1CDB5879000EE342 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4A88BF931CDB5ADC000EE342 /* SettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingVC.h; sourceTree = "<group>"; };
+		4A88BF941CDB5ADC000EE342 /* SettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingVC.m; sourceTree = "<group>"; };
 		4A88CB1C1C2B925E001C13D8 /* GoDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A88CB201C2B925F001C13D8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4A88CB221C2B925F001C13D8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -363,6 +383,8 @@
 		4AD57B231CD826B400370F52 /* ico_mine@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_mine@3x.png"; sourceTree = "<group>"; };
 		4AD57B241CD826B400370F52 /* ico_project@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_project@2x.png"; sourceTree = "<group>"; };
 		4AD57B251CD826B400370F52 /* ico_project@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_project@3x.png"; sourceTree = "<group>"; };
+		4AD57B2C1CD93ED900370F52 /* FMProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMProject.h; sourceTree = "<group>"; };
+		4AD57B2D1CD93ED900370F52 /* FMProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMProject.m; sourceTree = "<group>"; };
 		4ADA1D911C3E478C001ECBF4 /* ico_nav_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@2x.png"; sourceTree = "<group>"; };
 		4ADA1D921C3E478C001ECBF4 /* ico_nav_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back@3x.png"; sourceTree = "<group>"; };
 		4ADA1D931C3E478C001ECBF4 /* ico_nav_back_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_nav_back_white@2x.png"; sourceTree = "<group>"; };
@@ -430,9 +452,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A88BF8D1CDB5879000EE342 /* SystemConfiguration.framework in Frameworks */,
+				4A88BF8B1CDB586F000EE342 /* AVFoundation.framework in Frameworks */,
+				4A88BF891CDB5869000EE342 /* AudioToolbox.framework in Frameworks */,
+				4A88BF871CDB5861000EE342 /* CoreMotion.framework in Frameworks */,
+				4A88BF851CDB5858000EE342 /* OpenGLES.framework in Frameworks */,
+				4A88BF831CDB5823000EE342 /* CoreTelephony.framework in Frameworks */,
 				4A12909A1C5E181F006E078B /* libz.tbd in Frameworks */,
 				4A43AC351C3631A900347E3C /* libc++.tbd in Frameworks */,
+				4A88BF801CDB52F8000EE342 /* PgySDK.framework in Frameworks */,
 				988604FC5CF4599DBC5A9AA9 /* libPods.a in Frameworks */,
+				4A88BF811CDB52F8000EE342 /* PgyUpdate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +472,7 @@
 		4A077ED81CCBA789009DDADD /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				4A88BF921CDB5ADC000EE342 /* Settings */,
 				4A4CA2FE1CCE9BB300F6DD05 /* MinePersonalInfo */,
 				4A4CA30B1CCE9E0F00F6DD05 /* MyMessage */,
 				4A077ED91CCBA79A009DDADD /* MineVC.h */,
@@ -507,6 +538,7 @@
 		4A3FB5881C7B725500C0E6B7 /* ThirdFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A88BF7D1CDB52F8000EE342 /* pgySDK */,
 				4A221B7F1CC1BD840062042F /* QiNiuExtends */,
 			);
 			name = ThirdFrameworks;
@@ -564,6 +596,24 @@
 				4A9ED9DD1C5FC42B00B46107 /* TodoDetail */,
 			);
 			path = calendarDay;
+			sourceTree = "<group>";
+		};
+		4A88BF7D1CDB52F8000EE342 /* pgySDK */ = {
+			isa = PBXGroup;
+			children = (
+				4A88BF7E1CDB52F8000EE342 /* PgySDK.framework */,
+				4A88BF7F1CDB52F8000EE342 /* PgyUpdate.framework */,
+			);
+			path = pgySDK;
+			sourceTree = "<group>";
+		};
+		4A88BF921CDB5ADC000EE342 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4A88BF931CDB5ADC000EE342 /* SettingVC.h */,
+				4A88BF941CDB5ADC000EE342 /* SettingVC.m */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		4A88CB131C2B925E001C13D8 = {
@@ -868,6 +918,8 @@
 				4AEF614A1C94EE5000236F6F /* FMTodoModel.m */,
 				4AEF614C1C94EECB00236F6F /* FMTodoImage.h */,
 				4AEF614D1C94EECB00236F6F /* FMTodoImage.m */,
+				4AD57B2C1CD93ED900370F52 /* FMProject.h */,
+				4AD57B2D1CD93ED900370F52 /* FMProject.m */,
 			);
 			path = CoreModel;
 			sourceTree = "<group>";
@@ -922,6 +974,12 @@
 		5AD3F6B00E743D84CCA1C8D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A88BF8C1CDB5879000EE342 /* SystemConfiguration.framework */,
+				4A88BF8A1CDB586F000EE342 /* AVFoundation.framework */,
+				4A88BF881CDB5869000EE342 /* AudioToolbox.framework */,
+				4A88BF861CDB5861000EE342 /* CoreMotion.framework */,
+				4A88BF841CDB5858000EE342 /* OpenGLES.framework */,
+				4A88BF821CDB5823000EE342 /* CoreTelephony.framework */,
 				4A1290991C5E181F006E078B /* libz.tbd */,
 				4A1290961C5E1766006E078B /* Reveal.framework */,
 				4A43AC341C3631A900347E3C /* libc++.tbd */,
@@ -1098,6 +1156,7 @@
 				4AD57AF71CD6DC2E00370F52 /* ProjectAddMemberVC.m in Sources */,
 				4AD57B111CD8025600370F52 /* InviteMemberInProjectAPI.m in Sources */,
 				4A4F9CBD1C3F3E280000F24C /* RDVCalendarDayCell.m in Sources */,
+				4AD57B2E1CD93ED900370F52 /* FMProject.m in Sources */,
 				4A84C8741C43DF3F00F83C5B /* NSObject+NYExtends.m in Sources */,
 				4AE9D5E41CC3C13100C93FFC /* QiNiuUploadImageTool.m in Sources */,
 				4AD3DD1C1CAF409200D5FDC4 /* RegistAPI.m in Sources */,
@@ -1154,6 +1213,7 @@
 				4A4B4ECF1CBEE686009E2114 /* GetMissionAPI.m in Sources */,
 				4A95AA111C71702F00DFB118 /* DeleteTodoCell.m in Sources */,
 				4AD3DD351CB15B5200D5FDC4 /* VerifyCodeButton.m in Sources */,
+				4A88BF951CDB5ADC000EE342 /* SettingVC.m in Sources */,
 				4A4CA2EE1CCD5EC800F6DD05 /* MineInfoCell.m in Sources */,
 				4A4B4ED21CBEE686009E2114 /* CreateMissionAPI.m in Sources */,
 				4AD3DD1B1CAF409200D5FDC4 /* LogInAPI.m in Sources */,
@@ -1300,6 +1360,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/CalendarTodoList/ThirdFrameworks/pgySDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CalendarTodoList/PrefixHeader.pch;
@@ -1341,6 +1402,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/CalendarTodoList/ThirdFrameworks/pgySDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CalendarTodoList/PrefixHeader.pch;

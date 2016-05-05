@@ -16,7 +16,12 @@
 #import "AcceptInvitationCell.h"
 #import "ProjectDetailVC.h"
 
-@interface MyMessageVC ()<UITableViewDataSource,UITableViewDelegate,AcceptInvitationCellDelegate>
+#import "TypeColor.h"
+#import "ChooseTypeColorVC.h"
+
+#import "DBManage.h"
+
+@interface MyMessageVC ()<UITableViewDataSource,UITableViewDelegate,AcceptInvitationCellDelegate,ChooseTypeColorDelegate>
 
 @end
 
@@ -24,6 +29,27 @@
 {
     UITableView *_tableView;
     NSArray *_messages;
+    TypeColor *_joinProColor;
+    NSString *_joinProjectId;
+    NSString *_joinProjectName;
+}
+
+#pragma mark 选择颜色回调
+- (void)returnTypeColorWithTypeColor:(TypeColor *)color
+{
+    _joinProColor = color;
+    
+    NYProgressHUD *hud = [NYProgressHUD new];
+    [hud showAnimationWithText:@"正在加入项目"];
+    JoinProjectAPI *api = [[JoinProjectAPI alloc]initWithProjectId:_joinProjectId];
+    [api startWithSuccessBlock:^{
+        [DBManager saveProjectInDBWithId:_joinProjectId projectName:_joinProjectName color:_joinProColor];
+        [hud hide];
+        [NYProgressHUD showToastText:@"加入项目成功"];
+    } failure:^{
+        [hud hide];
+        [NYProgressHUD showToastText:@"加入项目失败"];
+    }];
 }
 
 #pragma mark 跳转至项目信息页面
@@ -34,18 +60,14 @@
 }
 
 #pragma mark 加入项目
-- (void)joinProjectWithId:(NSString *)projectId messageId:(NSString *)messageId
+- (void)joinProjectWithId:(NSString *)projectId name:(NSString *)projectName
 {
-    NYProgressHUD *hud = [NYProgressHUD new];
-    [hud showAnimationWithText:@"正在加入项目"];
-    JoinProjectAPI *api = [[JoinProjectAPI alloc]initWithProjectId:projectId];
-    [api startWithSuccessBlock:^{
-        [hud hide];
-        [NYProgressHUD showToastText:@"加入项目成功"];
-    } failure:^{
-        [hud hide];
-        [NYProgressHUD showToastText:@"加入项目失败"];
-    }];
+    _joinProjectId = projectId;
+    _joinProjectName = projectName;
+    
+    ChooseTypeColorVC *vc = [[ChooseTypeColorVC alloc]init];
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark 获取用户信息

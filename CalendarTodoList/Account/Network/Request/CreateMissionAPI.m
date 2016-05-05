@@ -28,7 +28,7 @@
         _desc = @"无";
         _projectId = projectId;
         _deadline = [deadline timeIntervalSince1970];
-        _receiversId = @[[UserDefaultManager id]];
+        _receiversId = receiversId;
     }
     return self;
 }

@@ -42,11 +42,8 @@
 
 - (void)acceptMission
 {
-    TodoDetailVC *vc = [[TodoDetailVC alloc]initWithDate:[NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]]];
-    [vc loadMissionModel:_mission images:_images];
-    [vc setCustomTitle:@"领取任务"];
-    [vc setRightBackButtontile:@"确认"];
-    [self.delegate acceptMissionWithVC:vc];
+
+    [self.delegate acceptMissionWithMission:_mission images:_images];
 }
 
 - (void)setMission:(MissionModel *)mission
@@ -177,7 +174,7 @@
     _textLabel.numberOfLines = 0;
     [_backView addSubview:_textLabel];
     [_textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_createInfoLabel.mas_bottom).offset(9);
+        make.top.equalTo(_backView).offset(34);
         make.bottom.equalTo(_backView).offset(-10);
         make.left.equalTo(_createInfoLabel);
         make.right.equalTo(_backView).offset(-18);

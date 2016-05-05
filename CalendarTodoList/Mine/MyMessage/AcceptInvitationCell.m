@@ -81,7 +81,8 @@
     if (_message.dealt == YES) {
         return;
     }
-    [self.delegate joinProjectWithId:_message.extraInfo.targetId messageId:_message.id];
+    
+    [self.delegate joinProjectWithId:_message.extraInfo.targetId name:_message.extraInfo.targetName];
 }
 
 #pragma mark 初始化

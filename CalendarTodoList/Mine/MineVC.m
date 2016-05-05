@@ -12,6 +12,7 @@
 #import "MineInfoVC.h"
 #import "MyMessageVC.h"
 #import "LoginVC.h"
+#import "SettingVC.h"
 
 #import "GetUserInfoAPI.h"
 #import "UserModel.h"
@@ -77,6 +78,9 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.section == 1 && indexPath.row == 0){
         MyMessageVC *vc = [[MyMessageVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.section == 2 && indexPath.row == 0){
+        SettingVC *vc = [[SettingVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

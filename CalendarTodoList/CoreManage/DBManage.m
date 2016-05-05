@@ -11,6 +11,8 @@
 
 #import "FMDayList.h"
 #import "FMTodoImage.h"
+#import "TypeColor.h"
+#import "FMProject.h"
 
 #import "NSString+ZZExtends.h"
 #import "NSObject+NYExtends.h"
@@ -391,9 +393,9 @@
 }
 
 #pragma mark 根据projectId返回project
-- (FMProject *)getProjectWithId:(NSInteger)projectId
+- (FMProject *)getProjectWithId:(NSString *)projectId
 {
-    FMProject *project = [[FMProject searchWithSQL:[NSString stringWithFormat:@"select * from @t where projectId = '%ld'",(long)projectId]] firstObject];
+    FMProject *project = [[FMProject searchWithSQL:[NSString stringWithFormat:@"select * from @t where projectId = '%@'",projectId]] firstObject];
     
     return project;
 }
@@ -423,6 +425,19 @@
         }
     }
     [self cancelLocalNotificationWithTableID:tableId];
+}
+
+#pragma mark 保存本地
+- (void)saveProjectInDBWithId:(NSString *)projectId projectName:(NSString *)projectName color:(TypeColor *)color
+{
+    FMProject *fmProject = [[FMProject alloc]init];
+    fmProject.projectId = projectId;
+    fmProject.projectStr = projectName;
+    fmProject.red = color.red;
+    fmProject.green = color.green;
+    fmProject.blue = color.blue;
+    
+    [[FMProject getUsingLKDBHelper] insertToDB:fmProject];
 }
 
 @end

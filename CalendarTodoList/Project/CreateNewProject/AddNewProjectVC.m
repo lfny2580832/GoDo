@@ -15,6 +15,8 @@
 #import "CreateProjectAPI.h"
 #import "CreateProjectModel.h"
 
+#import "DBManage.h"
+
 @interface AddNewProjectVC ()<ChooseTypeColorDelegate,ChoosePrivateTypeVCDelegate>
 
 @end
@@ -66,6 +68,7 @@
 #pragma mark 点击保存按钮
 - (void)rightbarButtonItemOnclick:(id)sender
 {
+    [self.view endEditing:YES];
     NSString *name = _contentTextField.text;
     if (!name.length) {
         [NYProgressHUD showToastText:@"请输入项目名称"];
@@ -73,32 +76,24 @@
     }
     
     CreateProjectAPI *api = [[CreateProjectAPI alloc]initWithName:name private:_proPrivate desc:_descTextField.text];
+    NYProgressHUD *hud = [NYProgressHUD new];
+    [hud showAnimationWithText:@"创建项目中"];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        [hud hide];
         CreateProjectModel *model = [CreateProjectModel yy_modelWithJSON:request.responseString];
         if (model.code == 0) {
+            NSString *projectId = model.id;
             [NYProgressHUD showToastText:@"创建成功" completion:^{
+                [DBManager saveProjectInDBWithId:projectId projectName:name color:_color];
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         }else{
             [NYProgressHUD showToastText:model.msg];
         }
     } failure:^(__kindof YTKBaseRequest *request) {
+        [hud hide];
         [NYProgressHUD showToastText:@"创建失败"];
     }];
-    
-//    NSMutableArray *projectArray = [[NSMutableArray alloc]init];
-//    projectArray = [FMProject searchWithSQL:@"select * from @t"];
-//    NSInteger count = projectArray.count;
-//    
-//    FMProject * project = [[FMProject alloc]init];
-//    project.projectId = count + 1;
-//    project.projectStr = _contentTextField.text;
-//    project.red = _color.red;
-//    project.green = _color.green;
-//    project.blue = _color.blue;
-//    
-//    [[FMProject getUsingLKDBHelper]insertToDB:project];
-    
 }
 
 #pragma mark 初始化

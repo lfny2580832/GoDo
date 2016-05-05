@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class MainTabBarVC;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (nonatomic, strong) MainTabBarVC *mainTabbarVC;
 
 @end
 

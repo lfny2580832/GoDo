@@ -178,7 +178,7 @@
     LKDBHelper *DBHelper = [[LKDBHelper alloc]init];
     [LKDBHelper clearTableData:[FMProject class]];
     FMProject *project = [[FMProject alloc]init];
-    project.projectId = 1;
+    project.projectId = @"1";
     project.projectStr = @"学习";
     project.red = 251;
     project.green = 136;
@@ -186,15 +186,7 @@
     
     [DBHelper insertToDB:project];
     
-    project.projectId = 2;
-    project.projectStr = @"社团";
-    project.red = 59;
-    project.green = 213;
-    project.blue = 251;
-    
-    [DBHelper insertToDB:project];
-    
-    project.projectId = 3;
+    project.projectId = @"2";
     project.projectStr = @"个人";
     project.red = 255;
     project.green = 204;
@@ -202,19 +194,11 @@
     
     [DBHelper insertToDB:project];
     
-    project.projectId = 4;
+    project.projectId = @"3";
     project.projectStr = @"工作";
     project.red = 226;
     project.green = 168;
     project.blue = 228;
-    
-    [DBHelper insertToDB:project];
-    
-    project.projectId = 5;
-    project.projectStr = @"休闲";
-    project.red = 210;
-    project.green = 184;
-    project.blue = 163;
     
     [DBHelper insertToDB:project];
 }

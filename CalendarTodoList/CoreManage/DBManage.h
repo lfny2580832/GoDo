@@ -10,6 +10,8 @@
 #import <LKDBHelper/LKDBHelper.h>
 #import "FMTodoModel.h"
 
+@class TypeColor;
+
 #define DBManager [DBManage sharedInstance]
 
 @interface DBManage : NSObject
@@ -20,7 +22,7 @@
 - (NSArray *)getDayInfoFromDateList:(NSInteger)dayId;
 
 #pragma mark 根据project返回类型字符串
-- (FMProject *)getProjectWithId:(NSInteger)projectId;
+- (FMProject *)getProjectWithId:(NSString *)projectId;
 
 #pragma mark 获取project数组
 - (NSMutableArray *)getProjectArray;
@@ -33,5 +35,8 @@
 
 #pragma mark 删除todo
 - (void)deleteTodoWithTableId:(NSString *)tableId;
+
+#pragma mark 保存本地
+- (void)saveProjectInDBWithId:(NSString *)projectId projectName:(NSString *)projectName color:(TypeColor *)color;
 
 @end

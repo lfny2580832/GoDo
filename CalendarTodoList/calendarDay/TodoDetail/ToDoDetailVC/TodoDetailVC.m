@@ -295,13 +295,16 @@ static CGFloat datePickerCellHeight = 240.f;
 }
 
 #pragma mark 加载mission model
-- (void)loadMissionModel:(MissionModel *)mission images:(NSArray *)images
+- (void)loadMissionModel:(MissionModel *)mission images:(NSArray *)images projectId:(NSString *)projectId
 {
     _missionId = mission.id;
+
     _repeatMode = Never;
     _remindMode = NoRemind;
     _todoContentStr = mission.name;
     _todoContentView.todoContentField.text = _todoContentStr;
+    _project = [DBManager getProjectWithId:projectId];
+    _todoProjectView.project = _project;
     NSDate *tempDate = [NSDate dateWithTimeInterval:0 sinceDate:_initialDate];
     if ([[NSDate date] timeIntervalSinceDate:tempDate] > 0)
         _startDate = [NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]];

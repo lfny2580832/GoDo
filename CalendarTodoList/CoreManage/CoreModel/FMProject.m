@@ -1,16 +1,20 @@
 //
-//  FMTodoModel.m
-//  CalendarTodoList
+//  FMProject.m
+//  GoDo
 //
-//  Created by 牛严 on 16/3/13.
+//  Created by 牛严 on 16/5/4.
 //  Copyright © 2016年 牛严. All rights reserved.
 //
 
-#import "FMTodoModel.h"
+#import "FMProject.h"
+#import <LKDBHelper/LKDBHelper.h>
 
+@implementation FMProject
 
-
-@implementation FMTodoModel
++ (NSString *)getPrimaryKey
+{
+    return @"projectId";
+}
 
 +(LKDBHelper *)getUsingLKDBHelper
 {
@@ -22,16 +26,4 @@
     return db;
 }
 
-+(void)initialize
-{
-    [self removePropertyWithColumnName:@"error"];
-}
-
-//主键
-+(NSString *)getPrimaryKey
-{
-    return @"tableId";
-}
-
 @end
-

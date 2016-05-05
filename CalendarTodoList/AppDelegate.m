@@ -12,9 +12,11 @@
 #import "CalendarVC.h"
 
 #import <IQKeyboardManager/IQKeyboardManager.h>
-
+#import <PgySDK/PgyManager.h>
+#import <PgyUpdate/PgyUpdateManager.h>
 #import <YTKNetwork/YTKNetworkConfig.h>
 
+#define pgyAppleId @"e4bffda85b82c0f575a1b5b5c4cd064e"
 
 @interface AppDelegate ()
 
@@ -23,7 +25,6 @@
 @implementation AppDelegate
 {
 //    BaseNavigationController *_calendarNavVC;
-    MainTabBarVC *_mainTabbarVC;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -32,19 +33,31 @@
     [self registRemoteNotification];
     [self registLocalNotification];
     [self setNetworkConfig];
+    [self setPgySDK];
     [[IQKeyboardManager sharedManager] setEnable:YES];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
     _mainTabbarVC = [[MainTabBarVC alloc]init];
-
+    
     [self.window setRootViewController:_mainTabbarVC];
     [self.window makeKeyAndVisible];
     
     return YES;
 }
 
+- (void)setPgySDK
+{
+    [[PgyManager sharedPgyManager] setEnableDebugLog:YES];
+    [[PgyManager sharedPgyManager] setEnableFeedback:YES];
+    [[PgyManager sharedPgyManager] setShakingThreshold:3.0];
+    [[PgyManager sharedPgyManager] startManagerWithAppId:pgyAppleId];
+
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:pgyAppleId];
+    [[PgyUpdateManager sharedPgyManager] checkUpdate];
+
+}
 
 - (void)setNetworkConfig
 {

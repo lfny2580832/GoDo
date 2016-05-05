@@ -54,8 +54,12 @@
 }
 
 #pragma mark 接受任务
-- (void)acceptMissionWithVC:(TodoDetailVC *)vc
+- (void)acceptMissionWithMission:(MissionModel *)mission images:(NSArray *)images
 {
+    TodoDetailVC *vc = [[TodoDetailVC alloc]initWithDate:[NSDate dateWithTimeInterval:60*10 sinceDate:[NSDate date]]];
+    [vc loadMissionModel:mission images:images projectId:_projectId];
+    [vc setCustomTitle:@"领取任务"];
+    [vc setRightBackButtontile:@"确认"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <LKDBHelper/LKDBHelper.h>
 
+#import "FMProject.h"
 //完成状态
 typedef NS_ENUM(NSInteger, DoneType)
 {
@@ -35,17 +36,6 @@ typedef NS_ENUM(NSInteger, RemindMode)
     ThirtyMinutesEarlier
 };
 
-@interface FMProject : NSObject
-///事件类型ID 主键
-@property (nonatomic, assign) NSInteger projectId;
-///事件类型字符串
-@property (nonatomic, copy) NSString *projectStr;
-///事件类型标记颜色
-@property (nonatomic, assign) NSInteger red;
-@property (nonatomic, assign) NSInteger green;
-@property (nonatomic, assign) NSInteger blue;
-
-@end
 
 @interface FMTodoModel : NSObject
 
@@ -57,7 +47,7 @@ typedef NS_ENUM(NSInteger, RemindMode)
 ///事件类型
 @property (nonatomic, strong) FMProject *project;
 ///项目ID
-@property NSInteger projectId;
+@property (nonatomic, copy) NSString *projectId;
 ///事件字符串
 @property (nonatomic, copy)   NSString *thingStr;
 ///图片数组

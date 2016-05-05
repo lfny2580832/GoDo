@@ -32,11 +32,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == _projects.count) {
-        ChooseProjectTableCell *cell =
-        [[ChooseProjectTableCell alloc]initWithContentLabel];
-        return cell;
-    }
     ChooseProjectTableCell *cell = [[ChooseProjectTableCell alloc]init];
     cell.project = _projects[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -45,16 +40,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _projects.count + 1;
+    return _projects.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == _projects.count) {
-        AddNewProjectVC *vc = [[AddNewProjectVC alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-        return;
-    }
     [self.delegate returnProject:_projects[indexPath.row]];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -65,6 +55,8 @@
     self = [super init];
     if (self) {
         [self loadSubView];
+        [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
+        [self setCustomTitle:@"选择项目组"];
     }
     return self;
 }

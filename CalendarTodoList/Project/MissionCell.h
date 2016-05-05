@@ -13,7 +13,7 @@
 
 @protocol MissionCellDelegate <NSObject>
 
-- (void)acceptMissionWithVC:(TodoDetailVC *)vc;
+- (void)acceptMissionWithMission:(MissionModel *)mission images:(NSArray *)images;
 
 @end
 
