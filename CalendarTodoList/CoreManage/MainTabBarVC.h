@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class BaseNavigationController;
+
 @interface MainTabBarVC : UITabBarController
+
+@property (nonatomic, strong)BaseNavigationController *calendarNavVC;
+
+@property (nonatomic, strong)BaseNavigationController *projectNavVC;
+
+@property (nonatomic, strong)BaseNavigationController *mineNavVC;
 
 @end

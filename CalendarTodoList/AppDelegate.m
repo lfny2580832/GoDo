@@ -10,6 +10,7 @@
 #import "MainTabBarVC.h"
 #import "BaseNavigationController.h"
 #import "CalendarVC.h"
+#import "MyMessageVC.h"
 
 #import <IQKeyboardManager/IQKeyboardManager.h>
 #import <PgySDK/PgyManager.h>
@@ -104,13 +105,18 @@
                                                               preferredStyle:UIAlertControllerStyleAlert];
     [alertVC addAction:[UIAlertAction actionWithTitle:@"前往" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [_mainTabbarVC setSelectedIndex:2];
+        MyMessageVC *messageVC = [[MyMessageVC alloc]init];
+        [_mainTabbarVC.mineNavVC.navigationController pushViewController:messageVC animated:YES];
     }]];
+    
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     
     [_mainTabbarVC presentViewController:alertVC animated:YES completion:nil];
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
+    
     NSString *message = [notification.userInfo objectForKey:@"todoStr"];
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"您有新任务"
                                                                      message:message
@@ -131,6 +137,8 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     
+    _mainTabbarVC.mineNavVC.tabBarItem.badgeValue = @"";
+
     [self showAlertWithRemoteUserInfo:userInfo];
 }
 

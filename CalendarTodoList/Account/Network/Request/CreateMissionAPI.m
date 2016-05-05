@@ -33,6 +33,28 @@
     return self;
 }
 
+
+- (void)startWithSuccessBlock:(successBackBlock)success failure:(failureBlock)failure
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer=[AFJSONRequestSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    [manager.requestSerializer setValue:[UserDefaultManager token] forHTTPHeaderField:@"Authorization"];
+    NSString *url = [NSString stringWithFormat:@"%@/missions",baseAPIURL];
+    NSDictionary *dic = @{
+                          @"name": _name,
+                          @"desc": _desc,
+                          @"projectId":_projectId,
+                          @"receiversId":_receiversId,
+                          @"deadline":@(_deadline)
+                          };
+    [manager POST:url parameters:dic success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        success(responseObject);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        failure();
+    }];
+}
+
 - (NSString *)requestUrl {
     return @"/missions";
 }
@@ -50,13 +72,15 @@
 }
 
 - (id)requestArgument {
-    return @{
-             @"name": _name,
-             @"desc": _desc,
-             @"projectId":_projectId,
-             @"receiversId":_receiversId,
-             @"deadline":@(_deadline)
-             };
+    NSDictionary *dic =@{
+                         @"name": _name,
+                         @"desc": _desc,
+                         @"projectId":_projectId,
+                         @"receiversId":_receiversId,
+                         @"deadline":@(_deadline)
+                         };
+    NSLog(@"---%@",dic);
+    return dic;
 }
 
 @end

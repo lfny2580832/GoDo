@@ -104,6 +104,7 @@
     _passwordTextField.backgroundColor = [UIColor whiteColor];
     _passwordTextField.layer.masksToBounds = YES;
     _passwordTextField.layer.cornerRadius = 5;
+    _passwordTextField.secureTextEntry = YES;
     _passwordTextField.leftViewMode = UITextFieldViewModeAlways;
     UIView *leftview3 = [[UIView alloc] initWithFrame:frame];
     _passwordTextField.leftView = leftview3;

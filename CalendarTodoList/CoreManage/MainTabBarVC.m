@@ -39,22 +39,22 @@
 - (void)initViews
 {
     CalendarVC *calendarVC = [[CalendarVC alloc]init];
-    BaseNavigationController *calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
-    [calendarVC setTitle:@"日程"];
-    calendarNavVC.tabBarItem.image = [UIImage imageNamed:@"ico_calendar.png"];
+    _calendarNavVC = [[BaseNavigationController alloc]initWithRootViewController:calendarVC];
+    [_calendarNavVC setTitle:@"日程"];
+    _calendarNavVC.tabBarItem.image = [UIImage imageNamed:@"ico_calendar.png"];
 
     
     ProjectVC *projectVC = [[ProjectVC alloc]init];
-    BaseNavigationController *projectNavVC = [[BaseNavigationController alloc]initWithRootViewController:projectVC];
-    [projectNavVC setTitle:@"项目"];
-    projectNavVC.tabBarItem.image = [UIImage imageNamed:@"ico_project.png"];
+    _projectNavVC = [[BaseNavigationController alloc]initWithRootViewController:projectVC];
+    [_projectNavVC setTitle:@"项目"];
+    _projectNavVC.tabBarItem.image = [UIImage imageNamed:@"ico_project.png"];
     
     MineVC *mineVC = [[MineVC alloc]init];
-    BaseNavigationController *mineNavVC = [[BaseNavigationController alloc]initWithRootViewController:mineVC];
-    [mineNavVC setTitle:@"我的"];
-    mineNavVC.tabBarItem.image = [UIImage imageNamed:@"ico_mine.png"];
+    _mineNavVC = [[BaseNavigationController alloc]initWithRootViewController:mineVC];
+    [_mineNavVC setTitle:@"我的"];
+    _mineNavVC.tabBarItem.image = [UIImage imageNamed:@"ico_mine.png"];
 
-    [self setViewControllers:@[calendarNavVC,projectNavVC,mineNavVC]];
+    [self setViewControllers:@[_calendarNavVC,_projectNavVC,_mineNavVC]];
 }
 
 @end

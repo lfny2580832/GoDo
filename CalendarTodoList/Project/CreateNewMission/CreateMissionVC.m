@@ -20,8 +20,7 @@
 #import "UpdateMissionImageAPI.h"
 #import "DeleteMissionAPI.h"
 #import "ProjectModel.h"
-
-
+#import "ProjectMemberModel.h"
 
 #import "QiNiuUploadImageTool.h"
 
@@ -53,7 +52,7 @@
     NSDate *_deadlineDate;
     NSArray *_members;
     
-    NSArray *_receiversId;
+    NSArray *_receiverIds;
     NSMutableArray *_chosenImages;
 }
 
@@ -63,7 +62,7 @@ static CGFloat datePickerCellHeight = 240.f;
 #pragma mark 指定任务执行者
 - (void)getSelectedMembersWith:(NSArray *)selectedMemberIds
 {
-    _receiversId = selectedMemberIds;
+    _receiverIds = selectedMemberIds;
 }
 
 #pragma mark 添加图片
@@ -228,12 +227,12 @@ static CGFloat datePickerCellHeight = 240.f;
 #pragma mark 发布任务
 - (void)createMission
 {
+    [self.view endEditing:YES];
     NYProgressHUD *hud = [[NYProgressHUD alloc]init];
     [hud showAnimationWithText:@"发布任务中"];
-    CreateMissionAPI *api = [[CreateMissionAPI alloc]initWithMissionName:_missionContentStr deadline:_deadlineDate projectId:_projectId receiversId:_receiversId];
-    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
-
-        CreateMissionModel *model = [CreateMissionModel yy_modelWithJSON:request.responseString];
+    CreateMissionAPI *api = [[CreateMissionAPI alloc]initWithMissionName:_missionContentStr deadline:_deadlineDate projectId:_projectId receiversId:_receiverIds];
+    [api startWithSuccessBlock:^(id responseObject) {
+        CreateMissionModel *model = [CreateMissionModel yy_modelWithDictionary:responseObject];
         _missionId = model.id;
         if(_chosenImages.count)
         {
@@ -250,11 +249,37 @@ static CGFloat datePickerCellHeight = 240.f;
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         }
+
         
-    } failure:^(__kindof YTKBaseRequest *request) {
+    } failure:^{
         [hud hide];
         [NYProgressHUD showToastText:@"发布任务失败"];
+
     }];
+//    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+//
+//        CreateMissionModel *model = [CreateMissionModel yy_modelWithJSON:request.responseString];
+//        _missionId = model.id;
+//        if(_chosenImages.count)
+//        {
+//            QiNiuUploadImageTool *tool = [[QiNiuUploadImageTool alloc]init];
+//            [tool uploadImages:_chosenImages todoId:_missionId completed:^(NSArray *keys) {
+//                
+//                [self requestToUpdateMissionImage:keys hud:hud];
+//                
+//            }];
+//        }else{
+//            [hud hide];
+//            [NYProgressHUD showToastText:@"发布任务成功" completion:^{
+//                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMission" object:nil];
+//                [self.navigationController popViewControllerAnimated:YES];
+//            }];
+//        }
+//        
+//    } failure:^(__kindof YTKBaseRequest *request) {
+//        [hud hide];
+//        [NYProgressHUD showToastText:@"发布任务失败"];
+//    }];
 }
 
 - (void)requestToUpdateMissionImage:(NSArray *)images hud:(NYProgressHUD *)hud
@@ -360,12 +385,24 @@ static CGFloat datePickerCellHeight = 240.f;
     return selectedIndex == nil ? FALSE : [selectedIndex boolValue];
 }
 
+- (NSArray *)setReciversIdWithMembers:(NSArray *)members
+{
+    NSMutableArray *receiverIds = [[NSMutableArray alloc]init];
+    for(ProjectMemberModel *model in members)
+    {
+        NSString *memberId = model.id;
+        [receiverIds addObject:memberId];
+    }
+    return receiverIds;
+}
+
 #pragma mark 初始化
 - (instancetype)initWithProject:(ProjectModel *)project
 {
     self = [super init];
     if (self) {
         _members = project.members;
+        _receiverIds = [self setReciversIdWithMembers:_members];
         _projectId = project.id;
         _datePickerMode = UIDatePickerModeDateAndTime;
         _chosenImages = [[NSMutableArray alloc]initWithCapacity:0];

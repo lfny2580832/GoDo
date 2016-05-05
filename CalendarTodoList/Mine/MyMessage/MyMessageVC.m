@@ -20,6 +20,9 @@
 #import "ChooseTypeColorVC.h"
 
 #import "DBManage.h"
+#import "AppDelegate.h"
+#import "MainTabBarVC.h"
+#import "BaseNavigationController.h"
 
 @interface MyMessageVC ()<UITableViewDataSource,UITableViewDelegate,AcceptInvitationCellDelegate,ChooseTypeColorDelegate>
 
@@ -120,11 +123,22 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //将角标取消
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    MainTabBarVC *vc = appDelegate.mainTabbarVC;
+    vc.mineNavVC.tabBarItem.badgeValue = nil;
+}
+
 #pragma mark 初始化
 - (instancetype)init
 {
     self = [super init];
     if (self) {
+        
+
         self.view.backgroundColor = RGBA(232, 232, 232, 1.0);
         [self setCustomTitle:@"我的消息"];
         [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];

@@ -10,8 +10,13 @@
 
 @class MissionModel;
 
+typedef void (^successBackBlock)(id responseObject);
+typedef void (^failureBlock)();
+
 @interface CreateMissionAPI : YTKRequest
 
 - (id)initWithMissionName:(NSString *)name deadline:(NSDate *)deadline projectId:(NSString *)projectId receiversId:(NSArray *)receiversId;
+
+- (void)startWithSuccessBlock:(successBackBlock)success failure:(failureBlock)failure;
 
 @end
