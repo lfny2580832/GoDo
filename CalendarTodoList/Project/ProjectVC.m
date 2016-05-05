@@ -126,7 +126,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _isFirst = NO;
-//    [self getUserProjects];
 
 }
 

@@ -44,6 +44,12 @@
     [self.window setRootViewController:_mainTabbarVC];
     [self.window makeKeyAndVisible];
     
+    
+    NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if(userInfo){//推送信息
+        [self showAlertWithRemoteUserInfo:userInfo];
+    }
+    
     return YES;
 }
 
@@ -89,6 +95,20 @@
 
 }
 
+#pragma mark 接受到远程通知提示框
+- (void)showAlertWithRemoteUserInfo:(NSDictionary *)userInfo
+{
+    NSString *message = [[userInfo objectForKey:@"aps"]objectForKey:@"alert"];
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"您有新消息"
+                                                                     message:message
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+    [alertVC addAction:[UIAlertAction actionWithTitle:@"前往" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [_mainTabbarVC setSelectedIndex:2];
+    }]];
+    
+    [_mainTabbarVC presentViewController:alertVC animated:YES completion:nil];
+}
+
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     NSString *message = [notification.userInfo objectForKey:@"todoStr"];
@@ -111,10 +131,10 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     
-    NSLog(@"userInfo == %@",userInfo);
-    NSString *message = [[userInfo objectForKey:@"aps"]objectForKey:@"alert"];
-    NSLog(@"message:%@",message);
+    [self showAlertWithRemoteUserInfo:userInfo];
 }
+
+
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
     
