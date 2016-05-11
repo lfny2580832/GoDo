@@ -73,6 +73,8 @@
 		4A88BF8B1CDB586F000EE342 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A88BF8A1CDB586F000EE342 /* AVFoundation.framework */; };
 		4A88BF8D1CDB5879000EE342 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A88BF8C1CDB5879000EE342 /* SystemConfiguration.framework */; };
 		4A88BF951CDB5ADC000EE342 /* SettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88BF941CDB5ADC000EE342 /* SettingVC.m */; };
+		4A88BF981CDC001C000EE342 /* ico_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A88BF961CDC001C000EE342 /* ico_down@2x.png */; };
+		4A88BF991CDC001C000EE342 /* ico_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A88BF971CDC001C000EE342 /* ico_down@3x.png */; };
 		4A88CB211C2B925F001C13D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB201C2B925F001C13D8 /* main.m */; };
 		4A88CB241C2B925F001C13D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A88CB231C2B925F001C13D8 /* AppDelegate.m */; };
 		4A88CB2C1C2B925F001C13D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A88CB2B1C2B925F001C13D8 /* Assets.xcassets */; };
@@ -286,6 +288,8 @@
 		4A88BF8C1CDB5879000EE342 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4A88BF931CDB5ADC000EE342 /* SettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingVC.h; sourceTree = "<group>"; };
 		4A88BF941CDB5ADC000EE342 /* SettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingVC.m; sourceTree = "<group>"; };
+		4A88BF961CDC001C000EE342 /* ico_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_down@2x.png"; sourceTree = "<group>"; };
+		4A88BF971CDC001C000EE342 /* ico_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_down@3x.png"; sourceTree = "<group>"; };
 		4A88CB1C1C2B925E001C13D8 /* GoDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A88CB201C2B925F001C13D8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4A88CB221C2B925F001C13D8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -862,6 +866,8 @@
 		4ADA1D901C3E478C001ECBF4 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4A88BF961CDC001C000EE342 /* ico_down@2x.png */,
+				4A88BF971CDC001C000EE342 /* ico_down@3x.png */,
 				4AD57B201CD826B400370F52 /* ico_calendar@2x.png */,
 				4AD57B211CD826B400370F52 /* ico_calendar@3x.png */,
 				4AD57B221CD826B400370F52 /* ico_mine@2x.png */,
@@ -1066,6 +1072,7 @@
 				4AD57AFB1CD7500E00370F52 /* ico_arrow_right@3x.png in Resources */,
 				4AD57B041CD7A3FF00370F52 /* ico_add@2x.png in Resources */,
 				4AD57B261CD826B400370F52 /* ico_calendar@2x.png in Resources */,
+				4A88BF991CDC001C000EE342 /* ico_down@3x.png in Resources */,
 				4AD57AFA1CD7500E00370F52 /* ico_arrow_right@2x.png in Resources */,
 				4ADA1D971C3E478C001ECBF4 /* ico_nav_back_white@2x.png in Resources */,
 				4AEAE9A21C84A804009F814E /* check.png in Resources */,
@@ -1073,6 +1080,7 @@
 				4AD57B141CD81E8C00370F52 /* ico_delete@2x.png in Resources */,
 				4AD57B291CD826B400370F52 /* ico_mine@3x.png in Resources */,
 				4AD57B281CD826B400370F52 /* ico_mine@2x.png in Resources */,
+				4A88BF981CDC001C000EE342 /* ico_down@2x.png in Resources */,
 				4ADA1D951C3E478C001ECBF4 /* ico_nav_back@2x.png in Resources */,
 				4ADA1D961C3E478C001ECBF4 /* ico_nav_back@3x.png in Resources */,
 				4AD57B151CD81E8C00370F52 /* ico_delete@3x.png in Resources */,

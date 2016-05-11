@@ -52,6 +52,8 @@
     self = [super init];
     if (self) {
         [self loadSubView];
+        [self setCustomTitle:@"选择提醒时间"];
+        [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
     }
     return self;
 }

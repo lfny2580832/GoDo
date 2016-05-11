@@ -233,23 +233,30 @@ static CGFloat datePickerCellHeight = 240.f;
     CreateMissionAPI *api = [[CreateMissionAPI alloc]initWithMissionName:_missionContentStr deadline:_deadlineDate projectId:_projectId receiversId:_receiverIds];
     [api startWithSuccessBlock:^(id responseObject) {
         CreateMissionModel *model = [CreateMissionModel yy_modelWithDictionary:responseObject];
-        _missionId = model.id;
-        if(_chosenImages.count)
-        {
-            QiNiuUploadImageTool *tool = [[QiNiuUploadImageTool alloc]init];
-            [tool uploadImages:_chosenImages todoId:_missionId completed:^(NSArray *keys) {
-                
-                [self requestToUpdateMissionImage:keys hud:hud];
-                
-            }];
-        }else{
-            [hud hide];
-            [NYProgressHUD showToastText:@"发布任务成功" completion:^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMission" object:nil];
-                [self.navigationController popViewControllerAnimated:YES];
-            }];
-        }
+        if (model.code == 0) {
+            _missionId = model.id;
+            if(_chosenImages.count)
+            {
+                QiNiuUploadImageTool *tool = [[QiNiuUploadImageTool alloc]init];
+                [tool uploadImages:_chosenImages todoId:_missionId completed:^(NSArray *keys) {
+                    
+                    [self requestToUpdateMissionImage:keys hud:hud];
+                    
+                }];
+            }else{
+                [hud hide];
+                [NYProgressHUD showToastText:@"发布任务成功" completion:^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshMission" object:nil];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+            }
 
+        }else
+        {
+            [hud hide];
+            [NYProgressHUD showToastText:model.msg];
+        }
+     
         
     } failure:^{
         [hud hide];

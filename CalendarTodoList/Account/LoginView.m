@@ -46,14 +46,14 @@
 
     }];
     
-    UIImageView *logoView = [[UIImageView alloc]init];
-    logoView.backgroundColor = [UIColor whiteColor];
-    [self addSubview:logoView];
-    [logoView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(50, 50));
-        make.centerX.equalTo(self);
-        make.bottom.equalTo(_mailTextField.mas_top).offset(-40);
-    }];
+//    UIImageView *logoView = [[UIImageView alloc]init];
+//    logoView.backgroundColor = [UIColor whiteColor];
+//    [self addSubview:logoView];
+//    [logoView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(50, 50));
+//        make.centerX.equalTo(self);
+//        make.bottom.equalTo(_mailTextField.mas_top).offset(-40);
+//    }];
 
     _passwordTextField = [[UITextField alloc]init];
     _passwordTextField.placeholder = @"请输入密码";
@@ -125,17 +125,30 @@
         make.centerX.equalTo(loginButton).offset(-70);
     }];
     
-    
-    UIButton *dismissButton = [[UIButton alloc]init];
-    dismissButton.backgroundColor = [UIColor whiteColor];
+    UIImageView *dismissView = [[UIImageView alloc]init];
+    dismissView.userInteractionEnabled = YES;
+    dismissView.backgroundColor = [UIColor clearColor];
+    dismissView.image = [UIImage imageNamed:@"ico_down.png"];
     SEL dismissLoginView = NSSelectorFromString(@"dismissLoginView");
-    [dismissButton addTarget:_target action:dismissLoginView forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:dismissButton];
-    [dismissButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    UITapGestureRecognizer *dissmissGes = [[UITapGestureRecognizer alloc]initWithTarget:_target action:dismissLoginView];
+    [dismissView addGestureRecognizer:dissmissGes];
+    [self addSubview:dismissView];
+    [dismissView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(loginButton.mas_bottom).offset(60);
         make.centerX.equalTo(self);
         make.size.mas_equalTo(CGSizeMake(30, 60));
     }];
+    
+//    UIButton *dismissButton = [[UIButton alloc]init];
+//    dismissButton.backgroundColor = [UIColor whiteColor];
+//    SEL dismissLoginView = NSSelectorFromString(@"dismissLoginView");
+//    [dismissButton addTarget:_target action:dismissLoginView forControlEvents:UIControlEventTouchUpInside];
+//    [self addSubview:dismissButton];
+//    [dismissButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(loginButton.mas_bottom).offset(60);
+//        make.centerX.equalTo(self);
+//        make.size.mas_equalTo(CGSizeMake(30, 60));
+//    }];
 }
 
 @end

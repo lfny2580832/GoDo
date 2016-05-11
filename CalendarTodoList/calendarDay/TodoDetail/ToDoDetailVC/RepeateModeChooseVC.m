@@ -51,6 +51,8 @@
     self = [super init];
     if (self) {
         [self loadSubView];
+        [self setCustomTitle:@"选择重复模式"];
+        [self setLeftBackButtonImage:[UIImage imageNamed:@"ico_nav_back_white.png"]];
     }
     return self;
 }

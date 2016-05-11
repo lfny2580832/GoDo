@@ -179,6 +179,13 @@ static CGFloat datePickerCellHeight = 240.f;
 {
     NYProgressHUD *hud = [NYProgressHUD new];
     [hud showAnimationWithText:@"删除任务中"];
+    
+    if ([_tableId isEqualToString:@"1"])
+    {
+        [self deleteTodoFromDateBaseWithHud:hud];
+        return;
+    }
+    
     DeleteTodoAPI *api = [[DeleteTodoAPI alloc]initWithTodoId:_tableId];
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         BaseModel *model = [BaseModel yy_modelWithJSON:request.responseString];
@@ -320,6 +327,11 @@ static CGFloat datePickerCellHeight = 240.f;
 #pragma mark 创建ToDo网络请求
 - (void)requestToCreateOrUpdateTodo
 {
+    if ([_tableId isEqualToString:@"1"]) {
+        [NYProgressHUD showToastText:@"默认任务无法修改，请删除该任务"];
+        return;
+    }
+    
     TodoModel *todo = [[TodoModel alloc]init];
     todo.desc = _todoContentStr;
     todo.startTime = [_startDate timeIntervalSince1970];
@@ -333,6 +345,7 @@ static CGFloat datePickerCellHeight = 240.f;
     [hud showAnimationWithText:@"创建任务中"];
     
     if (_tableId) {
+        
         if(_chosenImages.count)
         {
             [self requestToUploadImageWithTodo:todo completion:^(bool success) {
