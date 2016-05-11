@@ -108,9 +108,15 @@
 //    [self.navigationController pushViewController:vc animated:YES];
 //}
 
-#pragma mark 邮件添加mission
+#pragma mark 添加mission
 - (void)rightbarButtonItemOnclick:(id)sender
 {
+    //私有项目 且 当前用户不是创建者时
+    if (_project.private == YES && ![[UserDefaultManager id] isEqualToString:_project.creatorId]) {
+        [NYProgressHUD showToastText:@"私有项目只有创建者可添加任务"];
+        return;
+    }
+    
     CreateMissionVC *vc = [[CreateMissionVC alloc]initWithProject:_project];
     vc.mission = nil;
     [self.navigationController pushViewController:vc animated:YES];
@@ -122,20 +128,9 @@
     [self getProjectMission];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMissions) name:@"refreshMission" object:nil];
 }
 
 #pragma mark 初始化
@@ -150,7 +145,8 @@
         [self setRightBackButtontile:@"添加任务"];
         [self initView];
         [self getProjectInfo];
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMissions) name:@"refreshMission" object:nil];
+
     }
     return self;
 }

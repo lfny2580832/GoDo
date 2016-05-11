@@ -119,20 +119,6 @@
     }
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    NSLog(@"viewdidloadframe:%f",SCREEN_WIDTH);
-    
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    NSLog(@"viewdidlayoutsubviewsframe:%f",SCREEN_WIDTH);
-
-}
-
 #pragma mark 初始化方法
 - (instancetype)init
 {
