@@ -42,7 +42,7 @@
         [_timeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.contentView).offset(-18);
         }];
-    }else if (messageModel.type == 7)
+    }else if (messageModel.type == 6)
     {
         _titleLabel.text = [NSString stringWithFormat:@"%@ 邀请你接受任务",messageModel.extraInfo.invitorName];
         _acceptLabel.hidden = YES;
@@ -65,7 +65,7 @@
             return;
             break;
            
-        case 7:
+        case 6:
         {
             //跳至项目页面
             [self.delegate jumpToProjectInfoVCWithId:_message.extraInfo.projectId];

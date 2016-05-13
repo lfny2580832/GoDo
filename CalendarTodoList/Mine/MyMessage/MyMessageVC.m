@@ -130,6 +130,8 @@
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     MainTabBarVC *vc = appDelegate.mainTabbarVC;
     vc.mineNavVC.tabBarItem.badgeValue = nil;
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+
 }
 
 #pragma mark 初始化
