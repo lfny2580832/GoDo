@@ -51,7 +51,7 @@
     _mission = mission;
     _textLabel.text = mission.name;
     _createInfoLabel.text = [NSString stringWithFormat:@"%@ 创建了任务",mission.creatorName];
-    NSString *deadLineStr = [NSString dateStringsWithTimeStamp:mission.createTime];
+    NSString *deadLineStr = [NSString dateStringsWithTimeStamp:mission.deadline];
     _deadLineLabel.text = [NSString stringWithFormat:@"截止日期：%@",deadLineStr];
     _createTimeLabel.text = [NSString monthDayDateStringWithTimeStamp:mission.createTime];
     [_avatarView sd_setImageWithURL:[NSURL URLWithString:mission.creatorAvatar]];
